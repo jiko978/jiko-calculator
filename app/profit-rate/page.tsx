@@ -23,7 +23,8 @@ export default function ProfitRatePage() {
   const handleChange = (setter: (v: string) => void) =>
       (e: React.ChangeEvent<HTMLInputElement>) => {
           const raw = e.target.value.replace(/[^0-9]/g, "");
-          setter(raw === "" ? "" : formatComma(raw));
+          const noLeadingZero = raw.replace(/^0+/, "");
+          setter(noLeadingZero === "" ? "" : formatComma(noLeadingZero));
       };
 
   return (
@@ -58,7 +59,7 @@ export default function ProfitRatePage() {
         수익금 : {profit.toLocaleString()} 원
       </h2>
       <h2 style={{ marginTop: "5px" }}>
-          수익률 : {rate.toLocaleString()} 원
+          수익률 : {rate.toLocaleString()} %
       </h2>
     </main>
   );
