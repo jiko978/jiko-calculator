@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState } from "react";
+import PageTitle from "@/app/components/pageTitle";
 
 export default function AvgPriceCalculator() {
     const [price1, setPrice1] = useState("")
@@ -35,69 +36,60 @@ export default function AvgPriceCalculator() {
         };
 
     return (
-        <div className="p-10">
-            <h1 className="text-2xl font-bold mb-5">물타기 평균 단가 계산기</h1>
+        <div className="bg-gray-50 dark:bg-gray-900 px-4 py-12">
+            <div className="max-w-3xl mx-auto">
+                <div className="flex justify-center gap-3 mb-6">
+                    <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold">
+                    💧 물타기
+                    </span>
+                    <span className="px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm font-semibold">
+                    🔥 불타기
+                    </span>
+                    <h1 className="px-3 py-1 font-bold text-center text-gray-800 dark:text-gray-100">평균 단가 계산기</h1>
+                </div>
 
-            <table className="border-collapse border border-gray-400">
-                <thead>
-                <tr className="bg-gray-100">
-                    <th className="border border-gray-400 px-4 py-2 text-center">차수</th>
-                    <th className="border border-gray-400 px-4 py-2 text-center">매수가 (원)</th>
-                    <th className="border border-gray-400 px-4 py-2 text-center">수량 (개)</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td className="border border-gray-400 px-4 py-2 text-center">1차</td>
-                    <td className="border border-gray-400 px-2 py-2">
-                        <input type="text" placeholder="매수가"
-                               value={price1}
-                               onChange={handleChange(setPrice1)}
-                               className="p-1 text-right w-32" />
-                    </td>
-                    <td className="border border-gray-400 px-2 py-2">
-                        <input type="text" placeholder="수량"
-                               value={qty1}
-                               onChange={handleChange(setQty1)}
-                               className="p-1 text-right w-32" />
-                    </td>
-                </tr>
-                <tr>
-                    <td className="border border-gray-400 px-4 py-2 text-center">2차</td>
-                    <td className="border border-gray-400 px-2 py-2">
-                        <input type="text" placeholder="매수가"
-                               value={price2}
-                               onChange={handleChange(setPrice2)}
-                               className="p-1 text-right w-32" />
-                    </td>
-                    <td className="border border-gray-400 px-2 py-2">
-                        <input type="text" placeholder="수량"
-                               value={qty2}
-                               onChange={handleChange(setQty2)}
-                               className="p-1 text-right w-32" />
-                    </td>
-                </tr>
-                <tr>
-                    <td className="border border-gray-400 px-4 py-2 text-center">3차</td>
-                    <td className="border border-gray-400 px-2 py-2">
-                        <input type="text" placeholder="매수가"
-                               value={price3}
-                               onChange={handleChange(setPrice3)}
-                               className="p-1 text-right w-32" />
-                    </td>
-                    <td className="border border-gray-400 px-2 py-2">
-                        <input type="text" placeholder="수량"
-                               value={qty3}
-                               onChange={handleChange(setQty3)}
-                               className="p-1 text-right w-32" />
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                {/* 테이블 카드 */}
+                <div className="overflow-x-auto">
+                    <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md">
+                        <table className="border-collapse border border-gray-400 dark:border-gray-600 mx-auto">
+                            <thead>
+                            <tr className="bg-gray-100 dark:bg-gray-700">
+                                <th className="border border-gray-400 dark:border-gray-600 px-4 py-2 text-center text-gray-800 dark:text-gray-100">차수</th>
+                                <th className="border border-gray-400 dark:border-gray-600 px-4 py-2 text-center text-gray-800 dark:text-gray-100">매수가 (원)</th>
+                                <th className="border border-gray-400 dark:border-gray-600 px-4 py-2 text-center text-gray-800 dark:text-gray-100">수량 (개)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {[
+                                { label: "1차", price: price1, qty: qty1, setPrice: setPrice1, setQty: setQty1 },
+                                { label: "2차", price: price2, qty: qty2, setPrice: setPrice2, setQty: setQty2 },
+                                { label: "3차", price: price3, qty: qty3, setPrice: setPrice3, setQty: setQty3 },
+                            ].map(({ label, price, qty, setPrice, setQty }) => (
+                                <tr key={label}>
+                                    <td className="border border-gray-400 dark:border-gray-600 px-4 py-2 text-center text-gray-800 dark:text-gray-100">{label}</td>
+                                    <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-center">
+                                        <input type="text" placeholder="매수가"
+                                               value={price}
+                                               onChange={handleChange(setPrice)}
+                                               className="p-2 text-right w-28 border rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400" />
+                                    </td>
+                                    <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-center">
+                                        <input type="text" placeholder="수량"
+                                               value={qty}
+                                               onChange={handleChange(setQty)}
+                                               className="p-2 text-right w-28 border rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400" />
+                                    </td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-            <div className="mt-5">
-                <p className="text-lg">평균 단가: <strong>{avgPrice.toLocaleString()} 원</strong></p>
-                <p className="text-lg">합계 수량: <strong>{totalQty.toLocaleString()} 개</strong></p>
+                <div className="mt-8 text-center space-y-2">
+                    <p className="text-lg text-gray-800 dark:text-gray-100">평균 단가 : <strong>{avgPrice.toLocaleString()} 원</strong></p>
+                    <p className="text-lg text-gray-800 dark:text-gray-100">합계 수량 : <strong>{totalQty.toLocaleString()} 개</strong></p>
+                </div>
             </div>
         </div>
     )

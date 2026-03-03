@@ -25,9 +25,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+          className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 text-black dark:text-white"
       >
       <Header />
       {/* 콘텐츠 영역 */}
