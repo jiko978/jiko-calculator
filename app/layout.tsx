@@ -3,39 +3,102 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import KakaoInit from "./components/KakaoInit";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+    variable: "--font-geist-sans",
+    subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+    variable: "--font-geist-mono",
+    subsets: ["latin"],
 });
 
+const BASE_URL = "https://jiko-calculator-nine.vercel.app";
+
 export const metadata: Metadata = {
-  title: "주식 평단가 계산기",
-  description: "주식 평균 매입 단가를 쉽게 계산해보세요.",
+    metadataBase: new URL(BASE_URL),
+    title: {
+        default: "JIKO calculator",
+        template: "%s | JIKO calculator",  // 각 페이지 제목 뒤에 자동으로 붙음
+    },
+    description: "주식, 금융, 건강, 생활 등 다양한 계산기를 한 곳에서 사용하세요.",
+    keywords: ["계산기", "주식 계산기", "평단가 계산기", "수익률 계산기"],
+    authors: [{ name: "JIKO calculator" }],
+    creator: "JIKO calculator",
+
+    // ── Open Graph (카카오/페이스북/링크 미리보기) ──
+    openGraph: {
+        type: "website",
+        locale: "ko_KR",
+        url: BASE_URL,
+        siteName: "JIKO calculator",
+        title: "JIKO calculator",
+        description: "주식, 금융, 건강, 생활 등 다양한 계산기를 한 곳에서 사용하세요.",
+        images: [
+            {
+                url: "/kakao-thumbnail.png",
+                width: 1200,
+                height: 630,
+                alt: "JIKO calculator",
+            },
+        ],
+    },
+
+    // ── Twitter Card ──
+    twitter: {
+        card: "summary_large_image",
+        title: "JIKO calculator",
+        description: "주식, 금융, 건강, 생활 등 다양한 계산기를 한 곳에서 사용하세요.",
+        images: ["/kakao-thumbnail.png"],
+    },
+
+    // ── robots ──
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            "max-video-preview": -1,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+        },
+    },
+
+    // ── canonical (기본값, 각 페이지에서 override 가능) ──
+    alternates: {
+        canonical: BASE_URL,
+    },
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
+                                       children,
+                                   }: Readonly<{
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="ko" className="dark">
-      <body
-          className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 text-black dark:text-white"
-      >
-      <Header />
-      {/* 콘텐츠 영역 */}
-      <main className="flex-grow">
-        {children}
-      </main>
-      <Footer />
-      </body>
-    </html>
-  );
+    return (
+        <html lang="ko" suppressHydrationWarning>
+        <head>
+            {/* 다크모드 깜빡임 방지 */}
+            <script dangerouslySetInnerHTML={{
+                __html: `
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark') {
+              document.documentElement.classList.add('dark');
+            }
+          `
+            }} />
+        </head>
+        <body className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 text-black dark:text-white">
+        <KakaoInit />
+        <Header />
+        <main className="flex-grow">
+            {children}
+        </main>
+        <Footer />
+        </body>
+        </html>
+    );
 }

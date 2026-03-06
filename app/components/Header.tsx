@@ -25,16 +25,25 @@ export default function Header() {
             <div className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
                 <div className="font-bold text-lg">
                     <a href="/" className="hover:text-red-500">
-                        📈 주식 계산기
+                        🔥 JIKO 계산기 🔥
                     </a>
                 </div>
 
                 <nav className="flex gap-6 text-sm font-medium">
-                    <a href="/avg-price" className="hover:text-red-500">
-                        평단가
+                    <a href="/stock" className="hover:text-red-500">
+                        📈 주식
                     </a>
-                    <a href="/profit-rate" className="hover:text-red-500">
-                        수익률
+                    <a href="/stock" className="hover:text-red-500">
+                        💰 투자
+                    </a>
+                    <a href="/stock" className="hover:text-red-500">
+                        🏠 생활
+                    </a>
+                    <a href="/stock" className="hover:text-red-500">
+                        💪 건강
+                    </a>
+                    <a href="/stock" className="hover:text-red-500">
+                        🧮 기타
                     </a>
                 </nav>
 
