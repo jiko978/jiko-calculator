@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import KakaoInit from "./components/KakaoInit";
 import RegisterSW from "./components/RegisterSW";
+import Script from "next/script";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -88,6 +89,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="ko" suppressHydrationWarning>
+
         <head>
             {/* 다크모드 깜빡임 방지 */}
             <script dangerouslySetInnerHTML={{
@@ -108,15 +110,35 @@ export default function RootLayout({
             <meta name="apple-mobile-web-app-title" content="JIKO 계산기" />
             <meta name="theme-color" content="#3b82f6" />
         </head>
+
         <body className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 text-black dark:text-white">
+
         <KakaoInit />
+
         <RegisterSW />
+
+        {/* Google Analytics GA4 */}
+        <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-VHLZBZWZC8"
+            strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+            {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-VHLZBZWZC8');
+            `}
+        </Script>
+
         <Header />
+
         <main className="flex-grow">
             {children}
         </main>
         <Footer />
         </body>
+
         </html>
     );
 }
