@@ -1,11 +1,15 @@
+// ─────────────────────────────────────────────────────────
+// app/components/GA4PageTracker.tsx
+// ─────────────────────────────────────────────────────────
+
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
 const GA_ID = "G-VHLZBZWZC8";
 
-export default function PageViewTracker() {
+function PageViewTracker() {
     const pathname = usePathname();
     const searchParams = useSearchParams();
 
@@ -18,4 +22,13 @@ export default function PageViewTracker() {
     }, [pathname, searchParams]);
 
     return null;
+}
+
+// useSearchParams 는 Suspense 필수 (빌드 오류 방지)
+export default function GA4PageTrackerWrapper() {
+    return (
+        <Suspense fallback={null}>
+            <PageViewTracker />
+        </Suspense>
+    );
 }
