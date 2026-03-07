@@ -2,15 +2,19 @@
 // public/sw.js — Service Worker (next-pwa 없이 직접 구현)
 // ─────────────────────────────────────────────────────────
 
-const CACHE_NAME = "jiko-calculator-v1";
+const CACHE_NAME = "jiko-calculator-v2";
 
 const STATIC_ASSETS = [
     "/",
+    "/stock",
     "/stock/avg-price",
     "/stock/profit-rate",
     "/manifest.json",
     "/icons/icon-192x192.png",
     "/icons/icon-512x512.png",
+    "/icons/apple-touch-icon.png",
+    "/icons/favicon-32x32.png",
+    "/icons/favicon-16x16.png",
 ];
 
 // 설치: 정적 파일 사전 캐시

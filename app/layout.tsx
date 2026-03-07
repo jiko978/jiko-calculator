@@ -105,7 +105,7 @@ export default function RootLayout({
             <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
             <meta name="mobile-web-app-capable" content="yes" />
             <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-            <meta name="apple-mobile-web-app-title" content="JIKO" />
+            <meta name="apple-mobile-web-app-title" content="JIKO 계산기" />
             <meta name="theme-color" content="#3b82f6" />
         </head>
         <body className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 text-black dark:text-white">
