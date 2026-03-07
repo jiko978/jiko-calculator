@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NavBar from "@/app/components/NavBar";
 
 export default function Home() {
     return (
@@ -17,6 +18,7 @@ export default function Home() {
                         💰 수익률
                     </Link>
                 </div>
+                <NavBar title="주식 계산기" description={"주식 많이 올랐어요? 축하드려요!"} />
             </div>
         </main>
     );

@@ -4,3 +4,53 @@
 @media (prefers-color-scheme: dark) {
     :root { color-scheme: light; }
 }
+
+/* ── 모바일 최적화 추가 ───────────────────────────────────── */
+
+/* 아이폰 노치/홈바 safe-area 대응 */
+.pb-safe {
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+}
+
+/* iOS 입력창 줌인 방지 — 전체 input에 최소 16px 보장 */
+input, select, textarea {
+    font-size: max(16px, 1rem);
+}
+
+/* ── 애니메이션 ───────────────────────────────────────────── */
+
+/* 결과 박스: fadeIn + slideUp */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.animate-fade-slide-up {
+    animation: fadeSlideUp 0.3s ease-out forwards;
+}
+
+/* 초기화 버튼: shake */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%       { transform: translateX(-4px); }
+    40%       { transform: translateX(4px); }
+    60%       { transform: translateX(-3px); }
+    80%       { transform: translateX(3px); }
+}
+.animate-shake {
+    animation: shake 0.35s ease-in-out;
+}
+
+/* 페이지 진입: fadeIn */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+.animate-fade-in {
+    animation: fadeIn 0.0s ease-out forwards;
+}

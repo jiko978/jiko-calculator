@@ -25,7 +25,7 @@ export default function Header() {
             <div className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
                 <div className="font-bold text-lg">
                     <a href="/" className="hover:text-red-500">
-                        🔥 JIKO 계산기 🔥
+                        🧠 JIKO 계산기 🧰
                     </a>
                 </div>
 

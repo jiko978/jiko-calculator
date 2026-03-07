@@ -35,7 +35,7 @@ export default function ShareSheet({ url, title, description, onClose }: ShareSh
             objectType: "feed",
             content: {
                 title,
-                description: description ?? "주식 계산기 - 평단가/수익률을 계산해보세요",
+                description: description ?? "JIKO 계산기 - 계산은 정확히 해야해요",
                 imageUrl: thumbnailUrl,
                 link: {
                     mobileWebUrl: url,
@@ -44,7 +44,7 @@ export default function ShareSheet({ url, title, description, onClose }: ShareSh
             },
             buttons: [
                 {
-                    title: "계산하러 가기",
+                    title: "정확히 계산하러 가기",
                     link: {
                         mobileWebUrl: url,
                         webUrl: url,

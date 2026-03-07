@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import KakaoInit from "./components/KakaoInit";
+import RegisterSW from "./components/RegisterSW";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -17,11 +18,18 @@ const geistMono = Geist_Mono({
 
 const BASE_URL = "https://jiko-calculator-nine.vercel.app";
 
+// safe-area-inset 활성화 (아이폰 노치/홈바 대응)
+export const viewport = {
+    width: "device-width",
+    initialScale: 1,
+    viewportFit: "cover",
+};
+
 export const metadata: Metadata = {
     metadataBase: new URL(BASE_URL),
     title: {
         default: "JIKO calculator",
-        template: "%s | JIKO calculator",  // 각 페이지 제목 뒤에 자동으로 붙음
+        template: "%s | JIKO calculator",
     },
     description: "주식, 금융, 건강, 생활 등 다양한 계산기를 한 곳에서 사용하세요.",
     keywords: ["계산기", "주식 계산기", "평단가 계산기", "수익률 계산기"],
@@ -90,9 +98,19 @@ export default function RootLayout({
             }
           `
             }} />
+            {/* PWA */}
+            <link rel="manifest" href="/manifest.json" />
+            <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+            <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+            <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+            <meta name="apple-mobile-web-app-title" content="JIKO" />
+            <meta name="theme-color" content="#3b82f6" />
         </head>
         <body className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 text-black dark:text-white">
         <KakaoInit />
+        <RegisterSW />
         <Header />
         <main className="flex-grow">
             {children}

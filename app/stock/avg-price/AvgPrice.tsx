@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import NavBar from "@/app/components/NavBar";
+import { ANIMATION } from "@/app/config/animationConfig";
 
 export default function AvgPriceCalculator() {
     const [price1, setPrice1] = useState("");
@@ -12,6 +13,7 @@ export default function AvgPriceCalculator() {
     const [qty3,   setQty3]   = useState("");
     const [calculated, setCalculated] = useState(false);
     const [copied,     setCopied]     = useState(false);
+    const [shaking,    setShaking]    = useState(false);
 
     const n = (v: string) => Number(v.replace(/[^0-9]/g, ""));
 
@@ -36,6 +38,8 @@ export default function AvgPriceCalculator() {
     const handleReset = () => {
         [setPrice1, setQty1, setPrice2, setQty2, setPrice3, setQty3].forEach(s => s(""));
         setCalculated(false); setCopied(false);
+        setShaking(true);
+        setTimeout(() => setShaking(false), 400);
     };
 
     const handleCopyResult = async () => {
@@ -58,9 +62,9 @@ export default function AvgPriceCalculator() {
     return (
         <div className="bg-gray-50 dark:bg-gray-900">
 
-            <NavBar title="평균 단가 계산기" />
+            <NavBar title="평균 단가 계산기" description={"주식 평균 단가를 정확히 계산해보세요"}/>
 
-            <div className="max-w-3xl mx-auto px-4 py-6">
+            <div className={`max-w-3xl mx-auto px-4 py-6 pb-safe ${ANIMATION.pageEnter ? "animate-fade-in" : ""}`}>
 
                 <div className="flex justify-center items-center gap-3 mb-6 flex-wrap">
                     <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold">💧 물타기</span>
@@ -85,12 +89,12 @@ export default function AvgPriceCalculator() {
                                     <td className="border border-gray-400 dark:border-gray-600 px-1 py-2 text-center">
                                         <input type="text" inputMode="numeric" placeholder="0" value={price}
                                                onChange={handleChange(setPrice)}
-                                               className="p-1 text-right w-20 sm:w-24 border rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 text-sm" />
+                                               className="p-1 text-right w-20 sm:w-24 border rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 text-base" />
                                     </td>
                                     <td className="border border-gray-400 dark:border-gray-600 px-1 py-2 text-center">
                                         <input type="text" inputMode="numeric" placeholder="0" value={qty}
                                                onChange={handleChange(setQty)}
-                                               className="p-1 text-right w-16 sm:w-20 border rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 text-sm" />
+                                               className="p-1 text-right w-16 sm:w-20 border rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 text-base" />
                                     </td>
                                     <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 whitespace-nowrap">
                                         {amount > 0 ? amount.toLocaleString() : "-"}
@@ -113,17 +117,17 @@ export default function AvgPriceCalculator() {
 
                 <div className="mt-6 flex justify-center gap-3">
                     <button onClick={handleReset}
-                            className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 transition-colors duration-150 text-base">
+                            className={`px-6 py-3 min-h-[44px] border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 transition-colors duration-150 text-base ${ANIMATION.resetShake && shaking ? "animate-shake" : ""}`}>
                         초기화
                     </button>
                     <button onClick={() => setCalculated(true)}
-                            className="px-8 py-3 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-bold rounded-xl shadow-md transition-colors duration-150 text-base">
+                            className="px-8 py-3 min-h-[44px] bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-bold rounded-xl shadow-md transition-colors duration-150 text-base">
                         계산하기
                     </button>
                 </div>
 
                 {calculated && (
-                    <div className="mt-6 bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-md text-center space-y-2">
+                    <div className={`mt-6 bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-md text-center space-y-2 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
                         <p className="text-lg text-gray-800 dark:text-gray-100">
                             평균 단가 : <strong className="text-blue-600 dark:text-blue-400">{avgPrice.toLocaleString(undefined, { maximumFractionDigits: 0 })} 원</strong>
                         </p>

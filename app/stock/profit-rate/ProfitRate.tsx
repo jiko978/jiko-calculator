@@ -2,13 +2,15 @@
 
 import { useState } from "react";
 import NavBar from "@/app/components/NavBar";
+import { ANIMATION } from "@/app/config/animationConfig";
 
 export default function ProfitRatePage() {
     const [buyPrice,     setBuyPrice]     = useState("");
     const [currentPrice, setCurrentPrice] = useState("");
     const [quantity,     setQuantity]     = useState("");
     const [result, setResult] = useState<{ profit: number; rate: string; buyTotal: number } | null>(null);
-    const [copied, setCopied] = useState(false);
+    const [copied,  setCopied]  = useState(false);
+    const [shaking, setShaking] = useState(false);
 
     const formatComma = (raw: string) =>
         raw.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -34,6 +36,8 @@ export default function ProfitRatePage() {
     const handleReset = () => {
         setBuyPrice(""); setCurrentPrice(""); setQuantity("");
         setResult(null); setCopied(false);
+        setShaking(true);
+        setTimeout(() => setShaking(false), 400);
     };
 
     const handleCopyResult = async () => {
@@ -51,14 +55,14 @@ export default function ProfitRatePage() {
     return (
         <div className="bg-gray-50 dark:bg-gray-900">
 
-            <NavBar title="수익률 계산기" />
+            <NavBar title="수익률 계산기" description={"주식 수익률을 정확히 계산해보세요"}/>
 
-            <div className="max-w-2xl mx-auto px-4 py-6">
+            <div className={`max-w-2xl mx-auto px-4 py-6 pb-safe ${ANIMATION.pageEnter ? "animate-fade-in" : ""}`}>
 
                 <div className="flex justify-center mb-6">
-            <span className="px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-sm font-semibold">
-              💰 수익률 계산기
-            </span>
+                    <span className="px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-sm font-semibold">
+                        💰 수익률 계산기
+                    </span>
                 </div>
 
                 <div className="bg-white dark:bg-gray-800 shadow-md rounded-2xl p-8">
@@ -75,7 +79,7 @@ export default function ProfitRatePage() {
                                         type="text" inputMode="numeric" placeholder="0"
                                         value={value}
                                         onChange={handleChange(setter)}
-                                        className="w-full border rounded-lg px-4 py-2 text-right focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400"
+                                        className="w-full border rounded-lg px-4 py-2 text-right focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 text-base"
                                     />
                                     <span className="ml-2 w-8 text-gray-800 dark:text-gray-100 shrink-0">{unit}</span>
                                 </div>
@@ -86,17 +90,17 @@ export default function ProfitRatePage() {
 
                 <div className="mt-6 flex justify-center gap-3">
                     <button onClick={handleReset}
-                            className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 transition-colors duration-150 text-base">
+                            className={`px-6 py-3 min-h-[44px] border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 transition-colors duration-150 text-base ${ANIMATION.resetShake && shaking ? "animate-shake" : ""}`}>
                         초기화
                     </button>
                     <button onClick={handleCalculate}
-                            className="px-8 py-3 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-bold rounded-xl shadow-md transition-colors duration-150 text-base">
+                            className="px-8 py-3 min-h-[44px] bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-bold rounded-xl shadow-md transition-colors duration-150 text-base">
                         계산하기
                     </button>
                 </div>
 
                 {result && (
-                    <div className="mt-6 bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-md text-center space-y-2">
+                    <div className={`mt-6 bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-md text-center space-y-2 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
                         <p className="text-lg text-gray-800 dark:text-gray-100">
                             매입 금액 : <strong className="text-red-500 dark:text-red-400">{result.buyTotal.toLocaleString()} 원</strong>
                         </p>

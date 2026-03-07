@@ -7,9 +7,11 @@ import ShareSheet from "@/app/components/ShareSheet";
 interface NavBarProps {
     title: string;        // 스크롤 후 중앙에 표시될 현재 페이지 제목
     shareTitle?: string;  // 공유 시트에 전달할 제목 (생략 시 title 사용)
+    description: string;
+    shareDescription?: string;
 }
 
-export default function NavBar({ title, shareTitle }: NavBarProps) {
+export default function NavBar({ title, shareTitle, description, shareDescription }: NavBarProps) {
     const router = useRouter();
 
     const [scrolled,   setScrolled]   = useState(false);
@@ -80,6 +82,7 @@ export default function NavBar({ title, shareTitle }: NavBarProps) {
                 <ShareSheet
                     url={typeof window !== "undefined" ? window.location.href : ""}
                     title={shareTitle ?? title}
+                    description={shareDescription ?? description}
                     onClose={() => setShowShare(false)}
                 />
             )}
