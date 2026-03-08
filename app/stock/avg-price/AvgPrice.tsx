@@ -163,11 +163,11 @@ export default function AvgPrice() {
                     <table className="border-collapse border border-gray-400 dark:border-gray-600 w-full text-sm table-fixed">
                         <thead>
                         <tr className="bg-gray-100 dark:bg-gray-700">
-                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 w-9 text-xs">차수</th>
-                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">매수가</th>
-                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">수량</th>
+                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 w-10 text-xs">차수</th>
+                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 w-[34%] text-xs">매수가</th>
+                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 w-[22%] text-xs">수량</th>
                             <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">매수금액</th>
-                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 w-8">삭제</th>
+                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 w-10">삭제</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -184,7 +184,7 @@ export default function AvgPrice() {
                                            onChange={handleChange(row.id, "qty")}
                                            className="p-1 text-right w-full border rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 text-base" />
                                 </td>
-                                <td className="border border-gray-400 dark:border-gray-600 px-1 py-2 text-right text-gray-800 dark:text-gray-100 text-xs">
+                                <td className="border border-gray-400 dark:border-gray-600 px-1 py-2 text-right text-gray-800 dark:text-gray-100 text-base">
                                     {validAmounts[idx] > 0 ? validAmounts[idx].toLocaleString() : "-"}
                                 </td>
                                 <td className="border border-gray-400 dark:border-gray-600 py-2 text-center w-8">
