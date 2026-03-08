@@ -159,72 +159,72 @@ export default function AvgPrice() {
                 </div>
 
                 {/* 입력 테이블 */}
-                <div className="overflow-x-auto">
-                    <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md">
-                        <table className="border-collapse border border-gray-400 dark:border-gray-600 mx-auto w-full text-sm">
-                            <thead>
-                            <tr className="bg-gray-100 dark:bg-gray-700">
-                                {["차수", "매수가", "수량", "매수금액", "휴지통"].map((h, i) => (
-                                    <th key={i} className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-center text-gray-800 dark:text-gray-100 whitespace-nowrap">{h}</th>
-                                ))}
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {rows.map((row, idx) => (
-                                <tr key={row.id}>
-                                    <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-center text-gray-800 dark:text-gray-100 font-medium whitespace-nowrap">{idx + 1}차</td>
-                                    <td className="border border-gray-400 dark:border-gray-600 px-1 py-2 text-center">
-                                        <input type="text" inputMode="numeric" placeholder="0" value={row.price}
-                                               onChange={handleChange(row.id, "price")}
-                                               className="p-1 text-right w-20 sm:w-24 border rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 text-base" />
-                                    </td>
-                                    <td className="border border-gray-400 dark:border-gray-600 px-1 py-2 text-center">
-                                        <input type="text" inputMode="numeric" placeholder="0" value={row.qty}
-                                               onChange={handleChange(row.id, "qty")}
-                                               className="p-1 text-right w-16 sm:w-20 border rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 text-base" />
-                                    </td>
-                                    <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 whitespace-nowrap">
-                                        {validAmounts[idx] > 0 ? validAmounts[idx].toLocaleString() : "-"}
-                                    </td>
-                                    <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-center w-10">
-                                        {idx === rows.length - 1 && rows.length > 1 && (
-                                            <button onClick={() => handleRemoveRow(row.id)}
-                                                    className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-gray-100 hover:bg-red-100 dark:bg-gray-700 dark:hover:bg-red-900/40 text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-all duration-150 active:scale-90"
-                                                    aria-label="행 삭제">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" />
-                                                </svg>
-                                            </button>
-                                        )}
-                                    </td>
-                                </tr>
-                            ))}
-                            <tr className="bg-gray-50 dark:bg-gray-700 font-semibold">
-                                <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-center text-gray-800 dark:text-gray-100" colSpan={2}>합계</td>
-                                <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 whitespace-nowrap">
-                                    {totalQty > 0 ? totalQty.toLocaleString() : "-"}
+                <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md">
+                    <table className="border-collapse border border-gray-400 dark:border-gray-600 w-full text-sm table-fixed">
+                        <thead>
+                        <tr className="bg-gray-100 dark:bg-gray-700">
+                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 w-9 text-xs">차수</th>
+                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">매수가</th>
+                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">수량</th>
+                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">매수금액</th>
+                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 w-8">삭제</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {rows.map((row, idx) => (
+                            <tr key={row.id}>
+                                <td className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 font-medium text-xs">{idx + 1}차</td>
+                                <td className="border border-gray-400 dark:border-gray-600 px-1 py-1 text-center">
+                                    <input type="text" inputMode="numeric" placeholder="0" value={row.price}
+                                           onChange={handleChange(row.id, "price")}
+                                           className="p-1 text-right w-full border rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 text-base" />
                                 </td>
-                                <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 whitespace-nowrap">
-                                    {totalCost > 0 ? totalCost.toLocaleString() : "-"}
+                                <td className="border border-gray-400 dark:border-gray-600 px-1 py-1 text-center">
+                                    <input type="text" inputMode="numeric" placeholder="0" value={row.qty}
+                                           onChange={handleChange(row.id, "qty")}
+                                           className="p-1 text-right w-full border rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 text-base" />
                                 </td>
-                                <td className="border border-gray-400 dark:border-gray-600" />
+                                <td className="border border-gray-400 dark:border-gray-600 px-1 py-2 text-right text-gray-800 dark:text-gray-100 text-xs">
+                                    {validAmounts[idx] > 0 ? validAmounts[idx].toLocaleString() : "-"}
+                                </td>
+                                <td className="border border-gray-400 dark:border-gray-600 py-2 text-center w-8">
+                                    {idx === rows.length - 1 && rows.length > 1 && (
+                                        <button onClick={() => handleRemoveRow(row.id)}
+                                                className="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-gray-100 hover:bg-red-100 dark:bg-gray-700 dark:hover:bg-red-900/40 text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-all duration-150 active:scale-90"
+                                                aria-label="행 삭제">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" />
+                                            </svg>
+                                        </button>
+                                    )}
+                                </td>
                             </tr>
-                            </tbody>
-                        </table>
+                        ))}
+                        <tr className="bg-gray-50 dark:bg-gray-700 font-semibold">
+                            <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-center text-gray-800 dark:text-gray-100" colSpan={2}>합계</td>
+                            <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 whitespace-nowrap">
+                                {totalQty > 0 ? totalQty.toLocaleString() : "-"}
+                            </td>
+                            <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 whitespace-nowrap">
+                                {totalCost > 0 ? totalCost.toLocaleString() : "-"}
+                            </td>
+                            <td className="border border-gray-400 dark:border-gray-600" />
+                        </tr>
+                        </tbody>
+                    </table>
 
-                        {rows.length < MAX_ROWS && (
-                            <button onClick={handleAddRow}
-                                    className="mt-3 w-full py-2 flex items-center justify-center gap-1 text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-150">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-                                </svg>
-                                {rows.length + 1}차 추가 ({rows.length}/{MAX_ROWS})
-                            </button>
-                        )}
-                        {rows.length >= MAX_ROWS && (
-                            <p className="mt-3 text-center text-xs text-gray-400 dark:text-gray-500">최대 {MAX_ROWS}차까지 추가 가능합니다.</p>
-                        )}
-                    </div>
+                    {rows.length < MAX_ROWS && (
+                        <button onClick={handleAddRow}
+                                className="mt-3 w-full py-2 flex items-center justify-center gap-1 text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-150">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                            </svg>
+                            {rows.length + 1}차 추가 ({rows.length}/{MAX_ROWS})
+                        </button>
+                    )}
+                    {rows.length >= MAX_ROWS && (
+                        <p className="mt-3 text-center text-xs text-gray-400 dark:text-gray-500">최대 {MAX_ROWS}차까지 추가 가능합니다.</p>
+                    )}
                 </div>
 
                 {/* 현재가 입력 (선택) */}
