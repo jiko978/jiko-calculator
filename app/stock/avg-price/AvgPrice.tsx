@@ -37,14 +37,11 @@ export default function AvgPrice() {
     const n = (v: string) => Number(v.replace(/[^0-9]/g, ""));
     const formatComma = (raw: string) => raw.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-    const amounts    = rows.map(r => n(r.price) * n(r.qty));
-    // 매수가/수량 둘 다 입력된 행만 유효
     const validAmounts = rows.map(r => (n(r.price) > 0 && n(r.qty) > 0) ? n(r.price) * n(r.qty) : 0);
     const totalCost  = validAmounts.reduce((s, a) => s + a, 0);
     const totalQty   = rows.reduce((s, r) => (n(r.price) > 0 && n(r.qty) > 0) ? s + n(r.qty) : s, 0);
     const avgPrice   = totalQty ? totalCost / totalQty : 0;
 
-    // 단가 절감률 (1차 매수가 기준, 그래프용)
     const firstPrice   = n(rows[0].price);
     const maxPrice     = Math.max(...rows.map(r => n(r.price)));
     const reducedRate  = firstPrice > 0 && avgPrice > 0
@@ -52,7 +49,6 @@ export default function AvgPrice() {
         : 0;
     const isUp         = avgPrice > firstPrice && firstPrice > 0;
 
-    // 현재가 관련
     const curPrice     = n(currentPrice);
     const hasCurrent   = curPrice > 0 && calculated;
     const evalTotal    = curPrice * totalQty;
@@ -60,10 +56,8 @@ export default function AvgPrice() {
     const profitRate   = totalCost > 0 ? ((profitAmt / totalCost) * 100).toFixed(2) : "0";
     const isProfit     = profitAmt >= 0;
 
-    // 등급: 현재가 있을 때만, 수익률 기준
     const grade = hasCurrent ? getGrade(Number(profitRate)) : null;
 
-    // 그래프용
     const maxAmount  = Math.max(...validAmounts, 1);
     const validRows  = rows.filter((_, i) => validAmounts[i] > 0);
 
@@ -116,6 +110,10 @@ export default function AvgPrice() {
         setTimeout(() => setShaking(false), 400);
     };
 
+    const breakevenQty = hasCurrent && curPrice < avgPrice && curPrice > 0
+        ? Math.ceil(totalCost / curPrice - totalQty)
+        : null;
+
     const handleCopyResult = async () => {
         const lines = [
             `평균 단가       : ${avgPrice.toLocaleString(undefined, { maximumFractionDigits: 0 })} 원`,
@@ -133,18 +131,17 @@ export default function AvgPrice() {
         setTimeout(() => setCopied(false), 2000);
     };
 
-    // 손익분기 수량: 현재가로 추가매수 시 평균단가 = 현재가가 되는 추가 수량
-    // (totalCost + curPrice * x) / (totalQty + x) = curPrice
-    // → x = (totalCost - curPrice * totalQty) / (curPrice - curPrice) → 분모0 문제
-    // 실제론: 현재가 < 평균단가일 때만 의미있음
-    // x = (totalCost / curPrice) - totalQty  (현재가로 전량 환산 후 현재수량 차감)
-    const breakevenQty = hasCurrent && curPrice < avgPrice && curPrice > 0
-        ? Math.ceil(totalCost / curPrice - totalQty)
-        : null;
     const priceBarMax = Math.max(maxPrice, curPrice, avgPrice, 1);
-    const avgBarPct   = Math.round((avgPrice   / priceBarMax) * 100);
-    const curBarPct   = Math.round((curPrice   / priceBarMax) * 100);
-    const maxBarPct   = Math.round((maxPrice   / priceBarMax) * 100);
+    const avgBarPct   = Math.round((avgPrice / priceBarMax) * 100);
+    const curBarPct   = Math.round((curPrice / priceBarMax) * 100);
+    const maxBarPct   = Math.round((maxPrice / priceBarMax) * 100);
+
+    // sticky 공통 스타일
+    const stickyTh = (left: number, width: number, extra = "") =>
+        `border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs bg-gray-100 dark:bg-gray-700 z-20 ${extra}`
+        + ` sticky`;
+    const stickyTd = (bgClass: string, extra = "") =>
+        `border border-gray-400 dark:border-gray-600 ${bgClass} z-10 sticky ${extra}`;
 
     return (
         <div className="bg-gray-50 dark:bg-gray-900">
@@ -160,58 +157,77 @@ export default function AvgPrice() {
 
                 {/* 입력 테이블 */}
                 <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md">
-                    <table className="border-collapse border border-gray-400 dark:border-gray-600 w-full text-sm table-fixed">
-                        <thead>
-                        <tr className="bg-gray-100 dark:bg-gray-700">
-                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 w-10 text-xs">차수</th>
-                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 w-[34%] text-xs">매수가</th>
-                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 w-[22%] text-xs">수량</th>
-                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">매수금액</th>
-                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 w-10">삭제</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {rows.map((row, idx) => (
-                            <tr key={row.id}>
-                                <td className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 font-medium text-xs">{idx + 1}차</td>
-                                <td className="border border-gray-400 dark:border-gray-600 px-1 py-1 text-center">
-                                    <input type="text" inputMode="numeric" placeholder="0" value={row.price}
-                                           onChange={handleChange(row.id, "price")}
-                                           className="p-1 text-right w-full border rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 text-base" />
-                                </td>
-                                <td className="border border-gray-400 dark:border-gray-600 px-1 py-1 text-center">
-                                    <input type="text" inputMode="numeric" placeholder="0" value={row.qty}
-                                           onChange={handleChange(row.id, "qty")}
-                                           className="p-1 text-right w-full border rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 text-base" />
-                                </td>
-                                <td className="border border-gray-400 dark:border-gray-600 px-1 py-2 text-right text-gray-800 dark:text-gray-100 text-base">
-                                    {validAmounts[idx] > 0 ? validAmounts[idx].toLocaleString() : "-"}
-                                </td>
-                                <td className="border border-gray-400 dark:border-gray-600 py-2 text-center w-8">
-                                    {idx === rows.length - 1 && rows.length > 1 && (
-                                        <button onClick={() => handleRemoveRow(row.id)}
-                                                className="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-gray-100 hover:bg-red-100 dark:bg-gray-700 dark:hover:bg-red-900/40 text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-all duration-150 active:scale-90"
-                                                aria-label="행 삭제">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" />
-                                            </svg>
-                                        </button>
-                                    )}
-                                </td>
+                    <div className="overflow-x-auto">
+                        <table className="border-collapse border border-gray-400 dark:border-gray-600 text-sm w-full">
+                            <colgroup>
+                                {/* 차수: 고정 36px */}
+                                <col style={{ width: 36, minWidth: 36 }} />
+                                {/* 매수가: 고정 112px (7자리) */}
+                                <col style={{ width: 112, minWidth: 112 }} />
+                                {/* 수량: 고정 84px (5자리) */}
+                                <col style={{ width: 84, minWidth: 84 }} />
+                                {/* 매수금액: 나머지 자동, 최소 100px */}
+                                <col style={{ minWidth: 100 }} />
+                                {/* 삭제: 고정 36px */}
+                                <col style={{ width: 36, minWidth: 36 }} />
+                            </colgroup>
+                            <thead>
+                            <tr className="bg-gray-100 dark:bg-gray-700">
+                                <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs sticky left-0 bg-gray-100 dark:bg-gray-700 z-20">차수</th>
+                                <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs sticky left-[36px] bg-gray-100 dark:bg-gray-700 z-20">매수가</th>
+                                <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs sticky left-[148px] bg-gray-100 dark:bg-gray-700 z-20">수량</th>
+                                <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">매수금액</th>
+                                <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">삭제</th>
                             </tr>
-                        ))}
-                        <tr className="bg-gray-50 dark:bg-gray-700 font-semibold">
-                            <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-center text-gray-800 dark:text-gray-100" colSpan={2}>합계</td>
-                            <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 whitespace-nowrap">
-                                {totalQty > 0 ? totalQty.toLocaleString() : "-"}
-                            </td>
-                            <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 whitespace-nowrap">
-                                {totalCost > 0 ? totalCost.toLocaleString() : "-"}
-                            </td>
-                            <td className="border border-gray-400 dark:border-gray-600" />
-                        </tr>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            {rows.map((row, idx) => (
+                                <tr key={row.id}>
+                                    <td className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 font-medium text-xs sticky left-0 bg-white dark:bg-gray-800 z-10">
+                                        {idx + 1}차
+                                    </td>
+                                    <td className="border border-gray-400 dark:border-gray-600 px-1 py-1 text-center sticky left-[36px] bg-white dark:bg-gray-800 z-10">
+                                        <input type="text" inputMode="numeric" placeholder="0" value={row.price}
+                                               onChange={handleChange(row.id, "price")}
+                                               className="p-1 text-right w-full border rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 text-base" />
+                                    </td>
+                                    <td className="border border-gray-400 dark:border-gray-600 px-1 py-1 text-center sticky left-[148px] bg-white dark:bg-gray-800 z-10">
+                                        <input type="text" inputMode="numeric" placeholder="0" value={row.qty}
+                                               onChange={handleChange(row.id, "qty")}
+                                               className="p-1 text-right w-full border rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 text-base" />
+                                    </td>
+                                    <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 text-base whitespace-nowrap">
+                                        {validAmounts[idx] > 0 ? validAmounts[idx].toLocaleString() : "-"}
+                                    </td>
+                                    <td className="border border-gray-400 dark:border-gray-600 py-2 text-center">
+                                        {idx === rows.length - 1 && rows.length > 1 && (
+                                            <button onClick={() => handleRemoveRow(row.id)}
+                                                    className="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-gray-100 hover:bg-red-100 dark:bg-gray-700 dark:hover:bg-red-900/40 text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-all duration-150 active:scale-90"
+                                                    aria-label="행 삭제">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" />
+                                                </svg>
+                                            </button>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                            <tr className="bg-gray-50 dark:bg-gray-700 font-semibold">
+                                <td colSpan={2}
+                                    className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-center text-gray-800 dark:text-gray-100 text-xs sticky left-0 bg-gray-50 dark:bg-gray-700 z-10">
+                                    합계
+                                </td>
+                                <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 text-xs sticky left-[148px] bg-gray-50 dark:bg-gray-700 z-10 whitespace-nowrap">
+                                    {totalQty > 0 ? totalQty.toLocaleString() : "-"}
+                                </td>
+                                <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 text-sm whitespace-nowrap">
+                                    {totalCost > 0 ? totalCost.toLocaleString() : "-"}
+                                </td>
+                                <td className="border border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-700" />
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
                     {rows.length < MAX_ROWS && (
                         <button onClick={handleAddRow}
@@ -264,7 +280,6 @@ export default function AvgPrice() {
                             {/* 좌측: 결과 수치 */}
                             <div className="flex-1 bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-md space-y-3">
                                 <h2 className="text-sm font-semibold text-gray-500 dark:text-gray-400">계산 결과</h2>
-
                                 <div className="flex justify-between items-center">
                                     <span className="text-gray-600 dark:text-gray-300">평균 단가</span>
                                     <strong className="text-blue-600 dark:text-blue-400 text-lg">
@@ -280,7 +295,6 @@ export default function AvgPrice() {
                                     <strong className="text-red-500 dark:text-red-400">{totalCost.toLocaleString()} 원</strong>
                                 </div>
 
-                                {/* 현재가 입력 시 수익 정보 */}
                                 {hasCurrent && (
                                     <>
                                         <div className="flex justify-between items-center border-t border-gray-100 dark:border-gray-700 pt-3">
@@ -299,17 +313,13 @@ export default function AvgPrice() {
                                                 {Number(profitRate) >= 0 ? "+" : ""}{profitRate} %
                                             </strong>
                                         </div>
-
-                                        {/* 손익분기 수량 */}
                                         {breakevenQty !== null && (
                                             <div className="flex justify-between items-center bg-amber-50 dark:bg-amber-900/20 rounded-xl px-3 py-2">
                                                 <span className="text-xs text-amber-600 dark:text-amber-400">본전되려면 추가매수</span>
-                                                <strong className="text-amber-600 dark:text-amber-400 text-sm">
-                                                    {breakevenQty.toLocaleString()} 개
-                                                </strong>
+                                                <strong className="text-amber-600 dark:text-amber-400 text-sm">{breakevenQty.toLocaleString()} 개</strong>
                                             </div>
                                         )}
-                                        {hasCurrent && curPrice >= avgPrice && (
+                                        {curPrice >= avgPrice && (
                                             <div className="flex justify-between items-center bg-green-50 dark:bg-green-900/20 rounded-xl px-3 py-2">
                                                 <span className="text-xs text-green-600 dark:text-green-400">손익분기</span>
                                                 <strong className="text-green-600 dark:text-green-400 text-sm">이미 본전 이상 ✅</strong>
@@ -318,7 +328,6 @@ export default function AvgPrice() {
                                     </>
                                 )}
 
-                                {/* 복사 버튼 */}
                                 <div className="pt-2 border-t border-gray-100 dark:border-gray-700 flex justify-center">
                                     <button onClick={handleCopyResult}
                                             className={`inline-flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
@@ -338,7 +347,6 @@ export default function AvgPrice() {
                             <div className="flex-1 bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-md flex flex-col">
                                 <h2 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-4">차수별 매수 비중</h2>
 
-                                {/* 단가 절감률 + 등급 */}
                                 <div className="text-center mb-5">
                                     <div className="flex items-center justify-center gap-2 flex-wrap">
                                         <span className={`text-3xl font-bold ${hasCurrent ? (isProfit ? "text-red-500 dark:text-red-400" : "text-blue-500 dark:text-blue-400") : "text-blue-600 dark:text-blue-400"}`}>
@@ -371,7 +379,6 @@ export default function AvgPrice() {
                                     )}
                                 </div>
 
-                                {/* 차수별 막대 그래프 */}
                                 <div className="space-y-2">
                                     {rows.map((row, idx) => {
                                         const amount = validAmounts[idx];
@@ -393,15 +400,14 @@ export default function AvgPrice() {
                                     })}
                                 </div>
 
-                                {/* 현재가 대비 단가 위치 그래프 */}
                                 {hasCurrent && validRows.length > 0 && (
                                     <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-700">
                                         <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">단가 위치 비교</p>
                                         <div className="space-y-2">
                                             {[
-                                                { label: "최고 매수가", value: maxPrice,  pct: maxBarPct, color: "bg-gray-400 dark:bg-gray-500" },
-                                                { label: "평균 단가",   value: avgPrice,  pct: avgBarPct, color: "bg-blue-400 dark:bg-blue-500" },
-                                                { label: "현재가",      value: curPrice,  pct: curBarPct, color: isProfit ? "bg-red-400 dark:bg-red-500" : "bg-blue-300 dark:bg-blue-400" },
+                                                { label: "최고 매수가", value: maxPrice, pct: maxBarPct, color: "bg-gray-400 dark:bg-gray-500" },
+                                                { label: "평균 단가",   value: avgPrice, pct: avgBarPct, color: "bg-blue-400 dark:bg-blue-500" },
+                                                { label: "현재가",      value: curPrice, pct: curBarPct, color: isProfit ? "bg-red-400 dark:bg-red-500" : "bg-blue-300 dark:bg-blue-400" },
                                             ].map(({ label, value, pct, color }) => (
                                                 <div key={label}>
                                                     <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
@@ -418,7 +424,6 @@ export default function AvgPrice() {
                                     </div>
                                 )}
 
-                                {/* 현재가 없을 때 평균단가 요약 */}
                                 {!hasCurrent && validRows.length > 1 && (
                                     <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-700 space-y-1">
                                         <div className="flex justify-between text-xs">
