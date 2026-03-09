@@ -193,8 +193,8 @@ export default function AvgPrice() {
                     <table className="border-collapse border border-gray-400 dark:border-gray-600 text-sm w-full" style={{ minWidth: "250px" }}>
                         <colgroup>
                             <col style={{ width: "35px", minWidth: "35px" }} />
-                            <col style={{ width: "90px", minWidth: "90px" }} />
-                            <col style={{ width: "90px", minWidth: "90px" }} />
+                            <col style={{ width: "80px", minWidth: "80px" }} />
+                            <col style={{ width: "70px", minWidth: "70px" }} />
                             <col />
                             <col style={{ width: "35px", minWidth: "35px" }} />
                         </colgroup>
