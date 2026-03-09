@@ -192,11 +192,11 @@ export default function AvgPrice() {
                 <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md overflow-x-auto">
                     <table className="border-collapse border border-gray-400 dark:border-gray-600 text-sm w-full" style={{ minWidth: "250px" }}>
                         <colgroup>
-                            <col style={{ width: "35px", minWidth: "35px" }} />
-                            <col style={{ width: "80px", minWidth: "80px" }} />
-                            <col style={{ width: "70px", minWidth: "70px" }} />
+                            <col className="w-[35px] min-w-[35px] sm:w-[50px] sm:min-w-[50px]" />
+                            <col className="w-[90px] min-w-[90px] sm:w-[25%] sm:min-w-[140px]" />
+                            <col className="w-[90px] min-w-[90px] sm:w-[25%] sm:min-w-[140px]" />
                             <col />
-                            <col style={{ width: "35px", minWidth: "35px" }} />
+                            <col className="w-[35px] min-w-[35px] sm:w-[50px] sm:min-w-[50px]" />
                         </colgroup>
                         <thead>
                             <tr className="bg-gray-100 dark:bg-gray-700">
