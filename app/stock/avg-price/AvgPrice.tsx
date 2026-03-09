@@ -63,10 +63,15 @@ export default function AvgPrice() {
 
     // 입력 길이에 따라 폰트 크기 조절 (최대 10자리 기준)
     const getFontSize = (value: string): number => {
+        // 640px(sm 사이즈) 이상의 PC/태블릿 화면에서는 항상 14px 고정
+        if (typeof window !== "undefined" && window.innerWidth >= 640) {
+            return 14;
+        }
+        // 모바일 환경(640px 미만)에서는 기존처럼 길이에 따라 폰트 축소
         const len = value.replace(/[^0-9]/g, "").length;
-        if (len >= 9) return 10; // 10자리: 9,999,999,999
-        if (len >= 7) return 12; // 7~8자리: 1,000,000~
-        return 14;               // 1~6자리: 기본
+        if (len >= 9) return 10;
+        if (len >= 7) return 12;
+        return 14;
     };
 
     const validAmounts = rows.map(r => (n(r.price) > 0 && n(r.qty) > 0) ? n(r.price) * n(r.qty) : 0);
@@ -119,6 +124,7 @@ export default function AvgPrice() {
     const handleCurrentPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCalculated(false);
         const raw = e.target.value.replace(/[^0-9]/g, "").replace(/^0+/, "");
+        if (raw.length > 9) return; // 9자리 초과 입력 차단
         setCurrentPrice(raw === "" ? "" : formatComma(raw));
     };
 
