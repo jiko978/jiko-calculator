@@ -16,13 +16,13 @@ const createRow = (id: number): Row => ({ id, price: "", qty: "" });
 
 // 수익률 기준 등급 (현재가 있을 때만)
 const getGrade = (rate: number) => {
-    if (rate >= 30)  return { label: "주식 고수",    emoji: "🏆", color: "text-yellow-500 dark:text-yellow-400" };
-    if (rate >= 20)  return { label: "주식 달인",    emoji: "👑", color: "text-amber-500 dark:text-amber-400" };
-    if (rate >= 10)  return { label: "손절 불가자",  emoji: "✨", color: "text-blue-500 dark:text-blue-400" };
-    if (rate >= 5)   return { label: "주식 초보",    emoji: "😅", color: "text-gray-500 dark:text-gray-400" };
-    if (rate >= 0)   return { label: "주식 호구",    emoji: "🐥", color: "text-gray-400 dark:text-gray-500" };
+    if (rate >= 30) return { label: "주식 고수", emoji: "🏆", color: "text-yellow-500 dark:text-yellow-400" };
+    if (rate >= 20) return { label: "주식 달인", emoji: "👑", color: "text-amber-500 dark:text-amber-400" };
+    if (rate >= 10) return { label: "손절 불가자", emoji: "✨", color: "text-blue-500 dark:text-blue-400" };
+    if (rate >= 5) return { label: "주식 초보", emoji: "😅", color: "text-gray-500 dark:text-gray-400" };
+    if (rate >= 0) return { label: "주식 호구", emoji: "🐥", color: "text-gray-400 dark:text-gray-500" };
     if (rate >= -10) return { label: "묻지마 투자자", emoji: "🤷", color: "text-orange-400 dark:text-orange-500" };
-    return               { label: "야수의 심장",  emoji: "🔥", color: "text-red-500 dark:text-red-400" };
+    return { label: "야수의 심장", emoji: "🔥", color: "text-red-500 dark:text-red-400" };
 };
 
 export default function AvgPrice() {
@@ -31,23 +31,31 @@ export default function AvgPrice() {
     ]);
     const [currentPrice, setCurrentPrice] = useState("");
     const [calculated, setCalculated] = useState(false);
-    const [copied,     setCopied]     = useState(false);
-    const [shaking,    setShaking]    = useState(false);
+    const [copied, setCopied] = useState(false);
+    const [shaking, setShaking] = useState(false);
     const currentPriceRef = useRef<HTMLInputElement>(null);
     const [placeholderFontSize, setPlaceholderFontSize] = useState(16);
 
-    // input 너비에 맞게 placeholder 폰트 크기 계산
+    // input 너비에 맞게 placeholder 폰트 크기 계산 (ResizeObserver 적용)
     useEffect(() => {
+        const inputEl = currentPriceRef.current;
+        if (!inputEl) return;
+
         const calcSize = () => {
-            const w = currentPriceRef.current?.offsetWidth ?? 300;
-            if (w < 180) setPlaceholderFontSize(10);
-            else if (w < 240) setPlaceholderFontSize(12);
-            else if (w < 320) setPlaceholderFontSize(13);
-            else setPlaceholderFontSize(14);
+            const w = inputEl.offsetWidth;
+            // "현재가를 입력하면 수익률을 계산해드려요" 문구: 한글 17자 + 공백 4자 = 약 18.5em
+            // padding(px-3: 좌우 24px) 고려하여 폰트 크기 계산
+            let size = Math.floor((w - 24) / 18.5);
+            if (size > 15) size = 15;
+            if (size < 8) size = 8;
+            setPlaceholderFontSize(size);
         };
+
         calcSize();
-        window.addEventListener("resize", calcSize);
-        return () => window.removeEventListener("resize", calcSize);
+        const observer = new ResizeObserver(calcSize);
+        observer.observe(inputEl);
+
+        return () => observer.disconnect();
     }, []);
 
     const n = (v: string) => Number(v.replace(/[^0-9]/g, ""));
@@ -62,28 +70,28 @@ export default function AvgPrice() {
     };
 
     const validAmounts = rows.map(r => (n(r.price) > 0 && n(r.qty) > 0) ? n(r.price) * n(r.qty) : 0);
-    const totalCost  = validAmounts.reduce((s, a) => s + a, 0);
-    const totalQty   = rows.reduce((s, r) => (n(r.price) > 0 && n(r.qty) > 0) ? s + n(r.qty) : s, 0);
-    const avgPrice   = totalQty ? totalCost / totalQty : 0;
+    const totalCost = validAmounts.reduce((s, a) => s + a, 0);
+    const totalQty = rows.reduce((s, r) => (n(r.price) > 0 && n(r.qty) > 0) ? s + n(r.qty) : s, 0);
+    const avgPrice = totalQty ? totalCost / totalQty : 0;
 
-    const firstPrice   = n(rows[0].price);
-    const maxPrice     = Math.max(...rows.map(r => n(r.price)));
-    const reducedRate  = firstPrice > 0 && avgPrice > 0
+    const firstPrice = n(rows[0].price);
+    const maxPrice = Math.max(...rows.map(r => n(r.price)));
+    const reducedRate = firstPrice > 0 && avgPrice > 0
         ? ((firstPrice - avgPrice) / firstPrice) * 100
         : 0;
-    const isUp         = avgPrice > firstPrice && firstPrice > 0;
+    const isUp = avgPrice > firstPrice && firstPrice > 0;
 
-    const curPrice     = n(currentPrice);
-    const hasCurrent   = curPrice > 0 && calculated;
-    const evalTotal    = curPrice * totalQty;
-    const profitAmt    = evalTotal - totalCost;
-    const profitRate   = totalCost > 0 ? ((profitAmt / totalCost) * 100).toFixed(2) : "0";
-    const isProfit     = profitAmt >= 0;
+    const curPrice = n(currentPrice);
+    const hasCurrent = curPrice > 0 && calculated;
+    const evalTotal = curPrice * totalQty;
+    const profitAmt = evalTotal - totalCost;
+    const profitRate = totalCost > 0 ? ((profitAmt / totalCost) * 100).toFixed(2) : "0";
+    const isProfit = profitAmt >= 0;
 
     const grade = hasCurrent ? getGrade(Number(profitRate)) : null;
 
-    const maxAmount  = Math.max(...validAmounts, 1);
-    const validRows  = rows.filter((_, i) => validAmounts[i] > 0);
+    const maxAmount = Math.max(...validAmounts, 1);
+    const validRows = rows.filter((_, i) => validAmounts[i] > 0);
 
     const barColors = [
         "bg-blue-400 dark:bg-blue-500",
@@ -157,9 +165,9 @@ export default function AvgPrice() {
     };
 
     const priceBarMax = Math.max(maxPrice, curPrice, avgPrice, 1);
-    const avgBarPct   = Math.round((avgPrice / priceBarMax) * 100);
-    const curBarPct   = Math.round((curPrice / priceBarMax) * 100);
-    const maxBarPct   = Math.round((maxPrice / priceBarMax) * 100);
+    const avgBarPct = Math.round((avgPrice / priceBarMax) * 100);
+    const curBarPct = Math.round((curPrice / priceBarMax) * 100);
+    const maxBarPct = Math.round((maxPrice / priceBarMax) * 100);
 
     // sticky 공통 스타일
     const stickyTh = (left: number, width: number, extra = "") =>
@@ -182,73 +190,73 @@ export default function AvgPrice() {
 
                 {/* 입력 테이블 */}
                 <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md overflow-x-auto">
-                    <table className="border-collapse border border-gray-400 dark:border-gray-600 text-sm" style={{ tableLayout: "fixed", minWidth: "100%" }}>
+                    <table className="border-collapse border border-gray-400 dark:border-gray-600 text-sm w-full" style={{ minWidth: "250px" }}>
                         <colgroup>
-                            <col style={{ width: 35 }} />
-                            <col style={{ width: 80 }} />
-                            <col style={{ width: 80 }} />
-                            <col style={{ minWidth: 100 }} />
-                            <col style={{ width: 35 }} />
+                            <col style={{ width: "35px", minWidth: "35px" }} />
+                            <col style={{ width: "90px", minWidth: "90px" }} />
+                            <col style={{ width: "90px", minWidth: "90px" }} />
+                            <col />
+                            <col style={{ width: "35px", minWidth: "35px" }} />
                         </colgroup>
                         <thead>
-                        <tr className="bg-gray-100 dark:bg-gray-700">
-                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">차수</th>
-                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">매수가</th>
-                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">수량</th>
-                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">매수금액</th>
-                            <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">삭제</th>
-                        </tr>
+                            <tr className="bg-gray-100 dark:bg-gray-700">
+                                <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">차수</th>
+                                <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">매수가</th>
+                                <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">수량</th>
+                                <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">매수금액</th>
+                                <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">삭제</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        {rows.map((row, idx) => (
-                            <tr key={row.id}>
-                                <td className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 font-medium text-xs">
-                                    {idx + 1}차
-                                </td>
-                                <td className="border border-gray-400 dark:border-gray-600 px-1 py-1 text-center" style={{ width: 100, maxWidth: 100, overflow: "hidden" }}>
-                                    <input type="text" inputMode="numeric" placeholder="0" value={row.price}
-                                           onChange={handleChange(row.id, "price")}
-                                           style={{ fontSize: getFontSize(row.price), width: "100%", maxWidth: "100%", overflow: "hidden" }}
-                                           className="p-1 text-right border rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400" />
-                                </td>
-                                <td className="border border-gray-400 dark:border-gray-600 px-1 py-1 text-center" style={{ width: 100, maxWidth: 100, overflow: "hidden" }}>
-                                    <input type="text" inputMode="numeric" placeholder="0" value={row.qty}
-                                           onChange={handleChange(row.id, "qty")}
-                                           style={{ fontSize: getFontSize(row.qty), width: "100%", maxWidth: "100%", overflow: "hidden" }}
-                                           className="p-1 text-right border rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400" />
-                                </td>
-                                <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 text-base whitespace-nowrap">
-                                    {validAmounts[idx] > 0 ? validAmounts[idx].toLocaleString() : "-"}
-                                </td>
-                                <td className="border border-gray-400 dark:border-gray-600 py-2 text-center">
-                                    {idx === rows.length - 1 && rows.length > 1 && (
-                                        <button onClick={() => handleRemoveRow(row.id)}
+                            {rows.map((row, idx) => (
+                                <tr key={row.id}>
+                                    <td className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 font-medium text-xs">
+                                        {idx + 1}차
+                                    </td>
+                                    <td className="border border-gray-400 dark:border-gray-600 px-1 py-1 text-center">
+                                        <input type="text" inputMode="numeric" placeholder="0" value={row.price}
+                                            onChange={handleChange(row.id, "price")}
+                                            style={{ fontSize: getFontSize(row.price), width: "100%" }}
+                                            className="p-1 text-right border rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 min-w-0" />
+                                    </td>
+                                    <td className="border border-gray-400 dark:border-gray-600 px-1 py-1 text-center">
+                                        <input type="text" inputMode="numeric" placeholder="0" value={row.qty}
+                                            onChange={handleChange(row.id, "qty")}
+                                            style={{ fontSize: getFontSize(row.qty), width: "100%" }}
+                                            className="p-1 text-right border rounded bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 min-w-0" />
+                                    </td>
+                                    <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 text-base whitespace-nowrap">
+                                        {validAmounts[idx] > 0 ? validAmounts[idx].toLocaleString() : "-"}
+                                    </td>
+                                    <td className="border border-gray-400 dark:border-gray-600 py-2 text-center">
+                                        {idx === rows.length - 1 && rows.length > 1 && (
+                                            <button onClick={() => handleRemoveRow(row.id)}
                                                 className="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-gray-100 hover:bg-red-100 dark:bg-gray-700 dark:hover:bg-red-900/40 text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-all duration-150 active:scale-90"
                                                 aria-label="행 삭제">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" />
-                                            </svg>
-                                        </button>
-                                    )}
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" />
+                                                </svg>
+                                            </button>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                            <tr className="bg-gray-50 dark:bg-gray-700 font-semibold">
+                                <td colSpan={2} className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">합계</td>
+                                <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 text-xs whitespace-nowrap">
+                                    {totalQty > 0 ? totalQty.toLocaleString() : "-"}
                                 </td>
+                                <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 text-sm whitespace-nowrap">
+                                    {totalCost > 0 ? totalCost.toLocaleString() : "-"}
+                                </td>
+                                <td className="border border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-700" />
                             </tr>
-                        ))}
-                        <tr className="bg-gray-50 dark:bg-gray-700 font-semibold">
-                            <td colSpan={2} className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">합계</td>
-                            <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 text-xs whitespace-nowrap">
-                                {totalQty > 0 ? totalQty.toLocaleString() : "-"}
-                            </td>
-                            <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 text-sm whitespace-nowrap">
-                                {totalCost > 0 ? totalCost.toLocaleString() : "-"}
-                            </td>
-                            <td className="border border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-700" />
-                        </tr>
                         </tbody>
                     </table>
 
                     {rows.length < MAX_ROWS && (
                         <button onClick={handleAddRow}
-                                className="mt-3 w-full py-2 flex items-center justify-center gap-1 text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-150">
+                            className="mt-3 w-full py-2 flex items-center justify-center gap-1 text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-150">
                             <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
                             </svg>
@@ -277,7 +285,7 @@ export default function AvgPrice() {
                                 style={{
                                     fontSize: currentPrice ? getFontSize(currentPrice) : placeholderFontSize
                                 }}
-                                className="w-full border rounded-lg px-3 py-2 text-right focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 placeholder:text-left" />                            <span className="ml-2 text-gray-800 dark:text-gray-100 shrink-0 text-sm">원</span>
+                                className="w-full border rounded-lg px-3 py-2 text-right focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 placeholder:text-left transition-all duration-150" />                            <span className="ml-2 text-gray-800 dark:text-gray-100 shrink-0 text-sm">원</span>
                         </div>
                     </div>
                 </div>
@@ -285,11 +293,11 @@ export default function AvgPrice() {
                 {/* 버튼 */}
                 <div className="mt-4 flex justify-center gap-3">
                     <button onClick={handleReset}
-                            className={`px-6 py-3 min-h-[44px] border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 transition-colors duration-150 text-base ${ANIMATION.resetShake && shaking ? "animate-shake" : ""}`}>
+                        className={`px-6 py-3 min-h-[44px] border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 transition-colors duration-150 text-base ${ANIMATION.resetShake && shaking ? "animate-shake" : ""}`}>
                         초기화
                     </button>
                     <button onClick={() => setCalculated(true)}
-                            className="px-8 py-3 min-h-[44px] bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-bold rounded-xl shadow-md transition-colors duration-150 text-base">
+                        className="px-8 py-3 min-h-[44px] bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-bold rounded-xl shadow-md transition-colors duration-150 text-base">
                         계산하기
                     </button>
                 </div>
@@ -352,9 +360,8 @@ export default function AvgPrice() {
 
                                 <div className="pt-2 border-t border-gray-100 dark:border-gray-700 flex justify-center">
                                     <button onClick={handleCopyResult}
-                                            className={`inline-flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                                                copied ? "bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-400"
-                                                    : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                                        className={`inline-flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${copied ? "bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-400"
+                                            : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
                                             }`}>
                                         {copied ? (
                                             <><svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>복사 완료!</>
@@ -415,7 +422,7 @@ export default function AvgPrice() {
                                                 </div>
                                                 <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-4 overflow-hidden">
                                                     <div className={`h-4 rounded-full transition-all duration-700 ease-out ${barColors[idx % barColors.length]}`}
-                                                         style={{ width: `${barWidth}%` }} />
+                                                        style={{ width: `${barWidth}%` }} />
                                                 </div>
                                             </div>
                                         );
@@ -428,8 +435,8 @@ export default function AvgPrice() {
                                         <div className="space-y-2">
                                             {[
                                                 { label: "최고 매수가", value: maxPrice, pct: maxBarPct, color: "bg-gray-400 dark:bg-gray-500" },
-                                                { label: "평균 단가",   value: avgPrice, pct: avgBarPct, color: "bg-blue-400 dark:bg-blue-500" },
-                                                { label: "현재가",      value: curPrice, pct: curBarPct, color: isProfit ? "bg-red-400 dark:bg-red-500" : "bg-blue-300 dark:bg-blue-400" },
+                                                { label: "평균 단가", value: avgPrice, pct: avgBarPct, color: "bg-blue-400 dark:bg-blue-500" },
+                                                { label: "현재가", value: curPrice, pct: curBarPct, color: isProfit ? "bg-red-400 dark:bg-red-500" : "bg-blue-300 dark:bg-blue-400" },
                                             ].map(({ label, value, pct, color }) => (
                                                 <div key={label}>
                                                     <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
@@ -438,7 +445,7 @@ export default function AvgPrice() {
                                                     </div>
                                                     <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
                                                         <div className={`h-3 rounded-full transition-all duration-700 ease-out ${color}`}
-                                                             style={{ width: `${pct}%` }} />
+                                                            style={{ width: `${pct}%` }} />
                                                     </div>
                                                 </div>
                                             ))}

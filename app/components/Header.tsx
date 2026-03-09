@@ -34,7 +34,7 @@ export default function Header() {
                         📈 주식
                     </a>
                     <a href="/stock" className="hover:text-red-500">
-                        💰 투자
+                        💰 금융
                     </a>
                     <a href="/stock" className="hover:text-red-500">
                         🏠 생활

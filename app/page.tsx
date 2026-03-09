@@ -14,7 +14,7 @@ export default function Home() {
             </Link>
             <Link href="/stock"
                   className="bg-white dark:bg-gray-800 dark:text-gray-100 p-8 rounded-2xl shadow-md hover:shadow-xl transition text-center text-lg font-semibold">
-                💰 투자
+                💰 금융
             </Link>
             <Link href="/stock"
                   className="bg-white dark:bg-gray-800 dark:text-gray-100 p-8 rounded-2xl shadow-md hover:shadow-xl transition text-center text-lg font-semibold">
