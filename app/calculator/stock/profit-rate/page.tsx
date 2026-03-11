@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────
-// app/stock/profit-rate/page.tsx
+// app/calculator/stock/profit-rate/page.tsx
 // ─────────────────────────────────────────────────────────
 
 import type { Metadata } from "next";
@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   title: "주식 수익률 계산기",
   description: "매수가, 현재가, 수량을 입력하면 수익금과 수익률을 자동으로 계산해드립니다.",
   keywords: ["주식 수익률 계산기", "주식 수익률", "수익금 계산", "투자 수익률"],
-  alternates: { canonical: `${BASE_URL}/stock/profit-rate` },
+  alternates: { canonical: `${BASE_URL}/calculator/stock/profit-rate` },
   openGraph: {
     title: "주식 수익률 계산기",
     description: "매수가, 현재가, 수량을 입력하면 수익금과 수익률을 자동으로 계산해드립니다.",
-    url: `${BASE_URL}/stock/profit-rate`,
+    url: `${BASE_URL}/calculator/stock/profit-rate`,
     images: [
       {
         url: `${BASE_URL}/jiko-calculator-icon2.png`,
@@ -36,7 +36,7 @@ const jsonLd = {
   "@type": "SoftwareApplication",
   name: "주식 수익률 계산기",
   description: "매수가, 현재가, 수량을 입력하면 수익금과 수익률을 자동으로 계산해드립니다.",
-  url: `${BASE_URL}/stock/profit-rate`,
+  url: `${BASE_URL}/calculator/stock/profit-rate`,
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
   offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
@@ -79,7 +79,7 @@ const schema = {
   "name": "주식 수익률 계산기",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",
-  "url": `${BASE_URL}/stock/profit-rate`,
+  "url": `${BASE_URL}/calculator/stock/profit-rate`,
   "description": "매수가, 현재가, 수량을 입력하면 수익금과 수익률을 자동으로 계산해드립니다."
 };
 

@@ -1,60 +1,55 @@
 "use client";
-import { useState, useEffect  } from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function Header() {
-    const [isDark, setIsDark] = useState(false);
 
-    // ✅ 브라우저에서만 실행 - localStorage 복원
+    const [isDark, setIsDark] = useState(() => {
+        if (typeof window === "undefined") return false;
+        return localStorage.getItem("theme") === "dark";
+    });
+
     useEffect(() => {
-        const saved = localStorage.getItem("theme");
-        if (saved === "dark") {
+        if (isDark) {
             document.documentElement.classList.add("dark");
-            setIsDark(true);
+        } else {
+            document.documentElement.classList.remove("dark");
         }
-    }, []);
+    }, [isDark]);
 
     const toggleDark = () => {
         const next = !isDark;
         setIsDark(next);
-        document.documentElement.classList.toggle("dark");
-        localStorage.setItem("theme", next ? "dark" : "light"); // 저장
+        localStorage.setItem("theme", next ? "dark" : "light");
     };
 
     return (
         <header className="bg-blue-600 text-white p-4">
             <div className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
-                <div className="font-bold text-lg">
-                    <a href="/" className="hover:text-red-500">
+
+                <div className="text-sm font-bold">
+                    <Link href="/" className="hover:text-red-500">
                         JIKO 계산기
-                    </a>
+                    </Link>
                 </div>
 
                 <nav className="flex gap-6 text-sm font-medium">
-                    <a href="/stock" className="hover:text-red-500">
-                        📈 주식
-                    </a>
-                    <a href="/stock" className="hover:text-red-500">
-                        💰 금융
-                    </a>
-                    <a href="/stock" className="hover:text-red-500">
-                        🏢 부동산
-                    </a>
-                    <a href="/stock" className="hover:text-red-500">
-                        🏠 생활
-                    </a>
-                    <a href="/stock" className="hover:text-red-500">
-                        💪 건강
-                    </a>
-                    <a href="/stock" className="hover:text-red-500">
-                        🧮 기타
-                    </a>
+                    <Link href="/calculator/stock">📈 주식</Link>
+                    <Link href="/calculator/stock">💰 금융</Link>
+                    <Link href="/calculator/stock">🏢 부동산</Link>
+                    <Link href="/calculator/stock">🏠 생활</Link>
+                    <Link href="/calculator/stock">💪 건강</Link>
+                    <Link href="/calculator/stock">🧮 기타</Link>
                 </nav>
 
-                <button onClick={toggleDark} className="px-3 py-1 rounded-full text-sm font-medium bg-white/20 hover:bg-white/30 transition">
+                <button
+                    onClick={toggleDark}
+                    className="px-3 py-1 rounded-full text-sm font-medium bg-white/20 hover:bg-white/30 transition"
+                >
                     {isDark ? "☀️ 라이트" : "🌙 다크"}
                 </button>
 
             </div>
         </header>
-    )
+    );
 }

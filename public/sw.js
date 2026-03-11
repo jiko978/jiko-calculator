@@ -6,9 +6,9 @@ const CACHE_NAME = "jiko-calculator-v2";
 
 const STATIC_ASSETS = [
     "/",
-    "/stock",
-    "/stock/avg-price",
-    "/stock/profit-rate",
+    "/calculator/stock",
+    "/calculator/stock/avg-price",
+    "/calculator/stock/profit-rate",
     "/manifest.json",
     "/icons/icon-192x192.png",
     "/icons/icon-512x512.png",

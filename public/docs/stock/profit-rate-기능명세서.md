@@ -4,10 +4,10 @@
 수익률 계산 메뉴의 기능 명세서입니다.
 
 ## 2. 화면 위치
-1. 경로 : `/stock/profit-rate`
+1. 경로 : `/calculator/stock/profit-rate`
 2. 파일
-ㄴ 서버 : `app/stock/profit-rate/page.tsx`
-ㄴ 클라이언트 : `app/stock/profit-rate/ProfitRate.tsx`
+ㄴ 서버 : `app/calculator/stock/profit-rate/page.tsx`
+ㄴ 클라이언트 : `app/calculator/stock/profit-rate/ProfitRate.tsx`
 
 ## 3. 공통 기능
 1. 뒤로가기 버튼

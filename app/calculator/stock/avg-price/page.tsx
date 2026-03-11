@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────
-// app/stock/avg-price/page.tsx
+// app/calculator/stock/avg-price/page.tsx
 // ─────────────────────────────────────────────────────────
 
 import type { Metadata } from "next";
@@ -12,12 +12,12 @@ export const metadata: Metadata = {
     description:
         "주식 물타기, 불타기 시 평균 매입 단가를 최대 10회에 걸쳐 간편하게 계산해드립니다.",
     keywords: ["평단가 계산기", "주식 물타기", "주식 불타기", "평균 매입 단가"],
-    alternates: { canonical: `${BASE_URL}/stock/avg-price` },
+    alternates: { canonical: `${BASE_URL}/calculator/stock/avg-price` },
     openGraph: {
         title: "주식 평균 단가 계산기",
         description:
             "주식 물타기, 불타기 시 평균 매입 단가를 최대 10회에 걸쳐 간편하게 계산해드립니다.",
-        url: `${BASE_URL}/stock/avg-price`,
+        url: `${BASE_URL}/calculator/stock/avg-price`,
         images: [
             {
                 url: `${BASE_URL}/jiko-calculator-icon2.png`,
@@ -40,7 +40,7 @@ const jsonLd = {
     name: "주식 평균 단가 계산기",
     description:
         "주식 물타기, 불타기 시 평균 매입 단가를 최대 10회에 걸쳐 간편하게 계산해드립니다.",
-    url: `${BASE_URL}/stock/avg-price`,
+    url: `${BASE_URL}/calculator/stock/avg-price`,
     applicationCategory: "FinanceApplication",
     operatingSystem: "Web",
     offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
@@ -75,7 +75,7 @@ const schema = {
     "name": "주식 평균 단가 계산기",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Web",
-    "url": `${BASE_URL}/stock/avg-price`,
+    "url": `${BASE_URL}/calculator/stock/avg-price`,
     "description": "주식 물타기, 불타기 시 평균 매입 단가를 최대 10회에 걸쳐 간편하게 계산해드립니다."
 };
 

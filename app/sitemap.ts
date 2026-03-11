@@ -13,8 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: "/", priority: 1.0, changeFrequency: "weekly" as const },
 
         // ── 주식 ──
-        { url: "/stock/avg-price",  priority: 0.8, changeFrequency: "monthly" as const },
-        { url: "/stock/profit-rate", priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/stock/avg-price",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/stock/profit-rate", priority: 0.8, changeFrequency: "monthly" as const },
 
         // ── 추가 예정 카테고리 (페이지 추가 시 여기에 등록) ──
         // { url: "/health/bmi",         priority: 0.8, changeFrequency: "monthly" as const },

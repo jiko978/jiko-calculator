@@ -4,10 +4,10 @@
 평균 단가 계산 메뉴의 기능 명세서입니다.
 
 ## 2. 화면 위치
-1. 경로 : `/stock/avg-price`
+1. 경로 : `/calculator/stock/avg-price`
 2. 파일
-ㄴ 서버 : `app/stock/avg-price/page.tsx`
-ㄴ 클라이언트 : `app/stock/avg-price/AvgPrice.tsx`
+ㄴ 서버 : `app/calculator/stock/avg-price/page.tsx`
+ㄴ 클라이언트 : `app/calculator/stock/avg-price/AvgPrice.tsx`
 
 ## 3. 공통 기능
 1. 뒤로가기 버튼

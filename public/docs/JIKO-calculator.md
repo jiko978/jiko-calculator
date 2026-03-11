@@ -11,6 +11,7 @@
 **[프로젝트 개요](#프로젝트-개요)**
 **[디렉토리 구조](#디렉토리-구조)**
 **[메뉴 구조](#메뉴-구조)**
+**[SEO 제목](#seo-제목)**
 **[공통 컴포넌트 관리](#공통파일-관리)**
 **[문서(MD) 기반 개발 원칙(바이브 코딩)](#md파일-관리)**
 **[공통 기능](#공통-기능)**
@@ -32,10 +33,11 @@ Tool Site.
 - `app/` : Next.js App 라우터 기반 애플리케이션 최상위 디렉토리
   - `components/` : 공용 컴포넌트 (NavBar.tsx, ShareSheet.tsx 등)
   - `config/` : 프로젝트 전역 설정
-  - `stock/` : 주식 메뉴
-    - `avg-price/` : 평균 단가 계산기 페이지
-    - `profit-rate/` : 수익률 계산기 페이지
-  - `finance/`, `life/`, `health/`, `other/` : 기타 카테고리별 디렉토리
+  - `calculator/` : 계산기 통합 라우트 (신규)
+    - `stock/` : 주식 메뉴
+      - `avg-price/` : 평균 단가 계산기 페이지
+      - `profit-rate/` : 수익률 계산기 페이지
+    - `finance/`, `life/`, `health/`, `other/` : 기타 카테고리별 디렉토리
 - `public/` : 정적 자산(이미지, 아이콘 등) 
   - `docs/` : 프로젝트 전체 문서 및 카테고리별 MD 설정/설계서
 - `node_modules/`, `.next/` 등 운영/빌드용 폴더 유지
@@ -115,6 +117,55 @@ Tool Site.
 ㄴ [1차]MBTI
 ㄴ [미정]자동차 할부
 
+## SEO제목
+주식(stock)
+1. 주식 평균 단가 계산기 | 물타기/불타기 평단 계산 - JIKO calculator
+2. 주식 수익률 계산기 | 매수가 현재가 수익 계산 - JIKO calculator
+3. 주식 배당금 계산기 | 배당금 계산 - JIKO calculator
+
+금융(finance)
+1. 예금 이자 계산기 | 예금 이자율 예금액 예금기간별 예금이자 계산 - JIKO calculator
+2. 적금 이자 계산기 | 적금 이자율 적금액 적금기간별 적금이자 계산 - JIKO calculator
+3. 대출 이자 계산기 | 대출 이자율 대출액 대출기간별 대출이자 계산 - JIKO calculator
+4. ETF 수익률 계산기 | ETF 수익률 계산 - JIKO calculator
+5. 환율 계산기 | 환율 계산 - JIKO calculator
+6. 복리 계산기 | 복리 계산 - JIKO calculator
+7. 퍼센트 계산기 | 퍼센트 계산 - JIKO calculator
+8. 주식 종목 주요 지표 계산기 | 주식 종목 주요 지표 계산 - JIKO calculator
+9. 코인세금 계산기 | 코인세금 계산 - JIKO calculator
+10. 부가세 계산기 | 부가세 계산 - JIKO calculator
+
+부동산(real estate)
+1. LTV 계산기 | LTV 비율 LTV 계산 - JIKO calculator
+2. DTI 계산기 | DTI 비율 DTI 계산 - JIKO calculator
+3. DSR 계산기 | DSR 비율 DSR 계산 - JIKO calculator
+4. 중도상환수수료 계산기 | 중도상환수수료 계산 - JIKO calculator
+5. 취득세 계산기 | 취득세 계산 - JIKO calculator
+6. 양도세 계산기 | 양도세 계산 - JIKO calculator
+7. 전세대출 계산기 | 전세대출 계산 - JIKO calculator
+8. 종부세 계산기 | 종부세 계산 - JIKO calculator
+9. 월세 수익 계산기 | 월세 수익 계산 - JIKO calculator
+
+생활(life)
+1. 나이와 띠 계산기 | 나이와 띠 계산 - JIKO calculator
+2. 디데이/날짜수 계산기 | 디데이/날짜수 계산 - JIKO calculator
+3. 임금 계산기 | 임금 계산 - JIKO calculator
+4. 단가 계산기 | 단가 계산 - JIKO calculator
+5. 단위 변환 계산기 | 단위 변환 계산 - JIKO calculator
+6. 물가 계산기 | 물가 계산 - JIKO calculator
+7. 마진 계산기 | 마진 계산 - JIKO calculator
+8. 확률 계산기 | 확률 계산 - JIKO calculator
+
+건강(health)
+1. 칼로리 계산기 | 칼로리 계산 - JIKO calculator
+2. 체지방률 계산기 | 체지방률 계산 - JIKO calculator
+3. BMI 계산기 | BMI 계산 - JIKO calculator
+4. BMR 계산기 | BMR 계산 - JIKO calculator
+
+기타(other)
+1. MBTI 계산기 | MBTI 계산 - JIKO calculator
+2. 자동차 할부 계산기 | 자동차 할부 계산 - JIKO calculator
+
 ## 공통파일 관리
 1. 뒤로가기, 공유 버튼
 ㄴ app/components/NavBar.tsx
@@ -187,6 +238,11 @@ Tool Site.
    - 실제 사용자가 입력할 법한 금액/수치 예제를 들고, 이에 따른 결과(수익금, 수익률, 최종 단가 등)를 도출하는 과정을 스토리텔링 텍스트로 자연스럽게 제공.
 4. **FAQ - 자주 묻는 질문 (H2 태그)**
    - `FAQPage` JSON-LD에 정의된 질문(Q)과 답변(A)을 화면에도 동일하게 렌더링하여 사용자 궁금증을 해소하고 페이지 텍스트 량을 늘려 검색 키워드 매칭 최적화 달성.
+5. **제목 템플릿**
+   - [키워드] 계산기 | [설명 키워드] - [브랜드]
+   - 예 : 주식 평균 단가 계산기 | 물타기/불타기 평단 계산 - JIKO calculator
+   - 예 : 주식 수익률 계산기 | 매수가 현재가 수익 계산 - JIKO calculator
+
 
 ## 10. 테스트 및 품질 관리 (신규 추가 항목)
 1. 예외 처리 가이드 : 입력값이 `NaN`, `Infinity` 등일 때의 계산 오류 방지 및 빈 값에 대한 예외 처리 명시.
