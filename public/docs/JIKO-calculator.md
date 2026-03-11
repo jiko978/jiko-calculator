@@ -150,23 +150,32 @@ Tool Site.
 ㄴ 뒤로가기
 ㄴ 공유 아이콘
 ㄴ 입력창 포커스 스타일
-6. 신규 파일 생성 시 주의사항
-ㄴ sitemap.ts에 새 경로 추가
-ㄴ page.tsx에 metadata 선언
-ㄴ page.tsx에 JSON-LD 삽입
-ㄴ sw.js 파일 수정
+6. 전역 설정 (layout.tsx)
+ㄴ 웹 분석 : Google Analytics (GA4) 연동 및 PageViewTracker 활용
+ㄴ 소셜 연동 : Kakao SDK 웹뷰/공유 초기화 (KakaoInit)
+ㄴ PWA : manifest.json 로드 및 Service Worker 등록 (RegisterSW)
+7. 신규 파일 생성 시 주의사항
+ㄴ sitemap.ts에 새 경로 및 변경 주기(Priority 등) 추가
+ㄴ page.tsx에 고유 메타데이터 (title, description, openGraph, twitter 등) 선언
+ㄴ page.tsx에 JSON-LD (범용 schema, WebApplication, FAQPage 등) 삽입
+ㄴ sw.js (오프라인 캐싱) 파일에 신규 경로 반영 수정
 
 
 
 ## SEO 구조
 각 메뉴망의 `page.tsx`는 검색엔진 최적화(SEO)를 위해 **공통 카드형 UI 레이아웃**과 **정형화된 데이터 구조(JSON-LD)** 기준을 따릅니다.
 
-### 1. 구조적 데이터 (JSON-LD)
+### 1. 전역 SEO 설정 (프로젝트 레벨)
+- **sitemap.ts / robots.ts** : 검색 엔진 크롤러가 사이트 구조를 파악하고 동적으로 맵핑할 수 있도록 설정.
+- **GSC (Google Search Console)** : 루트 HTML 소유권 확인 파일을 통한 애플리케이션 검색 노출 통계/인덱싱 관리.
+- **메타데이터 (Metadata)** : 전역 설정(`layout.tsx`)과 더불어 각 페이지(`page.tsx`)별 고유 값으로 덮어쓰기(override)하여 OpenGraph, Twitter 카드 등을 완벽 대응.
+
+### 2. 구조적 데이터 (JSON-LD)
 `page.tsx` 내부 최상단에 `<script type="application/ld+json">` 형태로 스크립트를 삽입합니다.
-- `WebApplication` (또는 `FinanceApplication`) : 계산기의 고유 이름, 설명, 카테고리를 명시.
+- `schema` (범용) / `WebApplication` (또는 `FinanceApplication`) : 계산기의 고유 이름, 요약 설명 및 카테고리를 명시.
 - `FAQPage` : 해당 계산기와 관련된 핵심 질문과 답변 리스트를 명시하여, 구글 등 검색결과에서 리치 스니펫(FAQ)으로 노출되도록 대응.
 
-### 2. SEO UI 레이아웃 (카드형 디자인 요소)
+### 3. SEO UI 레이아웃 (카드형 디자인 요소)
 계산기 컴포넌트 하단 공간에 아래 요소들을 `bg-white dark:bg-gray-800 rounded-2xl shadow-sm` 등의 공통 클래스를 가진 독립 단위의 카드들로 이어서 배치합니다. 레이아웃에 맞게 컨테이너 넓이(`max-w-3xl`)를 제한합니다.
 
 1. **H1 (해당 계산기 이름) 및 소개문**

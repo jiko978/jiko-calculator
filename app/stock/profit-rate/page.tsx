@@ -8,12 +8,12 @@ import ProfitRatePage from "./ProfitRate";
 const BASE_URL = "https://jiko-calculator-nine.vercel.app";
 
 export const metadata: Metadata = {
-  title: "수익률 계산기",
+  title: "주식 수익률 계산기",
   description: "매수가, 현재가, 수량을 입력하면 수익금과 수익률을 자동으로 계산해드립니다.",
-  keywords: ["수익률 계산기", "주식 수익률", "수익금 계산", "투자 수익률"],
+  keywords: ["주식 수익률 계산기", "주식 수익률", "수익금 계산", "투자 수익률"],
   alternates: { canonical: `${BASE_URL}/stock/profit-rate` },
   openGraph: {
-    title: "수익률 계산기",
+    title: "주식 수익률 계산기",
     description: "매수가, 현재가, 수량을 입력하면 수익금과 수익률을 자동으로 계산해드립니다.",
     url: `${BASE_URL}/stock/profit-rate`,
     images: [
@@ -21,20 +21,20 @@ export const metadata: Metadata = {
         url: `${BASE_URL}/jiko-calculator-icon2.png`,
         width: 1200,
         height: 630,
-        alt: "수익률 계산기",
+        alt: "주식 수익률 계산기",
       },
     ],
   },
   twitter: {
-    title: "수익률 계산기",
+    title: "주식 수익률 계산기",
     description: "매수가, 현재가, 수량을 입력하면 수익금과 수익률을 자동으로 계산해드립니다.",
   },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  name: "수익률 계산기",
+  "@type": "SoftwareApplication",
+  name: "주식 수익률 계산기",
   description: "매수가, 현재가, 수량을 입력하면 수익금과 수익률을 자동으로 계산해드립니다.",
   url: `${BASE_URL}/stock/profit-rate`,
   applicationCategory: "FinanceApplication",
@@ -74,6 +74,15 @@ const faqJsonLd = {
   ],
 };
 
+const schema = {
+  "@context": "https://schema.org",
+  "name": "주식 수익률 계산기",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "url": `${BASE_URL}/stock/profit-rate`,
+  "description": "매수가, 현재가, 수량을 입력하면 수익금과 수익률을 자동으로 계산해드립니다."
+};
+
 export default function Page() {
   return (
     <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
@@ -86,6 +95,11 @@ export default function Page() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
+      <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
 
       {/* 계산기 UI */}

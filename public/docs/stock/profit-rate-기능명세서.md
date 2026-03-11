@@ -37,7 +37,10 @@
 ㄴ 초기화 버튼 클릭 시 흔들림 애니메이션 (shake) 효과 적용
 
 5. 하단 정보 영역 (SEO 및 사용자 가이드 - page.tsx)
-ㄴ 검색 엔진 최적화(SEO)를 위한 JSON-LD (Web app 및 FAQ) 로드
+ㄴ 검색 엔진 최적화(SEO)를 위한 JSON-LD 라우팅 보강
+ㄴㄴ `SoftwareApplication` 및 `FAQPage` 외 추가 범용 `schema` 스크립트 작성 및 로드
+ㄴㄴ 구글 서치 콘솔(GSC) 등록 완료 (루트 경로 HTML 소유권 확인)
+ㄴㄴ `sitemap.ts` 및 `robots.ts`를 통한 동적 크롤링 및 인덱싱 허용 (검색 노출 최적화)
 ㄴ UI 디자인 : 본체와 동일한 카드형 레이아웃 및 다크모드 대응 적용
 ㄴ 구성요소
 ㄴㄴ 소개 : 주식 수익률 계산기 목적 안내

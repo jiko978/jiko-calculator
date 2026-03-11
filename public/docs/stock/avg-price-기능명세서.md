@@ -44,7 +44,10 @@
 ㄴ 현재가(선택) Placeholder("현재가를 입력하면...") 문구는 기기 너비(ResizeObserver)에 따라 폰트 사이즈가 동적으로 자동 조절/축소됨. (단, PC화면에서는 고정)
 
 5. 하단 정보 영역 (SEO 및 사용자 가이드 - page.tsx)
-ㄴ 검색 엔진 최적화(SEO)를 위한 JSON-LD (Web app 및 FAQ) 로드
+ㄴ 검색 엔진 최적화(SEO)를 위한 JSON-LD 라우팅 보강
+ㄴㄴ `SoftwareApplication` 및 `FAQPage` 외 추가 범용 `schema` 스크립트 작성 및 로드
+ㄴㄴ 구글 서치 콘솔(GSC) 등록 완료 (루트 경로 HTML 소유권 확인)
+ㄴㄴ `sitemap.ts` 및 `robots.ts`를 통한 동적 크롤링 및 인덱싱 허용 (검색 노출 최적화)
 ㄴ UI 디자인 : 본체와 동일한 카드형 레이아웃 및 다크모드 대응 적용
 ㄴ 구성요소
 ㄴㄴ 소개 : 계산기 목적 안내 (주식 평균 단가 계산기)
