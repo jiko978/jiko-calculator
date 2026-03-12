@@ -1,5 +1,5 @@
 import Link from "next/link";
-import NavBar from "@/app/components/NavBar";
+import NavBar from "@/app/calculator/components/NavBar";
 
 export default function Home() {
     return (

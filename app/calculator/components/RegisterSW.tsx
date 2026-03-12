@@ -11,7 +11,9 @@ export default function RegisterSW() {
     useEffect(() => {
         if ("serviceWorker" in navigator) {
             navigator.serviceWorker
-                .register("/sw.js")
+                .register("/calculator/sw.js", {
+                    scope: "/calculator/",
+                })
                 .then((reg) => console.log("SW registered:", reg.scope))
                 .catch((err) => console.error("SW registration failed:", err));
         }

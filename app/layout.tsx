@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import KakaoInit from "./components/KakaoInit";
-import RegisterSW from "./components/RegisterSW";
 import Script from "next/script";
 import GoogleAnalytics from "./components/analytics/GoogleAnalytics";
 import PageViewTracker from "./components/analytics/PageViewTracker";
@@ -31,38 +28,30 @@ export const viewport = {
 export const metadata: Metadata = {
     metadataBase: new URL(BASE_URL),
     title: {
-        default: "JIKO calculator",
-        template: "%s | JIKO calculator",
+        default: "JIKO Platform",
+        template: "%s | JIKO Platform",
     },
-    description: "주식, 금융, 부동산, 건강, 생활 등 다양한 계산기를 한 곳에서 사용하세요.",
+    description: "JIKO Platform",
     keywords: ["계산기", "주식 계산기", "금융 계산기", "부동산 계산기", "건강 계산기", "생활 계산기"],
-    authors: [{ name: "JIKO calculator" }],
-    creator: "JIKO calculator",
+    authors: [{ name: "JIKO Platform" }],
+    creator: "JIKO Platform",
 
     // ── Open Graph (카카오/페이스북/링크 미리보기) ──
     openGraph: {
         type: "website",
         locale: "ko_KR",
         url: BASE_URL,
-        siteName: "JIKO calculator",
-        title: "JIKO calculator",
-        description: "주식, 금융, 부동산, 건강, 생활 등 다양한 계산기를 한 곳에서 사용하세요.",
+        siteName: "JIKO Platform",
+        title: "JIKO Platform",
+        description: "JIKO Platform",
         images: [
             {
-                url: '${BASE_URL}/jiko-calculator-icon2.png',
+                url: `calculator/jiko-calculator-icon2.png`,
                 width: 1200,
                 height: 630,
-                alt: "JIKO calculator",
+                alt: "JIKO Platform",
             },
         ],
-    },
-
-    // ── Twitter Card ──
-    twitter: {
-        card: "summary_large_image",
-        title: "JIKO calculator",
-        description: "주식, 금융, 부동산, 건강, 생활 등 다양한 계산기를 한 곳에서 사용하세요.",
-        images: ['${BASE_URL}/jiko-calculator-icon2.png'],
     },
 
     // ── robots ──
@@ -102,15 +91,6 @@ export default function RootLayout({
             }
           `
             }} />
-            {/* PWA */}
-            <link rel="manifest" href="/manifest.json" />
-            <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
-            <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
-            <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
-            <meta name="mobile-web-app-capable" content="yes" />
-            <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-            <meta name="apple-mobile-web-app-title" content="JIKO 계산기" />
-            <meta name="theme-color" content="#3b82f6" />
         </head>
 
         <body className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 text-black dark:text-white">
@@ -119,7 +99,6 @@ export default function RootLayout({
         <PageViewTracker />
 
         <KakaoInit />
-        <RegisterSW />
 
         {/* Google Analytics GA4 */}
         <Script
@@ -135,12 +114,10 @@ export default function RootLayout({
             `}
         </Script>
 
-        <Header />
-
         <main className="flex-grow">
             {children}
         </main>
-        <Footer />
+
         </body>
 
         </html>

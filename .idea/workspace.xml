@@ -28,15 +28,25 @@
     "js.debugger.nextJs.config.created.client": "true",
     "js.debugger.nextJs.config.created.server": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/kji/jiko-project",
+    "last_opened_file_path": "C:/Users/kji/jiko-project/app/calculator",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "npm.Next.js: 서버 측.executor": "Run",
-    "ts.external.directory.path": "C:\\Users\\kji\\jiko-project\\node_modules\\typescript\\lib",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\kji\jiko-project\app\calculator" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\kji\jiko-project\public\calculator" />
+      <recent name="C:\Users\kji\jiko-project\app\calculator" />
+    </key>
+  </component>
   <component name="RunManager" selected="npm.Next.js: 서버 측">
     <configuration name="Next.js: 클라이언트 측에서 디버그" type="JavascriptDebugType" uri="http://localhost:3000/">
       <method v="2" />
@@ -69,7 +79,8 @@
       <updated>1773282597312</updated>
       <workItem from="1773282598349" duration="76000" />
       <workItem from="1773282686595" duration="113000" />
-      <workItem from="1773282812674" duration="1099000" />
+      <workItem from="1773282812674" duration="2958000" />
+      <workItem from="1773286049243" duration="11337000" />
     </task>
     <servers />
   </component>

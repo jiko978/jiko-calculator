@@ -1,5 +1,5 @@
 import Link from "next/link";
-import SiteQR from "../components/SiteQR";
+import SiteQR from "./components/SiteQR";
 
 export default function Home() {
   return (

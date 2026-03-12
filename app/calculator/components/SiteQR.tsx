@@ -10,7 +10,7 @@ export default function SiteQR() {
                 size={120}
                 level="H"
                 imageSettings={{
-                    src: "jiko-calculator-icon2.png",
+                    src: "calculator/jiko-calculator-icon2.png",
                     height: 30,
                     width: 30,
                     excavate: true,

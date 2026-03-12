@@ -3,7 +3,7 @@
 **작성일** : 2026-03-09
 **수정일** : 2026-03-10
 **작성자** : 고재일
-**프로젝트 경로** : C:\Users\kji\jiko-calculator
+**프로젝트 경로** : C:\Users\kji\jiko-project
 
 
 
@@ -30,10 +30,11 @@ Tool Site.
 
 현재 구성된 프로젝트 폴더 기준으로 아래와 같이 관리됩니다.
 
-- `app/` : Next.js App 라우터 기반 애플리케이션 최상위 디렉토리
-  - `components/` : 공용 컴포넌트 (NavBar.tsx, ShareSheet.tsx 등)
+- `app/` : Next.js App 라우터 최상위 디렉토리 (랜딩 페이지 도메인: `jiko.kr`)
+  - `components/` : 전체 공통 컴포넌트 
   - `config/` : 프로젝트 전역 설정
-  - `calculator/` : 계산기 통합 라우트 (신규)
+  - `calculator/` : 계산기 통합 라우트 (계산기 도메인: `jiko.kr/calculator`)
+    - `components/` : 계산기 전용 컴포넌트 (서비스별 분리 구조)
     - `stock/` : 주식 메뉴
       - `avg-price/` : 평균 단가 계산기 페이지
       - `profit-rate/` : 수익률 계산기 페이지
@@ -201,10 +202,9 @@ Tool Site.
 ㄴ 뒤로가기
 ㄴ 공유 아이콘
 ㄴ 입력창 포커스 스타일
-6. 전역 설정 (layout.tsx)
-ㄴ 웹 분석 : Google Analytics (GA4) 연동 및 PageViewTracker 활용
-ㄴ 소셜 연동 : Kakao SDK 웹뷰/공유 초기화 (KakaoInit)
-ㄴ PWA : manifest.json 로드 및 Service Worker 등록 (RegisterSW)
+6. 전역 설정 영역별 분리 구조
+ㄴ 루트 레이아웃 (`app/layout.tsx` - jiko.kr 공통) : 웹 분석(Google Analytics / GA4), 카카오 SDK 연동(KakaoInit) 처리
+ㄴ 계산기 레이아웃 (`app/calculator/layout.tsx` - jiko.kr/calculator 한정) : PWA 설정(manifest), Service Worker 등록(RegisterSW), QR 코드 등 계산기 전용 모듈 처리
 7. 신규 파일 생성 시 주의사항
 ㄴ sitemap.ts에 새 경로 및 변경 주기(Priority 등) 추가
 ㄴ page.tsx에 고유 메타데이터 (title, description, openGraph, twitter 등) 선언

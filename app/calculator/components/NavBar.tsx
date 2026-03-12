@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import ShareSheet from "@/app/components/ShareSheet";
+import ShareSheet from "@/app/calculator/components/ShareSheet";
 
 interface NavBarProps {
     title: string;        // 스크롤 후 중앙에 표시될 현재 페이지 제목

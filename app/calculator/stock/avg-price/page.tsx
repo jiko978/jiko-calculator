@@ -20,7 +20,7 @@ export const metadata: Metadata = {
         url: `${BASE_URL}/calculator/stock/avg-price`,
         images: [
             {
-                url: `${BASE_URL}/jiko-calculator-icon2.png`,
+                url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`,
                 width: 1200,
                 height: 630,
                 alt: "주식 평균 단가 계산기",
