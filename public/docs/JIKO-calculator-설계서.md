@@ -186,9 +186,13 @@ Tool Site.
 
 ## 공통 기능
 1. 뒤로가기, 공유 버튼
-2. 구조 분리
-ㄴ Server Component : page.tsx
-ㄴ Client Component : 메뉴명.tsx(예, avg-price --> AvgPrice.tsx)
+2. 구조 분리 (루트 랜딩 vs 도메인 허브)
+ㄴ 루트 홈 (`app/page.tsx`): JIKO Platform 메인 그리드 및 서비스 소개
+ㄴ 계산기 홈 (`app/calculator/page.tsx`): 계산기 메뉴 특화 서브 허브
+ㄴ 로직 분리: Server Component(`page.tsx`) / Client Component(`메뉴명.tsx`)
+3. 전역 컴포넌트 동기화 (Header & Footer)
+ㄴ **루트 허브(Platform)** 와 **서브 허브(Calculator)** 상/하단바의 레이아웃, 크기 세팅 통일 (`px-4 py-4` / `py-8` 등 기본 Width 동기화)
+ㄴ Cross-Navigation(교차 이동): 계산기 메뉴의 Header와 Footer에는 `🏠 JIKO 플랫폼 홈` 단축 링크를 강제 삽입하여 허브 간 자유로운 이동 보장.
 3. UI/UX
 ㄴ 카드 UI : 흰색 배경 + 라운드 처리
 ㄴ 그림자
@@ -203,12 +207,9 @@ Tool Site.
 ㄴ 공유 아이콘
 ㄴ 입력창 포커스 스타일
 6. 전역 설정 영역별 분리 구조
-ㄴ 루트 레이아웃 (`app/layout.tsx` - jiko.kr 공통) : 웹 분석(Google Analytics / GA4), 카카오 SDK 연동(KakaoInit) 처리
-ㄴ 계산기 레이아웃 (`app/calculator/layout.tsx` - jiko.kr/calculator 한정) : PWA 설정(manifest), Service Worker 등록(RegisterSW), QR 코드 등 계산기 전용 모듈 처리
-7. 신규 파일 생성 시 주의사항
-ㄴ sitemap.ts에 새 경로 및 변경 주기(Priority 등) 추가
-ㄴ page.tsx에 고유 메타데이터 (title, description, openGraph, twitter 등) 선언
-ㄴ page.tsx에 JSON-LD (범용 schema, WebApplication, FAQPage 등) 삽입
+ㄴ 루트 레이아웃 (`app/layout.tsx` - jiko.kr 공통) : 웹 분석(Google Analytics / GA4), 카카오 SDK 연동(KakaoInit) 등 논리적 최상단 처리
+ㄴ 루트 UI 렌더링 (`app/page.tsx`) : 전역 공통 Header & Footer 래핑 및 메인 타이틀 네비게이션 적용(`🧮 JIKO 계산기` -> `/calculator`)
+ㄴ 계산기 레이아웃 (`app/calculator/layout.tsx` - jiko.kr/calculator 한정) : PWA 설정(manifest), Service Worker 등록(RegisterSW), QR 코드 등 서브 라우트 특화 처리
 ㄴ sw.js (오프라인 캐싱) 파일에 신규 경로 반영 수정
 
 

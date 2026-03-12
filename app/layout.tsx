@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import KakaoInit from "./components/KakaoInit";
+import "./globals.css";
 import Script from "next/script";
 import GoogleAnalytics from "./components/analytics/GoogleAnalytics";
 import PageViewTracker from "./components/analytics/PageViewTracker";
@@ -114,7 +114,7 @@ export default function RootLayout({
             `}
         </Script>
 
-        <main className="flex-grow">
+        <main className="flex-grow w-full">
             {children}
         </main>
 

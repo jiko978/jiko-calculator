@@ -1,10 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image"
+import Image from "next/image";
 
 export default function Header() {
-
     const [isDark, setIsDark] = useState(() => {
         if (typeof window === "undefined") return false;
         return localStorage.getItem("theme") === "dark";
@@ -27,70 +26,60 @@ export default function Header() {
     };
 
     const navLinks = [
-        { href: "/", label: "🏠 JIKO Platform" },
-        { href: "/calculator/stock", label: "📈 주식" },
-        { href: "/calculator/finance", label: "💰 금융" },
-        { href: "/calculator/realstate", label: "🏢 부동산" },
-        { href: "/calculator/life", label: "🏠 생활" },
-        { href: "/calculator/health", label: "💪 건강" },
-        { href: "/calculator/other", label: "🧮 기타" },
+        { href: "/calculator", label: "📊 JIKO 계산기" },
     ];
 
     return (
-        <header className="w-full bg-blue-600 text-white shadow-sm transition-colors">
+        <header className="w-full bg-blue-600 text-white shadow-sm border-b border-gray-700 transition-colors">
             <div className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
-
-                {/* 로고 */}
-                <div className="text-sm font-bold">
-                    <Link href="/calculator" className="hover:text-red-500 flex items-center gap-1">
-                        JIKO 계산기
-                        <Image
-                            src="/icons/icon-512x512.png"
-                            alt="JIKO 계산기 로고"
-                            width={30}
-                            height={30}
-                            className="mr-3"
-                        />
+                
+                {/* 로고 영역 */}
+                <div className="text-lg font-bold tracking-tight shrink-0 flex items-center gap-2">
+                    <Link href="/" className="hover:text-blue-400 flex items-center gap-2">
+                        JIKO Platform
                     </Link>
                 </div>
 
-                {/* 데스크탑 nav */}
-                <nav className="hidden md:flex gap-6 text-sm font-medium">
+                {/* 데스크탑 Nav */}
+                <nav className="hidden md:flex gap-6 items-center text-sm font-medium">
                     {navLinks.map((link) => (
-                        <Link key={link.label} href={link.href} className="hover:text-red-300">
+                        <Link key={link.label} href={link.href} className="hover:text-blue-300 transition-colors">
                             {link.label}
                         </Link>
                     ))}
-                </nav>
-
-                <div className="flex items-center gap-3">
-                    {/* 다크모드 버튼 */}
                     <button
                         onClick={toggleDark}
-                        className="px-3 py-1 rounded-full text-sm font-medium bg-white/20 hover:bg-white/30 transition"
+                        className="ml-4 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/20 hover:bg-white/30 transition"
                     >
                         {isDark ? "☀️ 라이트" : "🌙 다크"}
                     </button>
+                </nav>
 
-                    {/* 햄버거 버튼 (모바일만 표시) */}
+                {/* 모바일 햄버거 메뉴 묶음 */}
+                <div className="md:hidden flex items-center gap-3">
                     <button
-                        className="md:hidden text-xl"
+                        onClick={toggleDark}
+                        className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/20 hover:bg-white/30 transition"
+                    >
+                        {isDark ? "☀️" : "🌙"}
+                    </button>
+                    <button
+                        className="text-2xl p-1"
                         onClick={() => setMenuOpen(!menuOpen)}
                     >
                         {menuOpen ? "✕" : "☰"}
                     </button>
                 </div>
-
             </div>
 
-            {/* 모바일 드롭다운 메뉴 */}
+            {/* 모바일 화면 Nav Sheet */}
             {menuOpen && (
-                <div className="md:hidden px-4 pb-4 flex flex-col gap-3 text-sm font-medium">
+                <div className="md:hidden mt-4 pt-4 border-t border-gray-700 flex flex-col gap-4 text-sm font-medium max-w-5xl mx-auto">
                     {navLinks.map((link) => (
                         <Link
                             key={link.label}
                             href={link.href}
-                            className="hover:text-red-300"
+                            className="block hover:text-blue-300 pl-2"
                             onClick={() => setMenuOpen(false)}
                         >
                             {link.label}

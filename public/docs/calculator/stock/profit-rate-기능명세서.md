@@ -10,8 +10,8 @@
 ㄴ 클라이언트 : `app/calculator/stock/profit-rate/ProfitRate.tsx`
 
 ## 3. 공통 기능
-1. 뒤로가기 버튼
-2. 공유 버튼
+1. 뒤로가기 버튼 / 공유 버튼
+2. JIKO 플랫폼 홈(`jiko.kr`) 허브 이동 버튼 (Header 및 Footer 영역에 단축 위치)
 
 ## 4. 화면 기능
 1. 입력 데이터

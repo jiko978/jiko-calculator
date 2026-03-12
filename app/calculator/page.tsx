@@ -12,23 +12,23 @@ export default function Home() {
             className="bg-white dark:bg-gray-800 dark:text-gray-100 p-8 rounded-2xl shadow-md hover:shadow-xl transition text-center text-lg font-semibold">
             📈 주식
           </Link>
-          <Link href="/calculator/stock"
+          <Link href="/calculator/finance"
             className="bg-white dark:bg-gray-800 dark:text-gray-100 p-8 rounded-2xl shadow-md hover:shadow-xl transition text-center text-lg font-semibold">
             💰 금융
           </Link>
-          <Link href="/calculator/stock"
+          <Link href="/calculator/realstate"
             className="bg-white dark:bg-gray-800 dark:text-gray-100 p-8 rounded-2xl shadow-md hover:shadow-xl transition text-center text-lg font-semibold">
             🏢 부동산
           </Link>
-          <Link href="/calculator/stock"
+          <Link href="/calculator/life"
             className="bg-white dark:bg-gray-800 dark:text-gray-100 p-8 rounded-2xl shadow-md hover:shadow-xl transition text-center text-lg font-semibold">
             🏠 생활
           </Link>
-          <Link href="/calculator/stock"
+          <Link href="/calculator/health"
             className="bg-white dark:bg-gray-800 dark:text-gray-100 p-8 rounded-2xl shadow-md hover:shadow-xl transition text-center text-lg font-semibold">
             💪 건강
           </Link>
-          <Link href="/calculator/stock"
+          <Link href="/calculator/other"
             className="bg-white dark:bg-gray-800 dark:text-gray-100 p-8 rounded-2xl shadow-md hover:shadow-xl transition text-center text-lg font-semibold">
             🧮 기타
           </Link>
