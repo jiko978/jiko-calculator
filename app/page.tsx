@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import PlatformQR from "./components/PlatformQR";
 
 export const metadata: Metadata = {
     title: "JIKO Platform",
@@ -85,7 +86,7 @@ export default function Home() {
         <div className="flex flex-col min-h-screen">
             <Header />
 
-            <div className="w-full bg-white dark:bg-gray-900 flex-grow py-12 px-4 transition-colors">
+            <div className="w-full bg-white dark:bg-gray-900 flex-grow py-6 px-6 transition-colors">
                 <div className="max-w-5xl mx-auto flex flex-col items-center">
                     
                     {/* 메인 타이틀 영역 */}
@@ -136,6 +137,9 @@ export default function Home() {
                             </div>
                         ))}
                     </div>
+
+                    {/* 루트 플랫폼 QR 코드 영역 */}
+                    <PlatformQR />
                 </div>
             </div>
 
