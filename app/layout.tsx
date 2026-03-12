@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import KakaoInit from "./components/KakaoInit";
 import "./globals.css";
-import Script from "next/script";
 import GoogleAnalytics from "./components/analytics/GoogleAnalytics";
 import PageViewTracker from "./components/analytics/PageViewTracker";
+import UnregisterRootSW from "./components/UnregisterRootSW";
+import Script from "next/script";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -99,6 +100,7 @@ export default function RootLayout({
         <PageViewTracker />
 
         <KakaoInit />
+        <UnregisterRootSW />
 
         {/* Google Analytics GA4 */}
         <Script

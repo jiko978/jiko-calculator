@@ -5,7 +5,7 @@
 const IS_DEV = self.location.hostname === "localhost"
     || self.location.hostname === "127.0.0.1";
 
-const CACHE_NAME = "jiko-calculator-v2";
+const CACHE_NAME = "jiko-calculator-v3";
 
 const STATIC_ASSETS = [
     "/calculator",
