@@ -5,13 +5,20 @@
 
 ## 2. 화면 위치
 1. 경로 : `/calculator/stock/profit-rate`
-2. 파일
+2. 동적 경로 (SEO) : `/calculator/stock/profit-rate/[slug]` (종목별 전용 페이지)
+3. 파일
 ㄴ 서버 : `app/calculator/stock/profit-rate/page.tsx`
+ㄴ 동적 서버 : `app/calculator/stock/profit-rate/[slug]/page.tsx`
 ㄴ 클라이언트 : `app/calculator/stock/profit-rate/ProfitRate.tsx`
 
-## 3. 공통 기능
-1. 뒤로가기 버튼 / 공유 버튼
-2. JIKO 플랫폼 홈(`jiko.kr`) 허브 이동 버튼 (Header 및 Footer 영역에 단축 위치)
+## 3. 계층 구조 및 SEO (Common Architecture)
+1. **Breadcrumb Schema**: `홈 > 계산기 홈 > 주식 계산기 > 수익률 계산기` 구조의 JSON-LD 적용
+2. **동적 메타데이터**: `[slug]`(종목명)에 따라 Title, Description, Keywords 자동 생성
+3. **PWA 연동**: 
+   - `PWAInstallProvider`를 통한 설치 가능 상태 감지
+   - `InstallBanner` (페이지 하단), `Footer` (앱 설치 버튼) 연동
+4. 뒤로가기 버튼 / 공유 버튼 (NavBar 컴포넌트 필수 사용)
+5. JIKO 플랫폼 홈(`jiko.kr`) 허브 이동 버튼 (Header 및 Footer 영역에 단축 위치)
 
 ## 4. 화면 기능
 1. 입력 데이터

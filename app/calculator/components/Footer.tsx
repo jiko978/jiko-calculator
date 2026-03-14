@@ -6,32 +6,38 @@ import { usePWAInstall } from "./PWAInstallProvider";
 export default function Footer() {
     const { canInstall, showInstallPrompt } = usePWAInstall();
     return (
-        <footer className="bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 text-gray-500 py-8 text-center text-sm mt-auto transition-colors">
+        <footer className="bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 text-gray-500 py-6 text-center text-xs mt-auto transition-colors">
             <div className="max-w-5xl mx-auto px-4 flex flex-col items-center gap-3">
-                <p>© {new Date().getFullYear()} JIKO calculator. All rights reserved.</p>
-                <div className="flex gap-4 text-xs">
-                    <span className="text-gray-300 dark:text-gray-700">|</span>
-                    <Link href="/" className="hover:text-blue-600 dark:hover:text-blue-400">
-                        JIKO Platform
-                    </Link>
-                    <span className="text-gray-300 dark:text-gray-700">|</span>
-                    <Link href="mailto:njiko@naver.com" className="hover:text-blue-600 dark:hover:text-blue-400">
-                        문의하기
-                    </Link>
-                    <span className="text-gray-300 dark:text-gray-700">|</span>
+                
+                {/* Line 1: Policy Links */}
+                <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 font-medium text-gray-600 dark:text-gray-400">
+                    <Link href="/policy/about" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About</Link>
+                    <Link href="/policy/privacy" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Privacy</Link>
+                    <Link href="/policy/terms" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Terms</Link>
+                    <Link href="/policy/disclaimer" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Disclaimer</Link>
+                </div>
+
+                {/* Line 2: Support & App */}
+                <div className="flex items-center gap-3">
+                    <Link href="/policy/contact" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">Contact</Link>
                     {canInstall && (
                         <>
+                            <span className="text-gray-300 dark:text-gray-700">|</span>
                             <button
                                 onClick={showInstallPrompt}
-                                className="hover:text-blue-600 dark:hover:text-blue-400 font-medium"
+                                className="text-blue-600 dark:text-blue-400 font-bold hover:underline flex items-center gap-1"
                             >
-                                💻 앱 설치하기
+                                <span className="text-sm">💻</span> 앱 설치하기
                             </button>
-                            <span className="text-gray-300 dark:text-gray-700">|</span>
                         </>
                     )}
                 </div>
+
+                {/* Line 3: Copyright */}
+                <p className="text-[10px] text-gray-400 dark:text-gray-600 uppercase tracking-wider font-semibold">
+                    © 2026 JIKO Project. All rights reserved.
+                </p>
             </div>
         </footer>
     );
-}
+}

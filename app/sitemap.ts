@@ -16,6 +16,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: "/calculator/stock/avg-price",  priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/stock/profit-rate", priority: 0.8, changeFrequency: "monthly" as const },
 
+        // ── policy ──
+        { url: "/policy/about", priority: 0.5, changeFrequency: "monthly" as const },
+        { url: "/policy/contact", priority: 0.5, changeFrequency: "monthly" as const },
+        { url: "/policy/privacy", priority: 0.3, changeFrequency: "monthly" as const },
+        { url: "/policy/terms", priority: 0.3, changeFrequency: "monthly" as const },
+        { url: "/policy/disclaimer", priority: 0.3, changeFrequency: "monthly" as const },
+
         // ── 추가 예정 카테고리 (페이지 추가 시 여기에 등록) ──
         // { url: "/health/bmi",         priority: 0.8, changeFrequency: "monthly" as const },
         // { url: "/investment/...",     priority: 0.8, changeFrequency: "monthly" as const },

@@ -28,8 +28,8 @@ export default function ShareSheet({ url, title, description, onClose }: ShareSh
             return;
         }
 
-        // 썸네일 이미지 경로 — public/kakao-thumbnail.png 준비 후 아래 URL 교체
-        const thumbnailUrl = `${window.location.origin}/calculator/jiko-calculator-icon2.png`;
+        // 썸네일 이미지 경로 — 로컬 테스트 시에도 이미지를 보여주기 위해 실제 서버 주소 사용
+        const thumbnailUrl = `https://jiko.kr/calculator/jiko-calculator-icon2.png`;
 
         window.Kakao.Share.sendDefault({
             objectType: "feed",

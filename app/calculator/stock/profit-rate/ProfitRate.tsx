@@ -2,14 +2,9 @@
 
 import { useState } from "react";
 import NavBar from "@/app/calculator/components/NavBar";
-import InstallBanner from "@/app/calculator/components/InstallBanner";
 import { ANIMATION } from "@/app/config/animationConfig";
 
-interface ProfitRateProps {
-    stockName?: string;
-}
-
-export default function ProfitRate({ stockName }: ProfitRateProps) {
+export default function ProfitRate() {
     const [buyPrice, setBuyPrice] = useState("");
     const [currentPrice, setCurrentPrice] = useState("");
     const [quantity, setQuantity] = useState("");
@@ -81,8 +76,8 @@ export default function ProfitRate({ stockName }: ProfitRateProps) {
             <div className={`max-w-2xl mx-auto px-4 py-6 pb-safe ${ANIMATION.pageEnter ? "animate-fade-in" : ""}`}>
 
                 <div className="flex justify-center mb-6">
-                    <span className="px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-sm font-semibold italic">
-                        💰 {stockName ? `[${stockName}] ` : ""}수익률 계산기
+                    <span className="px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-sm font-semibold">
+                        💰 수익률 계산기
                     </span>
                 </div>
 
@@ -155,7 +150,7 @@ export default function ProfitRate({ stockName }: ProfitRateProps) {
                                 <div className="pt-2 border-t border-gray-100 dark:border-gray-700 flex justify-center">
                                     <button onClick={handleCopyResult}
                                         className={`inline-flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${copied ? "bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-400"
-                                                : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                                            : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
                                             }`}>
                                         {copied ? (
                                             <><svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>복사 완료!</>
@@ -227,9 +222,6 @@ export default function ProfitRate({ stockName }: ProfitRateProps) {
                         </div>
                     </div>
                 )}
-
-                {/* PWA 설치 유도 배너 */}
-                <InstallBanner />
             </div>
         </div>
     );
