@@ -6,12 +6,14 @@ import { ANIMATION } from "@/app/config/animationConfig";
 
 interface ProfitRateProps {
     stockName?: string;
+    initialCode?: string;
 }
 
-export default function ProfitRate({ stockName }: ProfitRateProps) {
+export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) {
     const [buyPrice, setBuyPrice] = useState("");
     const [currentPrice, setCurrentPrice] = useState("");
     const [quantity, setQuantity] = useState("");
+    const [stockCode, setStockCode] = useState(initialCode || "");
     const [result, setResult] = useState<{ profit: number; rate: string; buyTotal: number; currentTotal: number } | null>(null);
     const [copied, setCopied] = useState(false);
     const [shaking, setShaking] = useState(false);
@@ -79,10 +81,17 @@ export default function ProfitRate({ stockName }: ProfitRateProps) {
 
             <div className={`max-w-2xl mx-auto px-4 py-6 pb-safe ${ANIMATION.pageEnter ? "animate-fade-in" : ""}`}>
 
-                <div className="flex justify-center mb-6">
-                    <span className="px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-sm font-semibold">
-                        💰 {stockName ? `${stockName} ` : ""}수익률 계산기
-                    </span>
+                <div className="flex flex-col items-center gap-3 mb-8">
+                    <div className="flex justify-center flex-wrap gap-2">
+                        {stockName && (
+                            <span className="px-3 py-1 bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 rounded-full text-sm font-bold border border-blue-100 dark:border-blue-800">
+                                📊 {stockName} {stockCode ? `(${stockCode})` : ""}
+                            </span>
+                        )}
+                        <span className="px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-sm font-semibold">
+                            💰 수익률 계산기
+                        </span>
+                    </div>
                 </div>
 
                 {/* 입력 영역 */}

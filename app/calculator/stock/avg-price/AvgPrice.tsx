@@ -27,13 +27,15 @@ const getGrade = (rate: number) => {
 
 interface AvgPriceProps {
     stockName?: string;
+    initialCode?: string;
 }
 
-export default function AvgPrice({ stockName }: AvgPriceProps) {
+export default function AvgPrice({ stockName, initialCode }: AvgPriceProps) {
     const [rows, setRows] = useState<Row[]>([
         createRow(1), createRow(2), createRow(3),
     ]);
     const [currentPrice, setCurrentPrice] = useState("");
+    const [stockCode, setStockCode] = useState(initialCode || "");
     const [calculated, setCalculated] = useState(false);
     const [copied, setCopied] = useState(false);
     const [shaking, setShaking] = useState(false);
@@ -192,10 +194,17 @@ export default function AvgPrice({ stockName }: AvgPriceProps) {
 
             <div className={`max-w-3xl mx-auto px-4 py-6 pb-safe ${ANIMATION.pageEnter ? "animate-fade-in" : ""}`}>
 
-                <div className="flex justify-center items-center gap-3 mb-6 flex-wrap">
-                    <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold">💧 물타기</span>
-                    <span className="px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm font-semibold">🔥 불타기</span>
-                    <h1 className="px-3 py-1 font-bold text-gray-800 dark:text-gray-100">{stockName ? `${stockName} ` : ""}평균 단가 계산기</h1>
+                <div className="flex flex-col items-center gap-4 mb-8">
+                    <div className="flex justify-center items-center gap-2 flex-wrap text-sm">
+                        {stockName && (
+                            <span className="px-3 py-1 bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-100 rounded-full font-bold border border-gray-200 dark:border-gray-600">
+                                🏢 {stockName} {stockCode ? `(${stockCode})` : ""}
+                            </span>
+                        )}
+                        <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full font-semibold">💧 물타기</span>
+                        <span className="px-3 py-1 bg-red-100 text-red-600 rounded-full font-semibold">🔥 불타기</span>
+                    </div>
+                    <h1 className="text-lg font-bold text-gray-800 dark:text-gray-100">평균 단가 계산기</h1>
                 </div>
 
                 {/* 입력 테이블 */}
