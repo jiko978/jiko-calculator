@@ -1,5 +1,5 @@
 import type { Metadata, ResolvingMetadata } from "next";
-import StockTax from "../StockTax";
+import StockFee from "../StockFee";
 import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../../utils/seo";
 import stocksData from "../../data/stocks.json";
@@ -41,17 +41,17 @@ export async function generateMetadata(
         }
     }
 
-    const title = `${stockCode ? `${stockCode} ` : ""}${stockName} 주식 세금 계산기 | ${stockName} 거래세 양도세 확인 - JIKO`;
+    const title = `${stockCode ? `${stockCode} ` : ""}${stockName} 주식 수수료 계산기 | ${stockName} 세금 수수료 확인 - JIKO`;
     const description = `${stockName}(${stockCode}) 매매 시 발생하는 세금과 수수료를 계산해 보세요. 코스피/코스닥 거래세와 해외주식 양도세 공제 혜택을 반영한 정확한 세후 순이익을 도출합니다.`;
 
     return {
         title,
         description,
-        alternates: { canonical: `${BASE_URL}/calculator/stock/tax/${slug}` },
+        alternates: { canonical: `${BASE_URL}/calculator/stock/fee/${slug}` },
         openGraph: {
             title,
             description,
-            url: `${BASE_URL}/calculator/stock/tax/${slug}`,
+            url: `${BASE_URL}/calculator/stock/fee/${slug}`,
             images: [`${BASE_URL}/calculator/jiko-calculator-icon2.png`],
         },
     };
@@ -86,8 +86,8 @@ export default async function Page({ params }: Props) {
         COMMON_BREADCRUMBS.HOME,
         COMMON_BREADCRUMBS.CALC_HOME,
         COMMON_BREADCRUMBS.STOCK_HOME,
-        { name: "세금 계산기", item: "/calculator/stock/tax" },
-        { name: `${stockName} 세금 계산`, item: `/calculator/stock/tax/${slug}` }
+        { name: "수수료 계산기", item: "/calculator/stock/fee" },
+        { name: `${stockName} 수수료 계산`, item: `/calculator/stock/fee/${slug}` }
     ]);
 
     return (
@@ -96,8 +96,8 @@ export default async function Page({ params }: Props) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
             />
-            <NavBar title={`${stockName} 세금 계산기 | JIKO`} description={`${stockName} 주식 매수/매도 시 발생하는 세금을 확인하세요.`} position="top" />
-            <StockTax stockName={stockName} initialCode={stockCode} />
+            <NavBar title={`${stockName} 수수료 계산기 | JIKO`} description={`${stockName} 주식 매수/매도 시 발생하는 수수료와 세금을 확인하세요.`} position="top" />
+            <StockFee stockName={stockName} initialCode={stockCode} />
 
             <main className="max-w-2xl mx-auto px-4 pb-16 space-y-6">
                 <section className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
@@ -110,7 +110,7 @@ export default async function Page({ params }: Props) {
                                 🏢 {stockName} 국내 거래 시 유의사항
                             </h3>
                             <p className="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                                {stockName}({stockCode}) 종목을 국내 시장에서 매도할 경우, 2026년 기준 0.20%의 거래비용(증권거래세+농특세)이 발생합니다. 
+                                {stockName}({stockCode}) 종목을 국내 시장에서 매도할 경우, 2026년 기준 0.20%의 거래비용(증권거래세+농특세)이 발생합니다.
                                 손실 중이더라도 세금은 원천징수되므로 '최소 익절가'를 반드시 확인하여 실질 수익을 지키는 전략이 필요합니다.
                             </p>
                         </div>
@@ -120,7 +120,7 @@ export default async function Page({ params }: Props) {
                                 🌍 해외 투자 및 양도세 전략
                             </h3>
                             <p className="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                                만약 {stockName} 관련 해외 ETF나 ADR에 투자하신다면 연간 250만 원까지의 양도소득 공제 혜택을 활용하세요. 
+                                만약 {stockName} 관련 해외 ETF나 ADR에 투자하신다면 연간 250만 원까지의 양도소득 공제 혜택을 활용하세요.
                                 수익이 250만 원을 초과할 경우 22%의 세율이 적용되므로, 연말에 손실 종목을 매도하여 수익을 상계하는 'Tax Loss Harvesting' 전략이 유효할 수 있습니다.
                             </p>
                         </div>
@@ -130,7 +130,7 @@ export default async function Page({ params }: Props) {
                                 💡 스마트한 매도 타이밍 잡기
                             </h3>
                             <p className="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                                {stockName}의 변동성에 대비하여 단순 매수가가 아닌 수수료를 포함한 **Break-even Point(손익분기점)**를 아는 것이 중요합니다. 
+                                {stockName}의 변동성에 대비하여 단순 매수가가 아닌 수수료를 포함한 **Break-even Point(손익분기점)**를 아는 것이 중요합니다.
                                 JIKO가 제공하는 최소 익절가 가이드를 통해 세금 떼고도 남는 진짜 수익 구간에서 현명한 결정을 내리세요.
                             </p>
                         </div>

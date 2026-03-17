@@ -38,6 +38,8 @@ Tool Site.
     - `stock/` : 주식 메뉴
       - `avg-price/` : 평균 단가 계산기 페이지
       - `profit-rate/` : 수익률 계산기 페이지
+      - `dividend/` : 배당금 계산기 페이지
+      - `fee/` : 수수료 계산기 페이지  
     - `finance/`, `life/`, `health/`, `other/` : 기타 카테고리별 디렉토리
 - `public/` : 정적 자산(이미지, 아이콘 등) 
   - `docs/` : 프로젝트 전체 문서 및 카테고리별 MD 설정/설계서
@@ -45,12 +47,12 @@ Tool Site.
 
 ## 메뉴 구조
 주식(stock)
-ㄴ [1차]평균 단가 : 물타기/불타기 평균 단가 계산
+ㄴ [1차]평균 단가(avg-price) : 물타기/불타기 평균 단가 계산
 ㄴㄴ 계좌 개설 연동
-ㄴ [1차]수익률 : 매입가, 현재가, 수량별 수익금/수익률 계산
+ㄴ [1차]수익률(profit-rate) : 매입가, 현재가, 수량별 수익금/수익률 계산
 ㄴㄴ 계좌 개설 연동
-ㄴ [1차]배당금
-ㄴ [1차]세금
+ㄴ [1차]배당금(dividend) : 주당 배당금, 배당 수익률, 목표 배당금 달성 가이드
+ㄴ [1차]수수료(fee) : 코스피/코스닥/해외 주식 세금 및 수수료 계산
 
 
 금융(finance)
@@ -132,7 +134,6 @@ Tool Site.
 ㄴ [미정]부가세 : MoneyNest 참고 
 ㄴ [미정]자동차세 : MoneyNest 참고 
 ㄴ [미정]종소세 : MoneyNest 참고 
-ㄴ [미정]코인 세금 : 토스 참고
 
 
 ## SEO제목
@@ -140,7 +141,7 @@ Tool Site.
 1. 주식 평균 단가 계산기 | 물타기/불타기 평단 계산 - JIKO calculator
 2. 주식 수익률 계산기 | 매수가 현재가 수익 계산 - JIKO calculator
 3. 주식 배당금 계산기 | 배당금 배당수익률 계산 - JIKO calculator
-4. 주식 세금 계산기 | 국내/해외 주식 세금 계산 - JIKO calculator
+4. 주식 수수료 계산기 | 코스피/코스닥/해외 주식 세금 및 수수료 계산 - JIKO calculator
 
 금융(finance)
 1. 예금 이자 계산기 | 예금 이자율 예금액 예금기간별 예금이자 계산 - JIKO calculator
@@ -207,7 +208,7 @@ Tool Site.
 ## MD파일 관리 (바이브 코딩 가이드)
 1. 전체 경로 : public/docs
 2. 메뉴별 설계서 경로 및 명명 규칙
-ㄴ 주식 : `public/docs/stock/[메뉴명]-기능명세서.md` (예: avg-price-기능명세서.md)
+ㄴ 주식 : `public/docs/stock/[메뉴명]-기능명세서.md` (예: fee-기능명세서.md)
 ㄴ 금융 : `public/docs/finance/[메뉴명]-기능명세서.md`
 ㄴ 부동산 : `public/docs/realestate/[메뉴명]-기능명세서.md`
 ㄴ 생활 : `public/docs/life/[메뉴명]-기능명세서.md`

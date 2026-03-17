@@ -26,4 +26,5 @@ export const COMMON_BREADCRUMBS = {
     STOCK_HOME: { name: "주식 계산기", item: "/calculator/stock" },
     AVG_PRICE: { name: "평단가 계산기", item: "/calculator/stock/avg-price" },
     PROFIT_RATE: { name: "수익률 계산기", item: "/calculator/stock/profit-rate" },
+    FEE: { name: "수수료 계산기", item: "/calculator/stock/fee" },
 };

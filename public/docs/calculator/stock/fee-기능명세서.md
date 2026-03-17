@@ -1,15 +1,15 @@
-# tax-기능명세서.md
+# fee-기능명세서.md
 
 ## 1. 개요
-국내 및 해외 주식 매매 시 발생하는 세금(거래세, 양도세)과 각종 수수료를 계산하여 실제 순이익을 도출합니다.
+국내 및 해외 주식 매매 시 발생하는 각종 수수료와 세금(거래세, 양도세)을 계산하여 실제 순이익을 도출합니다.
 
 ## 2. 화면 위치
-1. 경로 : `/calculator/stock/tax`
-2. 동적 경로 (SEO) : `/calculator/stock/tax/[slug]`
+1. 경로 : `/calculator/stock/fee`
+2. 동적 경로 (SEO) : `/calculator/stock/fee/[slug]`
 3. 파일
-   ㄴ 서버 : `app/calculator/stock/tax/page.tsx`
-   ㄴ 동적 서버 : `app/calculator/stock/tax/[slug]/page.tsx`
-   ㄴ 클라이언트 : `app/calculator/stock/tax/StockTax.tsx`
+   ㄴ 서버 : `app/calculator/stock/fee/page.tsx`
+   ㄴ 동적 서버 : `app/calculator/stock/fee/[slug]/page.tsx`
+   ㄴ 클라이언트 : `app/calculator/stock/fee/StockFee.tsx`
 
 ## 3. 화면 기능
 ### 3.1 입력 데이터

@@ -9,12 +9,12 @@ const MARKETS = [
     { label: "해외(미국 등)", value: "OVERSEAS", tax: 0.22, exemption: 2500000 }, // 양도세 22%, 공제 250만
 ];
 
-interface StockTaxProps {
+interface StockFeeProps {
     stockName?: string;
     initialCode?: string;
 }
 
-export default function StockTax({ stockName, initialCode }: StockTaxProps) {
+export default function StockFee({ stockName, initialCode }: StockFeeProps) {
     const [market, setMarket] = useState(MARKETS[0]);
     const [buyPrice, setBuyPrice] = useState("");
     const [sellPrice, setSellPrice] = useState("");
@@ -92,7 +92,7 @@ export default function StockTax({ stockName, initialCode }: StockTaxProps) {
         const buyAmt = buy * qty;
         const sellAmt = sell * qty;
         const grossProfit = sellAmt - buyAmt;
-        
+
         const buyCommTotal = buyAmt * bComm;
         const sellCommTotal = sellAmt * sComm;
         const totalCommission = buyCommTotal + sellCommTotal;
@@ -150,7 +150,7 @@ export default function StockTax({ stockName, initialCode }: StockTaxProps) {
         <div className="bg-gray-50 dark:bg-gray-900">
 
             <div className={`max-w-2xl mx-auto px-4 py-6 pb-safe ${ANIMATION.pageEnter ? "animate-fade-in" : ""}`}>
-                
+
                 <div className="flex flex-col items-center gap-4 mb-8 text-center">
                     <div className="flex justify-center flex-wrap gap-2">
                         {stockName && (
@@ -159,14 +159,14 @@ export default function StockTax({ stockName, initialCode }: StockTaxProps) {
                             </span>
                         )}
                         <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold">
-                            ⚖️ 세금 계산기
+                            ⚖️ 수수료 계산기
                         </span>
                     </div>
                 </div>
 
                 {/* 입력 카드 */}
                 <div className="bg-white dark:bg-gray-800 shadow-md rounded-2xl p-6 sm:p-8 space-y-6 border border-gray-100 dark:border-gray-700">
-                    
+
                     {/* 시장 선택 */}
                     <div className="flex flex-col gap-2">
                         <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 ml-1">거래 시장</label>
@@ -175,11 +175,10 @@ export default function StockTax({ stockName, initialCode }: StockTaxProps) {
                                 <button
                                     key={m.value}
                                     onClick={() => { setMarket(m); setResult(null); }}
-                                    className={`py-3 rounded-xl text-sm font-bold transition-all ${
-                                        market.value === m.value
-                                            ? "bg-blue-500 text-white shadow-md shadow-blue-200 dark:shadow-none"
-                                            : "bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600"
-                                    }`}
+                                    className={`py-3 rounded-xl text-sm font-bold transition-all ${market.value === m.value
+                                        ? "bg-blue-500 text-white shadow-md shadow-blue-200 dark:shadow-none"
+                                        : "bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600"
+                                        }`}
                                 >
                                     {m.label}
                                 </button>
@@ -200,9 +199,8 @@ export default function StockTax({ stockName, initialCode }: StockTaxProps) {
                                         <input
                                             type="text" inputMode="numeric" placeholder={placeholder}
                                             value={value} onChange={handleChange(setter, key)}
-                                            className={`w-full border rounded-xl px-4 py-3 text-right focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 dark:text-white transition-all ${
-                                                errors.has(key) ? "border-red-500 ring-2 ring-red-200 dark:ring-red-900/30" : "border-gray-200 dark:border-gray-700 focus:ring-blue-400"
-                                            }`}
+                                            className={`w-full border rounded-xl px-4 py-3 text-right focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 dark:text-white transition-all ${errors.has(key) ? "border-red-500 ring-2 ring-red-200 dark:ring-red-900/30" : "border-gray-200 dark:border-gray-700 focus:ring-blue-400"
+                                                }`}
                                         />
                                         <span className={`ml-2 text-sm w-4 shrink-0 font-bold ${errors.has(key) ? "text-red-500" : "text-gray-500"}`}>{unit}</span>
                                     </div>
@@ -262,12 +260,12 @@ export default function StockTax({ stockName, initialCode }: StockTaxProps) {
                     <div className="pt-4 space-y-3">
                         <div className="flex gap-3">
                             <button onClick={handleReset}
-                                    className={`flex-1 py-4 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 font-bold rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-750 transition-all ${shaking ? "animate-shake" : ""}`}>
+                                className={`flex-1 py-4 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 font-bold rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-750 transition-all ${shaking ? "animate-shake" : ""}`}>
                                 초기화
                             </button>
                             <button onClick={handleCalculate}
-                                    className="flex-[2] py-4 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-2xl shadow-lg shadow-blue-200 dark:shadow-none transition-all active:scale-95">
-                                세금 계산하기
+                                className="flex-[2] py-4 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-2xl shadow-lg shadow-blue-200 dark:shadow-none transition-all active:scale-95">
+                                수수료 계산하기
                             </button>
                         </div>
                         {errorMessage && (
@@ -284,7 +282,7 @@ export default function StockTax({ stockName, initialCode }: StockTaxProps) {
                 {/* 결과 영역 */}
                 {result && (
                     <div className={`mt-8 space-y-6 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
-                        
+
                         {/* 메인 결과 카드 */}
                         <div className={`bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-xl border-t-8 ${Number(result.profitRate) >= 0 ? "border-red-500 shadow-red-100 dark:shadow-none" : "border-blue-500 shadow-blue-100 dark:shadow-none"}`}>
                             <div className="text-center mb-6">
@@ -312,7 +310,7 @@ export default function StockTax({ stockName, initialCode }: StockTaxProps) {
                                         <span className="font-black text-red-500">-{result.totalTax.toLocaleString()} 원</span>
                                     </div>
                                 </div>
-                                
+
                                 <div className="bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-700 rounded-2xl p-5 flex flex-col justify-center items-center text-center">
                                     <p className="text-xs font-bold text-gray-400 mb-2 flex items-center gap-1">
                                         ✅ 최소 익절가 가이드
@@ -334,7 +332,7 @@ export default function StockTax({ stockName, initialCode }: StockTaxProps) {
                         {/* 안내 문구 */}
                         <div className="text-center opacity-50 px-4">
                             <p className="text-xs text-gray-400 leading-relaxed">
-                                * 위 계산 결과는 최신 세율(2026년 기준)을 바탕으로 한 시뮬레이션이며,<br/>
+                                * 위 계산 결과는 최신 세율(2026년 기준)을 바탕으로 한 시뮬레이션이며,<br />
                                 증권사별 우대 수수료나 기타 제세금 차이에 따라 실제 금액과 다를 수 있습니다.
                             </p>
                         </div>
@@ -343,10 +341,10 @@ export default function StockTax({ stockName, initialCode }: StockTaxProps) {
 
                 {/* 결과가 없을 때 보여줄 문구 */}
                 {!result && (
-                     <div className="mt-8 text-center text-gray-400 dark:text-gray-500 space-y-2 opacity-50">
+                    <div className="mt-8 text-center text-gray-400 dark:text-gray-500 space-y-2 opacity-50">
                         <p className="text-sm">매매 금액과 수량을 입력하여</p>
                         <p className="text-sm font-bold text-gray-500">세금 떼고 남는 진짜 내 수익을 확인해보세요 📊</p>
-                     </div>
+                    </div>
                 )}
             </div>
         </div>

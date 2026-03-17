@@ -28,9 +28,17 @@ export default function Home() {
                         className="bg-white dark:bg-gray-800 dark:text-gray-100 p-8 rounded-2xl shadow-md hover:shadow-xl transition text-center text-lg font-semibold">
                         💰 수익률
                     </Link>
+                    <Link href="/calculator/stock/dividend"
+                        className="bg-white dark:bg-gray-800 dark:text-gray-100 p-8 rounded-2xl shadow-md hover:shadow-xl transition text-center text-lg font-semibold sm:col-span-2 md:col-span-1">
+                        💸 배당금
+                    </Link>
+                    <Link href="/calculator/stock/fee"
+                        className="bg-white dark:bg-gray-800 dark:text-gray-100 p-8 rounded-2xl shadow-md hover:shadow-xl transition text-center text-lg font-semibold sm:col-span-2 md:col-span-1">
+                        ⚖️ 수수료
+                    </Link>
                 </div>
-                
-                <NavBar title="주식 계산기" description="주식 평균단가, 수익률, 배당금 등 필수 주식 계산기 모음" position="static" />
+
+                <NavBar title="주식 계산기" description="주식 평균단가, 수익률, 배당금, 수수료 등 필수 계산기 모음" position="static" />
             </div>
         </main>
     );
