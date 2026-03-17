@@ -165,16 +165,16 @@ export default async function Page({ params }: Props) {
                     <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">
                         💰 제 2의 월급 지도 : 한국 주식 배당 투자 가이드
                     </h2>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6 text-sm">
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6 text-xs">
                         안정적인 현금 흐름을 만드는 배당 투자는 단순히 수익률만 보는 것이 아니라, 
                         **기업의 이익 체력**과 **배당 지속성**을 확인하는 것이 핵심입니다.
                     </p>
 
                     <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">✅ 필수 체크리스트</h3>
                     <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300 text-xs">
-                        <li><strong>배당성향(Payout Ratio)</strong>: 벌어들인 돈 대비 배당금을 과하지 않게 주는지 확인하세요.</li>
-                        <li><strong>PBR(주가순자산비율)</strong>: 자산 가치 대비 저평가된 기업일수록 향후 주가 상승과 배당 확대를 기대할 수 있습니다.</li>
-                        <li><strong>배당락 관리</strong>: 배당을 받기 위해선 배당기준일 2거래일 전까지 매수해야 함을 잊지 마세요.</li>
+                        <li><strong>배당성향(Payout Ratio)</strong> : 벌어들인 돈 대비 배당금을 과하지 않게 주는지 확인하세요.</li>
+                        <li><strong>PBR(주가순자산비율)</strong> : 자산 가치 대비 저평가된 기업일수록 향후 주가 상승과 배당 확대를 기대할 수 있습니다.</li>
+                        <li><strong>배당락 관리</strong> : 배당을 받기 위해선 배당기준일 2거래일 전까지 매수해야 함을 잊지 마세요.</li>
                     </ul>
                 </section>
 

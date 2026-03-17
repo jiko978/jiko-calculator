@@ -14,7 +14,19 @@ export const metadata: Metadata = {
         title: "주식 수수료 계산기 | 국내/해외 주식 수수료 및 세금 계산 - JIKO",
         description: "수수료와 세금을 떼고 남는 진짜 내 수익은 얼마일까? 수수료 포함 손익을 완벽 반영!",
         url: `${BASE_URL}/calculator/stock/fee`,
-        images: [`${BASE_URL}/calculator/jiko-calculator-icon2.png`],
+        images: [
+            {
+                url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`,
+                width: 1200,
+                height: 630,
+                alt: "주식 수수료 계산기",
+            },
+        ],
+    },
+    twitter: {
+        title: "주식 수수료 계산기 | 국내/해외 주식 수수료 및 세금 계산 - JIKO",
+        description:
+            "국내 코스피, 코스닥 증권사 수수료부터 해외 주식 양도소득세까지 정확하게 계산해 보세요. 수수료를 포함한 세후 순수익과 손해 보지 않는 최소 익절가를 즉시 확인하실 수 있습니다.",
     },
 };
 

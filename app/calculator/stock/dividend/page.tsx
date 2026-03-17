@@ -15,7 +15,19 @@ export const metadata: Metadata = {
         title: "주식 배당금 계산기 | 배당 수익률 목표 달성 계산 - JIKO",
         description: "나의 주식 배당금, 생활비로 환산하면 얼마일까?",
         url: `${BASE_URL}/calculator/stock/dividend`,
-        images: [`${BASE_URL}/calculator/jiko-calculator-icon2.png`],
+        images: [
+            {
+                url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`,
+                width: 1200,
+                height: 630,
+                alt: "주식 평균 단가 계산기",
+            },
+        ],
+    },
+    twitter: {
+        title: "주식 배당금 계산기 | 배당 수익률 목표 달성 계산 - JIKO",
+        description:
+            "주식 배당금과 배당 수익률을 정확하게 계산해 보세요. 내가 받은 배당금이 생활비로 얼마나 충당되는지, 목표 배당금을 위해 얼마가 더 필요한지 한눈에 보여드립니다.",
     },
 };
 
@@ -164,19 +176,19 @@ export default function Page() {
                 {/* [개별 카드세션] 1. 투자 가이드 섹션 */}
                 <section className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">
-                        💰 제 2의 월급 지도: 한국 주식 배당 투자 가이드
+                        💰 제 2의 월급 지도 : 한국 주식 배당 투자 가이드
                     </h2>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6 text-xs">
                         안정적인 현금 흐름을 만드는 배당 투자는 단순히 수익률만 보는 것이 아니라, 
                         **기업의 이익 체력**과 **배당 지속성**을 확인하는 것이 핵심입니다. 
                         특히 한국 시장에서는 낮은 PBR과 높은 배당 수익률을 가진 종목들이 '밸류업'의 중심에 있습니다.
                     </p>
 
                     <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">✅ 필수 체크리스트</h3>
-                    <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300 text-sm">
-                        <li><strong>배당성향(Payout Ratio)</strong>: 벌어들인 돈 대비 배당금을 과하지 않게 주는지 확인하세요.</li>
-                        <li><strong>PBR(주가순자산비율)</strong>: 자산 가치 대비 저평가된 기업일수록 향후 주가 상승과 배당 확대를 기대할 수 있습니다.</li>
-                        <li><strong>배당락 관리</strong>: 배당을 받기 위해선 배당기준일 2거래일 전까지 매수해야 함을 잊지 마세요.</li>
+                    <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300 text-xs">
+                        <li><strong>배당성향(Payout Ratio)</strong> : 벌어들인 돈 대비 배당금을 과하지 않게 주는지 확인하세요.</li>
+                        <li><strong>PBR(주가순자산비율)</strong> : 자산 가치 대비 저평가된 기업일수록 향후 주가 상승과 배당 확대를 기대할 수 있습니다.</li>
+                        <li><strong>배당락 관리</strong> : 배당을 받기 위해선 배당기준일 2거래일 전까지 매수해야 함을 잊지 마세요.</li>
                     </ul>
                 </section>
 
