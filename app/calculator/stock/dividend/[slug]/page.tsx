@@ -3,6 +3,7 @@ import Dividend from "../Dividend";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../../utils/seo";
 import NavBar from "@/app/calculator/components/NavBar";
 import stocksData from "../../data/stocks.json";
+import highDividendData from "../../data/high-dividend.json";
 
 const BASE_URL = "https://jiko.kr";
 
@@ -85,11 +86,12 @@ export default async function Page({ params }: Props) {
                 />
             )}
 
-            <NavBar title={`${name} 배당금 계산기 | JIKO`} description={`${name} 종목의 배당 수익률과 목표 달성을 시뮬레이션 하세요.`} position="top" />
+            <NavBar title={`${name} 배당금 계산기`} description={`${name} 종목의 배당 수익률과 목표 달성을 시뮬레이션 하세요.`} position="top" />
 
             <Dividend stockName={name} initialCode={code} />
 
-            <main className="max-w-2xl mx-auto px-4 pb-16 space-y-6">
+            <main className="max-w-2xl mx-auto px-4 pb-16 space-y-8">
+                {/* [공통 카드세션] 1. 메뉴 설명 */}
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
                         💹 {name} {code ? `(${code})` : ""} 배당 투자 가치 분석 리포트
@@ -100,6 +102,121 @@ export default async function Page({ params }: Props) {
                         {name} 배당금으로 꿈꾸는 경제적 자유에 한 걸음 더 다가가세요.
                     </p>
                 </section>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* [공통 카드세션] 2. 사용 방법 */}
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-blue-500">💡</span> 사용 방법
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc list-inside">
+                            <li><strong>매수가</strong>와 <strong>현재가</strong>, 그리고 {name} <strong>보유 수량</strong>을 입력합니다.</li>
+                            <li><strong>주당 배당금</strong>과 지급 주기를 선택하세요.</li>
+                            <li>나의 <strong>목표 월 배당금</strong>을 설정하여 달성 상태를 시뮬레이션 합니다.</li>
+                            <li>'계산하기'를 클릭하면 세후 실수령액과 추가 매수 필요량을 보여드립니다.</li>
+                        </ul>
+                    </section>
+
+                    {/* [공통 카드세션] 3. 계산 예시 */}
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-green-500">📊</span> 계산 예시
+                        </h2>
+                        <div className="text-sm text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-700/50 p-4 rounded-xl space-y-1">
+                            <p>{name} 매수가: <strong>100,000원</strong></p>
+                            <p>주당 배당금: <strong>5,000원</strong> / 보유: <strong>100주</strong></p>
+                            <p className="border-t border-gray-200 dark:border-gray-600 pt-1 mt-1 text-red-500 font-bold">
+                                세후 예상 배당금: 약 423,000원
+                            </p>
+                            <p className="text-blue-600 font-semibold text-xs leading-relaxed">
+                                * 소득세(14%) + 지방소득세(1.4%)를 제외한 실수령 기준
+                            </p>
+                        </div>
+                    </section>
+                </div>
+
+                {/* [공통 카드세션] 4. FAQ */}
+                <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+                        <span className="text-purple-500">❓</span> 자주 묻는 질문 (FAQ)
+                    </h2>
+                    <div className="space-y-4">
+                        <div>
+                            <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
+                                Q. {name}의 배당 기준일은 언제인가요?
+                            </p>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600 text-xs leading-relaxed">
+                                A. 보통 연배당은 12월 말, 분기배당은 3, 6, 9월 말일이 기준인 경우가 많습니다. 단, {name}의 정확한 공시를 확인하여 2거래일 전까지는 결제가 완료되어야 배당을 받을 수 있습니다.
+                            </p>
+                        </div>
+                        <div>
+                            <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
+                                Q. 배당 수익률 대비 주가가 떨어지면 어떻게 하나요?
+                            </p>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600 text-xs leading-relaxed">
+                                A. 배당 수익률보다 주가 하락폭이 더 크면 전체 원금 손실이 발생할 수 있습니다. 따라서 배당 지속 가능성과 기업의 이익 성장을 함께 고려하는 것이 중요합니다.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                {/* [개별 카드세션] 1. 투자 가이드 섹션 */}
+                <section className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">
+                        💰 제 2의 월급 지도 : 한국 주식 배당 투자 가이드
+                    </h2>
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6 text-sm">
+                        안정적인 현금 흐름을 만드는 배당 투자는 단순히 수익률만 보는 것이 아니라, 
+                        **기업의 이익 체력**과 **배당 지속성**을 확인하는 것이 핵심입니다.
+                    </p>
+
+                    <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">✅ 필수 체크리스트</h3>
+                    <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300 text-xs">
+                        <li><strong>배당성향(Payout Ratio)</strong>: 벌어들인 돈 대비 배당금을 과하지 않게 주는지 확인하세요.</li>
+                        <li><strong>PBR(주가순자산비율)</strong>: 자산 가치 대비 저평가된 기업일수록 향후 주가 상승과 배당 확대를 기대할 수 있습니다.</li>
+                        <li><strong>배당락 관리</strong>: 배당을 받기 위해선 배당기준일 2거래일 전까지 매수해야 함을 잊지 마세요.</li>
+                    </ul>
+                </section>
+
+                {/* [개별 카드세션] 2. 산업별 고배당주 섹션 */}
+                <section className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <div className="flex justify-between items-end mb-6">
+                        <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100">
+                            🏦 한국 KOSPI 산업별 고배당주
+                        </h2>
+                        <span className="text-[11px] text-gray-400 dark:text-gray-500">업데이트 : 2026.03.16</span>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-6">
+                        {highDividendData.map((item) => (
+                            <div key={item.category} className="space-y-3">
+                                <h3 className="text-sm font-black text-gray-400 dark:text-gray-500 flex items-center gap-2">
+                                    <span className="w-1 h-3 bg-green-500 rounded-full" />
+                                    {item.category}
+                                </h3>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    {item.stocks.map((stock) => (
+                                        <div key={stock.code} className="p-4 bg-gray-50 dark:bg-gray-900/40 rounded-xl border border-gray-100 dark:border-gray-700 flex justify-between items-center group hover:border-green-400 transition-colors">
+                                            <div>
+                                                <p className="font-bold text-gray-800 dark:text-gray-100 group-hover:text-green-600 transition-colors">{stock.name}</p>
+                                                <p className="text-[10px] text-gray-400 mt-0.5">{stock.desc}</p>
+                                            </div>
+                                            <div className="text-right">
+                                                <p className="text-green-600 dark:text-green-400 font-extrabold">{stock.dividend}</p>
+                                                <p className="text-[10px] text-gray-400">{stock.code}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <p className="mt-8 text-xs text-gray-400 dark:text-gray-500 text-center italic">
+                        * 위 종목 리스트는 투자 권유가 아니며, 과거 데이터를 바탕으로 한 참고용입니다.
+                    </p>
+                </section>
+
             </main>
         </div>
     );

@@ -92,18 +92,72 @@ export default async function Page({ params }: Props) {
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(stockSchema) }}
                 />
             )}
-            <NavBar title={`${name} 수익률 계산기 | JIKO`} description={`${name} 종목의 투자 수익 현황을 확인하세요.`} position="top" />
+            <NavBar title={`${name} 수익률 계산기`} description={`${name} 종목의 투자 수익 현황을 확인하세요.`} position="top" />
             <ProfitRate stockName={name} initialCode={code} />
 
             <main className="max-w-2xl mx-auto px-4 pb-16 space-y-6">
+                {/* [공통 카드세션] 1. 메뉴 설명 */}
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
                         💰 {name} {code ? `(${code})` : ""} 투자 수익 분석 리포트
                     </h2>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
-                        {name} 종목의 현재 수익금이 궁금하신가요? {code ? `티커 ${code}` : "해당 종목"}의 매수가와 현재가, 수량을 입력하여
+                        {name} 종목의 현재 수익금이 궁금하신가요? {code ? `티커 ${code}` : "해당 종목"}의 매수가와 현재가, 수량을 입력하여 
                         수수료를 제외한 실질 수익률을 한눈에 확인해 보세요.
                     </p>
+                </section>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* [공통 카드세션] 2. 사용 방법 */}
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-blue-500">💡</span> 사용 방법
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc list-inside">
+                            <li>{name}의 <strong>매수가</strong>와 <strong>수량</strong>을 입력합니다.</li>
+                            <li>목표가 또는 <strong>현재가</strong>를 입력하세요.</li>
+                            <li>'계산하기'를 클릭하여 <strong>수익금</strong>과 <strong>수익률</strong>을 확인합니다.</li>
+                            <li>결과 그래프를 통해 전체 투자 금액 대비 수익 비중을 파악하세요.</li>
+                        </ul>
+                    </section>
+
+                    {/* [공통 카드세션] 3. 계산 예시 */}
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-green-500">📊</span> 계산 예시
+                        </h2>
+                        <div className="text-sm text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-700/50 p-4 rounded-xl space-y-2">
+                            <p>{name} 매수가: <strong>10,000원</strong></p>
+                            <p>현재가: <strong>12,000원</strong> (100주 보유시)</p>
+                            <p className="border-t border-gray-200 dark:border-gray-600 pt-1 mt-1 text-red-500 font-bold">수익률 결과: 20%</p>
+                            <p className="text-red-500 font-semibold">총 수익금: 200,000원</p>
+                        </div>
+                    </section>
+                </div>
+
+                {/* [공통 카드세션] 4. FAQ */}
+                <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+                        <span className="text-purple-500">❓</span> 자주 묻는 질문 (FAQ)
+                    </h2>
+                    <div className="space-y-4">
+                        <div>
+                            <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
+                                Q. {name} 수익률 계산 시 세금이 포함되나요?
+                            </p>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600 text-xs">
+                                A. 본 기본 계산기는 수수료를 제외한 단순 차익 계산입니다. 자세한 세금 포함 수익은 '수수료 계산기'를 이용해 주세요.
+                            </p>
+                        </div>
+                        <div>
+                            <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
+                                Q. 수익률 등급(야수의 심장 등)은 무엇인가요?
+                            </p>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600 text-xs">
+                                A. 투자자의 재미와 직관적인 성과 파악을 위해 수익률 구간별로 부여하는 재미있는 별칭입니다.
+                            </p>
+                        </div>
+                    </div>
                 </section>
             </main>
         </div>
