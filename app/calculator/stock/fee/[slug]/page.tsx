@@ -90,126 +90,49 @@ export default async function Page({ params }: Props) {
         { name: `${stockName} 수수료 계산`, item: `/calculator/stock/fee/${slug}` }
     ]);
 
-    const stockSchema = stockCode ? {
-        "@context": "https://schema.org",
-        "@type": "InvestmentOrDeposit",
-        "name": stockName,
-        "tickerSymbol": stockCode,
-        "url": `${BASE_URL}/calculator/stock/fee/${slug}`
-    } : null;
-
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
             />
-            {stockSchema && (
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(stockSchema) }}
-                />
-            )}
-            <NavBar title={`${stockName} 수수료 계산기`} description={`${stockName} 주식 매수/매도 시 발생하는 수수료와 세금을 확인하세요.`} position="top" />
-            
+            <NavBar title={`${stockName} 수수료 계산기 | JIKO`} description={`${stockName} 주식 매수/매도 시 발생하는 수수료와 세금을 확인하세요.`} position="top" />
             <StockFee stockName={stockName} initialCode={stockCode} />
 
-            <main className="max-w-2xl mx-auto px-4 pb-16 space-y-8">
-                {/* [공통 카드세션] 1. 메뉴 설명 */}
-                <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                    <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                        📜 {stockName} 세금 및 실전 투자 분석 리포트
-                    </h1>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
-                        {stockName}({stockCode}) 종목을 매도할 계획이신가요? 거래 시 발생하는 증권사 수수료와 거래세(국내) 또는 양도세(해외)를 
-                        미리 모의계산하여 세금 떼고도 남는 진짜 수익을 확인해 보세요. {stockName} 투자 전략의 핵심은 '세후' 순수익을 지키는 것입니다.
-                    </p>
-                </section>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* [공통 카드세션] 2. 사용 방법 */}
-                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                            <span className="text-blue-500">💡</span> 사용 방법
-                        </h2>
-                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc list-inside">
-                            <li>{stockName} 거래 시장(국내/해외)을 선택합니다.</li>
-                            <li><strong>매수가, 매도가, 수량</strong>을 입력하세요.</li>
-                            <li>이용 중인 증권사의 수수료율이 있다면 수정 반영 가능합니다.</li>
-                            <li>'계산하기'를 통해 <strong>최소 익절가</strong>와 실수렁액을 확인하세요.</li>
-                        </ul>
-                    </section>
-
-                    {/* [공통 카드세션] 3. 계산 예시 */}
-                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                            <span className="text-green-500">📊</span> 계산 예시
-                        </h2>
-                        <div className="text-sm text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-700/50 p-4 rounded-xl space-y-1">
-                            <p>{stockName} 1,000,000원 매도 시</p>
-                            <p>거래세(0.18%): <strong>1,800원</strong> / 수수료(0.01%): <strong>100원</strong></p>
-                            <p className="border-t border-gray-200 dark:border-gray-600 pt-1 mt-1 text-red-500 font-bold">
-                                예상 세후 수익: -1,900원 차감
-                            </p>
-                        </div>
-                    </section>
-                </div>
-
-                {/* [공통 카드세션] 4. FAQ */}
-                <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                    <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
-                        <span className="text-purple-500">❓</span> 자주 묻는 질문 (FAQ)
-                    </h2>
-                    <div className="space-y-4">
-                        <div>
-                            <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
-                                Q. {stockName} 본전 가격은 어떻게 알 수 있나요?
-                            </p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600 text-xs leading-relaxed">
-                                A. 매수가에 매수/매도 수수료와 세금을 모두 합산한 금액보다 높은 지점이 본전입니다. JIKO 계산기의 **최소 익절가** 기능을 통해 확인하세요.
-                            </p>
-                        </div>
-                        <div>
-                            <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
-                                Q. {stockName} 종목이 코스피인지 코스닥인지에 따라 세금이 다른가요?
-                            </p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600 text-xs leading-relaxed">
-                                A. 2026년 기준 코스피와 코스닥의 증권거래세는 동일하게 0.18% 부과됩니다. 단, 코스피의 경우 농특세(0.15%)가 거래세에 포함되어 표시되는 방식의 차이가 있습니다.
-                            </p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* [개별 카드세션] 1. 수수료와 세금 투자 지식 섹션 */}
+            <main className="max-w-2xl mx-auto px-4 pb-16 space-y-6">
                 <section className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                    <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">
-                        📊 주식 매매 시 꼭 알아야 할 수수료 및 세금 상식
+                    <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+                        📜 {stockName} 세금 및 실전 투자 분석 리포트
                     </h2>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6 font-medium">
-                        주식 투자에서 가장 중요한 것은 '벌었을 때 얼마나 지키느냐'입니다.
-                        수익이 났더라도 수수료와 세금을 고려하지 않으면 실질적인 이익이 생각보다 작을 수 있습니다.
-                    </p>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-                        <div className="space-y-3">
-                            <h3 className="font-bold text-blue-600 flex items-center gap-1">
-                                <span className="w-1 h-3 bg-blue-600 rounded-full" /> 국내 주식 (거래세)
+                    <div className="space-y-6">
+                        <div className="bg-blue-50 dark:bg-blue-900/10 p-4 rounded-xl border border-blue-100 dark:border-blue-800/50">
+                            <h3 className="font-bold text-blue-700 dark:text-blue-400 mb-2 text-sm flex items-center gap-1">
+                                🏢 {stockName} 국내 거래 시 유의사항
                             </h3>
-                            <ul className="list-disc list-inside text-gray-500 space-y-1 text-xs">
-                                <li>매도 시점에 즉시 부과됩니다.</li>
-                                <li>2026년 기준 코스피/코스닥 공통 0.18% (변동 가능)</li>
-                                <li>손실이 나더라도 세금은 발생합니다.</li>
-                            </ul>
+                            <p className="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                                {stockName}({stockCode}) 종목을 국내 시장에서 매도할 경우, 2026년 기준 0.20%의 거래비용(증권거래세+농특세)이 발생합니다.
+                                손실 중이더라도 세금은 원천징수되므로 '최소 익절가'를 반드시 확인하여 실질 수익을 지키는 전략이 필요합니다.
+                            </p>
                         </div>
-                        <div className="space-y-3">
-                            <h3 className="font-bold text-orange-600 flex items-center gap-1">
-                                <span className="w-1 h-3 bg-orange-600 rounded-full" /> 해외 주식 (양도세)
+
+                        <div className="bg-orange-50 dark:bg-orange-900/10 p-4 rounded-xl border border-orange-100 dark:border-orange-800/50">
+                            <h3 className="font-bold text-orange-700 dark:text-orange-400 mb-2 text-sm flex items-center gap-1">
+                                🌍 해외 투자 및 양도세 전략
                             </h3>
-                            <ul className="list-disc list-inside text-gray-500 space-y-1 text-xs">
-                                <li>수익이 발생했을 때만 납부합니다.</li>
-                                <li>연간 합산 수익 250만 원까지 공제</li>
-                                <li>공제액 초과 수익에 대해 22% 부과</li>
-                            </ul>
+                            <p className="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                                만약 {stockName} 관련 해외 ETF나 ADR에 투자하신다면 연간 250만 원까지의 양도소득 공제 혜택을 활용하세요.
+                                수익이 250만 원을 초과할 경우 22%의 세율이 적용되므로, 연말에 손실 종목을 매도하여 수익을 상계하는 'Tax Loss Harvesting' 전략이 유효할 수 있습니다.
+                            </p>
+                        </div>
+
+                        <div className="bg-green-50 dark:bg-green-900/10 p-4 rounded-xl border border-green-100 dark:border-green-800/50">
+                            <h3 className="font-bold text-green-700 dark:text-green-400 mb-2 text-sm flex items-center gap-1">
+                                💡 스마트한 매도 타이밍 잡기
+                            </h3>
+                            <p className="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                                {stockName}의 변동성에 대비하여 단순 매수가가 아닌 수수료를 포함한 **Break-even Point(손익분기점)**를 아는 것이 중요합니다.
+                                JIKO가 제공하는 최소 익절가 가이드를 통해 세금 떼고도 남는 진짜 수익 구간에서 현명한 결정을 내리세요.
+                            </p>
                         </div>
                     </div>
                 </section>
