@@ -189,7 +189,7 @@ export default function Page() {
                         <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100">
                             🏦 한국 KOSPI 산업별 고배당주
                         </h2>
-                        <span className="text-[11px] text-gray-400 dark:text-gray-500">업데이트 : 2026.03.16</span>
+                        <span className="text-[11px] text-gray-400 dark:text-gray-500">업데이트 : 2026.03.18</span>
                     </div>
 
                     <div className="grid grid-cols-1 gap-6">
@@ -201,14 +201,28 @@ export default function Page() {
                                 </h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                     {item.stocks.map((stock) => (
-                                        <div key={stock.code} className="p-4 bg-gray-50 dark:bg-gray-900/40 rounded-xl border border-gray-100 dark:border-gray-700 flex justify-between items-center group hover:border-green-400 transition-colors">
-                                            <div>
-                                                <p className="font-bold text-gray-800 dark:text-gray-100 group-hover:text-green-600 transition-colors">{stock.name}</p>
-                                                <p className="text-[10px] text-gray-400 mt-0.5">{stock.desc}</p>
-                                            </div>
-                                            <div className="text-right">
-                                                <p className="text-green-600 dark:text-green-400 font-extrabold">{stock.dividend}</p>
-                                                <p className="text-[10px] text-gray-400">{stock.code}</p>
+                                        <div key={stock.code} className="p-4 bg-gray-50 dark:bg-gray-900/40 rounded-xl border border-gray-100 dark:border-gray-700 group hover:border-green-400 transition-colors">
+                                            <div className="flex justify-between items-start gap-x-4">
+                                                {/* 좌측 */}
+                                                <div>
+                                                    <p className="font-bold text-gray-800 dark:text-gray-100 group-hover:text-green-600 transition-colors">
+                                                        {stock.name}
+                                                    </p>
+                                                    <p className="text-[12px] text-red-400 mt-0.5">
+                                                        {stock.desc}
+                                                    </p>
+                                                </div>
+
+                                                {/* 우측 */}
+                                                <div className="text-right text-[12px] text-gray-400 space-y-0.5 shrink-0">
+                                                    <p className="text-green-600 dark:text-green-400 font-extrabold text-sm mb-1">
+                                                        {stock.dividend}
+                                                    </p>
+                                                    <p>주당 배당금 : {stock.dps}</p>
+                                                    <p>배당 주기 : {stock.freq}</p>
+                                                    <p>배당 성향 : {stock.payout}</p>
+                                                    <p>안정성 : {stock.stability}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     ))}
