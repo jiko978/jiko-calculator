@@ -339,13 +339,6 @@ export default function StockFee({ stockName, initialCode }: StockFeeProps) {
                     </div>
                 )}
 
-                {/* 결과가 없을 때 보여줄 문구 */}
-                {!result && (
-                    <div className="mt-8 text-center text-gray-400 dark:text-gray-500 space-y-2 opacity-50">
-                        <p className="text-sm">매매 금액과 수량을 입력하여</p>
-                        <p className="text-sm font-bold text-gray-500">세금 떼고 남는 진짜 내 수익을 확인해보세요 📊</p>
-                    </div>
-                )}
             </div>
         </div>
     );

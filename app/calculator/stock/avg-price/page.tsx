@@ -6,6 +6,8 @@ import type { Metadata } from "next";
 import AvgPriceCalculator from "./AvgPrice";
 import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../utils/seo";
+import StockMoreCalculators from "@/app/calculator/components/StockMoreCalculators";
+import FAQ from "@/app/calculator/components/FAQ";
 
 const BASE_URL = "https://jiko.kr";
 
@@ -89,6 +91,17 @@ export default function Page() {
         COMMON_BREADCRUMBS.AVG_PRICE
     ]);
 
+    const faqList = [
+        {
+            question: "주식 평균 단가는 어떻게 계산하나요?",
+            answer: "총 매수 금액을 총 주식 수로 나누면 정확한 평균 단가가 계산됩니다."
+        },
+        {
+            question: "물타기와 불타기는 무엇인가요?",
+            answer: "물타기는 주가가 하락했을 때 추가 매수하여 평균 단가를 낮추는 방어적 전략입니다. 반대로 불타기는 주가가 상승 중에 추가 매수하여 비중을 늘리는 공격적 전략을 의미합니다."
+        }
+    ];
+
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script
@@ -157,32 +170,10 @@ export default function Page() {
                 </div>
 
                 {/* FAQ */}
-                <section id="faq" className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                    <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
-                        <span className="text-purple-500">❓</span> 자주 묻는 질문 (FAQ)
-                    </h2>
+                <FAQ faqList={faqList} />
 
-                    <div className="space-y-4">
-                        <div>
-                            <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
-                                Q. 주식 평균 단가는 어떻게 계산하나요?
-                            </p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600">
-                                A. (총 매수 금액)을 (총 보유 주식 수)로 나누면 정확한 평균 단가가 계산됩니다.
-                            </p>
-                        </div>
-
-                        <div>
-                            <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
-                                Q. 물타기와 불타기는 무엇인가요?
-                            </p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600">
-                                A. <strong>물타기</strong>는 주가가 하락했을 때 추가 매수하여 평균 단가를 낮추는 방어적 전략입니다. 반대로 <strong>불타기</strong>는 주가가 상승 중에 추가 매수하여 비중을 늘리는 공격적 전략을 의미합니다.
-                            </p>
-                        </div>
-                    </div>
-                </section>
-
+                {/* 주식 계산기 더 보기 */}
+                <StockMoreCalculators />
             </main>
         </div>
     );

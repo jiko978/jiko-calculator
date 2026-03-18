@@ -332,13 +332,6 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
                     </div>
                 )}
 
-                {/* 하단 가이드 가이드 */}
-                {!result && (
-                     <div className="mt-6 text-center text-gray-400 dark:text-gray-500 space-y-2">
-                        <p className="text-sm">매입 단가와 주당 배당금을 입력하여</p>
-                        <p className="text-sm font-bold text-gray-500">실질적인 '배당 주머니' 지도를 그려보세요 🗺️</p>
-                     </div>
-                )}
             </div>
     );
 }

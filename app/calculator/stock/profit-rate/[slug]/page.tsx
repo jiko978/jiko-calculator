@@ -2,6 +2,8 @@ import type { Metadata, ResolvingMetadata } from "next";
 import ProfitRate from "../ProfitRate";
 import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../../utils/seo";
+import StockMoreCalculators from "@/app/calculator/components/StockMoreCalculators";
+import FAQ from "@/app/calculator/components/FAQ";
 
 const BASE_URL = "https://jiko.kr";
 
@@ -72,6 +74,17 @@ export default async function Page({ params }: Props) {
         { name: name, item: `/calculator/stock/profit-rate/${slug}` }
     ]);
 
+    const faqList = [
+        {
+            question: `${name} 수익률 계산 시 세금이 포함되나요?`,
+            answer: "본 기본 계산기는 수수료를 제외한 단순 차익 계산입니다. 자세한 세금 포함 수익은 '수수료 계산기'를 이용해 주세요."
+        },
+        {
+            question: "수익률 등급(야수의 심장 등)은 무엇인가요?",
+            answer: "투자자의 재미와 직관적인 성과 파악을 위해 수익률 구간별로 부여하는 재미있는 별칭입니다."
+        }
+    ];
+
     const stockSchema = code ? {
         "@context": "https://schema.org",
         "@type": "InvestmentOrDeposit",
@@ -136,29 +149,10 @@ export default async function Page({ params }: Props) {
                 </div>
 
                 {/* [공통 카드세션] 4. FAQ */}
-                <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                    <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
-                        <span className="text-purple-500">❓</span> 자주 묻는 질문 (FAQ)
-                    </h2>
-                    <div className="space-y-4">
-                        <div>
-                            <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
-                                Q. {name} 수익률 계산 시 세금이 포함되나요?
-                            </p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600 text-xs">
-                                A. 본 기본 계산기는 수수료를 제외한 단순 차익 계산입니다. 자세한 세금 포함 수익은 '수수료 계산기'를 이용해 주세요.
-                            </p>
-                        </div>
-                        <div>
-                            <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
-                                Q. 수익률 등급(야수의 심장 등)은 무엇인가요?
-                            </p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600 text-xs">
-                                A. 투자자의 재미와 직관적인 성과 파악을 위해 수익률 구간별로 부여하는 재미있는 별칭입니다.
-                            </p>
-                        </div>
-                    </div>
-                </section>
+                <FAQ faqList={faqList} />
+
+                {/* 주식 계산기 더 보기 */}
+                <StockMoreCalculators />
             </main>
         </div>
     );

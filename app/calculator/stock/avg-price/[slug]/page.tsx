@@ -2,6 +2,8 @@ import type { Metadata, ResolvingMetadata } from "next";
 import AvgPrice from "../AvgPrice";
 import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../../utils/seo";
+import StockMoreCalculators from "@/app/calculator/components/StockMoreCalculators";
+import FAQ from "@/app/calculator/components/FAQ";
 
 const BASE_URL = "https://jiko.kr";
 
@@ -64,6 +66,17 @@ export default async function Page({ params }: Props) {
         COMMON_BREADCRUMBS.AVG_PRICE,
         { name: name, item: `/calculator/stock/avg-price/${slug}` }
     ]);
+
+    const faqList = [
+        {
+            question: `${name}의 평단가를 낮추려면 얼마나 더 사야 하나요?`,
+            answer: "현재가 입력 시 '본전 탈출을 위한 추가 매수량' 기능을 통해 시스템이 자동으로 필요 수량을 계산해 드립니다."
+        },
+        {
+            question: "물타기 계산 결과가 실제와 다를 수 있나요?",
+            answer: "증권사별로 소수점 처리 방식이나 수수료 가산 방식에 따라 미세한 오차가 발생할 수 있으나, 비율상으로는 매우 정확합니다."
+        }
+    ];
 
     const stockSchema = code ? {
         "@context": "https://schema.org",
@@ -132,30 +145,11 @@ export default async function Page({ params }: Props) {
                 </div>
 
                 {/* [공통 카드세션] 4. FAQ */}
-                <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                    <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
-                        <span className="text-purple-500">❓</span> 자주 묻는 질문 (FAQ)
-                    </h2>
-                    <div className="space-y-4">
-                        <div>
-                            <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
-                                Q. {name}의 평단가를 낮추려면 얼마나 더 사야 하나요?
-                            </p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600 text-xs">
-                                A. 현재가 입력 시 '본전 탈출을 위한 추가 매수량' 기능을 통해 시스템이 자동으로 필요 수량을 역산해 드립니다.
-                            </p>
-                        </div>
-                        <div>
-                            <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
-                                Q. 물타기 계산 결과가 실제와 다를 수 있나요?
-                            </p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600 text-xs">
-                                A. 증권사별로 소수점 처리 방식이나 수수료 가산 방식에 따라 몇 원 단위의 오차가 발생할 수 있으나, 비율상으로는 거의 정확합니다.
-                            </p>
-                        </div>
-                    </div>
-                </section>
-             </main>
+                <FAQ faqList={faqList} />
+
+                {/* 주식 계산기 더 보기 */}
+                <StockMoreCalculators />
+            </main>
         </div>
     );
 }

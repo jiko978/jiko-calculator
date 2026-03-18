@@ -2,6 +2,8 @@ import type { Metadata, ResolvingMetadata } from "next";
 import StockFee from "../StockFee";
 import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../../utils/seo";
+import StockMoreCalculators from "@/app/calculator/components/StockMoreCalculators";
+import FAQ from "@/app/calculator/components/FAQ";
 import stocksData from "../../data/stocks.json";
 
 const BASE_URL = "https://jiko.kr";
@@ -90,6 +92,17 @@ export default async function Page({ params }: Props) {
         { name: `${stockName} 수수료 계산`, item: `/calculator/stock/fee/${slug}` }
     ]);
 
+    const faqList = [
+        {
+            question: `${stockName}의 최소 익절가는 왜 중요한가요?`,
+            answer: "매도가에서 수수료와 거래세를 제외한 실질 수익이 발생하는 지점이 바로 최소 익절가입니다. 이를 미리 파악해야 손해 없는 매매 시점을 잡을 수 있습니다."
+        },
+        {
+            question: "해외 주식 250만 원 공제는 어떻게 적용되나요?",
+            answer: "연간 실현 손익에서 250만 원까지는 양도소득세가 면제되며, 이를 넘는 수익에 대해서만 22%의 세율이 적용됩니다."
+        }
+    ];
+
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script
@@ -144,29 +157,7 @@ export default async function Page({ params }: Props) {
                 </div>
 
                 {/* [공통 카드세션] 4. FAQ */}
-                <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                    <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
-                        <span className="text-purple-500">❓</span> 자주 묻는 질문 (FAQ)
-                    </h2>
-                    <div className="space-y-4">
-                        <div>
-                            <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
-                                Q. {stockName}의 최소 익절가는 왜 중요한가요?
-                            </p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600 text-xs leading-relaxed">
-                                A. 매수가보다 조금이라도 높게 팔면 수익이라 생각하기 쉽지만, 매동/매수 수수료와 거래세를 합치면 약 0.2~0.3% 이상의 비용이 발생합니다. 이 비용을 제외하고도 내 자산이 실제로 늘어나는 지점이 바로 **최소 익절가**입니다.
-                            </p>
-                        </div>
-                        <div>
-                            <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
-                                Q. 해외 주식 250만 원 공제는 어떻게 적용되나요?
-                            </p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600 text-xs leading-relaxed">
-                                A. 1월 1일부터 12월 31일까지 결제일 기준 전체 실현 손익에서 250만 원을 뺀 나머지 금액에 대해 22%의 양도소득세가 부과됩니다. {stockName} 손실이 난 종목이 있다면 함께 매도하여 전체 수익을 낮추는 절세 전략이 가능합니다.
-                            </p>
-                        </div>
-                    </div>
-                </section>
+                <FAQ faqList={faqList} />
 
                 {/* [개별 카드세션] 1. 수수료와 세금 투자 지식 섹션 */}
                 <section className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
@@ -201,6 +192,9 @@ export default async function Page({ params }: Props) {
                         </div>
                     </div>
                 </section>
+
+                {/* 주식 계산기 더 보기 */}
+                <StockMoreCalculators />
             </main>
         </div>
     );

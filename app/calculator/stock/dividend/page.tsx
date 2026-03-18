@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Dividend from "./Dividend";
 import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../utils/seo";
+import StockMoreCalculators from "@/app/calculator/components/StockMoreCalculators";
+import FAQ from "@/app/calculator/components/FAQ";
 import highDividendData from "../data/high-dividend.json";
 
 const BASE_URL = "https://jiko.kr";
@@ -83,6 +85,17 @@ export default function Page() {
         { name: "배당금 계산기", item: "/calculator/stock/dividend" }
     ]);
 
+    const faqList = [
+        {
+            question: "주식 배당 수익률은 어떻게 계산하나요?",
+            answer: "배당 수익률은 (주당 배당금 ÷ 현재 주가) × 100 공식으로 계산됩니다."
+        },
+        {
+            question: "배당소득세는 얼마인가요?",
+            answer: "국내 주식의 경우 일반적인 배당소득세율은 15.4%(소득세 14% + 지방소득세 1.4%)입니다."
+        }
+    ];
+
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script
@@ -149,29 +162,7 @@ export default function Page() {
                 </div>
 
                 {/* [공통 카드세션] 4. FAQ */}
-                <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                    <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
-                        <span className="text-purple-500">❓</span> 자주 묻는 질문 (FAQ)
-                    </h2>
-                    <div className="space-y-4">
-                        <div>
-                            <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
-                                Q. 배당 수익률(YoC)이란 무엇인가요?
-                            </p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600 text-xs leading-relaxed">
-                                A. Yield on Cost의 약자로, 현재 주가가 아닌 '나의 실제 매수가' 대비 배당률을 의미합니다. 주가가 올라도 매수가가 낮다면 YoC는 높게 유지되므로 장기 투자자에게 중요한 지표입니다.
-                            </p>
-                        </div>
-                        <div>
-                            <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
-                                Q. 배당소득세 15.4%는 어떻게 계산되나요?
-                            </p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600 text-xs leading-relaxed">
-                                A. 국내 배당소득세율 14%에 지방소득세 1.4%가 더해진 금액입니다. 배당금 지급 시 증권사에서 자동으로 원천징수하므로, 평소에는 세후 실수령액을 기준으로 계획을 세우는 것이 현명합니다.
-                            </p>
-                        </div>
-                    </div>
-                </section>
+                <FAQ faqList={faqList} />
 
                 {/* [개별 카드세션] 1. 투자 가이드 섹션 */}
                 <section className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
@@ -230,6 +221,9 @@ export default function Page() {
                         * 위 종목 리스트는 투자 권유가 아니며, 과거 데이터를 바탕으로 한 참고용입니다.
                     </p>
                 </section>
+
+                {/* 주식 계산기 더 보기 */}
+                <StockMoreCalculators />
             </main>
         </div>
     );

@@ -6,6 +6,8 @@ import type { Metadata } from "next";
 import ProfitRatePage from "./ProfitRate";
 import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../utils/seo";
+import StockMoreCalculators from "@/app/calculator/components/StockMoreCalculators";
+import FAQ from "@/app/calculator/components/FAQ";
 
 const BASE_URL = "https://jiko.kr";
 
@@ -93,6 +95,17 @@ export default function Page() {
     COMMON_BREADCRUMBS.PROFIT_RATE
   ]);
 
+  const faqList = [
+    {
+      question: "주식 수익률은 어떤 공식으로 계산되나요?",
+      answer: "(현재가 - 매수가) ÷ 매수가 × 100 공식을 사용하여 정확한 퍼센티지(%) 수익률을 계산합니다."
+    },
+    {
+      question: "여기서 계산한 수익금은 실제 계좌와 똑같나요?",
+      answer: "본 계산기는 수수료 및 제세금(거래세)을 제외한 단순 가격 차이 기반의 수익금입니다. 실제 증권사 결제 대금과는 수수료율에 따라 차이가 있을 수 있습니다."
+    }
+  ];
+
   return (
     <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
       <script
@@ -162,32 +175,10 @@ export default function Page() {
         </div>
 
         {/* FAQ */}
-        <section id="faq" className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-          <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
-            <span className="text-purple-500">❓</span> 자주 묻는 질문 (FAQ)
-          </h2>
+        <FAQ faqList={faqList} />
 
-          <div className="space-y-4">
-            <div>
-              <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
-                Q. 주식 수익률은 어떤 공식으로 계산되나요?
-              </p>
-              <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600">
-                A. <strong>(현재가 - 매수가) ÷ 매수가 × 100</strong> 공식을 사용하여 정확한 퍼센티지(%) 수익률을 제공해 드립니다.
-              </p>
-            </div>
-
-            <div>
-              <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
-                Q. 여기서 계산한 수익금은 실제 계좌와 똑같나요?
-              </p>
-              <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600">
-                A. 본 계산기는 수수료 및 제세금(거래세)을 제외한 <strong>단순 가격 차등 기반</strong>의 수익금입니다. 실제 증권사 결제 대금과는 수수료율에 따라 미세한 차이가 발생할 수 있습니다.
-              </p>
-            </div>
-          </div>
-        </section>
-
+        {/* 주식 계산기 더 보기 */}
+        <StockMoreCalculators />
       </main>
     </div>
   );

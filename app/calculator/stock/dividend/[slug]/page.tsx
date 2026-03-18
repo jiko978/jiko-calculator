@@ -2,6 +2,8 @@ import type { Metadata, ResolvingMetadata } from "next";
 import Dividend from "../Dividend";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../../utils/seo";
 import NavBar from "@/app/calculator/components/NavBar";
+import StockMoreCalculators from "@/app/calculator/components/StockMoreCalculators";
+import FAQ from "@/app/calculator/components/FAQ";
 import stocksData from "../../data/stocks.json";
 import highDividendData from "../../data/high-dividend.json";
 
@@ -64,6 +66,17 @@ export default async function Page({ params }: Props) {
         { name: "배당금 계산기", item: "/calculator/stock/dividend" },
         { name: name, item: `/calculator/stock/dividend/${slug}` }
     ]);
+
+    const faqList = [
+        {
+            question: `${name}의 배당 기준일은 언제인가요?`,
+            answer: "보통 연배당은 12월 말, 분기배당은 3, 6, 9월 말일이 기준인 경우가 많습니다. 정확한 공시를 확인하여 2거래일 전까지는 결제가 완료되어야 배당을 받을 수 있습니다."
+        },
+        {
+            question: "배당 수익률 대비 주가가 떨어지면 어떻게 하나요?",
+            answer: "주가 하락폭이 배당 수익보다 크면 전체 손실이 발생할 수 있습니다. 따라서 배당 지속 가능성과 기업의 이익 성장을 함께 고려하는 것이 중요합니다."
+        }
+    ];
 
     const stockSchema = code ? {
         "@context": "https://schema.org",
@@ -136,29 +149,7 @@ export default async function Page({ params }: Props) {
                 </div>
 
                 {/* [공통 카드세션] 4. FAQ */}
-                <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                    <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
-                        <span className="text-purple-500">❓</span> 자주 묻는 질문 (FAQ)
-                    </h2>
-                    <div className="space-y-4">
-                        <div>
-                            <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
-                                Q. {name}의 배당 기준일은 언제인가요?
-                            </p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600 text-xs leading-relaxed">
-                                A. 보통 연배당은 12월 말, 분기배당은 3, 6, 9월 말일이 기준인 경우가 많습니다. 단, {name}의 정확한 공시를 확인하여 2거래일 전까지는 결제가 완료되어야 배당을 받을 수 있습니다.
-                            </p>
-                        </div>
-                        <div>
-                            <p className="font-semibold text-gray-800 dark:text-gray-100 text-sm mb-1">
-                                Q. 배당 수익률 대비 주가가 떨어지면 어떻게 하나요?
-                            </p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-purple-300 dark:border-purple-600 text-xs leading-relaxed">
-                                A. 배당 수익률보다 주가 하락폭이 더 크면 전체 원금 손실이 발생할 수 있습니다. 따라서 배당 지속 가능성과 기업의 이익 성장을 함께 고려하는 것이 중요합니다.
-                            </p>
-                        </div>
-                    </div>
-                </section>
+                <FAQ faqList={faqList} />
 
                 {/* [개별 카드세션] 1. 투자 가이드 섹션 */}
                 <section className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
@@ -217,6 +208,8 @@ export default async function Page({ params }: Props) {
                     </p>
                 </section>
 
+                {/* 주식 계산기 더 보기 */}
+                <StockMoreCalculators />
             </main>
         </div>
     );

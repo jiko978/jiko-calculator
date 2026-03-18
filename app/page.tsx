@@ -31,8 +31,10 @@ const services: Service[] = [
         bgColor: "bg-blue-50 dark:bg-blue-900/20",
         borderColor: "border-blue-100 dark:border-blue-800",
         links: [
-            { label: "✔ 평균 단가 계산", href: "/calculator/stock/avg-price" },
-            { label: "✔ 수익률 계산", href: "/calculator/stock/profit-rate" },
+            { label: "✔ 평균 단가 계산기", href: "/calculator/stock/avg-price" },
+            { label: "✔ 수익률 계산기", href: "/calculator/stock/profit-rate" },
+            { label: "✔ 배당금 계산기", href: "/calculator/stock/dividend" },
+            { label: "✔ 수수료 계산기", href: "/calculator/stock/fee" }
         ]
     },
     {
