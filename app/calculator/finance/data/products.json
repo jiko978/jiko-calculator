@@ -25,6 +25,7 @@
     { "id": "Jeonse", "name": "전세자금", "slug": "전세자금대출" },
     { "id": "Aar", "name": "자동차담보", "slug": "자동차담보대출" },
     { "id": "Deposit-Secured", "name": "예금담보", "slug": "예금대출" },
+    { "id": "Policy", "name": "보험계약", "slug": "보험계약대출" },
     { "id": "Didimdol", "name": "디딤돌", "slug": "디딤돌대출" },
     { "id": "Jeonse-Support", "name": "버팀목전세", "slug": "버팀목전세대출" },
     { "id": "Student", "name": "학자금", "slug": "학자금대출" },
