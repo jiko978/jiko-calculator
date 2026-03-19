@@ -12,31 +12,35 @@ interface Props {
     params: Promise<{ slug: string }>;
 }
 
+export async function generateStaticParams() {
+    return stocksData.map(s => ({ slug: s.name }));
+}
+
 export async function generateMetadata(
     { params }: Props,
     parent: ResolvingMetadata
 ): Promise<Metadata> {
     const slug = (await params).slug;
-    const decodedSlug = decodeURIComponent(slug);
+    const normalizedSlug = decodeURIComponent(slug).normalize('NFC');
 
-    let stockName = decodedSlug;
+    let stockName = normalizedSlug;
     let stockCode = "";
 
     // 하이브리드 패턴 처리 (이름-코드)
-    if (decodedSlug.includes("-")) {
-        const parts = decodedSlug.split("-");
+    if (normalizedSlug.includes("-")) {
+        const parts = normalizedSlug.split("-");
         stockCode = parts[parts.length - 1];
         stockName = parts.slice(0, -1).join("-");
-    } else if (/^\d{6}$/.test(decodedSlug)) {
+    } else if (/^\d{6}$/.test(normalizedSlug)) {
         // 코드 패턴
-        const found = stocksData.find(s => s.code === decodedSlug);
+        const found = stocksData.find(s => s.code === normalizedSlug);
         if (found) {
             stockName = found.name;
             stockCode = found.code;
         }
     } else {
         // 이름 패턴
-        const found = stocksData.find(s => s.name === decodedSlug);
+        const found = stocksData.find(s => s.name === normalizedSlug);
         if (found) {
             stockName = found.name;
             stockCode = found.code;
@@ -61,23 +65,23 @@ export async function generateMetadata(
 
 export default async function Page({ params }: Props) {
     const slug = (await params).slug;
-    const decodedSlug = decodeURIComponent(slug);
+    const normalizedSlug = decodeURIComponent(slug).normalize('NFC');
 
-    let stockName = decodedSlug;
+    let stockName = normalizedSlug;
     let stockCode = "";
 
-    if (decodedSlug.includes("-")) {
-        const parts = decodedSlug.split("-");
+    if (normalizedSlug.includes("-")) {
+        const parts = normalizedSlug.split("-");
         stockCode = parts[parts.length - 1];
         stockName = parts.slice(0, -1).join("-");
-    } else if (/^\d{6}$/.test(decodedSlug)) {
-        const found = stocksData.find(s => s.code === decodedSlug);
+    } else if (/^\d{6}$/.test(normalizedSlug)) {
+        const found = stocksData.find(s => s.code === normalizedSlug);
         if (found) {
             stockName = found.name;
             stockCode = found.code;
         }
     } else {
-        const found = stocksData.find(s => s.name === decodedSlug);
+        const found = stocksData.find(s => s.name === normalizedSlug);
         if (found) {
             stockName = found.name;
             stockCode = found.code;

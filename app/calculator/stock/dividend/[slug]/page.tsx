@@ -13,24 +13,29 @@ interface Props {
     params: Promise<{ slug: string }>;
 }
 
+export async function generateStaticParams() {
+    // 주요 종목들에 대해 정적 페이지 생성을 지원합니다.
+    return stocksData.map(s => ({ slug: s.name }));
+}
+
 function findStock(slug: string): { name: string; code?: string } {
-    const decoded = decodeURIComponent(slug).normalize('NFC');
+    const normalized = decodeURIComponent(slug).normalize('NFC');
 
     // 1. 하이브리드 패턴 (삼성전자-005930)
-    if (decoded.includes("-")) {
-        const [name, code] = decoded.split("-");
+    if (normalized.includes("-")) {
+        const [name, code] = normalized.split("-");
         return { name, code };
     }
 
     // 2. 종목 코드 패턴 (005930)
-    if (/^\d{6}$/.test(decoded)) {
-        const stock = stocksData.find(s => s.code === decoded);
-        return stock ? { name: stock.name, code: stock.code } : { name: decoded };
+    if (/^\d{6}$/.test(normalized)) {
+        const stock = stocksData.find(s => s.code === normalized);
+        return stock ? { name: stock.name, code: stock.code } : { name: normalized };
     }
 
     // 3. 종목명 패턴 (삼성전자)
-    const stockByName = stocksData.find(s => s.name.normalize('NFC') === decoded);
-    return stockByName ? { name: stockByName.name, code: stockByName.code } : { name: decoded };
+    const stockByName = stocksData.find(s => s.name.normalize('NFC') === normalized);
+    return stockByName ? { name: stockByName.name, code: stockByName.code } : { name: normalized };
 }
 
 export async function generateMetadata(

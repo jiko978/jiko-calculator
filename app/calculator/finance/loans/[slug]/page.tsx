@@ -12,13 +12,13 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-    return productsData.loans.map(p => ({ slug: encodeURIComponent(p.slug) }));
+    return productsData.loans.map(p => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
-    const decodedSlug = decodeURIComponent(slug).normalize('NFC');
-    const product = productsData.loans.find(p => p.slug.normalize('NFC') === decodedSlug);
+    const normalizedSlug = decodeURIComponent(slug).normalize('NFC');
+    const product = productsData.loans.find(p => p.slug.normalize('NFC') === normalizedSlug);
     if (!product) return {};
 
     return {
@@ -41,8 +41,8 @@ const faqList = [
 
 export default async function LoanSlugPage({ params }: Props) {
     const { slug } = await params;
-    const decodedSlug = decodeURIComponent(slug).normalize('NFC');
-    const product = productsData.loans.find(p => p.slug.normalize('NFC') === decodedSlug);
+    const normalizedSlug = decodeURIComponent(slug).normalize('NFC');
+    const product = productsData.loans.find(p => p.slug.normalize('NFC') === normalizedSlug);
     if (!product) notFound();
 
     const breadcrumbLd = generateBreadcrumbJsonLd([
