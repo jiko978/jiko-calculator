@@ -1,15 +1,16 @@
 # deposits-기능명세서.md
 
 ## 1. 개요
-예금 계산 메뉴의 기능 명세서입니다.
+예금 이자 계산 메뉴의 기능 명세서입니다.
 
 ## 2. 화면 위치
 1. 경로 : `/calculator/finance/deposits`
-2. 동적 경로 (SEO) : `/calculator/finance/deposits/[slug]` (예금별 전용 페이지)
+2. 동적 경로 (SEO) : `/calculator/finance/deposits/[한글슬러그]` (예: /정기예금, /보통예금 등)
 3. 파일
 ㄴ 서버 : `app/calculator/finance/deposits/page.tsx`
 ㄴ 동적 서버 : `app/calculator/finance/deposits/[slug]/page.tsx`
 ㄴ 클라이언트 : `app/calculator/finance/deposits/Deposits.tsx`
+ㄴ 데이터 : `app/calculator/finance/data/products.json` (한글 슬러그 및 상품 정보 관리)
 
 ## 3. 계층 구조 및 SEO (Common Architecture)
 1. **Breadcrumb Schema**: `홈 > 계산기 홈 > 금융 계산기 > 예금 계산기` 구조의 JSON-LD 적용
@@ -62,8 +63,9 @@
 ㄴ 결과 복사 : 계산 결과를 텍스트 클립보드에 복사
 
 4. UI/UX 기능
-ㄴ 계산기 상단 예금 배지 노출 : `📊 예금명` 형태의 스타일리시한 배지로 가독성 증대
+ㄴ 계산기 상단 예금 배지 노출 : `📊 [상품명]` 형태의 스타일리시한 배지로 가독성 증대
 ㄴ 모바일/PC 반응형 테이블 적용: 모바일에서는 각 컬럼이 최소 너비(90px)를 유지하여 스크롤 발생, PC에서는 여유있는 비율(25%)로 자동 확장.
+ㄴ **한글 슬러그 처리**: URL 파라미터를 `decodeURIComponent` 및 `normalize('NFC')` 처리하여 검색엔진 유입 및 다양한 OS 환경에서의 호환성 확보.
 
 5. 하단 정보 영역 (SEO 및 사용자 가이드 - page.tsx)
 ㄴ 검색 엔진 최적화(SEO)를 위한 JSON-LD 라우팅 보강
@@ -72,11 +74,12 @@
 ㄴㄴ `sitemap.ts` 및 `robots.ts`를 통한 동적 크롤링 및 인덱싱 허용 (검색 노출 최적화)
 ㄴ UI 디자인 : 본체와 동일한 카드형 레이아웃 및 다크모드 대응 적용
 ㄴ 구성요소
-ㄴㄴ 소개 : 계산기 목적 안내 (예금 계산기)
+ㄴㄴ 소개 : 계산기 목적 안내 (예금 이자 계산기)
 ㄴㄴ 사용 방법 : 예치금액, 예금기간, 연이자율, 이자계산방식, 이자과세유형 및 세율 입력 가이드
-ㄴㄴ 계산 예시 : 1000만원을 연 5% 이자율로 1년 만기 예금 시 세후 수령액(10,500,000원) 도출 예제
+ㄴㄴ 계산 예시 : 1,000만원을 연 5% 이자율로 1년 만기 예금 시 세후 수령액 도출 예제
 ㄴㄴ FAQ : 예금 계산 공식 및 이자 과세 유형 설명 제공 (**공통 `FAQ` 컴포넌트 적용**)
 ㄴㄴ 금융 계산기 더 보기 : 다른 금융 계산기 메뉴 바로가기 (**공통 `FinanceMoreCalculators` 컴포넌트 적용**)
+ㄴㄴ **상품 리스트 확대**: 보통, 정기, 수시입출금, 자유입출금, CMA, 회전식 등 다양한 상품별 전용 페이지 지원.
 
 
 ## 5. 계산 및 비즈니스 로직

@@ -10,9 +10,11 @@ app/calculator/finance/[menu-name]/
 ㄴ [slug]/page.tsx      # 동적 서버 컴포넌트 (금융상품별 SEO 전용)
 ㄴ [ComponentName].tsx  # 실제 계산기 로직 (클라이언트 컴포넌트)
 
-**[신규] SEO Ticker 매핑 가사**:
-- `[slug]/page.tsx`는 `finance.json`을 참조하여 `findFinance` 로직을 구현해야 합니다. (또는 각 메뉴별 특화 데이터)
-- 사용자가 금융상품명, 혹은 `명칭-코드` 형태로 접속해도 정확한 데이터를 매핑하도록 설계합니다.
+**[신규] SEO 및 한글 슬러그 매핑 가이드**:
+- `[slug]/page.tsx`는 `app/calculator/finance/data/products.json`을 참조하여 `product`를 조회해야 합니다.
+- **한글 슬러그 처리**: URL 파라미터를 `decodeURIComponent`로 디코딩하고, `.normalize('NFC')`를 적용하여 데이터의 `slug` 필드와 비교합니다.
+- **정적 생성**: `generateStaticParams`에서 `encodeURIComponent`를 사용하여 안전한 정적 경로를 생성합니다.
+- 사용자가 금융 상품명(한글 슬러그)으로 접속하면 해당 데이터를 매핑하여 상품명 배지 및 맞춤형 SEO를 구현합니다.
 ```
 
 ## 2. 필수 SEO 구현
