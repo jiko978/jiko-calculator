@@ -220,7 +220,7 @@ export default function Bmi() {
             </div>
 
             {/* BMI 기준 정보 섹션 */}
-            <div className="mt-12 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+            <div className="mt-8 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                 <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-6 flex items-center gap-2">
                     <span className="w-1.5 h-6 bg-blue-500 rounded-full"></span>
                     성인 비만도 측정 (BMI 지수)

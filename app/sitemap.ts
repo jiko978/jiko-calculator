@@ -25,6 +25,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: "/calculator/finance/savings", priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/finance/loans", priority: 0.8, changeFrequency: "monthly" as const },
 
+        // ── 건강 ──
+        { url: "/calculator/health",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/health/bmi",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/health/bmr", priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/health/calorie", priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/health/ovulation", priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/health/pregnancy", priority: 0.8, changeFrequency: "monthly" as const },
+
         // ── policy ──
         { url: "/policy/about", priority: 0.5, changeFrequency: "monthly" as const },
         { url: "/policy/contact", priority: 0.5, changeFrequency: "monthly" as const },

@@ -5,7 +5,7 @@
 ## 1. 폴더 및 파일 구조
 모든 새 메뉴는 아래와 같은 구조를 따릅니다.
 ```text
-app/calculator/realestate/[menu-name]/
+app/calculator/real-estate/[menu-name]/
 ㄴ page.tsx             # 기본 서버 컴포넌트 (범용 계산기)
 ㄴ [slug]/page.tsx      # 동적 서버 컴포넌트 (상세 항목별 SEO 전용)
 ㄴ [ComponentName].tsx  # 실제 계산기 로직 (클라이언트 컴포넌트)
