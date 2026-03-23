@@ -66,6 +66,8 @@ export default function Calorie() {
         balance: number;
     } | null>(null);
 
+    const [errors, setErrors] = useState<Set<string>>(new Set());
+    const [errorMessage, setErrorMessage] = useState("");
     const [isShaking, setIsShaking] = useState(false);
 
     const handleFoodChange = (idx: number, delta: number) => {
@@ -95,10 +97,18 @@ export default function Calorie() {
         const w = parseFloat(weight);
         const time = parseFloat(exerciseTime);
 
-        if (isNaN(w) || w <= 0) {
-            alert("체중을 입력해주세요.");
+        const newErrors = new Set<string>();
+        if (isNaN(w) || w <= 0) newErrors.add("weight");
+        setErrors(newErrors);
+
+        if (newErrors.size > 0) {
+            setErrorMessage("항목을 정확히 입력해주세요.");
+            setIsShaking(true);
+            setTimeout(() => setIsShaking(false), 500);
             return;
         }
+
+        setErrorMessage("");
 
         let mets = 0;
         if (selectedExerciseIdx === "custom") {
@@ -136,6 +146,8 @@ export default function Calorie() {
         setFoodCounts(FOODS.reduce((acc, _, i) => ({ ...acc, [i]: 0 }), {}));
         setCustomFoods([]);
         setResult(null);
+        setErrors(new Set());
+        setErrorMessage("");
     };
 
     const handleCopy = () => {
@@ -168,7 +180,24 @@ export default function Calorie() {
                     <section>
                         <label className="block text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wider">나의 체중</label>
                         <div className="relative">
-                            <input type="number" className="w-full p-5 bg-gray-50 dark:bg-gray-700/50 rounded-2xl outline-none focus:ring-4 focus:ring-orange-500/20 dark:text-gray-100 text-xl font-bold transition-all" placeholder="0.0" value={weight} onChange={(e) => setWeight(e.target.value)} />
+                            <input
+                                type="number"
+                                className={`w-full p-5 bg-gray-50 dark:bg-gray-700/50 rounded-2xl outline-none transition-all text-xl font-bold ${
+                                    errors.has("weight") ? "ring-4 ring-red-500/20 border-red-500" : "focus:ring-4 focus:ring-orange-500/20 dark:text-gray-100"
+                                }`}
+                                placeholder="0.0"
+                                value={weight}
+                                onChange={(e) => {
+                                    setWeight(e.target.value);
+                                    if (e.target.value) {
+                                        setErrors(prev => {
+                                            const next = new Set(prev);
+                                            next.delete("weight");
+                                            return next;
+                                        });
+                                    }
+                                }}
+                            />
                             <span className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400 font-bold">kg</span>
                         </div>
                     </section>
@@ -277,9 +306,19 @@ export default function Calorie() {
                         </div>
                     </section>
 
-                    <div className="flex gap-4 pt-4">
-                        <button onClick={handleReset} className={`flex-1 py-5 bg-gray-100 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 rounded-2xl font-bold transition-all hover:bg-gray-200 ${isShaking ? "animate-[shake_0.5s_ease-in-out]" : ""}`}>초기화</button>
-                        <button onClick={handleCalculate} className="flex-[2] py-5 bg-orange-500 hover:bg-orange-600 text-white rounded-2xl font-black text-lg transition-all shadow-lg shadow-orange-500/20 active:scale-95">결과 확인하기</button>
+                    <div className="flex flex-col items-center gap-4 pt-4">
+                        <div className="flex gap-4 w-full">
+                            <button onClick={handleReset} className={`flex-1 py-5 bg-gray-100 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 rounded-2xl font-bold transition-all hover:bg-gray-200 ${isShaking ? "animate-[shake_0.5s_ease-in-out]" : ""}`}>초기화</button>
+                            <button onClick={handleCalculate} className="flex-[2] py-5 bg-orange-500 hover:bg-orange-600 text-white rounded-2xl font-black text-lg transition-all shadow-lg shadow-orange-500/20 active:scale-95">계산하기</button>
+                        </div>
+                        {errorMessage && (
+                            <p className="text-center text-red-500 text-sm font-bold flex items-center justify-center gap-1 animate-pulse">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                                {errorMessage}
+                            </p>
+                        )}
                     </div>
 
                     {result && (

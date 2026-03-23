@@ -26,33 +26,57 @@ export default function Pregnancy() {
     const [resultTrimester, setResultTrimester] = useState<string>("");
     const [resultDDay, setResultDDay] = useState<number>(0);
 
+    const [errors, setErrors] = useState<Set<string>>(new Set());
+    const [errorMessage, setErrorMessage] = useState("");
     const [isShaking, setIsShaking] = useState(false);
 
     const handleCalculate = () => {
+        const newErrors = new Set<string>();
         let day1: Date | null = null;
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
         if (calcType === "A") {
-            if (!lastPeriod) return;
-            day1 = new Date(lastPeriod);
-            if (isNaN(day1.getTime())) return;
+            if (!lastPeriod) newErrors.add("lastPeriod");
         } else if (calcType === "B") {
-            if (!refDate) return;
+            if (!refDate) newErrors.add("refDate");
+            if (inputWeeks === 0 && inputDays === 0) {
+                newErrors.add("inputWeeks");
+                newErrors.add("inputDays");
+            }
+        } else if (calcType === "C") {
+            if (!expectedDueDate) newErrors.add("expectedDueDate");
+        }
+
+        setErrors(newErrors);
+
+        if (newErrors.size > 0) {
+            setErrorMessage("항목을 정확히 입력해주세요.");
+            setIsShaking(true);
+            setTimeout(() => setIsShaking(false), 500);
+            return;
+        }
+
+        if (calcType === "A") {
+            day1 = new Date(lastPeriod);
+        } else if (calcType === "B") {
             const ref = new Date(refDate);
-            if (isNaN(ref.getTime())) return;
             const diffDays = (inputWeeks * 7) + inputDays;
             day1 = new Date(ref.getTime());
             day1.setDate(day1.getDate() - diffDays);
         } else if (calcType === "C") {
-            if (!expectedDueDate) return;
             const due = new Date(expectedDueDate);
-            if (isNaN(due.getTime())) return;
             day1 = new Date(due.getTime());
             day1.setDate(day1.getDate() - 280);
         }
 
+        if (day1 && isNaN(day1.getTime())) {
+            setErrorMessage("날짜 형식이 올바르지 않습니다.");
+            return;
+        }
+
         if (day1) {
+            setErrorMessage("");
             // Due date is 280 days from day1
             const dueDate = new Date(day1.getTime());
             dueDate.setDate(dueDate.getDate() + 280);
@@ -96,6 +120,8 @@ export default function Pregnancy() {
         setInputDays(0);
         setExpectedDueDate("");
         setResultDueDate(null);
+        setErrors(new Set());
+        setErrorMessage("");
     };
 
     const handleCopy = () => {
@@ -129,23 +155,95 @@ export default function Pregnancy() {
                         {calcType === "A" && (
                             <div>
                                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">마지막 생리 시작일</label>
-                                <input type="date" className="w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none focus:ring-2 focus:ring-purple-500 dark:text-gray-100" value={lastPeriod} onChange={(e) => setLastPeriod(e.target.value)} />
+                                <input 
+                                    type="date" 
+                                    className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all ${
+                                        errors.has("lastPeriod") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-purple-500 dark:text-gray-100"
+                                    }`} 
+                                    value={lastPeriod} 
+                                    onChange={(e) => {
+                                        setLastPeriod(e.target.value);
+                                        if (e.target.value) {
+                                            setErrors(prev => {
+                                                const next = new Set(prev);
+                                                next.delete("lastPeriod");
+                                                return next;
+                                            });
+                                        }
+                                    }} 
+                                />
                             </div>
                         )}
                         {calcType === "B" && (
                             <div className="space-y-4">
                                 <div>
                                     <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">초음파 기준 날짜</label>
-                                    <input type="date" className="w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none focus:ring-2 focus:ring-purple-500 dark:text-gray-100" value={refDate} onChange={(e) => setRefDate(e.target.value)} />
+                                    <input 
+                                        type="date" 
+                                        className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all ${
+                                            errors.has("refDate") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-purple-500 dark:text-gray-100"
+                                        }`} 
+                                        value={refDate} 
+                                        onChange={(e) => {
+                                            setRefDate(e.target.value);
+                                            if (e.target.value) {
+                                                setErrors(prev => {
+                                                    const next = new Set(prev);
+                                                    next.delete("refDate");
+                                                    return next;
+                                                });
+                                            }
+                                        }} 
+                                    />
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div>
                                         <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">진단 주수 (주)</label>
-                                        <input type="number" className="w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none focus:ring-2 focus:ring-purple-500 dark:text-gray-100" placeholder="0" value={inputWeeks || ""} onChange={(e) => setInputWeeks(parseInt(e.target.value) || 0)} min="0" max="42" />
+                                        <input 
+                                            type="number" 
+                                            className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all ${
+                                                errors.has("inputWeeks") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-purple-500 dark:text-gray-100"
+                                            }`} 
+                                            placeholder="0" 
+                                            value={inputWeeks || ""} 
+                                            onChange={(e) => {
+                                                const val = parseInt(e.target.value) || 0;
+                                                setInputWeeks(val);
+                                                if (val > 0) {
+                                                    setErrors(prev => {
+                                                        const next = new Set(prev);
+                                                        next.delete("inputWeeks");
+                                                        next.delete("inputDays");
+                                                        return next;
+                                                    });
+                                                }
+                                            }} 
+                                            min="0" max="42" 
+                                        />
                                     </div>
                                     <div>
                                         <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">진단 일수 (일)</label>
-                                        <input type="number" className="w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none focus:ring-2 focus:ring-purple-500 dark:text-gray-100" placeholder="0" value={inputDays || ""} onChange={(e) => setInputDays(parseInt(e.target.value) || 0)} min="0" max="6" />
+                                        <input 
+                                            type="number" 
+                                            className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all ${
+                                                errors.has("inputDays") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-purple-500 dark:text-gray-100"
+                                            }`} 
+                                            placeholder="0" 
+                                            value={inputDays || ""} 
+                                            onChange={(e) => {
+                                                const val = parseInt(e.target.value) || 0;
+                                                setInputDays(val);
+                                                if (val > 0) {
+                                                    setErrors(prev => {
+                                                        const next = new Set(prev);
+                                                        next.delete("inputWeeks");
+                                                        next.delete("inputDays");
+                                                        return next;
+                                                    });
+                                                }
+                                            }} 
+                                            min="0" max="6" 
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -153,14 +251,40 @@ export default function Pregnancy() {
                         {calcType === "C" && (
                             <div>
                                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">출산 예정일</label>
-                                <input type="date" className="w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none focus:ring-2 focus:ring-purple-500 dark:text-gray-100" value={expectedDueDate} onChange={(e) => setExpectedDueDate(e.target.value)} />
+                                <input 
+                                    type="date" 
+                                    className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all ${
+                                        errors.has("expectedDueDate") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-purple-500 dark:text-gray-100"
+                                    }`} 
+                                    value={expectedDueDate} 
+                                    onChange={(e) => {
+                                        setExpectedDueDate(e.target.value);
+                                        if (e.target.value) {
+                                            setErrors(prev => {
+                                                const next = new Set(prev);
+                                                next.delete("expectedDueDate");
+                                                return next;
+                                            });
+                                        }
+                                    }} 
+                                />
                             </div>
                         )}
                     </div>
 
-                    <div className="flex gap-3 pt-4">
-                        <button onClick={handleReset} className={`flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-bold transition-colors ${isShaking ? "animate-[shake_0.5s_ease-in-out]" : ""}`}>초기화</button>
-                        <button onClick={handleCalculate} className="flex-[2] py-4 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-bold transition-colors shadow-sm">계산하기</button>
+                    <div className="flex flex-col items-center gap-3 pt-4">
+                        <div className="flex gap-3 w-full">
+                            <button onClick={handleReset} className={`flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-bold transition-colors ${isShaking ? "animate-[shake_0.5s_ease-in-out]" : ""}`}>초기화</button>
+                            <button onClick={handleCalculate} className="flex-[2] py-4 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-bold transition-colors shadow-sm">계산하기</button>
+                        </div>
+                        {errorMessage && (
+                            <p className="text-center text-red-500 text-sm font-bold flex items-center justify-center gap-1 animate-pulse">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                                {errorMessage}
+                            </p>
+                        )}
                     </div>
 
                     {resultDueDate && (

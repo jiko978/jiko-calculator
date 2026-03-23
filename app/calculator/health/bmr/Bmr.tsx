@@ -9,16 +9,31 @@ export default function Bmr() {
     const [height, setHeight] = useState<string>("");
     const [weight, setWeight] = useState<string>("");
     const [resultBmr, setResultBmr] = useState<number | null>(null);
+    const [errors, setErrors] = useState<Set<string>>(new Set());
+    const [errorMessage, setErrorMessage] = useState("");
     const [isShaking, setIsShaking] = useState(false);
 
     const handleCalculate = () => {
-        if (!age || !height || !weight) return;
+        const newErrors = new Set<string>();
+        if (!age) newErrors.add("age");
+        if (!height) newErrors.add("height");
+        if (!weight) newErrors.add("weight");
+
+        setErrors(newErrors);
+
+        if (newErrors.size > 0) {
+            setErrorMessage("항목을 정확히 입력해주세요.");
+            setIsShaking(true);
+            setTimeout(() => setIsShaking(false), 500);
+            return;
+        }
 
         const a = parseInt(age);
         const h = parseFloat(height);
         const w = parseFloat(weight);
 
         if (a > 0 && h > 0 && w > 0) {
+            setErrorMessage("");
             // 미플린-세인트 주어(Mifflin-St Jeor) 공식
             let bmr = (10 * w) + (6.25 * h) - (5 * a);
             if (gender === "M") {
@@ -37,6 +52,8 @@ export default function Bmr() {
         setHeight("");
         setWeight("");
         setResultBmr(null);
+        setErrors(new Set());
+        setErrorMessage("");
     };
 
     const handleCopy = () => {
@@ -81,10 +98,20 @@ export default function Bmr() {
                             <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">나이 (만)</label>
                             <input
                                 type="number"
-                                className="w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none focus:ring-2 focus:ring-red-500 dark:text-gray-100 text-right"
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all text-right ${errors.has("age") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-red-500 dark:text-gray-100"
+                                    }`}
                                 placeholder="예: 30"
                                 value={age}
-                                onChange={(e) => setAge(e.target.value)}
+                                onChange={(e) => {
+                                    setAge(e.target.value);
+                                    if (e.target.value) {
+                                        setErrors(prev => {
+                                            const next = new Set(prev);
+                                            next.delete("age");
+                                            return next;
+                                        });
+                                    }
+                                }}
                             />
                         </div>
                     </div>
@@ -94,37 +121,67 @@ export default function Bmr() {
                             <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">키 (cm)</label>
                             <input
                                 type="number"
-                                className="w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none focus:ring-2 focus:ring-red-500 dark:text-gray-100 text-right"
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all text-right ${errors.has("height") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-red-500 dark:text-gray-100"
+                                    }`}
                                 placeholder="예: 175"
                                 value={height}
-                                onChange={(e) => setHeight(e.target.value)}
+                                onChange={(e) => {
+                                    setHeight(e.target.value);
+                                    if (e.target.value) {
+                                        setErrors(prev => {
+                                            const next = new Set(prev);
+                                            next.delete("height");
+                                            return next;
+                                        });
+                                    }
+                                }}
                             />
                         </div>
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">체중 (kg)</label>
                             <input
                                 type="number"
-                                className="w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none focus:ring-2 focus:ring-red-500 dark:text-gray-100 text-right"
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all text-right ${errors.has("weight") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-red-500 dark:text-gray-100"
+                                    }`}
                                 placeholder="예: 70"
                                 value={weight}
-                                onChange={(e) => setWeight(e.target.value)}
+                                onChange={(e) => {
+                                    setWeight(e.target.value);
+                                    if (e.target.value) {
+                                        setErrors(prev => {
+                                            const next = new Set(prev);
+                                            next.delete("weight");
+                                            return next;
+                                        });
+                                    }
+                                }}
                             />
                         </div>
                     </div>
 
-                    <div className="flex gap-3 pt-4">
-                        <button
-                            onClick={handleReset}
-                            className={`flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-bold hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors ${isShaking ? "animate-[shake_0.5s_ease-in-out]" : ""}`}
-                        >
-                            초기화
-                        </button>
-                        <button
-                            onClick={handleCalculate}
-                            className="flex-[2] py-4 bg-red-600 hover:bg-red-700 text-white rounded-xl font-bold transition-colors shadow-sm"
-                        >
-                            계산하기
-                        </button>
+                    <div className="flex flex-col items-center gap-3 pt-4">
+                        <div className="flex gap-3 w-full">
+                            <button
+                                onClick={handleReset}
+                                className={`flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-bold hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors ${isShaking ? "animate-[shake_0.5s_ease-in-out]" : ""}`}
+                            >
+                                초기화
+                            </button>
+                            <button
+                                onClick={handleCalculate}
+                                className="flex-[2] py-4 bg-red-600 hover:bg-red-700 text-white rounded-xl font-bold transition-colors shadow-sm"
+                            >
+                                계산하기
+                            </button>
+                        </div>
+                        {errorMessage && (
+                            <p className="text-center text-red-500 text-sm font-bold flex items-center justify-center gap-1 animate-pulse">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                                {errorMessage}
+                            </p>
+                        )}
                     </div>
 
                     {resultBmr !== null && (
@@ -134,7 +191,7 @@ export default function Bmr() {
                                 <span className="text-4xl font-black text-red-600 dark:text-red-400">{resultBmr.toLocaleString()}</span>
                                 <span className="text-lg font-bold text-red-800 dark:text-red-300 ml-2">kcal</span>
                             </div>
-                            
+
                             <button
                                 onClick={handleCopy}
                                 className="w-full py-3 bg-white dark:bg-gray-800 text-red-600 dark:text-red-400 font-bold rounded-xl border border-red-200 dark:border-red-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
@@ -145,7 +202,114 @@ export default function Bmr() {
                     )}
                 </div>
             </div>
-            
+
+            {/* BMR 비교 및 정보 섹션 */}
+            <div className="mt-12 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-6 flex items-center gap-2">
+                    <span className="w-1.5 h-6 bg-red-500 rounded-full"></span>
+                    연령대별 평균 기초대사량 비교
+                </h2>
+
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-10 text-sm">
+                    기초대사량(BMR)은 생명 유지에 필요한 최소한의 에너지량입니다.<br />
+                    근육량이 많을수록 기초대사량이 높아지며, 이는 똑같이 먹어도 살이 덜 찌는 체질이 됨을 의미합니다. 아래 차트에서 나의 위치를 확인해보세요.
+                </p>
+
+                {/* BMR 시각화 차트 */}
+                <div className="relative pt-10 pb-8 px-2">
+                    {/* 현재 수치 마커 */}
+                    {resultBmr !== null && (
+                        <div
+                            className="absolute top-0 transition-all duration-700 ease-out z-10"
+                            style={{
+                                left: (() => {
+                                    const avg = (() => {
+                                        const a = parseInt(age);
+                                        if (gender === "M") {
+                                            if (a < 30) return 1728;
+                                            if (a < 50) return 1669;
+                                            if (a < 65) return 1550;
+                                            return 1403;
+                                        } else {
+                                            if (a < 30) return 1311;
+                                            if (a < 50) return 1316;
+                                            if (a < 65) return 1250;
+                                            return 1186;
+                                        }
+                                    })();
+
+                                    // 맵핑: 평균의 0.7배 ~ 1.3배 사이를 시각화 (더 넓은 범위를 보여줌)
+                                    const min = avg * 0.7;
+                                    const max = avg * 1.3;
+                                    return `${Math.min(Math.max((resultBmr - min) / (max - min) * 100, 0), 100)}%`;
+                                })(),
+                                transform: 'translateX(-50%)'
+                            }}
+                        >
+                            <div className="flex flex-col items-center">
+                                <span className="text-xs font-black text-red-600 dark:text-red-400 mb-1 bg-red-50 dark:bg-red-900/40 px-2 py-0.5 rounded-md border border-red-100 dark:border-red-800 shadow-sm whitespace-nowrap">
+                                    나의 BMR : {resultBmr.toLocaleString()}
+                                </span>
+                                <div className="w-0.5 h-10 bg-red-500 relative">
+                                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-red-500 rotate-45"></div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* 컬러 바 */}
+                    <div className="h-10 w-full flex rounded-lg overflow-hidden shadow-inner border border-gray-100 dark:border-gray-700">
+                        <div className="bg-gray-100 dark:bg-gray-700 flex-1 flex items-center justify-center text-gray-400 dark:text-gray-500 text-[10px] font-bold">낮음</div>
+                        <div className="bg-green-500 flex-1 flex items-center justify-center text-white text-xs font-bold border-x border-white/20">평균 범위</div>
+                        <div className="bg-orange-500 flex-1 flex items-center justify-center text-white text-xs font-bold">높음</div>
+                    </div>
+
+                    {/* 수치 라벨 */}
+                    <div className="relative w-full h-6 mt-2 text-[10px] font-bold text-gray-400 uppercase tracking-tighter">
+                        <div className="absolute left-1/3 -translate-x-1/2">평균의 90%</div>
+                        <div className="absolute left-2/3 -translate-x-1/2">평균의 110%</div>
+                    </div>
+                </div>
+
+                {/* 평균 데이터 요약 표 */}
+                <div className="mt-8 overflow-hidden rounded-xl border border-gray-100 dark:border-gray-700">
+                    <table className="w-full text-sm text-left">
+                        <thead className="bg-gray-50 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400">
+                            <tr>
+                                <th className="px-4 py-3 font-bold">연령대 (만)</th>
+                                <th className="px-4 py-3 font-bold text-blue-600 dark:text-blue-400 text-right">남성 평균</th>
+                                <th className="px-4 py-3 font-bold text-pink-600 dark:text-pink-400 text-right">여성 평균</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-100 dark:divide-gray-700 text-gray-700 dark:text-gray-300">
+                            <tr className={age && parseInt(age) < 30 ? "bg-red-50/50 dark:bg-red-900/10" : ""}>
+                                <td className="px-4 py-3">18 ~ 29세</td>
+                                <td className="px-4 py-3 text-right">1,728 kcal</td>
+                                <td className="px-4 py-3 text-right">1,311 kcal</td>
+                            </tr>
+                            <tr className={age && parseInt(age) >= 30 && parseInt(age) < 50 ? "bg-red-50/50 dark:bg-red-900/10" : ""}>
+                                <td className="px-4 py-3">30 ~ 49세</td>
+                                <td className="px-4 py-3 text-right">1,669 kcal</td>
+                                <td className="px-4 py-3 text-right">1,316 kcal</td>
+                            </tr>
+                            <tr className={age && parseInt(age) >= 50 && parseInt(age) < 65 ? "bg-red-50/50 dark:bg-red-900/10" : ""}>
+                                <td className="px-4 py-3">50 ~ 64세</td>
+                                <td className="px-4 py-3 text-right">1,550 kcal</td>
+                                <td className="px-4 py-3 text-right">1,250 kcal</td>
+                            </tr>
+                            <tr className={age && parseInt(age) >= 65 ? "bg-red-50/50 dark:bg-red-900/10" : ""}>
+                                <td className="px-4 py-3">65세 이상</td>
+                                <td className="px-4 py-3 text-right">1,403 kcal</td>
+                                <td className="px-4 py-3 text-right">1,186 kcal</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p className="mt-4 text-[11px] text-gray-400 dark:text-gray-500">
+                    * 보건복지부/한국영양학회 한국인 영양소 섭취기준 참고. 개인의 근육량, 체지방률, 활동량에 따라 실제 기초대사량은 차이가 있을 수 있습니다.
+                </p>
+            </div>
+
             <InstallBanner />
         </div>
     );

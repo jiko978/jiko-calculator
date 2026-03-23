@@ -11,13 +11,33 @@ export default function Ovulation() {
     const [resultOvulation, setResultOvulation] = useState<string | null>(null);
     const [resultFertileWindow, setResultFertileWindow] = useState<string | null>(null);
 
+    const [errors, setErrors] = useState<Set<string>>(new Set());
+    const [errorMessage, setErrorMessage] = useState("");
     const [isShaking, setIsShaking] = useState(false);
 
     const handleCalculate = () => {
-        if (!lastPeriodDate || cycleLength < 20 || cycleLength > 45) return;
+        const newErrors = new Set<string>();
+        if (!lastPeriodDate) newErrors.add("date");
+        if (!cycleLength || cycleLength < 20 || cycleLength > 45) newErrors.add("cycle");
+
+        setErrors(newErrors);
+
+        if (newErrors.size > 0) {
+            setErrorMessage("항목을 정확히 입력해주세요.");
+            setIsShaking(true);
+            setTimeout(() => setIsShaking(false), 500);
+            return;
+        }
 
         const date = new Date(lastPeriodDate);
-        if (isNaN(date.getTime())) return;
+        if (isNaN(date.getTime())) {
+            newErrors.add("date");
+            setErrors(newErrors);
+            setErrorMessage("날짜 형식이 올바르지 않습니다.");
+            return;
+        }
+
+        setErrorMessage("");
 
         // 다음 생리 예정일 = 마지막 생리일 + 주기
         const nextPeriod = new Date(date.getTime());
@@ -48,6 +68,8 @@ export default function Ovulation() {
         setResultNextPeriod(null);
         setResultOvulation(null);
         setResultFertileWindow(null);
+        setErrors(new Set());
+        setErrorMessage("");
     };
 
     const handleCopy = () => {
@@ -74,9 +96,20 @@ export default function Ovulation() {
                         <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">마지막 생리 시작일</label>
                         <input 
                             type="date" 
-                            className="w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none focus:ring-2 focus:ring-pink-500 dark:text-gray-100" 
+                            className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all ${
+                                errors.has("date") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-pink-500 dark:text-gray-100"
+                            }`}
                             value={lastPeriodDate} 
-                            onChange={(e) => setLastPeriodDate(e.target.value)} 
+                            onChange={(e) => {
+                                setLastPeriodDate(e.target.value);
+                                if (e.target.value) {
+                                    setErrors(prev => {
+                                        const next = new Set(prev);
+                                        next.delete("date");
+                                        return next;
+                                    });
+                                }
+                            }} 
                         />
                     </div>
                     <div>
@@ -84,9 +117,21 @@ export default function Ovulation() {
                         <div className="relative">
                             <input 
                                 type="number" 
-                                className="w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none focus:ring-2 focus:ring-pink-500 dark:text-gray-100 pr-12 text-right" 
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all pr-12 text-right ${
+                                    errors.has("cycle") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-pink-500 dark:text-gray-100"
+                                }`}
                                 value={cycleLength} 
-                                onChange={(e) => setCycleLength(parseInt(e.target.value) || 28)} 
+                                onChange={(e) => {
+                                    const val = parseInt(e.target.value);
+                                    setCycleLength(val || 0);
+                                    if (val >= 20 && val <= 45) {
+                                        setErrors(prev => {
+                                            const next = new Set(prev);
+                                            next.delete("cycle");
+                                            return next;
+                                        });
+                                    }
+                                }} 
                                 min="20" 
                                 max="45"
                             />
@@ -94,9 +139,19 @@ export default function Ovulation() {
                         </div>
                     </div>
 
-                    <div className="flex gap-3 pt-4">
-                        <button onClick={handleReset} className={`flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-bold transition-colors ${isShaking ? "animate-[shake_0.5s_ease-in-out]" : ""}`}>초기화</button>
-                        <button onClick={handleCalculate} className="flex-[2] py-4 bg-pink-500 hover:bg-pink-600 text-white rounded-xl font-bold transition-colors shadow-sm">계산하기</button>
+                    <div className="flex flex-col items-center gap-3 pt-4">
+                        <div className="flex gap-3 w-full">
+                            <button onClick={handleReset} className={`flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-bold transition-colors ${isShaking ? "animate-[shake_0.5s_ease-in-out]" : ""}`}>초기화</button>
+                            <button onClick={handleCalculate} className="flex-[2] py-4 bg-pink-500 hover:bg-pink-600 text-white rounded-xl font-bold transition-colors shadow-sm">계산하기</button>
+                        </div>
+                        {errorMessage && (
+                            <p className="text-center text-red-500 text-sm font-bold flex items-center justify-center gap-1 animate-pulse">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                                {errorMessage}
+                            </p>
+                        )}
                     </div>
 
                     {resultNextPeriod && (
