@@ -94,18 +94,15 @@ Tool Site.
 ㄴㄴ 시작일 기준 주수(1부터 시작) : *주*일 표시
 ㄴㄴ 시작일 기준 월수(1부터 시작) : *월*주*일 표시
 ㄴㄴ 시작일 기준 년수(1부터 시작) : *년*월*주*일 표시
-ㄴ [1차]전역일 : 네이버 참고
-ㄴ [1차]급여
-ㄴㄴ 실수령액 : MoneyNest 참고 
-ㄴㄴ 주휴수당 : MoneyNest 참고 
-ㄴㄴ 4대보험 : MoneyNest 참고 
-ㄴㄴ 실업급여 : MoneyNest 참고 
-ㄴㄴ 퇴직금: MoneyNest 참고 
+ㄴ [1차]연봉/월급(salary) : 잡코리아, 사람인 참고
+ㄴ [1차]퇴직금(severance-pay) : 잡코리아, 사람인 참고
+ㄴ [1차]실업급여(unemployment-benefit) : 잡코리아, 사람인, MoneyNest 참고 
+ㄴ [1차]실수령액(net-pay) : 사람인, MoneyNest 참고 
+ㄴ [1차]4대보험(4대-insurance) : MoneyNest 참고 
+ㄴ [1차]주휴수당(paid-holiday-allowance) : MoneyNest 참고 
+ㄴ [1차]연차(paid-leave) : 잡코리아, 사람인, MoneyNest 참고  
 
-ㄴㄴ 연차 : MoneyNest 참고 
-ㄴㄴ 연봉 인상률 : MoneyNest 참고 
-
-ㄴ [미정]단위 변환
+ㄴ [2차]단위
 ㄴㄴ 길이 : 네이버 참고
 ㄴㄴ 넓이 : 네이버 참고
 ㄴㄴ 무게 : 네이버 참고
@@ -117,7 +114,8 @@ Tool Site.
 ㄴㄴ 데이터 : 네이버 참고
 ㄴㄴ 시간 : 네이버 참고 
 
-ㄴ [미정]학점
+ㄴ [2차]학점
+ㄴ [2차]전역일 : 네이버 참고
 
 
 건강(health)

@@ -9,9 +9,9 @@ import FAQ from "@/app/calculator/components/FAQ";
 const BASE_URL = "https://jiko.kr";
 
 export const metadata: Metadata = {
-    title: "기초대사량(BMR) 계산기 | 나의 기초대사량과 소모 칼로리 계산 - JIKO 계산기",
+    title: "기초대사량 계산기 · BMR 계산기 · 일일 권장 칼로리 | 평균 BMR 비교 - JIKO 계산기",
     description: "생명 유지에 필요한 최소한의 에너지, 기초대사량(BMR)을 계산하여 하루 권장 칼로리를 알아보세요.",
-    keywords: ["기초대사량 계산기", "BMR 계산기", "다이어트", "기초대사량", "JIKO 계산기"],
+    keywords: ["기초대사량 계산기", "BMR 계산기", "일일 권장 칼로리 계산기", "다이어트", "기초대사량", "JIKO 계산기"],
     alternates: { canonical: `${BASE_URL}/calculator/health/bmr` },
     openGraph: {
         title: "기초대사량(BMR) 계산기 | 나의 하루 숨만 쉬어도 소모되는 칼로리",
@@ -73,7 +73,7 @@ export default function Page() {
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                        <span className="text-2xl">🔥</span> 기초대사량(BMR) 계산기
+                        <span className="text-2xl">🔥</span> 기초대사량 계산기 및 일일 권장 칼로리 안내
                     </h1>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
                         다이어트의 핵심은 자신의 기초대사량을 아는 것부터 시작됩니다. 굶기만 하는 다이어트는 근손실을 가져오고 결국 기초대사량을 낮춰 요요현상의 원인이 됩니다.

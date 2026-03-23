@@ -9,9 +9,9 @@ import FAQ from "@/app/calculator/components/FAQ";
 const BASE_URL = "https://jiko.kr";
 
 export const metadata: Metadata = {
-    title: "임신주수 계산기 | 출산 예정일 및 현재 주수 계산 - JIKO 계산기",
+    title: "임신주수 계산기 · 출산예정일 계산기 | 초음파 주수 및 D-Day - JIKO 계산기",
     description: "마지막 생리일, 초음파 기준, 예정일 역산을 통해 현재 임신 N주차인지 알아보고 출산 예정일 D-Day를 확인하세요.",
-    keywords: ["임신주수 계산기", "출산 예정일", "배란일", "임신 디데이", "임신주기", "JIKO 계산기"],
+    keywords: ["임신주수 계산기", "출산예정일 계산기", "출산 예정일", "배란일", "임신 디데이", "임신주기", "JIKO 계산기"],
     alternates: { canonical: `${BASE_URL}/calculator/health/pregnancy` },
     openGraph: {
         title: "임신주수/출산 예정일 계산기",
@@ -73,7 +73,7 @@ export default function Page() {
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                        <span className="text-2xl">👶</span> 임신주수(출산 예정일) 계산기
+                        <span className="text-2xl">👶</span> 임신주수 및 출산예정일 계산기 안내
                     </h1>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
                         마지막 생리 시작일 또는 산부인과 초음파 기준일을 바탕으로 아기를 만나는 출산 예정일까지 얼마나 남았는지 D-DAY와 임신 주수(주/일차)를 계산하여 진행률 바를 통해 시각적으로 보여줍니다.

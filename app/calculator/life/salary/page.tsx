@@ -1,0 +1,103 @@
+// app/calculator/life/salary/page.tsx
+import type { Metadata } from "next";
+import Salary from "./Salary";
+import NavBar from "@/app/calculator/components/NavBar";
+import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
+import LifeMoreCalculators from "@/app/calculator/components/LifeMoreCalculators";
+import FAQ from "@/app/calculator/components/FAQ";
+
+const BASE_URL = "https://jiko.kr";
+
+export const metadata: Metadata = {
+    title: "연봉 계산기 · 월급 계산기 | 2025 최신 세금 및 공제액 계산 - JIKO 계산기",
+    description: "2025년 최신 4대보험 요율과 간이세액표를 적용하여 연봉/월급의 정확한 예상 실수령액과 세금을 계산해드립니다.",
+    keywords: ["연봉 계산기", "월급 계산기", "실수령액 계산기", "4대보험 계산기", "연봉 실수령액", "월급 실수령액", "JIKO 계산기"],
+    alternates: { canonical: `${BASE_URL}/calculator/life/salary` },
+    openGraph: {
+        title: "연봉/월급 계산기 | 2025년 최신 4대보험 반영",
+        description: "내 연봉을 월급으로 환산하면 얼마나 받을까요? 정확한 세금과 4대보험 공제액을 확인하세요.",
+        url: `${BASE_URL}/calculator/life/salary`,
+        images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "연봉 실수령액 계산기" }],
+    },
+};
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "연봉/월급 계산기",
+    description: "2025년 최신 세율을 반영하여 연봉/월급의 정확한 세금, 4대보험, 실수령액을 계산해드립니다.",
+    url: `${BASE_URL}/calculator/life/salary`,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+};
+
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+        {
+            "@type": "Question",
+            name: "연봉 계산기와 월급 계산기의 차이점은 무엇인가요?",
+            acceptedAnswer: { "@type": "Answer", text: "연봉 계산기는 1년 총 급여를 바탕으로 1개월치 실수령액을 산출하고, 월급 계산기는 1개월 급여 합계를 기준으로 공제액을 산출합니다. 세액 산정 방식은 같습니다." }
+        },
+        {
+            "@type": "Question",
+            name: "2025년 4대보험 공제율은 어떻게 변했나요?",
+            acceptedAnswer: { "@type": "Answer", text: "국민연금 4.5%, 건강보험 3.545%, 장기요양보험은 건강보험료의 12.95%, 고용보험 0.9%가 근로자 부담분으로 공제됩니다." }
+        }
+    ]
+};
+
+export default function Page() {
+    const breadcrumbLd = generateBreadcrumbJsonLd([
+        COMMON_BREADCRUMBS.HOME,
+        COMMON_BREADCRUMBS.CALC_HOME,
+        COMMON_BREADCRUMBS.LIFE_HOME,
+        COMMON_BREADCRUMBS.SALARY
+    ]);
+
+    const faqList = [
+        { question: "연봉 계산기와 월급 계산기의 차이점은 무엇인가요?", answer: "연봉 계산기는 1년 총 급여를 바탕으로 1개월치 실수령액을 산출하고, 월급 계산기는 1개월 급여를 기준으로 세금 및 4대보험 공제액을 산출합니다. 근본적인 세액 공제 산출식 자체는 동일하게 적용됩니다." },
+        { question: "2025년 4대보험 공제율은 어떻게 되나요?", answer: "근로자 부담분 기준으로 국민연금 4.5%, 건강보험 3.545%, 고용보험 0.9%이며, 장기요양보험은 건강보험료의 12.95%가 부과됩니다. 우리 계산기는 이 최신 요율을 모두 반영하고 있습니다." },
+        { question: "비과세액은 무엇이고, 기본값이 왜 20만원인가요?", answer: "식대, 자가운전보조금 등 4대보험 및 세금이 부과되지 않는 금액입니다. 2024년부터 법률이 개정되어 식대 비과세 한도가 월 10만원에서 20만원으로 상향되었기에 이를 기본값으로 설정했습니다." }
+    ];
+
+    return (
+        <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+
+            <NavBar title="연봉/월급 계산기" description="연봉/월급 예상금액 및 세금/공제액 계산" position="top" />
+            <Salary />
+
+            <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">
+                <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                        <span className="text-2xl">💸</span> 연봉/월급 계산기 및 차이점 안내
+                    </h1>
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
+                        2025년도의 최신 4대보험 요율과 간이세액표를 적용하여 연봉(또는 월급)에 따른 정확한 세금, 공제액, 그리고 최종적으로 내가 받게 될 <strong>매월 실수령액</strong>을 계산해드립니다.
+                    </p>
+                </section>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-blue-500">💡</span> 사용 방법
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc list-inside">
+                            <li>연봉인지 월급인지 기준을 선택 후 금액을 입력합니다. (빠른 단위 버튼 지원)</li>
+                            <li>퇴직금 포함 여부를 명시합니다. (일반적으로 퇴직금 별도로 계약합니다.)</li>
+                            <li>비과세액(식대 등 기본 20만원 세팅)과 부양가족수를 확인합니다.</li>
+                            <li>[계산하기] 버튼을 누르면 세금과 내 통장에 꽂힐 실수령액이 도출됩니다.</li>
+                        </ul>
+                    </section>
+                </div>
+
+                <FAQ faqList={faqList} />
+                <LifeMoreCalculators />
+            </main>
+        </div>
+    );
+}

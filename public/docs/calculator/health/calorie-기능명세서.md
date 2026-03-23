@@ -5,15 +5,13 @@
 
 ## 2. 화면 위치
 1. 경로 : `/calculator/health/calorie`
-2. 동적 경로 (SEO) : `/calculator/health/calorie/[slug]` (종목별 전용 페이지)
-3. 파일
+2. 파일
 ㄴ 서버 : `app/calculator/health/calorie/page.tsx`
-ㄴ 동적 서버 : `app/calculator/health/calorie/[slug]/page.tsx` (운동종류별/음식별 전용 SEO 페이지)
 ㄴ 클라이언트 : `app/calculator/health/calorie/Calorie.tsx`
 
 ## 3. 계층 구조 및 SEO (Common Architecture)
-1. **Breadcrumb Schema**: `홈 > 계산기 홈 > 건강 계산기 > 칼로리(Kcal) 계산기` 구조의 JSON-LD 적용
-2. **동적 메타데이터**: `[slug]`(성별, 나이, 키, 체중)에 따라 Title, Description, Keywords 자동 생성
+1. **Breadcrumb Schema**: `홈 > 계산기 홈 > 건강 계산기 > 칼로리 계산기` 구조의 JSON-LD 적용
+2. **메타데이터**: '칼로리 계산기 · 운동 칼로리 소모 계산기 · 다이어트 식단 | JIKO 계산기' Title 적용
 3. **PWA 연동**: 
    - `PWAInstallProvider`를 통한 설치 가능 상태 감지
    - `InstallBanner` (페이지 하단), `Footer` (앱 설치 버튼) 연동
@@ -54,10 +52,10 @@
 ㄴㄴ `sitemap.ts` 및 `robots.ts`를 통한 동적 크롤링 및 인덱싱 허용 (검색 노출 최적화)
 ㄴ UI 디자인 : 본체와 동일한 카드형 레이아웃 및 다크모드 대응 적용
 ㄴ 구성요소
-ㄴㄴ 소개 : 운동 및 식단 칼로리(Kcal) 계산기 목적 안내
-ㄴㄴ 사용 방법 : 체중, 운동 종류/시간, 섭취 음식 정보를 통한 에너지 밸런스 계산 가이드
-ㄴㄴ 계산 예시 : 1시간 달리기 시 체중에 따른 소모 칼로리 및 쌀밥 한 공기 칼로리 비교 예제
-ㄴㄴ FAQ : 칼로리 소비 공식(METs), 권장 식단 가이드, 기초대사량과의 관계 안내 (**공통 `FAQ` 컴포넌트 적용**)
+ㄴㄴ 소개(H1) : 칼로리 계산기 및 기초 운동/다이어트 밸런스 측정 (운동 소모, 음식 섭취, 다이어트 키워드 포함)
+ㄴㄴ 사용 방법 : 체중, 운동 종류별 소모량, 음식 섭취량을 통한 다이어트 식단 가이드
+ㄴㄴ 계산 예시 : 1시간 달리기 시 소모 칼로리 및 식단 비교 예제
+ㄴㄴ FAQ : 운동 소모 칼로리 계산 공식(METs), 다이어트 식단 팁, 칼로리 계산기와 기초대사량의 차이점 등 유사 키워드 포함 기획 (**공통 `FAQ` 컴포넌트 적용**)
 ㄴㄴ 건강 계산기 더 보기 : 다른 건강 계산기 메뉴 바로가기 (**공통 `HealthMoreCalculators` 컴포넌트 적용**)
 
 ## 5. 계산 로직

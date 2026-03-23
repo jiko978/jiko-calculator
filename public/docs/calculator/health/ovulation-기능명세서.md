@@ -5,15 +5,13 @@
 
 ## 2. 화면 위치
 1. 경로 : `/calculator/health/ovulation`
-2. 동적 경로 (SEO) : `/calculator/health/ovulation/[slug]`
-3. 파일
+2. 파일
 ㄴ 서버 : `app/calculator/health/ovulation/page.tsx`
-ㄴ 동적 서버 : `app/calculator/health/ovulation/[slug]/page.tsx`
 ㄴ 클라이언트 : `app/calculator/health/ovulation/Ovulation.tsx`
 
 ## 3. 계층 구조 및 SEO (Common Architecture)
 1. **Breadcrumb Schema**: `홈 > 계산기 홈 > 건강 계산기 > 배란일 계산기` 구조의 JSON-LD 적용
-2. **동적 메타데이터**: `[slug]`에 따라 Title, Description, Keywords 자동 생성
+2. **메타데이터**: '배란일 계산기 · 임신 가임기 계산기 | 다음 생리 예정일 예측 - JIKO 계산기' Title 적용
 3. **PWA 연동**: 
    - `PWAInstallProvider`를 통한 설치 가능 상태 감지
    - `InstallBanner` (페이지 하단), `Footer` (앱 설치 버튼) 연동
@@ -47,10 +45,10 @@
 ㄴㄴ `SoftwareApplication` 및 `FAQPage` 외 추가 범용 `schema` 스크립트 작성 및 로드
 ㄴ UI 디자인 : 본체와 동일한 카드형 레이아웃 및 다크모드 대응 적용
 ㄴ 구성요소
-ㄴㄴ 소개 : 배란일, 가임기, 다음 생리 예정일 계산기 목적 안내
-ㄴㄴ 사용 방법 : 마지막 생리 시작일과 주기를 입력하여 날짜를 확인하는 가이드
-ㄴㄴ 계산 예시 : 생리 주기 28일 기준 배란일 도출 예제
-ㄴㄴ FAQ : 배란일 계산 공식, 가임기 계산 방법 등 안내 (**공통 `FAQ` 컴포넌트 적용**)
+ㄴㄴ 소개(H1) : 배란일 및 가임기, 생리 예정일 계산기 안내 (배란일, 가임기, 생리 주기 키워드 포함)
+ㄴㄴ 사용 방법 : 마지막 생리 시작일과 안전한 주기를 통한 예측 달력 가이드
+ㄴㄴ 계산 예시 : 생리 주기 28일 기준 배란일 및 가임기 도출 예제
+ㄴㄴ FAQ : 배란일 계산기와 가임기 계산기의 차이점, 생리 주기 불규칙 대응 방법 등 유사 키워드 포함 기획 (**공통 `FAQ` 컴포넌트 적용**)
 ㄴㄴ 건강 계산기 더 보기 : 다른 건강 계산기 메뉴 바로가기 (**공통 `HealthMoreCalculators` 컴포넌트 적용**)
 
 ## 5. 계산 로직

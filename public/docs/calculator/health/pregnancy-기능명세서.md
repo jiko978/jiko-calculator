@@ -5,15 +5,13 @@
 
 ## 2. 화면 위치
 1. 경로 : `/calculator/health/pregnancy`
-2. 동적 경로 (SEO) : `/calculator/health/pregnancy/[slug]`
-3. 파일
+2. 파일
 ㄴ 서버 : `app/calculator/health/pregnancy/page.tsx`
-ㄴ 동적 서버 : `app/calculator/health/pregnancy/[slug]/page.tsx`
 ㄴ 클라이언트 : `app/calculator/health/pregnancy/Pregnancy.tsx`
 
 ## 3. 계층 구조 및 SEO (Common Architecture)
 1. **Breadcrumb Schema**: `홈 > 계산기 홈 > 건강 계산기 > 임신주수 계산기` 구조의 JSON-LD 적용
-2. **동적 메타데이터**: `[slug]`에 따라 Title, Description, Keywords 자동 생성
+2. **메타데이터**: '임신주수 계산기 · 출산예정일 계산기 | 초음파 주수 및 D-Day - JIKO 계산기' Title 적용
 3. **PWA 연동**: 
    - `PWAInstallProvider`를 통한 설치 가능 상태 감지
    - `InstallBanner` (페이지 하단), `Footer` (앱 설치 버튼) 연동
@@ -50,10 +48,10 @@
 ㄴ 검색 엔진 최적화(SEO)를 위한 JSON-LD 라우팅 보강
 ㄴ UI 디자인 : 본체와 동일한 카드형 레이아웃 및 다크모드 대응 적용
 ㄴ 구성요소
-ㄴㄴ 소개 : 임신 주수 및 출산 예정일 계산기 목적 안내
-ㄴㄴ 사용 방법 : 상황에 맞게 생리일, 주수, 예정일을 기준으로 계산하는 방법 안내
-ㄴㄴ 계산 예시 : 평균 280일 기준의 임신 기간 계산 예시
-ㄴㄴ FAQ : 네겔레(Naegele) 공식 등 출산 예정일 계산법 안내 (**공통 `FAQ` 컴포넌트 적용**)
+ㄴㄴ 소개(H1) : 임신주수 및 출산예정일 계산기 안내 (임신주수, 출산예정일, 초음파 주수 키워드 포함)
+ㄴㄴ 사용 방법 : 생리일, 조음파 주수, 예정일을 바탕으로 1분기~3분기 진행 상태 산출 가이드
+ㄴㄴ 계산 예시 : 평균 280일 기준의 임신 기간 및 남은 D-Day 계산 예시
+ㄴㄴ FAQ : 출산예정일 계산기와 임신주수 계산기의 차이, 네겔레(Naegele) 공식 안내 등 유사 키워드 포함 기획 (**공통 `FAQ` 컴포넌트 적용**)
 ㄴㄴ 건강 계산기 더 보기 : 다른 건강 계산기 메뉴 바로가기 (**공통 `HealthMoreCalculators` 컴포넌트 적용**)
 
 ## 5. 계산 로직

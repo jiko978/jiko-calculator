@@ -5,15 +5,13 @@
 
 ## 2. 화면 위치
 1. 경로 : `/calculator/health/bmi`
-2. 동적 경로 (SEO) : `/calculator/health/bmi/[slug]` (종목별 전용 페이지)
-3. 파일
+2. 파일
 ㄴ 서버 : `app/calculator/health/bmi/page.tsx`
-ㄴ 동적 서버 : `app/calculator/health/bmi/[slug]/page.tsx` (상태별 슬러그: 정상, 과체중, 비만 등)
 ㄴ 클라이언트 : `app/calculator/health/bmi/Bmi.tsx`
 
 ## 3. 계층 구조 및 SEO (Common Architecture)
-1. **Breadcrumb Schema**: `홈 > 계산기 홈 > 건강 계산기 > 비만도(BMI) 계산기` 구조의 JSON-LD 적용
-2. **동적 메타데이터**: `[slug]`(성별, 나이, 키, 체중)에 따라 Title, Description, Keywords 자동 생성
+1. **Breadcrumb Schema**: `홈 > 계산기 홈 > 건강 계산기 > 비만도 계산기` 구조의 JSON-LD 적용
+2. **메타데이터**: '비만도 계산기 · BMI 계산기 · 체지방률 | 아시아 태평양 기준 시각화 - JIKO 계산기' Title 적용
 3. **PWA 연동**: 
    - `PWAInstallProvider`를 통한 설치 가능 상태 감지
    - `InstallBanner` (페이지 하단), `Footer` (앱 설치 버튼) 연동
@@ -54,10 +52,10 @@
 ㄴㄴ `sitemap.ts` 및 `robots.ts`를 통한 동적 크롤링 및 인덱싱 허용 (검색 노출 최적화)
 ㄴ UI 디자인 : 본체와 동일한 카드형 레이아웃 및 다크모드 대응 적용
 ㄴ 구성요소
-ㄴㄴ 소개 : 비만도(BMI) 및 복부 비만도(WHR) 계산기 목적 안내
-ㄴㄴ 사용 방법 : 성별, 나이, 키, 체중, (선택)허리둘레를 통한 비만 지표 계산 가이드
-ㄴㄴ 계산 예시 : 30세 남성, 175cm, 70kg 기준 BMI 22.8(정상) 도출 예제
-ㄴㄴ FAQ : BMI 공식(체중(kg) / (키(m)²)) 및 WHO/아시아태평양 비만 기준 안내 (**공통 `FAQ` 컴포넌트 적용**)
+ㄴㄴ 소개(H1) : 비만도 계산기 및 BMI 계산 원리 (비만도, BMI, 체지방 키워드 모두 포함)
+ㄴㄴ 사용 방법 : 성별, 나이, 키, 체중을 통한 비만 지표 및 체지방률 측정 가이드
+ㄴㄴ 계산 예시 : 30세 남성 기준 BMI 도출 및 아시아 태평양 기준 범위 도출 예제
+ㄴㄴ FAQ : 비만도 계산기와 체지방/BMI 계산기의 차이점, BMI 공식 및 아시아태평양 비만 기준 안내 등 유사 키워드 포함 기획 (**공통 `FAQ` 컴포넌트 적용**)
 ㄴㄴ 건강 계산기 더 보기 : 다른 건강 계산기 메뉴 바로가기 (**공통 `HealthMoreCalculators` 컴포넌트 적용**)
 
 ## 5. 계산 로직

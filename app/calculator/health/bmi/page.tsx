@@ -9,9 +9,9 @@ import FAQ from "@/app/calculator/components/FAQ";
 const BASE_URL = "https://jiko.kr";
 
 export const metadata: Metadata = {
-    title: "비만도 계산기 | 나의 체질량지수 및 비만도 측정 - JIKO 계산기",
+    title: "비만도 계산기 · BMI 계산기 · 체지방률 | 아시아 태평양 기준 시각화 - JIKO 계산기",
     description: "키와 체중을 입력하여 나의 체질량지수(BMI)와 비만도를 정확하게 측정해보세요.",
-    keywords: ["비만도 계산기", "BMI 계산기", "체질량지수", "다이어트", "JIKO 계산기"],
+    keywords: ["비만도 계산기", "BMI 계산기", "체지방률", "체질량지수", "다이어트", "JIKO 계산기"],
     alternates: { canonical: `${BASE_URL}/calculator/health/bmi` },
     openGraph: {
         title: "비만도 계산기 | 나의 체질량지수 및 비만도 측정 - JIKO 계산기",
@@ -73,7 +73,7 @@ export default function Page() {
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                        <span className="text-2xl">⚖️</span> 비만도(BMI) 계산기
+                        <span className="text-2xl">⚖️</span> 비만도 계산기 및 BMI 계산 원리
                     </h1>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
                         나의 키와 체중을 바탕으로 비만도를 간단하게 측정할 수 있습니다. 정상 범위 여부를 확인하고 건강을 관리해보세요.

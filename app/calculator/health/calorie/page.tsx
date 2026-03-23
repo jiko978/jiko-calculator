@@ -9,9 +9,9 @@ import FAQ from "@/app/calculator/components/FAQ";
 const BASE_URL = "https://jiko.kr";
 
 export const metadata: Metadata = {
-    title: "칼로리 계산기 | 하루 권장 섭취 칼로리 및 TDEE 계산 - JIKO 계산기",
+    title: "칼로리 계산기 · 운동 칼로리 소모 계산기 · 다이어트 식단 | JIKO 계산기",
     description: "내 몸에 딱 맞는 하루 권장 칼로리를 활동량과 엮어서 계산해드립니다. 다이어트와 건강 관리를 칼로리 계산으로 시작하세요.",
-    keywords: ["칼로리 계산기", "TDEE 계산기", "하루 권장 칼로리", "다이어트", "유지 에너지", "JIKO 계산기"],
+    keywords: ["칼로리 계산기", "운동 칼로리 소모 계산기", "다이어트 식단 계산기", "다이어트", "JIKO 계산기"],
     alternates: { canonical: `${BASE_URL}/calculator/health/calorie` },
     openGraph: {
         title: "칼로리 계산기 | 하루 권장 섭취 칼로리 계산",
@@ -73,7 +73,7 @@ export default function Page() {
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                        <span className="text-2xl">🏃‍♂️</span> 칼로리 계산기
+                        <span className="text-2xl">🏃‍♂️</span> 칼로리 계산기 및 운동/다이어트 밸런스 측정
                     </h1>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
                         기초대사량에 평소 생활 패턴 및 운동 활동량을 반영하여, 내가 하루 종일 섭취해야 할 최적의 칼로리를 산출합니다.
