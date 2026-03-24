@@ -1,9 +1,7 @@
-// ─────────────────────────────────────────────────────────
 // app/sitemap.ts
-// 새 페이지 추가 시 routes 배열에만 추가하면 됩니다.
-// ─────────────────────────────────────────────────────────
-
 import { MetadataRoute } from "next";
+// 빌드 시점에 Bing IndexNow API를 호출하여 검색 엔진에 새 URL을 알립니다.
+import { submitToBing } from "./utils/bingIndexer";
 
 const BASE_URL = "https://jiko.kr";
 
@@ -11,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const routes = [
         // ── 홈 ──
         { url: "/", priority: 1.0, changeFrequency: "weekly" as const },
+        { url: "/calculator", priority: 1.0, changeFrequency: "weekly" as const },
 
         // ── 주식 ──
         { url: "/calculator/stock",  priority: 0.8, changeFrequency: "monthly" as const },
@@ -44,18 +43,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: "/policy/privacy", priority: 0.3, changeFrequency: "monthly" as const },
         { url: "/policy/terms", priority: 0.3, changeFrequency: "monthly" as const },
         { url: "/policy/disclaimer", priority: 0.3, changeFrequency: "monthly" as const },
-
-        // ── 추가 예정 카테고리 (페이지 추가 시 여기에 등록) ──
-        // { url: "/health/bmi",         priority: 0.8, changeFrequency: "monthly" as const },
-        // { url: "/investment/...",     priority: 0.8, changeFrequency: "monthly" as const },
-        // { url: "/life/...",           priority: 0.8, changeFrequency: "monthly" as const },
-        // { url: "/etc/...",            priority: 0.8, changeFrequency: "monthly" as const },
     ];
 
-    return routes.map(({ url, priority, changeFrequency }) => ({
+    const finalSitemap = routes.map(({ url, priority, changeFrequency }) => ({
         url: `${BASE_URL}${url}`,
         lastModified: new Date(),
         changeFrequency,
         priority,
     }));
+
+    // 빌드 시점에 비동기 호출 (Next.js 빌드 시 실행됨)
+    // 인덱싱 자동화를 위해 전체 URL 리스트를 제출 함수로 전달합니다.
+    const allFullUrls = finalSitemap.map(r => r.url);
+    submitToBing(allFullUrls).catch(err => console.error("Bing submit err:", err));
+
+    return finalSitemap;
 }
