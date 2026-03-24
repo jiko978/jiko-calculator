@@ -29,7 +29,7 @@ export default function Header() {
     const navLinks = [
         { href: "/calculator/stock", label: "📈 주식" },
         { href: "/calculator/finance", label: "💵 금융" },
-        { href: "/calculator/realstate", label: "🏢 부동산" },
+        { href: "/calculator/real-state", label: "🏢 부동산" },
         { href: "/calculator/life", label: "🏠 생활" },
         { href: "/calculator/health", label: "💪 건강" },
         { href: "/calculator/tax", label: "🧾 세금" },
