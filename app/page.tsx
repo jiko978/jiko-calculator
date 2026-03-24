@@ -6,7 +6,7 @@ import PlatformQR from "./components/PlatformQR";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "./utils/seo";
 
 export const metadata: Metadata = {
-    title: "JIKO Platform",
+    title: "JIKO Platform - JIKO 계산기 | 다양한 계산기와 투자 도구를 제공하는 JIKO Platform 입니다.",
     description: "다양한 계산기와 투자 도구를 제공하는 JIKO Platform 입니다.",
 };
 
