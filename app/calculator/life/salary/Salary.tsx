@@ -2,8 +2,11 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import ShareSheet from '../../components/ShareSheet';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Salary() {
+    const pathname = usePathname();
     const [calcType, setCalcType] = useState<"YEARLY" | "MONTHLY">("YEARLY");
     const [amount, setAmount] = useState<string>("");
     const [includesSeverance, setIncludesSeverance] = useState<boolean>(false);
@@ -173,7 +176,23 @@ export default function Salary() {
             </div>
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
                 <div className="p-6 md:p-8 space-y-8">
-                    {/* Header Tabs */}
+                    {/* Header Tabs - Switch Between Different Calc Types */}
+                    <div className="flex bg-gray-100 dark:bg-gray-700 p-1 rounded-xl">
+                        <button
+                            className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors ${pathname === '/calculator/life/salary' ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-gray-500 dark:text-gray-400'}`}
+                            onClick={() => {}} // Already on this page
+                        >
+                            연봉/월급 계산기
+                        </button>
+                        <Link
+                            href="/calculator/life/net-pay"
+                            className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors text-center ${pathname === '/calculator/life/net-pay' ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-gray-500 dark:text-gray-400'}`}
+                        >
+                            실수령액 계산기
+                        </Link>
+                    </div>
+
+                    {/* Header Tabs - Gross Type (Monthly/Yearly) */}
                     <div className="flex bg-gray-100 dark:bg-gray-700 p-1 rounded-xl">
                         <button
                             className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors ${calcType === 'YEARLY' ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-gray-500 dark:text-gray-400'}`}

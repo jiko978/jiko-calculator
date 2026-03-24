@@ -63,7 +63,8 @@ const services: Service[] = [
         bgColor: "bg-purple-50 dark:bg-purple-900/20",
         borderColor: "border-purple-100 dark:border-purple-800",
         links: [
-            { label: "서비스 준비 중", href: "#", disabled: true }
+            { label: "✔ 연봉/월급 계산기", href: "/calculator/life/salary" },
+            { label: "✔ 실수령액 계산기", href: "/calculator/life/net-pay" }
         ]
     },
     {

@@ -42,7 +42,7 @@ export default function FinanceHubPage() {
 
             <div className="flex-grow px-4 py-6">
                 <h1 className="text-4xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">💵 금융 계산기</h1>
-                <p className="text-xl font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">필요한 계산기를 선택하세요.</p>
+                <p className="text-xl font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">필요한 금융 계산기를 선택하세요.</p>
 
                 <div className="grid gap-4 w-full max-w-3xl mx-auto md:grid-cols-2">
                     {financeCalculators.map((calc) => (
