@@ -65,7 +65,8 @@ const services: Service[] = [
         links: [
             { label: "✔ 연봉/월급 계산기", href: "/calculator/life/salary" },
             { label: "✔ 실수령액 계산기", href: "/calculator/life/net-pay" },
-            { label: "✔ 퇴직금 계산기", href: "/calculator/life/severance-pay" }
+            { label: "✔ 퇴직금 계산기", href: "/calculator/life/severance-pay" },
+            { label: "✔ 실업급여 계산기", href: "/calculator/life/severance-pay" }
         ]
     },
     {
