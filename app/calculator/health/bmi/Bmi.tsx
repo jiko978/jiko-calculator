@@ -104,10 +104,11 @@ export default function Bmi() {
                             </div>
                         </div>
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">나이 (만)</label>
+                            <label htmlFor="bmi-age" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">나이 (만)</label>
                             <input
+                                id="bmi-age"
                                 type="number"
-                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all text-right ${errors.has("age") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-blue-500 dark:text-gray-100"
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none border-2 transition-all text-right ${errors.has("age") ? "ring-2 ring-red-500 border-red-500" : "border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 dark:text-gray-100"
                                     }`}
                                 placeholder="예: 30"
                                 value={age}
@@ -128,10 +129,11 @@ export default function Bmi() {
                     {/* 키/몸무게 */}
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">키 (cm)</label>
+                            <label htmlFor="bmi-height" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">키 (cm)</label>
                             <input
+                                id="bmi-height"
                                 type="number"
-                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all text-right ${errors.has("height") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-blue-500 dark:text-gray-100"
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none border-2 transition-all text-right ${errors.has("height") ? "ring-2 ring-red-500 border-red-500" : "border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 dark:text-gray-100"
                                     }`}
                                 placeholder="예: 175"
                                 value={height}
@@ -148,10 +150,11 @@ export default function Bmi() {
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">체중 (kg)</label>
+                            <label htmlFor="bmi-weight" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">체중 (kg)</label>
                             <input
+                                id="bmi-weight"
                                 type="number"
-                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all text-right ${errors.has("weight") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-blue-500 dark:text-gray-100"
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none border-2 transition-all text-right ${errors.has("weight") ? "ring-2 ring-red-500 border-red-500" : "border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 dark:text-gray-100"
                                     }`}
                                 placeholder="예: 70"
                                 value={weight}

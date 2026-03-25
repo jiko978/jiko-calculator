@@ -204,10 +204,10 @@ const Deposits = ({ productName }: DepositsProps) => {
                                 onChange={handleAmountChange}
                                 placeholder="0"
                                 className={`w-full h-16 px-5 pr-12 text-2xl font-bold bg-gray-50 dark:bg-gray-900/50 border-2 rounded-2xl transition-all outline-none text-right dark:text-white ${
-                                    errors.has("amount") ? "border-red-500 focus:border-red-500 ring-4 ring-red-500/10" : "border-transparent focus:border-blue-500"
+                                    errors.has("amount") ? "border-red-500 focus:border-red-500 ring-4 ring-red-500/10" : "border-gray-300 dark:border-gray-600 focus:border-blue-500 ring-blue-500/10 focus:ring-4"
                                 }`}
                             />
-                            <span className={`absolute right-5 top-1/2 -translate-y-1/2 font-bold ${errors.has("amount") ? "text-red-500" : "text-gray-600"}`}>원</span>
+                            <span aria-hidden="true" className={`absolute right-5 top-1/2 -translate-y-1/2 font-bold ${errors.has("amount") ? "text-red-500" : "text-gray-500 dark:text-gray-400"}`}>원</span>
                         </div>
                         <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
                             {[5, 10, 50, 100, 1000, 10000].map(v => (
@@ -236,10 +236,10 @@ const Deposits = ({ productName }: DepositsProps) => {
                                         onChange={handleTermChange}
                                         placeholder="0"
                                         className={`w-full h-14 px-4 pr-12 text-xl font-bold bg-gray-50 dark:bg-gray-900/50 border-2 rounded-2xl transition-all outline-none text-right dark:text-white ${
-                                            errors.has("term") ? "border-red-500 focus:border-red-500 ring-4 ring-red-500/10" : "border-transparent focus:border-blue-500"
+                                            errors.has("term") ? "border-red-500 focus:border-red-500 ring-4 ring-red-500/10" : "border-gray-300 dark:border-gray-600 focus:border-blue-500 ring-blue-500/10 focus:ring-4"
                                         }`}
                                     />
-                                    <span className={`absolute right-4 top-1/2 -translate-y-1/2 font-bold ${errors.has("term") ? "text-red-500" : "text-gray-600"}`}>
+                                    <span aria-hidden="true" className={`absolute right-4 top-1/2 -translate-y-1/2 font-bold ${errors.has("term") ? "text-red-500" : "text-gray-500 dark:text-gray-400"}`}>
                                         {termUnit === "month" ? "개월" : "년"}
                                     </span>
                                 </div>
@@ -283,10 +283,10 @@ const Deposits = ({ productName }: DepositsProps) => {
                                     onChange={handleRateChange}
                                     placeholder="0.0"
                                     className={`w-full h-14 px-4 pr-12 text-xl font-bold bg-gray-50 dark:bg-gray-900/50 border-2 rounded-2xl transition-all outline-none text-right dark:text-white ${
-                                        errors.has("rate") ? "border-red-500 focus:border-red-500 ring-4 ring-red-500/10" : "border-transparent focus:border-blue-500"
+                                        errors.has("rate") ? "border-red-500 focus:border-red-500 ring-4 ring-red-500/10" : "border-gray-300 dark:border-gray-600 focus:border-blue-500 ring-blue-500/10 focus:ring-4"
                                     }`}
                                 />
-                                <span className={`absolute right-4 top-1/2 -translate-y-1/2 font-bold ${errors.has("rate") ? "text-red-500" : "text-gray-600"}`}>%</span>
+                                <span aria-hidden="true" className={`absolute right-4 top-1/2 -translate-y-1/2 font-bold ${errors.has("rate") ? "text-red-500" : "text-gray-500 dark:text-gray-400"}`}>%</span>
                             </div>
                             <div className="flex bg-gray-100 dark:bg-gray-700 p-1 rounded-2xl">
                                 <button

@@ -139,11 +139,11 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
                                             type="text" inputMode="numeric" placeholder="0"
                                             value={value}
                                             onChange={handleChange(setter, key)}
-                                            className={`w-full border rounded-lg px-4 py-2 text-right focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 text-base transition-all ${
-                                                errors.has(key) ? "border-red-500 ring-2 ring-red-200 dark:ring-red-900/30" : "border-gray-200 dark:border-gray-600 focus:ring-blue-400"
+                                            className={`w-full border-2 rounded-lg px-4 py-2 text-right focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 text-base transition-all ${
+                                                errors.has(key) ? "border-red-500 ring-2 ring-red-200 dark:ring-red-900/30" : "border-gray-300 dark:border-gray-600 focus:ring-blue-400 ring-blue-400/10 focus:ring-4"
                                             }`}
                                         />
-                                        <span className={`ml-2 w-8 shrink-0 ${errors.has(key) ? "text-red-500 font-bold" : "text-gray-800 dark:text-gray-100"}`}>{unit}</span>
+                                        <span aria-hidden="true" className={`ml-2 w-8 shrink-0 ${errors.has(key) ? "text-red-500 font-bold" : "text-gray-500 dark:text-gray-400"}`}>{unit}</span>
                                     </div>
                                 </div>
                             </div>

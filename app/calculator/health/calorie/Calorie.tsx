@@ -178,13 +178,12 @@ export default function Calorie() {
                 <div className="space-y-10">
                     {/* 체중 입력 */}
                     <section>
-                        <label className="block text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wider">나의 체중</label>
+                        <label htmlFor="user-weight" className="block text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wider">나의 체중</label>
                         <div className="relative">
                             <input
+                                id="user-weight"
                                 type="number"
-                                className={`w-full p-5 bg-gray-50 dark:bg-gray-700/50 rounded-2xl outline-none transition-all text-xl font-bold ${
-                                    errors.has("weight") ? "ring-4 ring-red-500/20 border-red-500" : "focus:ring-4 focus:ring-orange-500/20 dark:text-gray-100"
-                                }`}
+                                className={`w-full p-5 bg-gray-50 dark:bg-gray-700/50 border ${errors.has("weight") ? "border-red-600 ring-4 ring-red-500/20" : "border-gray-200 dark:border-gray-700"} rounded-2xl outline-none transition-all text-xl font-bold dark:text-gray-100 placeholder-gray-300`}
                                 placeholder="0.0"
                                 value={weight}
                                 onChange={(e) => {
@@ -198,7 +197,7 @@ export default function Calorie() {
                                     }
                                 }}
                             />
-                            <span className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400 font-bold">kg</span>
+                            <span className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400 font-bold" aria-hidden="true">kg</span>
                         </div>
                     </section>
 
@@ -240,8 +239,8 @@ export default function Calorie() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
                             <div>
-                                <label className="block text-xs font-bold text-gray-400 mb-2">운동 시간 (분)</label>
-                                <input type="number" className="w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none focus:ring-2 focus:ring-orange-500 dark:text-gray-100" placeholder="0" value={exerciseTime} onChange={(e) => setExerciseTime(e.target.value)} />
+                                <label htmlFor="exercise-time" className="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-tight">운동 시간 (분)</label>
+                                <input id="exercise-time" type="number" className="w-full p-4 bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-700 rounded-xl outline-none focus:ring-2 focus:ring-orange-500 dark:text-gray-100" placeholder="0" value={exerciseTime} onChange={(e) => setExerciseTime(e.target.value)} />
                             </div>
                             <div>
                                 <label className="block text-xs font-bold text-gray-400 mb-2">운동 강도</label>

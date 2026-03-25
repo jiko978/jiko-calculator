@@ -206,10 +206,10 @@ const Loans = ({ productName }: LoansProps) => {
                                 onChange={handleAmountChange}
                                 placeholder="0"
                                 className={`w-full h-16 px-5 pr-12 text-2xl font-bold bg-gray-50 dark:bg-gray-900/50 border-2 rounded-2xl transition-all outline-none text-right dark:text-white ${
-                                    errors.has("loanAmount") ? "border-red-500 focus:border-red-500 ring-4 ring-red-500/10" : "border-transparent focus:border-amber-500"
+                                    errors.has("loanAmount") ? "border-red-500 focus:border-red-500 ring-4 ring-red-500/10" : "border-gray-300 dark:border-gray-600 focus:border-amber-500 ring-amber-500/10 focus:ring-4"
                                 }`}
                             />
-                            <span className={`absolute right-5 top-1/2 -translate-y-1/2 font-bold ${errors.has("loanAmount") ? "text-red-500" : "text-gray-600"}`}>원</span>
+                            <span aria-hidden="true" className={`absolute right-5 top-1/2 -translate-y-1/2 font-bold ${errors.has("loanAmount") ? "text-red-500" : "text-gray-500 dark:text-gray-400"}`}>원</span>
                         </div>
 
                         <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
@@ -244,7 +244,7 @@ const Loans = ({ productName }: LoansProps) => {
                                     }}
                                     placeholder="0"
                                     className={`w-full h-14 px-4 pr-12 text-xl font-bold bg-gray-50 dark:bg-gray-900/50 border-2 rounded-2xl transition-all outline-none text-right dark:text-white ${
-                                        errors.has("loanTerm") ? "border-red-500 focus:border-red-500 ring-4 ring-red-500/10" : "border-transparent focus:border-amber-500"
+                                        errors.has("loanTerm") ? "border-red-500 focus:border-red-500 ring-4 ring-red-500/10" : "border-gray-300 dark:border-gray-600 focus:border-amber-500 ring-amber-500/10 focus:ring-4"
                                     }`}
                                 />
                                 <div className="flex bg-gray-100 dark:bg-gray-700 p-1 rounded-2xl shrink-0">
@@ -291,10 +291,10 @@ const Loans = ({ productName }: LoansProps) => {
                                     }}
                                     placeholder="0.0"
                                     className={`w-full h-14 px-4 pr-12 text-xl font-bold bg-gray-50 dark:bg-gray-900/50 border-2 rounded-2xl transition-all outline-none text-right dark:text-white ${
-                                        errors.has("interestRate") ? "border-red-500 focus:border-red-500 ring-4 ring-red-500/10" : "border-transparent focus:border-amber-500"
+                                        errors.has("interestRate") ? "border-red-500 focus:border-red-500 ring-4 ring-red-500/10" : "border-gray-300 dark:border-gray-600 focus:border-amber-500 ring-amber-500/10 focus:ring-4"
                                     }`}
                                 />
-                                <span className={`absolute right-4 top-1/2 -translate-y-1/2 font-bold ${errors.has("interestRate") ? "text-red-500" : "text-gray-600"}`}>%</span>
+                                <span aria-hidden="true" className={`absolute right-4 top-1/2 -translate-y-1/2 font-bold ${errors.has("interestRate") ? "text-red-500" : "text-gray-500 dark:text-gray-400"}`}>%</span>
                             </div>
                         </div>
                     </div>
@@ -330,9 +330,9 @@ const Loans = ({ productName }: LoansProps) => {
                                 inputMode="numeric"
                                 value={defermentPeriod}
                                 onChange={(e) => { setDefermentPeriod(e.target.value.replace(/[^0-9]/g, "")); setCalculated(false); }}
-                                className="w-full h-12 px-4 pr-12 text-lg font-bold bg-gray-50 dark:bg-gray-900/50 border-2 border-transparent focus:border-amber-500 rounded-2xl transition-all outline-none text-right dark:text-white"
+                                className="w-full h-12 px-4 pr-12 text-lg font-bold bg-gray-50 dark:bg-gray-900/50 border-2 border-gray-300 dark:border-gray-600 focus:border-amber-500 rounded-2xl transition-all outline-none text-right dark:text-white ring-amber-500/10 focus:ring-4"
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 font-bold text-gray-600 dark:text-gray-400 text-sm">개월</span>
+                            <span aria-hidden="true" className="absolute right-4 top-1/2 -translate-y-1/2 font-bold text-gray-500 dark:text-gray-400 text-sm">개월</span>
                         </div>
                     </div>
                     {/* 제어 버튼 */}

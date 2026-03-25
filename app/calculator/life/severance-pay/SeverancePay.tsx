@@ -113,6 +113,11 @@ export default function SeverancePay() {
         setErrors(new Set());
     };
 
+    const resetAmount = () => {
+        setAmount("");
+        setErrors(new Set());
+    };
+
     const handleDateChange = (type: 'JOIN' | 'QUIT', val: string) => {
         // 연도 4자리 초과 입력 방지 (입력 시점에 즉시 차단)
         const yearPart = val.split('-')[0];
@@ -137,34 +142,36 @@ export default function SeverancePay() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {/* 입사일 */}
                         <div>
-                            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">입사일</label>
+                            <label htmlFor="join-date" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">입사일</label>
                             <input
+                                id="join-date"
                                 type="date"
                                 value={joinDate}
                                 max="9999-12-31"
                                 onChange={(e) => {
-                                    const val = e.target.value;
-                                    const yearPart = val.split('-')[0];
-                                    if (yearPart && yearPart.length > 4) return;
-                                    setJoinDate(val);
+                                     const val = e.target.value;
+                                     const yearPart = val.split('-')[0];
+                                     if (yearPart && yearPart.length > 4) return;
+                                     setJoinDate(val);
                                 }}
-                                className={`w-full p-4 bg-gray-50 dark:bg-gray-900 border ${errors.has('joinDate') ? 'border-red-500 ring-2 ring-red-500/10' : 'border-gray-200 dark:border-gray-700'} rounded-2xl outline-none focus:ring-2 focus:ring-blue-500 transition-all font-medium text-gray-800 dark:text-gray-100 [text-align:right] md:[text-align:left] ${shakeField === 'joinDate' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-900 border ${errors.has('joinDate') ? 'border-red-600 ring-2 ring-red-500/10' : 'border-gray-300 dark:border-gray-600'} rounded-2xl outline-none focus:ring-2 focus:ring-blue-600 transition-all font-medium text-gray-800 dark:text-gray-100 [text-align:right] md:[text-align:left] ${shakeField === 'joinDate' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                             />
                         </div>
                         {/* 퇴사일 */}
                         <div>
-                            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">퇴사일</label>
+                            <label htmlFor="quit-date" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">퇴사일</label>
                             <input
+                                id="quit-date"
                                 type="date"
                                 value={quitDate}
                                 max="9999-12-31"
                                 onChange={(e) => {
-                                    const val = e.target.value;
-                                    const yearPart = val.split('-')[0];
-                                    if (yearPart && yearPart.length > 4) return;
-                                    setQuitDate(val);
+                                     const val = e.target.value;
+                                     const yearPart = val.split('-')[0];
+                                     if (yearPart && yearPart.length > 4) return;
+                                     setQuitDate(val);
                                 }}
-                                className={`w-full p-4 bg-gray-50 dark:bg-gray-900 border ${errors.has('quitDate') ? 'border-red-500 ring-2 ring-red-500/10' : 'border-gray-200 dark:border-gray-700'} rounded-2xl outline-none focus:ring-2 focus:ring-blue-500 transition-all font-medium text-gray-800 dark:text-gray-100 [text-align:right] md:[text-align:left] ${shakeField === 'quitDate' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-900 border ${errors.has('quitDate') ? 'border-red-600 ring-2 ring-red-500/10' : 'border-gray-300 dark:border-gray-600'} rounded-2xl outline-none focus:ring-2 focus:ring-blue-600 transition-all font-medium text-gray-800 dark:text-gray-100 [text-align:right] md:[text-align:left] ${shakeField === 'quitDate' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                             />
                         </div>
                     </div>
@@ -177,18 +184,20 @@ export default function SeverancePay() {
 
                     {/* 급여액 입력 */}
                     <div>
-                        <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">평균 {calcType === 'YEARLY' ? '연봉' : '월급'} (원)</label>
+                        <label htmlFor="severance-amount" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">평균 {calcType === 'YEARLY' ? '연봉' : '월급'} (원)</label>
                         <div className="relative mb-3">
                             <input
+                                id="severance-amount"
                                 type="text"
                                 value={amount ? formatNumber(parseInt(amount)) : ''}
                                 onChange={(e) => setAmount(e.target.value.replace(/[^0-9]/g, ''))}
                                 placeholder={calcType === 'YEARLY' ? "예: 50,000,000" : "예: 3,500,000"}
-                                className={`w-full p-5 text-right bg-gray-50 dark:bg-gray-900 border ${errors.has('amount') ? 'border-red-500 ring-2 ring-red-500/10' : 'border-gray-200 dark:border-gray-700'} rounded-2xl outline-none focus:ring-2 focus:ring-blue-500 transition-all font-bold text-gray-800 dark:text-gray-100 ${shakeField === 'amount' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
+                                className={`w-full p-5 text-right bg-gray-50 dark:bg-gray-900 border ${errors.has('amount') ? 'border-red-600 ring-2 ring-red-500/10' : 'border-gray-300 dark:border-gray-600'} rounded-2xl outline-none focus:ring-2 focus:ring-blue-600 transition-all font-bold text-gray-800 dark:text-gray-100 ${shakeField === 'amount' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                             />
-                            <span className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 font-bold">₩</span>
+                            <span className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 font-bold" aria-hidden="true">₩</span>
                         </div>
                         <div className="flex flex-wrap gap-2 mt-3">
+                            <button onClick={resetAmount} className="px-3 py-1.5 text-xs font-black bg-rose-50 dark:bg-rose-900/20 text-rose-500 border border-rose-100 dark:border-rose-800 rounded-xl hover:bg-rose-100 transition-all active:scale-95">C</button>
                             {[1000000, 3000000, 5000000, 10000000, 30000000, 50000000].map((val) => (
                                 <button
                                     key={val}
@@ -205,24 +214,30 @@ export default function SeverancePay() {
                         {/* 연간 상여금 */}
                         <div>
                             <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2 tracking-tight flex items-center gap-1.5">연간 상여금 총액 <span className="text-[10px] text-gray-400 font-normal">(전체 합계)</span></label>
-                            <input
-                                type="text"
-                                value={bonusYearly !== "0" ? formatNumber(parseInt(bonusYearly)) : ''}
-                                onChange={(e) => setBonusYearly(e.target.value.replace(/[^0-9]/g, ''))}
-                                placeholder="0"
-                                className="w-full p-4 text-right bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl outline-none focus:ring-2 focus:ring-blue-500 transition-all font-semibold text-gray-800 dark:text-gray-100"
-                            />
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    value={bonusYearly !== "0" ? formatNumber(parseInt(bonusYearly)) : ''}
+                                    onChange={(e) => setBonusYearly(e.target.value.replace(/[^0-9]/g, ''))}
+                                    placeholder="0"
+                                    className="w-full p-4 text-right bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl outline-none focus:ring-2 focus:ring-blue-500 transition-all font-semibold text-gray-800 dark:text-gray-100"
+                                />
+                                <button onClick={() => setBonusYearly("0")} className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-rose-50 text-rose-500 rounded-lg text-[10px] font-black border border-rose-100 hover:bg-rose-100 transition-all">C</button>
+                            </div>
                         </div>
                         {/* 미사용 연차수당 */}
                         <div>
                             <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2 tracking-tight flex items-center gap-1.5">연간 연차수당 총액 <span className="text-[10px] text-gray-400 font-normal">(지급액 기준)</span></label>
-                            <input
-                                type="text"
-                                value={holidayPayYearly !== "0" ? formatNumber(parseInt(holidayPayYearly)) : ''}
-                                onChange={(e) => setHolidayPayYearly(e.target.value.replace(/[^0-9]/g, ''))}
-                                placeholder="0"
-                                className="w-full p-4 text-right bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl outline-none focus:ring-2 focus:ring-blue-500 transition-all font-semibold text-gray-800 dark:text-gray-100"
-                            />
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    value={holidayPayYearly !== "0" ? formatNumber(parseInt(holidayPayYearly)) : ''}
+                                    onChange={(e) => setHolidayPayYearly(e.target.value.replace(/[^0-9]/g, ''))}
+                                    placeholder="0"
+                                    className="w-full p-4 text-right bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl outline-none focus:ring-2 focus:ring-blue-500 transition-all font-semibold text-gray-800 dark:text-gray-100"
+                                />
+                                <button onClick={() => setHolidayPayYearly("0")} className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-rose-50 text-rose-500 rounded-lg text-[10px] font-black border border-rose-100 hover:bg-rose-100 transition-all">C</button>
+                            </div>
                         </div>
                     </div>
 

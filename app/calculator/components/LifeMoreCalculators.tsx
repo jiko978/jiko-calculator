@@ -10,6 +10,7 @@ export default function LifeMoreCalculators() {
         { name: "연봉/월급 계산기", href: "/calculator/life/salary", emoji: "💸", description: "2025 최신 4대보험 반영 연봉/월급 실수령액" },
         { name: "실수령액 계산기", href: "/calculator/life/net-pay", emoji: "💰", description: "2025 최신 4대보험 반영 연봉/월급 실수령액" },
         { name: "퇴직금 계산기", href: "/calculator/life/severance-pay", emoji: "💼", description: "2025 최신 4대보험 반영 퇴직금 실수령액" },
+        { name: "실업급여 계산기", href: "/calculator/life/unemployment-benefit", emoji: "💡", description: "2025 최신 4대보험 반영 실업급여 실수령액" }
     ];
 
     // 현재 페이지는 제외하고 다른 계산기 보여주기

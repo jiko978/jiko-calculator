@@ -294,7 +294,7 @@ export default function AvgPrice({ stockName, initialCode }: AvgPriceProps) {
                                             }`} />
                                     </td>
                                     <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 text-base whitespace-nowrap">
-                                        {validAmounts[idx] > 0 ? validAmounts[idx].toLocaleString() : "-"}
+                                        <span aria-hidden="true">{validAmounts[idx] > 0 ? validAmounts[idx].toLocaleString() : "-"}</span>
                                     </td>
                                     <td className="border border-gray-400 dark:border-gray-600 py-2 text-center">
                                         {idx === rows.length - 1 && rows.length > 1 && (
@@ -354,7 +354,7 @@ export default function AvgPrice({ stockName, initialCode }: AvgPriceProps) {
                                 style={{
                                     fontSize: currentPrice ? getFontSize(currentPrice) : placeholderFontSize
                                 }}
-                                className="w-full border rounded-lg px-3 py-2 text-right focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 placeholder:text-left transition-all duration-150" />                            <span className="ml-2 text-gray-800 dark:text-gray-100 shrink-0 text-sm">원</span>
+                                className="w-full border-2 border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-right focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 placeholder:text-left transition-all duration-150" />                            <span aria-hidden="true" className="ml-2 text-gray-800 dark:text-gray-100 shrink-0 text-sm">원</span>
                         </div>
                     </div>
                 </div>

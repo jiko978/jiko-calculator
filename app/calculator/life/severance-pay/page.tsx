@@ -65,7 +65,7 @@ export default function Page() {
                 </section>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 font-medium">
                         <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
                             <span className="text-blue-500">💡</span> 사용 방법
                         </h2>
@@ -75,6 +75,22 @@ export default function Page() {
                             <li><strong>연간 상여금과 연차수당</strong> 총액을 입력하여 산정에 포함합니다.</li>
                             <li>[계산하기] 버튼을 누르면 세후 실수령 예상액을 포함한 결과가 출력됩니다.</li>
                         </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 font-medium">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-blue-500">📝</span> 계산 예시
+                        </h2>
+                        <div className="space-y-4 text-xs dark:text-gray-300 pointer-events-none">
+                            <div className="p-3 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800">
+                                <p className="text-gray-400 mb-1">근속 3년 / 평균월급 350만원 / 상여 0</p>
+                                <p className="font-bold text-gray-700 dark:text-gray-200">예상 퇴직금: 약 1,050만원</p>
+                            </div>
+                            <div className="p-3 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 opacity-60">
+                                <p className="text-gray-400 mb-1">근속 10년 / 평균월급 500만원 / 상여 500</p>
+                                <p className="font-bold text-gray-700 dark:text-gray-200">예상 퇴직금: 약 5,400만원</p>
+                            </div>
+                        </div>
                     </section>
                 </div>
 

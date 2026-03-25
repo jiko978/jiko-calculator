@@ -95,11 +95,11 @@ export default function Bmr() {
                             </div>
                         </div>
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">나이 (만)</label>
+                            <label htmlFor="bmr-age" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">나이 (만)</label>
                             <input
+                                id="bmr-age"
                                 type="number"
-                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all text-right ${errors.has("age") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-red-500 dark:text-gray-100"
-                                    }`}
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 border ${errors.has("age") ? "border-red-600 ring-2 ring-red-500/20" : "border-gray-300 dark:border-gray-600"} rounded-xl outline-none transition-all text-right focus:ring-2 focus:ring-red-500 dark:text-gray-100 placeholder-gray-400`}
                                 placeholder="예: 30"
                                 value={age}
                                 onChange={(e) => {
@@ -118,11 +118,11 @@ export default function Bmr() {
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">키 (cm)</label>
+                            <label htmlFor="bmr-height" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">키 (cm)</label>
                             <input
+                                id="bmr-height"
                                 type="number"
-                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all text-right ${errors.has("height") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-red-500 dark:text-gray-100"
-                                    }`}
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 border ${errors.has("height") ? "border-red-600 ring-2 ring-red-500/20" : "border-gray-300 dark:border-gray-600"} rounded-xl outline-none transition-all text-right focus:ring-2 focus:ring-red-500 dark:text-gray-100 placeholder-gray-400`}
                                 placeholder="예: 175"
                                 value={height}
                                 onChange={(e) => {
@@ -138,11 +138,11 @@ export default function Bmr() {
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">체중 (kg)</label>
+                            <label htmlFor="bmr-weight" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">체중 (kg)</label>
                             <input
+                                id="bmr-weight"
                                 type="number"
-                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all text-right ${errors.has("weight") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-red-500 dark:text-gray-100"
-                                    }`}
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 border ${errors.has("weight") ? "border-red-600 ring-2 ring-red-500/20" : "border-gray-300 dark:border-gray-600"} rounded-xl outline-none transition-all text-right focus:ring-2 focus:ring-red-500 dark:text-gray-100 placeholder-gray-400`}
                                 placeholder="예: 70"
                                 value={weight}
                                 onChange={(e) => {

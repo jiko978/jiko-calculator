@@ -81,7 +81,7 @@ export default function Page() {
                 </section>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 font-medium">
                         <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
                             <span className="text-blue-500">💡</span> 사용 방법
                         </h2>
@@ -90,6 +90,22 @@ export default function Page() {
                             <li>나의 <strong>평균 생리 주기</strong>(20일~45일)를 입력합니다. (기본 28일)</li>
                             <li>[계산하기] 버튼을 누르면 다음 생리 예정일과 가임기를 안내해 드립니다.</li>
                         </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 font-medium">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-blue-500">📝</span> 계산 예시
+                        </h2>
+                        <div className="space-y-4 text-xs dark:text-gray-300 pointer-events-none">
+                            <div className="p-3 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800">
+                                <p className="text-gray-400 mb-1">시작일: 3월 1일 / 주기: 28일</p>
+                                <p className="font-bold text-gray-700 dark:text-gray-200">배란 예정일: 3월 15일</p>
+                            </div>
+                            <div className="p-3 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 opacity-60">
+                                <p className="text-gray-400 mb-1">시작일: 3월 1일 / 주기: 35일</p>
+                                <p className="font-bold text-gray-700 dark:text-gray-200">배란 예정일: 3월 22일</p>
+                            </div>
+                        </div>
                     </section>
                 </div>
 

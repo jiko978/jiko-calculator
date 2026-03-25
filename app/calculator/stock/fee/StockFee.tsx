@@ -201,10 +201,10 @@ export default function StockFee({ stockName, initialCode }: StockFeeProps) {
                                             id={id}
                                             type="text" inputMode="numeric" placeholder={placeholder}
                                             value={value} onChange={handleChange(setter, key)}
-                                            className={`w-full border rounded-xl px-4 py-3 text-right focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 dark:text-white transition-all ${errors.has(key) ? "border-red-500 ring-2 ring-red-200 dark:ring-red-900/30" : "border-gray-200 dark:border-gray-700 focus:ring-blue-400"
+                                            className={`w-full border-2 rounded-xl px-4 py-3 text-right focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 dark:text-white transition-all ${errors.has(key) ? "border-red-500 ring-2 ring-red-200 dark:ring-red-900/30" : "border-gray-300 dark:border-gray-600 focus:ring-blue-400 ring-blue-400/10 focus:ring-4"
                                                 }`}
                                         />
-                                        <span className={`ml-2 text-sm w-4 shrink-0 font-bold ${errors.has(key) ? "text-red-500" : "text-gray-600 dark:text-gray-400"}`}>{unit}</span>
+                                        <span aria-hidden="true" className={`ml-2 text-sm w-4 shrink-0 font-bold ${errors.has(key) ? "text-red-500" : "text-gray-500 dark:text-gray-400"}`}>{unit}</span>
                                     </div>
                                 </div>
                             ))}
@@ -219,18 +219,18 @@ export default function StockFee({ stockName, initialCode }: StockFeeProps) {
                                             id="stock-buy-comm"
                                             type="text" placeholder="매수 (%)"
                                             value={buyCommission} onChange={handleChange(setBuyCommission, undefined, true)}
-                                            className="w-full border border-gray-200 dark:border-gray-700 rounded-xl px-3 py-3 text-right focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white dark:bg-gray-700 dark:text-white text-sm"
+                                            className="w-full border-2 border-gray-300 dark:border-gray-600 rounded-xl px-3 py-3 text-right focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white dark:bg-gray-700 dark:text-white text-sm ring-blue-400/10 focus:ring-4"
                                         />
-                                        <span className="absolute right-3 text-[10px] text-gray-600 dark:text-gray-400 pointer-events-none mt-7">매수</span>
+                                        <span aria-hidden="true" className="absolute right-3 text-[10px] text-gray-400 dark:text-gray-500 pointer-events-none mt-7">매수</span>
                                     </div>
                                     <div className="relative flex items-center">
                                         <input
                                             id="stock-sell-comm"
                                             type="text" placeholder="매도 (%)"
                                             value={sellCommission} onChange={handleChange(setSellCommission, undefined, true)}
-                                            className="w-full border border-gray-200 dark:border-gray-700 rounded-xl px-3 py-3 text-right focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white dark:bg-gray-700 dark:text-white text-sm"
+                                            className="w-full border-2 border-gray-300 dark:border-gray-600 rounded-xl px-3 py-3 text-right focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white dark:bg-gray-700 dark:text-white text-sm ring-blue-400/10 focus:ring-4"
                                         />
-                                        <span className="absolute right-3 text-[10px] text-gray-600 dark:text-gray-400 pointer-events-none mt-7">매도</span>
+                                        <span aria-hidden="true" className="absolute right-3 text-[10px] text-gray-400 dark:text-gray-500 pointer-events-none mt-7">매도</span>
                                     </div>
                                 </div>
                                 <p className="text-[10px] text-gray-600 dark:text-gray-400 mt-1 ml-1 text-right">* 단위: % (기본 {market.value === "OVERSEAS" ? "0.1" : "0.015"}%)</p>

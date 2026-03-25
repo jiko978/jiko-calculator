@@ -64,7 +64,7 @@ export default function Page() {
                 </section>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 font-medium">
                         <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
                             <span className="text-blue-500">💡</span> 사용 방법
                         </h2>
@@ -73,6 +73,22 @@ export default function Page() {
                             <li>비과세액(식대 등 기본 20만원)과 인적 공제 정보를 확인합니다.</li>
                             <li>[계산하기] 버튼을 누르면 해당 금액을 받기 위해 필요한 세전 연봉과 월급이 산출됩니다.</li>
                         </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 font-medium">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-blue-500">📝</span> 계산 예시
+                        </h2>
+                        <div className="space-y-4 text-xs dark:text-gray-300 pointer-events-none">
+                            <div className="p-3 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800">
+                                <p className="text-gray-400 mb-1">희망 실수령: 월 300만원</p>
+                                <p className="font-bold text-gray-700 dark:text-gray-200">필요 연봉: 약 4,110만원</p>
+                            </div>
+                            <div className="p-3 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 opacity-60">
+                                <p className="text-gray-400 mb-1">희망 실수령: 월 500만원</p>
+                                <p className="font-bold text-gray-700 dark:text-gray-200">필요 연봉: 약 7,420만원</p>
+                            </div>
+                        </div>
                     </section>
                 </div>
 

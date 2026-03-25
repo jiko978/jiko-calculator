@@ -4,9 +4,9 @@ import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../utils/seo";
 
 export const metadata: Metadata = {
-    title: "생활 계산기 | 연봉, 실수령액, 퇴직금 계산기 모음 - JIKO 계산기",
-    description: "내 연봉/실수령액은 얼마일까? 퇴직금은 얼마일까? 일상 생활에 꼭 필요한 급여, 세금, 퇴직금 계산기를 2025년 최신 기준으로 이용하세요.",
-    keywords: ["생활 계산기", "연봉 계산기", "월급 계산기", "실수령액 계산기", "퇴직금 계산기", "세금 계산기", "4대보험 계산기", "JIKO 계산기"],
+    title: "생활 계산기 | 연봉, 퇴직금, 실업급여 계산기 모음 - JIKO 계산기",
+    description: "내 연봉/실수령액은 얼마일까? 퇴직금과 실업급여는? 일상 생활에 꼭 필요한 급여, 세금, 실업급여 계산기를 2025년 최신 기준으로 이용하세요.",
+    keywords: ["생활 계산기", "연봉 계산기", "월급 계산기", "실수령액 계산기", "퇴직금 계산기", "실업급여 계산기", "세금 계산기", "JIKO 계산기"],
 };
 
 const lifeCalculators = [
@@ -25,6 +25,11 @@ const lifeCalculators = [
         description: "2025년 최신 산정 기준을 반영하여 근속 연수와 평균임금을 기반으로 정확한 퇴직금을 계산해드립니다.",
         href: "/calculator/life/severance-pay",
     },
+    {
+        title: "📑 실업급여 계산기",
+        description: "2025년 고용보험법 개정 기준을 반영하여 예상 수급액과 지급 기간을 정확하게 산출해드립니다.",
+        href: "/calculator/life/unemployment-benefit",
+    },
 ];
 
 export default function LifeHubPage() {
@@ -38,7 +43,7 @@ export default function LifeHubPage() {
         <main className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
 
-            <NavBar title="생활 계산기" description="생활 계산기 | 연봉, 월급, 실수령액, 퇴직금 계산기 - JIKO 계산기" />
+            <NavBar title="생활 계산기" description="생활 계산기 | 연봉, 실수령액, 퇴직금, 실업급여 계산기 - JIKO 계산기" />
 
             <div className="flex-grow px-4 py-6">
                 <h1 className="text-4xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">🏠 생활 계산기</h1>

@@ -93,12 +93,12 @@ export default function Ovulation() {
             <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                 <div className="space-y-6">
                     <div>
-                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">마지막 생리 시작일</label>
+                        <label htmlFor="last-period-date" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">마지막 생리 시작일</label>
                         <input
+                            id="last-period-date"
                             type="date"
                             max="9999-12-31"
-                            className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all [text-align:right] md:[text-align:left] ${errors.has("date") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-pink-500 dark:text-gray-100"
-                                }`}
+                            className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 border ${errors.has("date") ? "border-red-600 ring-2 ring-red-500/20" : "border-gray-300 dark:border-gray-600"} rounded-xl outline-none transition-all [text-align:right] md:[text-align:left] focus:ring-2 focus:ring-pink-500 dark:text-gray-100 placeholder-gray-400`}
                             value={lastPeriodDate}
                             onChange={(e) => {
                                 const val = e.target.value;
@@ -116,12 +116,12 @@ export default function Ovulation() {
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">평균 생리 주기 (20~45일)</label>
+                        <label htmlFor="cycle-length" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">평균 생리 주기 (20~45일)</label>
                         <div className="relative">
                             <input
+                                id="cycle-length"
                                 type="number"
-                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all pr-12 text-right ${errors.has("cycle") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-pink-500 dark:text-gray-100"
-                                    }`}
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 border ${errors.has("cycle") ? "border-red-600 ring-2 ring-red-500/20" : "border-gray-300 dark:border-gray-600"} rounded-xl outline-none transition-all pr-12 text-right focus:ring-2 focus:ring-pink-500 dark:text-gray-100 placeholder-gray-400`}
                                 value={cycleLength}
                                 onChange={(e) => {
                                     const val = parseInt(e.target.value);
@@ -137,7 +137,7 @@ export default function Ovulation() {
                                 min="20"
                                 max="45"
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 font-medium">일</span>
+                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium" aria-hidden="true">일</span>
                         </div>
                     </div>
 

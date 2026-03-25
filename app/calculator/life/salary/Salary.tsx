@@ -51,6 +51,12 @@ export default function Salary() {
         setErrorMessage("");
     };
 
+    const resetAmount = () => {
+        setAmount("");
+        setErrors(new Set());
+        setErrorMessage("");
+    };
+
     const handleCalculate = () => {
         const newErrors = new Set<string>();
 
@@ -211,21 +217,23 @@ export default function Salary() {
                     {/* Inputs */}
                     <div className="space-y-6">
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            <label htmlFor="salary-amount" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                                 {calcType === 'YEARLY' ? '연봉' : '월급'} (원)
                             </label>
                             <div className="relative">
                                 <input
+                                    id="salary-amount"
                                     type="text"
                                     value={amount ? formatNumber(parseInt(amount)) : ''}
                                     onChange={handleAmountChange}
                                     placeholder={`${calcType === 'YEARLY' ? '예: 50,000,000' : '예: 3,000,000'}`}
-                                    className={`w-full p-4 text-right bg-gray-50 dark:bg-gray-900 border ${errors.has('amount') ? 'border-red-500 ring-2 ring-red-500/20' : 'border-gray-200 dark:border-gray-700'} rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all font-semibold text-gray-800 dark:text-gray-100 ${shakeField === 'amount' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
+                                    className={`w-full p-4 text-right bg-gray-50 dark:bg-gray-900 border ${errors.has('amount') ? 'border-red-600 ring-2 ring-red-500/20' : 'border-gray-300 dark:border-gray-600'} rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all font-semibold text-gray-800 dark:text-gray-100 ${shakeField === 'amount' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                                 />
-                                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium">₩</span>
+                                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium" aria-hidden="true">₩</span>
                             </div>
 
                             <div className="flex flex-wrap gap-2 mt-3">
+                                <button onClick={resetAmount} className="px-3 py-1.5 text-xs font-black bg-rose-50 dark:bg-rose-900/20 text-rose-500 border border-rose-100 dark:border-rose-800 rounded-xl hover:bg-rose-100 transition-all active:scale-95">C</button>
                                 {[1000000, 3000000, 5000000, 10000000, 30000000, 50000000].map((val) => (
                                     <button
                                         key={val}
@@ -249,14 +257,15 @@ export default function Salary() {
                         )}
 
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">비과세액 (원)</label>
+                            <label htmlFor="tax-free-amount" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">비과세액 (원)</label>
                             <input
+                                id="tax-free-amount"
                                 type="text"
                                 value={taxFreeAmount ? formatNumber(parseInt(taxFreeAmount)) : ''}
                                 onChange={handleTaxFreeChange}
-                                className={`w-full p-4 text-right bg-gray-50 dark:bg-gray-900 border ${errors.has('taxFreeAmount') ? 'border-red-500 ring-2 ring-red-500/20' : 'border-gray-200 dark:border-gray-700'} rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-800 dark:text-gray-100 ${shakeField === 'taxFreeAmount' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
+                                className={`w-full p-4 text-right bg-gray-50 dark:bg-gray-900 border ${errors.has('taxFreeAmount') ? 'border-red-600 ring-2 ring-red-500/20' : 'border-gray-300 dark:border-gray-600'} rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all text-gray-800 dark:text-gray-100 ${shakeField === 'taxFreeAmount' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                             />
-                            <p className="text-xs text-gray-500 mt-2">※ 2024년부터 식대 비과세 한도가 20만원으로 상향되었습니다.</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">※ 2024년부터 식대 비과세 한도가 20만원으로 상향되었습니다.</p>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">

@@ -154,13 +154,12 @@ export default function Pregnancy() {
                     <div className="pt-2">
                         {calcType === "A" && (
                             <div>
-                                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">마지막 생리 시작일</label>
+                                <label htmlFor="last-period" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">마지막 생리 시작일</label>
                                 <input 
+                                    id="last-period"
                                     type="date" 
                                     max="9999-12-31"
-                                    className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all [text-align:right] md:[text-align:left] ${
-                                        errors.has("lastPeriod") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-purple-500 dark:text-gray-100"
-                                    }`} 
+                                    className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 border ${errors.has("lastPeriod") ? "border-red-600 ring-2 ring-red-500/20" : "border-gray-300 dark:border-gray-600"} rounded-xl outline-none transition-all [text-align:right] md:[text-align:left] focus:ring-2 focus:ring-purple-500 dark:text-gray-100 placeholder-gray-400`} 
                                     value={lastPeriod} 
                                     onChange={(e) => {
                                         const val = e.target.value;
@@ -181,13 +180,12 @@ export default function Pregnancy() {
                         {calcType === "B" && (
                             <div className="space-y-4">
                                 <div>
-                                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">초음파 기준 날짜</label>
+                                    <label htmlFor="ref-date" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">초음파 기준 날짜</label>
                                     <input 
+                                        id="ref-date"
                                         type="date" 
                                         max="9999-12-31"
-                                        className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all [text-align:right] md:[text-align:left] ${
-                                            errors.has("refDate") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-purple-500 dark:text-gray-100"
-                                        }`} 
+                                        className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 border ${errors.has("refDate") ? "border-red-600 ring-2 ring-red-500/20" : "border-gray-300 dark:border-gray-600"} rounded-xl outline-none transition-all [text-align:right] md:[text-align:left] focus:ring-2 focus:ring-purple-500 dark:text-gray-100 placeholder-gray-400`} 
                                         value={refDate} 
                                         onChange={(e) => {
                                             const val = e.target.value;
@@ -206,12 +204,11 @@ export default function Pregnancy() {
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div>
-                                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">진단 주수 (주)</label>
+                                        <label htmlFor="input-weeks" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">진단 주수 (주)</label>
                                         <input 
+                                            id="input-weeks"
                                             type="number" 
-                                            className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all ${
-                                                errors.has("inputWeeks") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-purple-500 dark:text-gray-100"
-                                            }`} 
+                                            className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 border ${errors.has("inputWeeks") ? "border-red-600 ring-2 ring-red-500/20" : "border-gray-300 dark:border-gray-600"} rounded-xl outline-none transition-all focus:ring-2 focus:ring-purple-500 dark:text-gray-100 placeholder-gray-400`} 
                                             placeholder="0" 
                                             value={inputWeeks || ""} 
                                             onChange={(e) => {
@@ -230,12 +227,11 @@ export default function Pregnancy() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">진단 일수 (일)</label>
+                                        <label htmlFor="input-days" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">진단 일수 (일)</label>
                                         <input 
+                                            id="input-days"
                                             type="number" 
-                                            className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all ${
-                                                errors.has("inputDays") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-purple-500 dark:text-gray-100"
-                                            }`} 
+                                            className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 border ${errors.has("inputDays") ? "border-red-600 ring-2 ring-red-500/20" : "border-gray-300 dark:border-gray-600"} rounded-xl outline-none transition-all focus:ring-2 focus:ring-purple-500 dark:text-gray-100 placeholder-gray-400`} 
                                             placeholder="0" 
                                             value={inputDays || ""} 
                                             onChange={(e) => {
@@ -258,13 +254,12 @@ export default function Pregnancy() {
                         )}
                         {calcType === "C" && (
                             <div>
-                                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">출산 예정일</label>
+                                <label htmlFor="expected-due-date" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">출산 예정일</label>
                                 <input 
+                                    id="expected-due-date"
                                     type="date" 
                                     max="9999-12-31"
-                                    className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all [text-align:right] md:[text-align:left] ${
-                                        errors.has("expectedDueDate") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-purple-500 dark:text-gray-100"
-                                    }`} 
+                                    className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 border ${errors.has("expectedDueDate") ? "border-red-600 ring-2 ring-red-500/20" : "border-gray-300 dark:border-gray-600"} rounded-xl outline-none transition-all [text-align:right] md:[text-align:left] focus:ring-2 focus:ring-purple-500 dark:text-gray-100 placeholder-gray-400`} 
                                     value={expectedDueDate} 
                                     onChange={(e) => {
                                         const val = e.target.value;
