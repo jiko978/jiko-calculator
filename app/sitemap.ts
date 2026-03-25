@@ -56,7 +56,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // 빌드 시점에 비동기 호출 (Next.js 빌드 시 실행됨)
     // 인덱싱 자동화를 위해 전체 URL 리스트를 제출 함수로 전달합니다.
     const allFullUrls = finalSitemap.map(r => r.url);
-    submitToBing(allFullUrls).catch(err => console.error("Bing submit err:", err));
+    // **임시 강제 제출 실행** (오늘 날짜 이력을 남기기 위해 forceSubmit=true 적용)
+    submitToBing(allFullUrls, true).catch(err => console.error("Bing submit err:", err));
 
     return finalSitemap;
 }
