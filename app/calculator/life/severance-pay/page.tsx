@@ -1,0 +1,86 @@
+// app/calculator/life/severance-pay/page.tsx
+import type { Metadata } from "next";
+import SeverancePay from "./SeverancePay";
+import NavBar from "@/app/calculator/components/NavBar";
+import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
+import LifeMoreCalculators from "@/app/calculator/components/LifeMoreCalculators";
+import FAQ from "@/app/calculator/components/FAQ";
+
+const BASE_URL = "https://jiko.kr";
+
+export const metadata: Metadata = {
+    title: "퇴직금 계산기 | 2025 최신 세금 및 세후 실수령액 계산 - JIKO 계산기",
+    description: "내 퇴직금은 얼마일까? 2025년 최신 퇴직금 산정 기준과 상여금, 연차수당을 반영한 정확한 세전/세후 퇴직금을 계산해드립니다.",
+    keywords: ["퇴직금 계산기", "예상 퇴직금", "퇴직금 계산 방법", "퇴직금 세금 계산", "퇴직소득세 계산", "평균임금 계산", "JIKO 계산기"],
+    alternates: { canonical: `${BASE_URL}/calculator/life/severance-pay` },
+    openGraph: {
+        title: "퇴직금 계산기 | 2025년 최신 퇴직금 산정 기준 반영",
+        description: "입사일과 퇴사일만 넣으면 끝! 상여금과 연차수당까지 포함한 정밀한 퇴직금과 세금을 확인하세요.",
+        url: `${BASE_URL}/calculator/life/severance-pay`,
+        images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "퇴직금 계산기" }],
+    },
+};
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "퇴직금 계산기",
+    description: "2025년 최신 산정 기준을 반영하여 근속 연수와 평균임금을 기반으로 정확한 퇴직금 및 세금을 계산해드립니다.",
+    url: `${BASE_URL}/calculator/life/severance-pay`,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+};
+
+export default function Page() {
+    const breadcrumbLd = generateBreadcrumbJsonLd([
+        COMMON_BREADCRUMBS.HOME,
+        COMMON_BREADCRUMBS.CALC_HOME,
+        COMMON_BREADCRUMBS.LIFE_HOME,
+        COMMON_BREADCRUMBS.SEVERANCE_PAY
+    ]);
+
+    const faqList = [
+        { question: "퇴직금 지급 대상은 어떻게 되나요?", answer: "1주당 소정근로시간이 15시간 이상이고, 계속 근로기간이 1년 이상이면 지급 대상입니다. 1년 미만 근로 시 법정 퇴직금은 발생하지 않습니다." },
+        { question: "퇴직금 산정 기준인 '평균임금'은 무엇인가요?", answer: "퇴직 전 3개월 동안 지급된 임금의 총액을 해당 기간의 총 일수로 나룬 금액입니다. 여기에는 상여금의 1/4과 연차수당의 1/4도 포함됩니다." },
+        { question: "퇴직금은 언제까지 지급되어야 하나요?", answer: "근로기준법에 따라 퇴사일로부터 14일 이내에 지급되어야 합니다. 특별한 사정이 있는 경우 합의에 의해 연장할 수 있습니다." },
+        { question: "퇴직금은 반드시 IRP 계좌로 받아야 하나요?", answer: "2022년 4월부터 퇴직연금 가입 여부와 관계없이 모든 퇴직금은 원칙적으로 개인형퇴직연금(IRP) 계좌로 이전하여 지급해야 합니다. 단, 만 55세 이후 퇴직하거나 금액이 300만원 이하인 경우 등은 예외가 있습니다." }
+    ];
+
+    return (
+        <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
+            <NavBar title="퇴직금 계산기" description="예상 퇴직금 및 세금/실수령액 계산" position="top" />
+            <SeverancePay />
+
+            <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">
+                <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                        <span className="text-2xl">💼</span> 퇴직금 계산기 및 산정 기준 안내
+                    </h1>
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
+                        내 퇴직금이 얼마인지 궁금하신가요? <strong>2025년 최신 퇴직금 산정 방식</strong>을 적용하여 근속 기간에 따른 정확한 세전 퇴직금과 세금, 그리고 최종 실수령액까지 한눈에 확인해 보세요.
+                    </p>
+                </section>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-blue-500">💡</span> 사용 방법
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc list-inside">
+                            <li><strong>입사일과 퇴사일</strong>을 정확히 입력합니다. (재직일수 자동 계산)</li>
+                            <li>퇴사 직전 <strong>3개월간의 급여</strong> 내역을 입력합니다.</li>
+                            <li><strong>연간 상여금과 연차수당</strong> 총액을 입력하여 산정에 포함합니다.</li>
+                            <li>[계산하기] 버튼을 누르면 세후 실수령 예상액을 포함한 결과가 출력됩니다.</li>
+                        </ul>
+                    </section>
+                </div>
+
+                <FAQ faqList={faqList} />
+                <LifeMoreCalculators />
+            </main>
+        </div>
+    );
+}

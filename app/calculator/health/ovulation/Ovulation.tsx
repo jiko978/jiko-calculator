@@ -94,33 +94,35 @@ export default function Ovulation() {
                 <div className="space-y-6">
                     <div>
                         <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">마지막 생리 시작일</label>
-                        <input 
-                            type="date" 
-                            className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all ${
-                                errors.has("date") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-pink-500 dark:text-gray-100"
-                            }`}
-                            value={lastPeriodDate} 
+                        <input
+                            type="date"
+                            max="9999-12-31"
+                            className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all [text-align:right] md:[text-align:left] ${errors.has("date") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-pink-500 dark:text-gray-100"
+                                }`}
+                            value={lastPeriodDate}
                             onChange={(e) => {
-                                setLastPeriodDate(e.target.value);
-                                if (e.target.value) {
+                                const val = e.target.value;
+                                const yearPart = val.split('-')[0];
+                                if (yearPart && yearPart.length > 4) return;
+                                setLastPeriodDate(val);
+                                if (val) {
                                     setErrors(prev => {
                                         const next = new Set(prev);
                                         next.delete("date");
                                         return next;
                                     });
                                 }
-                            }} 
+                            }}
                         />
                     </div>
                     <div>
                         <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">평균 생리 주기 (20~45일)</label>
                         <div className="relative">
-                            <input 
-                                type="number" 
-                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all pr-12 text-right ${
-                                    errors.has("cycle") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-pink-500 dark:text-gray-100"
-                                }`}
-                                value={cycleLength} 
+                            <input
+                                type="number"
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all pr-12 text-right ${errors.has("cycle") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-pink-500 dark:text-gray-100"
+                                    }`}
+                                value={cycleLength}
                                 onChange={(e) => {
                                     const val = parseInt(e.target.value);
                                     setCycleLength(val || 0);
@@ -131,8 +133,8 @@ export default function Ovulation() {
                                             return next;
                                         });
                                     }
-                                }} 
-                                min="20" 
+                                }}
+                                min="20"
                                 max="45"
                             />
                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 font-medium">일</span>
@@ -172,7 +174,7 @@ export default function Ovulation() {
                             </div>
 
                             <p className="text-xs text-gray-500 dark:text-gray-400 mb-6 text-center">
-                                * 생리 주기가 불규칙한 경우 계산 결과가 부정확할 수 있습니다. 
+                                * 생리 주기가 불규칙한 경우 계산 결과가 부정확할 수 있습니다.
                                 본 계산 결과는 단순 참조용이며, 의학적 피임이나 진단을 대체할 수 없습니다.
                             </p>
 

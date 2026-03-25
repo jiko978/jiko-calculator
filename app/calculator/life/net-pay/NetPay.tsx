@@ -161,11 +161,11 @@ export default function NetPay() {
                                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium">₩</span>
                             </div>
                             <div className="flex flex-wrap gap-2 mt-3">
-                                {[1000000, 3000000, 5000000, 10000000, 30000000, 50000000, 100000000].map((val) => (
+                                {[1000000, 3000000, 5000000, 10000000, 30000000, 50000000].map((val) => (
                                     <button
                                         key={val}
                                         onClick={() => addAmount(val)}
-                                        className="px-3 py-1.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-medium rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
+                                        className="px-5 py-1.5 text-xs font-semibold bg-gray-100 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 rounded-xl transition-all active:scale-95"
                                     >
                                         +{val >= 100000000 ? `${val / 100000000}억원` : val >= 10000000 ? `${val / 10000000}천만원` : `${val / 10000}만원`}
                                     </button>

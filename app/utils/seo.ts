@@ -45,4 +45,5 @@ export const COMMON_BREADCRUMBS = {
     LIFE_HOME: { name: "생활 계산기", item: "/calculator/life" },
     SALARY: { name: "연봉/월급 계산기", item: "/calculator/life/salary" },
     NET_PAY: { name: "실수령액 계산기", item: "/calculator/life/net-pay" },
+    SEVERANCE_PAY: { name: "퇴직금 계산기", item: "/calculator/life/severance-pay" },
 };

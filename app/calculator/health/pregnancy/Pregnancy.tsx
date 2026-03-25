@@ -157,13 +157,17 @@ export default function Pregnancy() {
                                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">마지막 생리 시작일</label>
                                 <input 
                                     type="date" 
-                                    className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all ${
+                                    max="9999-12-31"
+                                    className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all [text-align:right] md:[text-align:left] ${
                                         errors.has("lastPeriod") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-purple-500 dark:text-gray-100"
                                     }`} 
                                     value={lastPeriod} 
                                     onChange={(e) => {
-                                        setLastPeriod(e.target.value);
-                                        if (e.target.value) {
+                                        const val = e.target.value;
+                                        const yearPart = val.split('-')[0];
+                                        if (yearPart && yearPart.length > 4) return;
+                                        setLastPeriod(val);
+                                        if (val) {
                                             setErrors(prev => {
                                                 const next = new Set(prev);
                                                 next.delete("lastPeriod");
@@ -180,13 +184,17 @@ export default function Pregnancy() {
                                     <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">초음파 기준 날짜</label>
                                     <input 
                                         type="date" 
-                                        className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all ${
+                                        max="9999-12-31"
+                                        className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all [text-align:right] md:[text-align:left] ${
                                             errors.has("refDate") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-purple-500 dark:text-gray-100"
                                         }`} 
                                         value={refDate} 
                                         onChange={(e) => {
-                                            setRefDate(e.target.value);
-                                            if (e.target.value) {
+                                            const val = e.target.value;
+                                            const yearPart = val.split('-')[0];
+                                            if (yearPart && yearPart.length > 4) return;
+                                            setRefDate(val);
+                                            if (val) {
                                                 setErrors(prev => {
                                                     const next = new Set(prev);
                                                     next.delete("refDate");
@@ -253,13 +261,17 @@ export default function Pregnancy() {
                                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">출산 예정일</label>
                                 <input 
                                     type="date" 
-                                    className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all ${
+                                    max="9999-12-31"
+                                    className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none transition-all [text-align:right] md:[text-align:left] ${
                                         errors.has("expectedDueDate") ? "ring-2 ring-red-500 border-red-500" : "focus:ring-2 focus:ring-purple-500 dark:text-gray-100"
                                     }`} 
                                     value={expectedDueDate} 
                                     onChange={(e) => {
-                                        setExpectedDueDate(e.target.value);
-                                        if (e.target.value) {
+                                        const val = e.target.value;
+                                        const yearPart = val.split('-')[0];
+                                        if (yearPart && yearPart.length > 4) return;
+                                        setExpectedDueDate(val);
+                                        if (val) {
                                             setErrors(prev => {
                                                 const next = new Set(prev);
                                                 next.delete("expectedDueDate");
