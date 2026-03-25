@@ -36,6 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: "/calculator/life",  priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/life/salary",  priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/life/net-pay",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/life/severance-pay",  priority: 0.8, changeFrequency: "monthly" as const },
 
         // ── policy ──
         { url: "/policy/about", priority: 0.5, changeFrequency: "monthly" as const },
