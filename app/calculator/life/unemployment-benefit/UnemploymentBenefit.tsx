@@ -290,12 +290,12 @@ export default function UnemploymentBenefit() {
                                         <span className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-300 font-bold text-lg" aria-hidden="true">₩</span>
                                     </div>
                                     <div className="flex flex-wrap gap-2 justify-end">
-                                        <button onClick={() => resetAmount(0)} className="px-3 py-2 bg-rose-50 dark:bg-rose-900/10 border border-rose-100 dark:border-rose-900/20 rounded-xl text-[11px] font-black text-rose-500 hover:bg-rose-100 transition-all outline-none">C</button>
+                                        <button onClick={() => resetAmount(0)} className="px-3 py-1.5 bg-rose-50 dark:bg-rose-900/10 border border-rose-100 dark:border-rose-900/20 rounded-xl text-[11px] font-black text-rose-500 hover:bg-rose-100 transition-all outline-none">C</button>
                                         {quickAmounts.map((val) => (
                                             <button
                                                 key={val}
                                                 onClick={() => addAmount(val)}
-                                                className="px-4 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-700 rounded-xl text-[11px] font-bold text-gray-500 hover:bg-blue-50 hover:text-blue-600 active:scale-95 transition-all outline-none"
+                                                className="px-3 py-1.5 bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-700 rounded-xl text-[11px] font-bold text-gray-500 hover:bg-blue-50 hover:text-blue-600 active:scale-95 transition-all outline-none"
                                             >
                                                 +{val >= 1000000 ? `${val / 1000000}00만원` : `${val / 10000}만원`}
                                             </button>
@@ -322,14 +322,14 @@ export default function UnemploymentBenefit() {
                                                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 font-bold">₩</span>
                                             </div>
                                             <div className="flex flex-wrap gap-1.5 justify-end">
-                                                <button onClick={() => resetAmount(idx)} className="px-2 py-1.5 bg-rose-50 dark:bg-rose-900/10 border border-rose-100 dark:border-rose-900/20 rounded-lg text-[10px] font-black text-rose-500 hover:bg-rose-100 transition-all outline-none">C</button>
+                                                <button onClick={() => resetAmount(idx)} className="px-3 py-1.5 bg-rose-50 dark:bg-rose-900/10 border border-rose-100 dark:border-rose-900/20 rounded-lg text-[10px] font-black text-rose-500 hover:bg-rose-100 transition-all outline-none">C</button>
                                                 {quickAmounts.map((val) => (
                                                     <button
                                                         key={val}
                                                         onClick={() => addAmount(val, idx)}
-                                                        className="px-3 py-1.5 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-lg text-[10px] font-bold text-gray-400 hover:bg-blue-50 hover:text-blue-600 active:scale-95 transition-all"
+                                                        className="px-3 py-1.5 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-lg text-[11px] font-bold text-gray-400 hover:bg-blue-50 hover:text-blue-600 active:scale-95 transition-all"
                                                     >
-                                                        +{val >= 1000000 ? `${val / 1000000}00` : `${val / 10000}`}
+                                                        +{val >= 1000000 ? `${val / 1000000}00만원` : `${val / 10000}만원`}
                                                     </button>
                                                 ))}
                                             </div>

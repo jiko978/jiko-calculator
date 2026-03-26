@@ -238,7 +238,7 @@ export default function Salary() {
                                     <button
                                         key={val}
                                         onClick={() => addAmount(val)}
-                                        className="px-4 py-1.5 text-xs font-semibold bg-gray-100 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 rounded-xl transition-all active:scale-95"
+                                        className="px-3 py-1.5 text-xs font-semibold bg-gray-100 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 rounded-xl transition-all active:scale-95"
                                     >
                                         +{val >= 100000000 ? `${val / 100000000}억원` : val >= 10000000 ? `${val / 10000000}천만원` : `${val / 10000}만원`}
                                     </button>
