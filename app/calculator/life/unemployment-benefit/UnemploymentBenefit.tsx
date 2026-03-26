@@ -297,7 +297,7 @@ export default function UnemploymentBenefit() {
                                                 onClick={() => addAmount(val)}
                                                 className="px-3 py-1.5 bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-700 rounded-xl text-[11px] font-bold text-gray-500 hover:bg-blue-50 hover:text-blue-600 active:scale-95 transition-all outline-none"
                                             >
-                                                +{val >= 1000000 ? `${val / 1000000}00` : `${val / 10000}`}
+                                                +{val >= 100000000 ? `${val / 1000000}` : `${val / 10000}`}
                                             </button>
                                         ))}
                                     </div>

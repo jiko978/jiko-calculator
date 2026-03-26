@@ -218,7 +218,7 @@ export default function Salary() {
                     <div className="space-y-6">
                         <div>
                             <label htmlFor="salary-amount" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                                {calcType === 'YEARLY' ? '연봉' : '월급'} (원)
+                                세전 {calcType === 'YEARLY' ? '연봉' : '월급'} (원)
                             </label>
                             <div className="relative">
                                 <input
@@ -240,7 +240,7 @@ export default function Salary() {
                                         onClick={() => addAmount(val)}
                                         className="px-3 py-1.5 text-xs font-semibold bg-gray-100 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 rounded-xl transition-all active:scale-95"
                                     >
-                                        +{val >= 100000000 ? `${val / 100000}` : val >= 10000000 ? `${val / 10000}` : `${val / 10000}`}
+                                        +{val >= 100000000 ? `${val / 100000}` : `${val / 10000}`}
                                     </button>
                                 ))}
                             </div>
