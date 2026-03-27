@@ -5,10 +5,11 @@ import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../utils/seo";
 const mainCalculators = [
     { title: "📈 주식 계산기", description: "주식 물타기, 수익률, 배당금, 수수료 계산기", href: "/calculator/stock" },
     { title: "💵 금융 계산기", description: "예금 이자, 적금 이자, 대출 이자 계산기", href: "/calculator/finance" },
-    { title: "🏢 부동산 계산기", description: "", href: "/calculator/real-estate" },
     { title: "💼 직장 계산기", description: "연봉/월급, 실수령액, 퇴직금, 실업급여 계산기", href: "/calculator/job" },
     { title: "💪 건강 계산기", description: "비만도, 기초대사량, 칼로리, 배란일, 임신주수 계산기", href: "/calculator/health" },
-    { title: "🧾 세금 계산기", description: "", href: "/calculator/tax" }
+    { title: "🏠 생활 계산기", description: "", href: "/calculator/life" },
+    { title: "🧾 세금 계산기", description: "", href: "/calculator/tax" },
+    { title: "🏢 부동산 계산기", description: "", href: "/calculator/real-estate" }
 ];
 
 export default function Home() {

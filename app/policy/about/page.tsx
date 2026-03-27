@@ -50,7 +50,7 @@ export default function AboutPage() {
                             연봉/월급, 실수령액, 퇴직금 등 <strong>세무/직장</strong> 영역부터 주식 평단가, 수익률 등 <strong>금융/재테크</strong>까지 흩어져 있는 모든 수식을 한 곳에 모았습니다.
                         </p>
                         <div className="mt-4 flex flex-wrap gap-2">
-                            {['주식', '금융', '부동산', '건강', '직장', '세금'].map(tag => (
+                            {['주식', '금융', '직장', '건강', '생활', '세금', '부동산'].map(tag => (
                                 <span key={tag} className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-400 rounded text-[10px] font-bold">#{tag}</span>
                             ))}
                         </div>

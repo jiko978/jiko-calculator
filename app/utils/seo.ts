@@ -35,6 +35,11 @@ export const COMMON_BREADCRUMBS = {
     SAVINGS: { name: "적금 이자 계산기", item: "/calculator/finance/savings" },
     LOANS: { name: "대출 이자 계산기", item: "/calculator/finance/loans" },
 
+    JOB_HOME: { name: "직장 계산기", item: "/calculator/job" },
+    SALARY: { name: "연봉/월급 계산기", item: "/calculator/job/salary" },
+    NET_PAY: { name: "실수령액 계산기", item: "/calculator/job/net-pay" },
+    SEVERANCE_PAY: { name: "퇴직금 계산기", item: "/calculator/job/severance-pay" },
+
     HEALTH_HOME: { name: "건강 계산기", item: "/calculator/health" },
     BMI: { name: "비만도 계산기", item: "/calculator/health/bmi" },
     BMR: { name: "기초대사량 계산기", item: "/calculator/health/bmr" },
@@ -42,9 +47,5 @@ export const COMMON_BREADCRUMBS = {
     OVULATION: { name: "배란일 계산기", item: "/calculator/health/ovulation" },
     PREGNANCY: { name: "임신주수 계산기", item: "/calculator/health/pregnancy" },
     
-    JOB_HOME: { name: "직장 계산기", item: "/calculator/job" },
-    SALARY: { name: "연봉/월급 계산기", item: "/calculator/job/salary" },
-    NET_PAY: { name: "실수령액 계산기", item: "/calculator/job/net-pay" },
-    SEVERANCE_PAY: { name: "퇴직금 계산기", item: "/calculator/job/severance-pay" },
 };
 

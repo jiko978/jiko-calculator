@@ -22,6 +22,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: "/calculator/finance/savings", priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/finance/loans", priority: 0.8, changeFrequency: "monthly" as const },
 
+        // ── 직장 ──
+        { url: "/calculator/job",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/job/salary",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/job/net-pay",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/job/severance-pay",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/job/unemployment-benefit",  priority: 0.8, changeFrequency: "monthly" as const },
+
         // ── 건강 ──
         { url: "/calculator/health",  priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/health/bmi",  priority: 0.8, changeFrequency: "monthly" as const },
@@ -29,13 +36,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: "/calculator/health/calorie", priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/health/ovulation", priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/health/pregnancy", priority: 0.8, changeFrequency: "monthly" as const },
-
-        // ── 직장 ──
-        { url: "/calculator/job",  priority: 0.8, changeFrequency: "monthly" as const },
-        { url: "/calculator/job/salary",  priority: 0.8, changeFrequency: "monthly" as const },
-        { url: "/calculator/job/net-pay",  priority: 0.8, changeFrequency: "monthly" as const },
-        { url: "/calculator/job/severance-pay",  priority: 0.8, changeFrequency: "monthly" as const },
-        { url: "/calculator/job/unemployment-benefit",  priority: 0.8, changeFrequency: "monthly" as const },
 
         // ── policy ──
         { url: "/policy/about", priority: 0.5, changeFrequency: "monthly" as const },

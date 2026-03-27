@@ -49,15 +49,6 @@ const services: Service[] = [
         ]
     },
     {
-        title: "🏢 부동산",
-        href: "/calculator/real-estate",
-        bgColor: "bg-amber-50 dark:bg-amber-900/20",
-        borderColor: "border-amber-100 dark:border-amber-800",
-        links: [
-            { label: "서비스 준비 중", href: "#", disabled: true }
-        ]
-    },
-    {
         title: "💼 직장",
         href: "/calculator/job",
         bgColor: "bg-purple-50 dark:bg-purple-900/20",
@@ -83,10 +74,28 @@ const services: Service[] = [
         ]
     },
     {
+        title: "🏠 생활",
+        href: "/calculator/life",
+        bgColor: "bg-amber-50 dark:bg-amber-900/20",
+        borderColor: "border-amber-100 dark:border-amber-800",
+        links: [
+            { label: "서비스 준비 중", href: "#", disabled: true }
+        ]
+    },
+    {
         title: "🧾 세금",
         href: "/calculator/tax",
         bgColor: "bg-gray-50 dark:bg-gray-800/50",
         borderColor: "border-gray-200 dark:border-gray-700",
+        links: [
+            { label: "서비스 준비 중", href: "#", disabled: true }
+        ]
+    },
+    {
+        title: "🏢 부동산",
+        href: "/calculator/real-estate",
+        bgColor: "bg-amber-50 dark:bg-amber-900/20",
+        borderColor: "border-amber-100 dark:border-amber-800",
         links: [
             { label: "서비스 준비 중", href: "#", disabled: true }
         ]
