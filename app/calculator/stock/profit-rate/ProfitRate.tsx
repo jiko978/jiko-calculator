@@ -126,17 +126,17 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
                 <div className="bg-white dark:bg-gray-800 shadow-md rounded-2xl p-8">
                     <div className="space-y-6">
                         {[
-                            { label: "매수가", unit: "원", value: buyPrice, setter: setBuyPrice, key: "buyPrice", id: "stock-buy-price" },
-                            { label: "현재가", unit: "원", value: currentPrice, setter: setCurrentPrice, key: "currentPrice", id: "stock-current-price" },
-                            { label: "수량", unit: "개", value: quantity, setter: setQuantity, key: "quantity", id: "stock-quantity" },
-                        ].map(({ label, unit, value, setter, key, id }) => (
+                            { label: "매수가", unit: "원", value: buyPrice, setter: setBuyPrice, placeholder: "평균 매입 단가", key: "buyPrice", id: "stock-buy-price" },
+                            { label: "현재가", unit: "원", value: currentPrice, setter: setCurrentPrice, placeholder: "현재 주식 가격", key: "currentPrice", id: "stock-current-price" },
+                            { label: "수량", unit: "개", value: quantity, setter: setQuantity, placeholder: "보유 주식 수", key: "quantity", id: "stock-quantity" },
+                        ].map(({ label, unit, value, setter, placeholder, key, id }) => (
                             <div key={label} className="flex flex-col gap-1">
                                 <div className="flex items-center gap-4">
                                     <label htmlFor={id} className={`w-20 font-semibold shrink-0 ${errors.has(key) ? "text-red-500" : "text-gray-800 dark:text-gray-100"}`}>{label}</label>
                                     <div className="flex items-center flex-1">
                                         <input
                                             id={id}
-                                            type="text" inputMode="numeric" placeholder="0"
+                                            type="text" inputMode="numeric" placeholder={placeholder}
                                             value={value}
                                             onChange={handleChange(setter, key)}
                                             className={`w-full border-2 rounded-lg px-4 py-2 text-right focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 text-base transition-all ${

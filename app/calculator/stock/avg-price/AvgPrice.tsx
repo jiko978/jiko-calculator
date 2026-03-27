@@ -250,90 +250,79 @@ export default function AvgPrice({ stockName, initialCode }: AvgPriceProps) {
                     </div>
                 </div>
 
-                {/* 입력 테이블 */}
-                <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-md overflow-x-auto">
-                    <table className="border-collapse border border-gray-400 dark:border-gray-600 text-sm w-full" style={{ minWidth: "250px" }}>
-                        <colgroup>
-                            <col className="w-[35px] min-w-[35px] sm:w-[50px] sm:min-w-[50px]" />
-                            <col className="w-[90px] min-w-[90px] sm:w-[25%] sm:min-w-[140px]" />
-                            <col className="w-[90px] min-w-[90px] sm:w-[25%] sm:min-w-[140px]" />
-                            <col />
-                            <col className="w-[35px] min-w-[35px] sm:w-[50px] sm:min-w-[50px]" />
-                        </colgroup>
-                        <thead>
-                            <tr className="bg-gray-100 dark:bg-gray-700">
-                                <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">차수</th>
-                                <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">매수가</th>
-                                <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">수량</th>
-                                <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">매수금액</th>
-                                <th className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">삭제</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {rows.map((row, idx) => (
-                                <tr key={row.id}>
-                                    <td className="border border-gray-400 dark:border-gray-600 py-2 text-center text-gray-800 dark:text-gray-100 font-medium text-xs">
-                                        {idx + 1}차
-                                    </td>
-                                    <td className="border border-gray-400 dark:border-gray-600 px-1 py-1 text-center">
+                {/* 입력 카드 목록 */}
+                <div className="space-y-4">
+                    {rows.map((row, idx) => (
+                        <div key={row.id} className="p-5 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm relative group space-y-4">
+                            <h3 className="text-sm font-bold text-gray-800 dark:text-gray-200">{idx + 1}차 매수</h3>
+                            
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label className="text-xs font-semibold text-gray-500 dark:text-gray-400 block mb-1.5 text-right">매수가</label>
+                                    <div className="relative">
                                         <input type="text" inputMode="numeric" placeholder="0" value={row.price}
                                             onChange={handleChange(row.id, "price")}
                                             aria-label={`${idx + 1}차 매수가`}
-                                            style={{ fontSize: getFontSize(row.price), width: "100%" }}
-                                            className={`p-1 text-right border rounded bg-white dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 min-w-0 transition-all ${
-                                                errors.has(`price-${row.id}`) ? "border-red-500 ring-2 ring-red-200 dark:ring-red-900/30" : "dark:border-gray-600 focus:ring-blue-400"
+                                            className={`w-full p-3 bg-gray-50 dark:bg-gray-900 border rounded-xl text-right font-bold text-gray-800 dark:text-gray-100 outline-none focus:ring-2 focus:ring-blue-500 transition-all pr-8 ${
+                                                errors.has(`price-${row.id}`) ? "border-red-500 ring-2 ring-red-200 dark:ring-red-900/30" : "border-gray-200 dark:border-gray-600"
                                             }`} />
-                                    </td>
-                                    <td className="border border-gray-400 dark:border-gray-600 px-1 py-1 text-center">
+                                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 text-xs font-bold pointer-events-none">원</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label className="text-xs font-semibold text-gray-500 dark:text-gray-400 block mb-1.5 text-right">수량</label>
+                                    <div className="relative">
                                         <input type="text" inputMode="numeric" placeholder="0" value={row.qty}
                                             onChange={handleChange(row.id, "qty")}
                                             aria-label={`${idx + 1}차 수량`}
-                                            style={{ fontSize: getFontSize(row.qty), width: "100%" }}
-                                            className={`p-1 text-right border rounded bg-white dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 min-w-0 transition-all ${
-                                                errors.has(`qty-${row.id}`) ? "border-red-500 ring-2 ring-red-200 dark:ring-red-900/30" : "dark:border-gray-600 focus:ring-blue-400"
+                                            className={`w-full p-3 bg-gray-50 dark:bg-gray-900 border rounded-xl text-right font-bold text-gray-800 dark:text-gray-100 outline-none focus:ring-2 focus:ring-blue-500 transition-all pr-8 ${
+                                                errors.has(`qty-${row.id}`) ? "border-red-500 ring-2 ring-red-200 dark:ring-red-900/30" : "border-gray-200 dark:border-gray-600"
                                             }`} />
-                                    </td>
-                                    <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 text-base whitespace-nowrap">
-                                        <span aria-hidden="true">{validAmounts[idx] > 0 ? validAmounts[idx].toLocaleString() : "-"}</span>
-                                    </td>
-                                    <td className="border border-gray-400 dark:border-gray-600 py-2 text-center">
-                                        {idx === rows.length - 1 && rows.length > 1 && (
-                                            <button onClick={() => handleRemoveRow(row.id)}
-                                                className="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-gray-100 hover:bg-red-100 dark:bg-gray-700 dark:hover:bg-red-900/40 text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-all duration-150 active:scale-90"
-                                                aria-label="행 삭제">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" />
-                                                </svg>
-                                            </button>
-                                        )}
-                                    </td>
-                                </tr>
-                            ))}
-                            <tr className="bg-gray-50 dark:bg-gray-700 font-semibold">
-                                <td colSpan={2} className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-center text-gray-800 dark:text-gray-100 text-xs">합계</td>
-                                <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 text-xs whitespace-nowrap">
-                                    {totalQty > 0 ? totalQty.toLocaleString() : "-"}
-                                </td>
-                                <td className="border border-gray-400 dark:border-gray-600 px-2 py-2 text-right text-gray-800 dark:text-gray-100 text-sm whitespace-nowrap">
-                                    {totalCost > 0 ? totalCost.toLocaleString() : "-"}
-                                </td>
-                                <td className="border border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-700" />
-                            </tr>
-                        </tbody>
-                    </table>
+                                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 text-xs font-bold pointer-events-none">개</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div className="flex justify-between items-center pt-4 border-t border-gray-100 dark:border-gray-700/50">
+                                <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">매수 금액</span>
+                                <span className="text-sm font-bold text-blue-600 dark:text-blue-400">
+                                    {validAmounts[idx] > 0 ? validAmounts[idx].toLocaleString() + " 원" : "-"}
+                                </span>
+                            </div>
 
+                            {idx === rows.length - 1 && rows.length > 1 && (
+                                <button onClick={() => handleRemoveRow(row.id)}
+                                    className="absolute -right-2 -top-2 inline-flex items-center justify-center w-6 h-6 rounded-full bg-rose-100 hover:bg-rose-200 dark:bg-rose-900/30 dark:hover:bg-rose-900/50 text-rose-500 dark:text-rose-400 transition-all md:opacity-0 md:group-hover:opacity-100 shadow-sm"
+                                    aria-label="행 삭제">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            )}
+                        </div>
+                    ))}
+                    
                     {rows.length < MAX_ROWS && (
                         <button onClick={handleAddRow}
-                            className="mt-3 w-full py-2 flex items-center justify-center gap-1 text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-150">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-                            </svg>
-                            {rows.length + 1}차 추가 ({rows.length}/{MAX_ROWS})
+                            className="w-full py-4 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-2xl text-gray-400 dark:text-gray-500 text-xs font-bold hover:bg-gray-50 dark:hover:bg-gray-800 transition-all">
+                            + 매수 추가 ({rows.length}/{MAX_ROWS})
                         </button>
                     )}
                     {rows.length >= MAX_ROWS && (
-                        <p className="mt-3 text-center text-xs text-gray-400 dark:text-gray-500">최대 {MAX_ROWS}차까지 추가 가능합니다.</p>
+                        <p className="text-center text-xs text-gray-400 dark:text-gray-500 font-medium pb-2">최대 {MAX_ROWS}차까지 추가 가능합니다.</p>
                     )}
+
+                    {/* 합계 요약 영역 */}
+                    <div className="bg-gray-50 dark:bg-gray-900/50 p-5 rounded-2xl border border-gray-100 dark:border-gray-800 flex justify-between items-center mt-2">
+                        <div>
+                            <span className="text-xs font-bold text-gray-400 dark:text-gray-500 block mb-1">합계 수량</span>
+                            <span className="text-sm font-bold text-gray-700 dark:text-gray-300">{totalQty > 0 ? totalQty.toLocaleString() : "0"} 개</span>
+                        </div>
+                        <div className="text-right">
+                            <span className="text-xs font-bold text-gray-400 dark:text-gray-500 block mb-1">총 매수 금액</span>
+                            <span className="text-base font-black text-gray-900 dark:text-gray-100">{totalCost > 0 ? totalCost.toLocaleString() : "0"} 원</span>
+                        </div>
+                    </div>
                 </div>
 
                 {/* 현재가 입력 (선택) */}
