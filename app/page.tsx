@@ -58,15 +58,15 @@ const services: Service[] = [
         ]
     },
     {
-        title: "🏠 생활",
-        href: "/calculator/life",
+        title: "💼 직장",
+        href: "/calculator/job",
         bgColor: "bg-purple-50 dark:bg-purple-900/20",
         borderColor: "border-purple-100 dark:border-purple-800",
         links: [
-            { label: "✔ 연봉/월급 계산기", href: "/calculator/life/salary" },
-            { label: "✔ 실수령액 계산기", href: "/calculator/life/net-pay" },
-            { label: "✔ 퇴직금 계산기", href: "/calculator/life/severance-pay" },
-            { label: "✔ 실업급여 계산기", href: "/calculator/life/severance-pay" }
+            { label: "✔ 연봉/월급 계산기", href: "/calculator/job/salary" },
+            { label: "✔ 실수령액 계산기", href: "/calculator/job/net-pay" },
+            { label: "✔ 퇴직금 계산기", href: "/calculator/job/severance-pay" },
+            { label: "✔ 실업급여 계산기", href: "/calculator/job/unemployment-benefit" }
         ]
     },
     {

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image"
@@ -30,7 +30,7 @@ export default function Header() {
         { href: "/calculator/stock", label: "📈 주식" },
         { href: "/calculator/finance", label: "💵 금융" },
         { href: "/calculator/real-state", label: "🏢 부동산" },
-        { href: "/calculator/life", label: "🏠 생활" },
+        { href: "/calculator/job", label: "💼 직장" },
         { href: "/calculator/health", label: "💪 건강" },
         { href: "/calculator/tax", label: "🧾 세금" },
     ];

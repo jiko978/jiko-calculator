@@ -30,12 +30,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: "/calculator/health/ovulation", priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/health/pregnancy", priority: 0.8, changeFrequency: "monthly" as const },
 
-        // ── 생활 ──
-        { url: "/calculator/life",  priority: 0.8, changeFrequency: "monthly" as const },
-        { url: "/calculator/life/salary",  priority: 0.8, changeFrequency: "monthly" as const },
-        { url: "/calculator/life/net-pay",  priority: 0.8, changeFrequency: "monthly" as const },
-        { url: "/calculator/life/severance-pay",  priority: 0.8, changeFrequency: "monthly" as const },
-        { url: "/calculator/life/unemployment-benefit",  priority: 0.8, changeFrequency: "monthly" as const },
+        // ── 직장 ──
+        { url: "/calculator/job",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/job/salary",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/job/net-pay",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/job/severance-pay",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/job/unemployment-benefit",  priority: 0.8, changeFrequency: "monthly" as const },
 
         // ── policy ──
         { url: "/policy/about", priority: 0.5, changeFrequency: "monthly" as const },

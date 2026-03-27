@@ -1,9 +1,9 @@
-// app/calculator/life/salary/page.tsx
+﻿// app/calculator/job/salary/page.tsx
 import type { Metadata } from "next";
 import Salary from "./Salary";
 import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
-import LifeMoreCalculators from "@/app/calculator/components/LifeMoreCalculators";
+import JobMoreCalculators from "@/app/calculator/components/JobMoreCalculators";
 import FAQ from "@/app/calculator/components/FAQ";
 
 const BASE_URL = "https://jiko.kr";
@@ -12,11 +12,11 @@ export const metadata: Metadata = {
     title: "연봉 계산기 · 월급 계산기 | 2025 최신 세금 및 공제액 계산 - JIKO 계산기",
     description: "2025년 최신 4대보험 요율과 간이세액표를 적용하여 연봉/월급의 정확한 예상 실수령액과 세금을 계산해드립니다.",
     keywords: ["연봉 계산기", "월급 계산기", "실수령액 계산기", "4대보험 계산기", "연봉 실수령액", "월급 실수령액", "JIKO 계산기"],
-    alternates: { canonical: `${BASE_URL}/calculator/life/salary` },
+    alternates: { canonical: `${BASE_URL}/calculator/job/salary` },
     openGraph: {
         title: "연봉/월급 계산기 | 2025년 최신 4대보험 반영",
         description: "내 연봉을 월급으로 환산하면 얼마나 받을까요? 정확한 세금과 4대보험 공제액을 확인하세요.",
-        url: `${BASE_URL}/calculator/life/salary`,
+        url: `${BASE_URL}/calculator/job/salary`,
         images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "연봉 실수령액 계산기" }],
     },
 };
@@ -26,7 +26,7 @@ const jsonLd = {
     "@type": "SoftwareApplication",
     name: "연봉/월급 계산기",
     description: "2025년 최신 세율을 반영하여 연봉/월급의 정확한 세금, 4대보험, 실수령액을 계산해드립니다.",
-    url: `${BASE_URL}/calculator/life/salary`,
+    url: `${BASE_URL}/calculator/job/salary`,
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
 };
@@ -52,7 +52,7 @@ export default function Page() {
     const breadcrumbLd = generateBreadcrumbJsonLd([
         COMMON_BREADCRUMBS.HOME,
         COMMON_BREADCRUMBS.CALC_HOME,
-        COMMON_BREADCRUMBS.LIFE_HOME,
+        COMMON_BREADCRUMBS.JOB_HOME,
         COMMON_BREADCRUMBS.SALARY
     ]);
 
@@ -112,8 +112,9 @@ export default function Page() {
                 </div>
 
                 <FAQ faqList={faqList} />
-                <LifeMoreCalculators />
+                <JobMoreCalculators />
             </main>
         </div>
     );
 }
+

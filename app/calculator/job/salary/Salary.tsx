@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
 import ShareSheet from '../../components/ShareSheet';
@@ -165,7 +165,7 @@ export default function Salary() {
 
     const handleCopy = () => {
         if (!result) return;
-        const text = `💰 연봉/월급 실수령액 계산 결과\n\n기준: ${calcType === "YEARLY" ? "연봉" : "월급"} ${formatNumber(parseInt(amount))}원\n예상 실수령액(월): ${formatNumber(result.netPay)}원\n\n- 공제액 합계: ${formatNumber(result.deductions.total)}원\n(국민연금: ${formatNumber(result.deductions.pension)}원 등)\n\n📌 JIKO 계산기에서 확인하기:\nhttps://jiko.kr/calculator/life/salary`;
+        const text = `💰 연봉/월급 실수령액 계산 결과\n\n기준: ${calcType === "YEARLY" ? "연봉" : "월급"} ${formatNumber(parseInt(amount))}원\n예상 실수령액(월): ${formatNumber(result.netPay)}원\n\n- 공제액 합계: ${formatNumber(result.deductions.total)}원\n(국민연금: ${formatNumber(result.deductions.pension)}원 등)\n\n📌 JIKO 계산기에서 확인하기:\nhttps://jiko.kr/calculator/job/salary`;
         navigator.clipboard.writeText(text);
         alert("결과가 클립보드에 복사되었습니다.");
     };
@@ -185,14 +185,14 @@ export default function Salary() {
                     {/* Header Tabs - Switch Between Different Calc Types */}
                     <div className="flex bg-gray-100 dark:bg-gray-700 p-1 rounded-xl">
                         <button
-                            className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors ${pathname === '/calculator/life/salary' ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-gray-500 dark:text-gray-400'}`}
+                            className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors ${pathname === '/calculator/job/salary' ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-gray-500 dark:text-gray-400'}`}
                             onClick={() => {}} // Already on this page
                         >
                             연봉/월급 계산기
                         </button>
                         <Link
-                            href="/calculator/life/net-pay"
-                            className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors text-center ${pathname === '/calculator/life/net-pay' ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-gray-500 dark:text-gray-400'}`}
+                            href="/calculator/job/net-pay"
+                            className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors text-center ${pathname === '/calculator/job/net-pay' ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-gray-500 dark:text-gray-400'}`}
                         >
                             실수령액 계산기
                         </Link>
@@ -415,3 +415,4 @@ export default function Salary() {
         </div>
     );
 }
+

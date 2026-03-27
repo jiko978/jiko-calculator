@@ -1,16 +1,16 @@
-# severance-pay-기능명세서.md
+﻿# severance-pay-기능명세서.md
 
 ## 1. 개요
 퇴직금 계산 메뉴의 기능 명세서입니다. 2025년 최신 퇴직금 산정 기준 및 세액 공제 로직을 반영합니다.
 
 ## 2. 화면 위치
-1. 경로 : `/calculator/life/severance-pay`
+1. 경로 : `/calculator/job/severance-pay`
 2. 파일
-ㄴ 서버 : `app/calculator/life/severance-pay/page.tsx`
-ㄴ 클라이언트 : `app/calculator/life/severance-pay/SeverancePay.tsx`
+ㄴ 서버 : `app/calculator/job/severance-pay/page.tsx`
+ㄴ 클라이언트 : `app/calculator/job/severance-pay/SeverancePay.tsx`
 
 ## 3. 계층 구조 및 SEO (Common Architecture)
-1. **Breadcrumb Schema**: `홈 > 계산기 홈 > 생활 계산기 > 퇴직금 계산기` 구조의 JSON-LD 적용
+1. **Breadcrumb Schema**: `홈 > 계산기 홈 > 직장 계산기 > 퇴직금 계산기` 구조의 JSON-LD 적용
 2. **메타데이터**: '퇴직금 계산기 | 2025 최신 세금 및 공제액 계산 - JIKO 계산기' Title 적용
 3. **PWA 연동**: 
    - `PWAInstallProvider`를 통한 설치 가능 상태 감지
@@ -46,7 +46,7 @@
    - **소개(H1)** : 2025년 기준 퇴직금 계산기 및 지급 기준 안내.
    - **사용 방법** : 평균임금 산정 방식 및 상여금/연차수당 포함 기준 가이드.
    - **자주 묻는 질문(FAQ)** : 퇴직금 지급 기한(14일), IRP 계좌 이체 의무화, 중간정산 조건 등 (**공통 FAQ 컴포넌트**).
-   - **생활 계산기 더 보기** : 다른 생활 계산기 메뉴 바로가기 (**공통 LifeMoreCalculators 컴포넌트**).
+   - **직장 계산기 더 보기** : 다른 직장 계산기 메뉴 바로가기 (**공통 JobMoreCalculators 컴포넌트**).
 
 ## 5. 계산 로직 (2025년 기준)
 1. **재직일수 산출** : 퇴사일 - 입사일 (근속기간 확인).
@@ -61,8 +61,9 @@
 
 ## 7. 스타일(디자인) 참고
 - 프로젝트 공통 CSS (tailwind) 및 JIKO 디자인 패턴 준수 (카드형 UI, 다크모드 적용).
-- 블루(`blue-600`) 포인트를 사용하여 생활 계산기 카테고리 일관성 유지.
+- 블루(`blue-600`) 포인트를 사용하여 직장 계산기 카테고리 일관성 유지.
 
 ---
 **최종 수정일** : 2026-03-25
 **작성자** : Antigravity (JIKO AI Assistance)
+

@@ -1,16 +1,16 @@
-# 실수령액-기능명세서.md
+﻿# 실수령액-기능명세서.md
 
 ## 1. 개요
 실수령액(세후)을 기준으로 원하는 급여를 받기 위해 필요한 계약 연봉/월급(세전)을 추정하는 메뉴의 기능 명세서입니다.
 
 ## 2. 화면 위치
-1. 경로 : `/calculator/life/net-pay`
+1. 경로 : `/calculator/job/net-pay`
 2. 파일
-ㄴ 서버 : `app/calculator/life/net-pay/page.tsx`
-ㄴ 클라이언트 : `app/calculator/life/net-pay/NetPay.tsx`
+ㄴ 서버 : `app/calculator/job/net-pay/page.tsx`
+ㄴ 클라이언트 : `app/calculator/job/net-pay/NetPay.tsx`
 
 ## 3. 계층 구조 및 SEO (Common Architecture)
-1. **Breadcrumb Schema**: `홈 > 계산기 홈 > 생활 계산기 > 실수령액 계산기` 구조의 JSON-LD 적용
+1. **Breadcrumb Schema**: `홈 > 계산기 홈 > 직장 계산기 > 실수령액 계산기` 구조의 JSON-LD 적용
 2. **메타데이터**: '실수령액 계산기 · 세후 연봉 월급 계산기 | 희망 실수령액 기준 세전 금액 찾기 - JIKO 계산기' Title 적용
 3. **PWA 연동**: 
    - `PWAInstallProvider`를 통한 설치 가능 상태 감지
@@ -57,3 +57,4 @@
 ---
 **최종 수정일** : 2026-03-24
 **작성자** : Antigravity (JIKO AI Assistance)
+

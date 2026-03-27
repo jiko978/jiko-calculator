@@ -1,16 +1,16 @@
-# salary-기능명세서.md
+﻿# salary-기능명세서.md
 
 ## 1. 개요
 연봉/월급 계산 메뉴의 기능 명세서입니다.
 
 ## 2. 화면 위치
-1. 경로 : `/calculator/life/salary`
+1. 경로 : `/calculator/job/salary`
 2. 파일
-ㄴ 서버 : `app/calculator/life/salary/page.tsx`
-ㄴ 클라이언트 : `app/calculator/life/salary/Salary.tsx`
+ㄴ 서버 : `app/calculator/job/salary/page.tsx`
+ㄴ 클라이언트 : `app/calculator/job/salary/Salary.tsx`
 
 ## 3. 계층 구조 및 SEO (Common Architecture)
-1. **Breadcrumb Schema**: `홈 > 계산기 홈 > 생활 계산기 > 연봉 실수령액 계산기` 구조의 JSON-LD 적용
+1. **Breadcrumb Schema**: `홈 > 계산기 홈 > 직장 계산기 > 연봉 실수령액 계산기` 구조의 JSON-LD 적용
 2. **메타데이터**: '연봉 계산기 · 월급 실수령액 계산기 | 2025 최신 세금 및 공제액 계산 - JIKO 계산기' Title 적용
 3. **PWA 연동**: 
    - `PWAInstallProvider`를 통한 설치 가능 상태 감지
@@ -56,7 +56,7 @@
 ㄴㄴ 사용 방법 : 연봉/월급, 퇴직금, 비과세액, 부양가족수를 통한 세금 및 실수령액 계산 가이드
 ㄴㄴ 계산 예시 : 30세 남성, 연봉 5000만원 기준 예상 실수령액(월) 도출 예제
 ㄴㄴ FAQ : 연봉 계산기와 월급 계산기의 차이점, 2025년 기준 4대보험 공제율 변경점 등 유사 키워드 포함 기획 (**공통 `FAQ` 컴포넌트 적용**)
-ㄴㄴ 생활 계산기 더 보기 : 다른 생활 계산기 메뉴 바로가기 (**공통 `LifeMoreCalculators` 컴포넌트 적용**)
+ㄴㄴ 직장 계산기 더 보기 : 다른 직장 계산기 메뉴 바로가기 (**공통 `JobMoreCalculators` 컴포넌트 적용**)
 
 ## 5. 계산 로직 (2025년 기준)
 1. **과세 대상액 산출**: `(연봉 혹은 월급) - 비과세액(식대 등)`
@@ -82,3 +82,4 @@
 ## 7. 스타일(디자인) 참고
 - 프로젝트 공통 CSS (tailwind) 및 JIKO-calculator.md 디자인 패턴 준수 (카드형 UI, 다크모드 적용).
 - 결과를 클립보드에 복사할 수 있는 기능 제공.
+

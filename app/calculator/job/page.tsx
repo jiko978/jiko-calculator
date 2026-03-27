@@ -4,53 +4,53 @@ import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../utils/seo";
 
 export const metadata: Metadata = {
-    title: "생활 계산기 | 연봉, 퇴직금, 실업급여 계산기 모음 - JIKO 계산기",
+    title: "직장 계산기 | 연봉, 퇴직금, 실업급여 계산기 모음 - JIKO 계산기",
     description: "내 연봉/실수령액은 얼마일까? 퇴직금과 실업급여는? 일상 생활에 꼭 필요한 급여, 세금, 실업급여 계산기를 2025년 최신 기준으로 이용하세요.",
-    keywords: ["생활 계산기", "연봉 계산기", "월급 계산기", "실수령액 계산기", "퇴직금 계산기", "실업급여 계산기", "세금 계산기", "JIKO 계산기"],
+    keywords: ["직장 계산기", "연봉 계산기", "월급 계산기", "실수령액 계산기", "퇴직금 계산기", "실업급여 계산기", "세금 계산기", "JIKO 계산기"],
 };
 
-const lifeCalculators = [
+const jobCalculators = [
     {
         title: "💸 연봉/월급 계산기",
         description: "2025년 최신 세율을 반영하여 내 연봉이나 월급의 정확한 세금과 실수령액을 계산합니다.",
-        href: "/calculator/life/salary",
+        href: "/calculator/job/salary",
     },
     {
         title: "💰 실수령액 계산기",
         description: "목표로 하는 한 달 실수령액을 받기 위해 필요한 세전 계약 연봉과 월급을 찾아드립니다.",
-        href: "/calculator/life/net-pay",
+        href: "/calculator/job/net-pay",
     },
     {
         title: "💼 퇴직금 계산기",
         description: "2025년 최신 산정 기준을 반영하여 근속 연수와 평균임금을 기반으로 정확한 퇴직금을 계산해드립니다.",
-        href: "/calculator/life/severance-pay",
+        href: "/calculator/job/severance-pay",
     },
     {
         title: "📑 실업급여 계산기",
         description: "2025년 고용보험법 개정 기준을 반영하여 예상 수급액과 지급 기간을 정확하게 산출해드립니다.",
-        href: "/calculator/life/unemployment-benefit",
+        href: "/calculator/job/unemployment-benefit",
     },
 ];
 
-export default function LifeHubPage() {
+export default function JobHubPage() {
     const breadcrumbLd = generateBreadcrumbJsonLd([
         COMMON_BREADCRUMBS.HOME,
         COMMON_BREADCRUMBS.CALC_HOME,
-        COMMON_BREADCRUMBS.LIFE_HOME
+        COMMON_BREADCRUMBS.JOB_HOME
     ]);
 
     return (
         <main className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
 
-            <NavBar title="생활 계산기" description="생활 계산기 | 연봉, 실수령액, 퇴직금, 실업급여 계산기 - JIKO 계산기" />
+            <NavBar title="직장 계산기" description="직장 계산기 | 연봉, 실수령액, 퇴직금, 실업급여 계산기 - JIKO 계산기" />
 
             <div className="flex-grow px-4 py-6">
-                <h1 className="text-4xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">🏠 생활 계산기</h1>
-                <p className="text-xl font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">필요한 생활 계산기를 선택하세요.</p>
+                <h1 className="text-4xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">💼 직장 계산기</h1>
+                <p className="text-xl font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">필요한 직장 계산기를 선택하세요.</p>
 
                 <div className="grid gap-4 w-full max-w-3xl mx-auto md:grid-cols-2">
-                    {lifeCalculators.map((calc) => (
+                    {jobCalculators.map((calc) => (
                         <Link
                             key={calc.href}
                             href={calc.href}
@@ -77,7 +77,7 @@ export default function LifeHubPage() {
                 <section className="mt-6 max-w-3xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-lg border border-gray-100 dark:border-gray-700 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/5 rounded-full -mr-24 -mt-24 blur-2xl"></div>
                     <div className="relative">
-                        <h2 className="text-xl font-black text-gray-900 dark:text-white mb-5">JIKO 생활 계산기 안내</h2>
+                        <h2 className="text-xl font-black text-gray-900 dark:text-white mb-5">JIKO 직장 계산기 안내</h2>
                         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <li className="flex gap-3">
                                 <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center shrink-0 text-xl">🗓️</div>
@@ -114,3 +114,4 @@ export default function LifeHubPage() {
         </main>
     );
 }
+

@@ -1,9 +1,9 @@
-// app/calculator/life/net-pay/page.tsx
+﻿// app/calculator/job/net-pay/page.tsx
 import type { Metadata } from "next";
-import NetPay from "@/app/calculator/life/net-pay/NetPay";
+import NetPay from "@/app/calculator/job/net-pay/NetPay";
 import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
-import LifeMoreCalculators from "@/app/calculator/components/LifeMoreCalculators";
+import JobMoreCalculators from "@/app/calculator/components/JobMoreCalculators";
 import FAQ from "@/app/calculator/components/FAQ";
 
 const BASE_URL = "https://jiko.kr";
@@ -12,11 +12,11 @@ export const metadata: Metadata = {
     title: "실수령액 계산기 · 세후 연봉 월급 계산기 | 희망 실수령액 기준 세전 금액 찾기 - JIKO 계산기",
     description: "원하는 한 달 실수령액을 받기 위해 계약해야 할 연봉이나 월급(세전)을 알려드립니다. 2025 최신 세율을 반영한 정밀 계산.",
     keywords: ["실수령액 계산기", "세후 연봉 계산기", "세후 월급 계산기", "실수령액 350만원 연봉", "희망 실수령액 계산", "JIKO 계산기"],
-    alternates: { canonical: `${BASE_URL}/calculator/life/net-pay` },
+    alternates: { canonical: `${BASE_URL}/calculator/job/net-pay` },
     openGraph: {
         title: "실수령액 계산기 | 희망하는 세후 금액으로 연봉 찾기",
         description: "통장에 딱 이만큼 찍히려면 연봉은 얼마여야 할까? 실수령액 기준으로 세전 급여를 역으로 확인하세요.",
-        url: `${BASE_URL}/calculator/life/net-pay`,
+        url: `${BASE_URL}/calculator/job/net-pay`,
         images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "실수령액 계산기" }],
     },
 };
@@ -26,7 +26,7 @@ const jsonLd = {
     "@type": "SoftwareApplication",
     name: "실수령액 계산기",
     description: "한 달에 실제로 받고 싶은 금액을 입력하면, 그에 필요한 세전 연봉과 월급을 도출해드립니다.",
-    url: `${BASE_URL}/calculator/life/net-pay`,
+    url: `${BASE_URL}/calculator/job/net-pay`,
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
 };
@@ -35,7 +35,7 @@ export default function Page() {
     const breadcrumbLd = generateBreadcrumbJsonLd([
         COMMON_BREADCRUMBS.HOME,
         COMMON_BREADCRUMBS.CALC_HOME,
-        COMMON_BREADCRUMBS.LIFE_HOME,
+        COMMON_BREADCRUMBS.JOB_HOME,
         COMMON_BREADCRUMBS.NET_PAY
     ]);
 
@@ -93,8 +93,9 @@ export default function Page() {
                 </div>
 
                 <FAQ faqList={faqList} />
-                <LifeMoreCalculators />
+                <JobMoreCalculators />
             </main>
         </div>
     );
 }
+

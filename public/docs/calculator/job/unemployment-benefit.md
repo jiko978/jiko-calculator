@@ -1,16 +1,16 @@
-# 실업급여 계산기 기능 명세서 (2025 최신 기준)
+﻿# 실업급여 계산기 기능 명세서 (2025 최신 기준)
 
 ## 1. 개요
 2025년 최신 고용보험법 기준을 반영한 실업급여(구직급여) 계산 서비스입니다. 피보험 단위기간(180일), 1일 상/하한액, 연령별/가입기간별 소정급여일수를 정밀하게 산출합니다.
 
 ## 2. 화면 위치
-1. **경로**: `/calculator/life/unemployment-benefit`
+1. **경로**: `/calculator/job/unemployment-benefit`
 2. **파일**:
-   - 서버 : `app/calculator/life/unemployment-benefit/page.tsx`
-   - 클라이언트 : `app/calculator/life/unemployment-benefit/UnemploymentBenefit.tsx`
+   - 서버 : `app/calculator/job/unemployment-benefit/page.tsx`
+   - 클라이언트 : `app/calculator/job/unemployment-benefit/UnemploymentBenefit.tsx`
 
 ## 3. 계층 구조 및 SEO
-1. **Breadcrumb**: `홈 > 계산기 홈 > 생활 계산기 > 실업급여 계산기`
+1. **Breadcrumb**: `홈 > 계산기 홈 > 직장 계산기 > 실업급여 계산기`
 2. **메타데이터**: `실업급여 계산기 | 2025 최신 고용보험법 기준 - JIKO 계산기`
 3. **SEO 요소**: JSON-LD(SoftwareApplication), Semantic HTML5 적용.
 
@@ -85,3 +85,4 @@
 ---
 **최종 업데이트**: 2026-03-25
 **작성자**: Antigravity (JIKO AI)
+

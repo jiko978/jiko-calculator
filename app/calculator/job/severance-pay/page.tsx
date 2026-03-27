@@ -1,9 +1,9 @@
-// app/calculator/life/severance-pay/page.tsx
+﻿// app/calculator/job/severance-pay/page.tsx
 import type { Metadata } from "next";
 import SeverancePay from "./SeverancePay";
 import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
-import LifeMoreCalculators from "@/app/calculator/components/LifeMoreCalculators";
+import JobMoreCalculators from "@/app/calculator/components/JobMoreCalculators";
 import FAQ from "@/app/calculator/components/FAQ";
 
 const BASE_URL = "https://jiko.kr";
@@ -12,11 +12,11 @@ export const metadata: Metadata = {
     title: "퇴직금 계산기 | 2025 최신 세금 및 세후 실수령액 계산 - JIKO 계산기",
     description: "내 퇴직금은 얼마일까? 2025년 최신 퇴직금 산정 기준과 상여금, 연차수당을 반영한 정확한 세전/세후 퇴직금을 계산해드립니다.",
     keywords: ["퇴직금 계산기", "예상 퇴직금", "퇴직금 계산 방법", "퇴직금 세금 계산", "퇴직소득세 계산", "평균임금 계산", "JIKO 계산기"],
-    alternates: { canonical: `${BASE_URL}/calculator/life/severance-pay` },
+    alternates: { canonical: `${BASE_URL}/calculator/job/severance-pay` },
     openGraph: {
         title: "퇴직금 계산기 | 2025년 최신 퇴직금 산정 기준 반영",
         description: "입사일과 퇴사일만 넣으면 끝! 상여금과 연차수당까지 포함한 정밀한 퇴직금과 세금을 확인하세요.",
-        url: `${BASE_URL}/calculator/life/severance-pay`,
+        url: `${BASE_URL}/calculator/job/severance-pay`,
         images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "퇴직금 계산기" }],
     },
 };
@@ -26,7 +26,7 @@ const jsonLd = {
     "@type": "SoftwareApplication",
     name: "퇴직금 계산기",
     description: "2025년 최신 산정 기준을 반영하여 근속 연수와 평균임금을 기반으로 정확한 퇴직금 및 세금을 계산해드립니다.",
-    url: `${BASE_URL}/calculator/life/severance-pay`,
+    url: `${BASE_URL}/calculator/job/severance-pay`,
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
 };
@@ -35,7 +35,7 @@ export default function Page() {
     const breadcrumbLd = generateBreadcrumbJsonLd([
         COMMON_BREADCRUMBS.HOME,
         COMMON_BREADCRUMBS.CALC_HOME,
-        COMMON_BREADCRUMBS.LIFE_HOME,
+        COMMON_BREADCRUMBS.JOB_HOME,
         COMMON_BREADCRUMBS.SEVERANCE_PAY
     ]);
 
@@ -95,8 +95,9 @@ export default function Page() {
                 </div>
 
                 <FAQ faqList={faqList} />
-                <LifeMoreCalculators />
+                <JobMoreCalculators />
             </main>
         </div>
     );
 }
+

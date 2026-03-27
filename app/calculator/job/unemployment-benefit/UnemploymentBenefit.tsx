@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
@@ -402,7 +402,7 @@ export default function UnemploymentBenefit() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <button onClick={() => {
-                            const text = `📋 [JIKO 실업급여 계산 결과]\n\n예상 수급일수: ${result.benefitDays}일\n1일 수령액: ${formatNumber(result.dailyBenefit)}원\n총 예상 수급액: ${formatNumber(result.totalBenefit)}원\n\n지금 바로 확인: https://jiko.kr/calculator/life/unemployment-benefit`;
+                            const text = `📋 [JIKO 실업급여 계산 결과]\n\n예상 수급일수: ${result.benefitDays}일\n1일 수령액: ${formatNumber(result.dailyBenefit)}원\n총 예상 수급액: ${formatNumber(result.totalBenefit)}원\n\n지금 바로 확인: https://jiko.kr/calculator/job/unemployment-benefit`;
                             navigator.clipboard.writeText(text);
                             alert("복사되었습니다.");
                         }} className="py-5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-black rounded-2xl hover:bg-gray-200 transition-all shadow-sm">결과 복사</button>
@@ -415,3 +415,4 @@ export default function UnemploymentBenefit() {
         </div>
     );
 }
+

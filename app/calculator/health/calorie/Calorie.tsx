@@ -232,8 +232,8 @@ export default function Calorie() {
                                 <label className="block text-xs font-bold text-orange-600 mb-2">운동 강도지수 (METs) 직접 입력</label>
                                 <div className="flex items-center gap-3">
                                     <input type="number" step="0.1" className="flex-1 p-3 bg-white dark:bg-gray-800 rounded-lg outline-none border border-orange-200 dark:border-orange-800 text-sm" placeholder="예: 5.5" value={customMets} onChange={(e) => setCustomMets(e.target.value)} />
-                                    <span className="text-xs text-orange-400 font-medium whitespace-nowrap">* 운동 백과사전 등을 참고하세요</span>
                                 </div>
+                                <span className="text-xs text-orange-400 font-medium whitespace-nowrap">* https://pacompendium.com/ 등을 참고하세요</span>
                             </div>
                         )}
 

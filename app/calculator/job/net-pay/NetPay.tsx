@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect } from 'react';
 import ShareSheet from '../../components/ShareSheet';
@@ -139,10 +139,10 @@ export default function NetPay() {
                 <div className="p-6 md:p-8 space-y-8">
                     {/* Switch Tabs */}
                     <div className="flex bg-gray-100 dark:bg-gray-700 p-1 rounded-xl">
-                        <Link href="/calculator/life/salary" className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors text-center ${pathname === '/calculator/life/salary' ? 'bg-white dark:bg-gray-800 text-blue-600 shadow-sm' : 'text-gray-500'}`}>
+                        <Link href="/calculator/job/salary" className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors text-center ${pathname === '/calculator/job/salary' ? 'bg-white dark:bg-gray-800 text-blue-600 shadow-sm' : 'text-gray-500'}`}>
                             연봉/월급 계산기
                         </Link>
-                        <Link href="/calculator/life/net-pay" className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors text-center ${pathname === '/calculator/life/net-pay' ? 'bg-white dark:bg-gray-800 text-blue-600 shadow-sm' : 'text-gray-500'}`}>
+                        <Link href="/calculator/job/net-pay" className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors text-center ${pathname === '/calculator/job/net-pay' ? 'bg-white dark:bg-gray-800 text-blue-600 shadow-sm' : 'text-gray-500'}`}>
                             실수령액 계산기
                         </Link>
                     </div>
@@ -268,7 +268,7 @@ export default function NetPay() {
 
                     <div className="flex gap-4">
                         <button onClick={() => {
-                             const text = `💰 [실수령액 ${formatNumber(result.goal)}원 맞춤형 결과]\n\n계약 연봉 추정치: ${formatNumber(result.yearlyGross)}원\n월 기본급(세전): ${formatNumber(result.monthlyGross)}원\n\nJIKO 계산기에서 확인: https://jiko.kr/calculator/life/net-pay`;
+                             const text = `💰 [실수령액 ${formatNumber(result.goal)}원 맞춤형 결과]\n\n계약 연봉 추정치: ${formatNumber(result.yearlyGross)}원\n월 기본급(세전): ${formatNumber(result.monthlyGross)}원\n\nJIKO 계산기에서 확인: https://jiko.kr/calculator/job/net-pay`;
                              navigator.clipboard.writeText(text);
                              alert("복사되었습니다.");
                         }} className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-bold rounded-xl hover:bg-gray-200 transition-colors">결과 복사</button>
@@ -288,3 +288,4 @@ export default function NetPay() {
         </div>
     );
 }
+

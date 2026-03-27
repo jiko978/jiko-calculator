@@ -1,8 +1,8 @@
-import { Metadata } from "next";
+﻿import { Metadata } from "next";
 import UnemploymentBenefit from "./UnemploymentBenefit";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../utils/seo";
 import NavBar from "@/app/calculator/components/NavBar";
-import LifeMoreCalculators from "@/app/calculator/components/LifeMoreCalculators";
+import JobMoreCalculators from "@/app/calculator/components/JobMoreCalculators";
 import FAQ from "@/app/calculator/components/FAQ";
 
 export const metadata: Metadata = {
@@ -34,8 +34,8 @@ export default function UnemploymentBenefitPage() {
     const breadcrumbLd = generateBreadcrumbJsonLd([
         COMMON_BREADCRUMBS.HOME,
         COMMON_BREADCRUMBS.CALC_HOME,
-        COMMON_BREADCRUMBS.LIFE_HOME,
-        { name: "실업급여 계산기", item: "https://jiko.kr/calculator/life/unemployment-benefit" }
+        COMMON_BREADCRUMBS.JOB_HOME,
+        { name: "실업급여 계산기", item: "https://jiko.kr/calculator/job/unemployment-benefit" }
     ]);
 
     return (
@@ -162,8 +162,9 @@ export default function UnemploymentBenefitPage() {
 
                 {/* FAQ 및 다른 계산기 */}
                 <FAQ faqList={unemploymentFaqs} />
-                <LifeMoreCalculators />
+                <JobMoreCalculators />
             </div>
         </main>
     );
 }
+

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect } from 'react';
 import ShareSheet from '@/app/calculator/components/ShareSheet';
@@ -302,7 +302,7 @@ export default function SeverancePay() {
 
                     <div className="flex gap-4">
                         <button onClick={() => {
-                            const text = `💼 [JIKO 퇴직금 계산 결과]\n\n총 재직일: ${result.totalDays}일\n세전 퇴직금: ${formatNumber(result.preTax)}원\n세후 예상 실수령액: ${formatNumber(result.postTax)}원\n\nJIKO에서 확인: https://jiko.kr/calculator/life/severance-pay`;
+                            const text = `💼 [JIKO 퇴직금 계산 결과]\n\n총 재직일: ${result.totalDays}일\n세전 퇴직금: ${formatNumber(result.preTax)}원\n세후 예상 실수령액: ${formatNumber(result.postTax)}원\n\nJIKO에서 확인: https://jiko.kr/calculator/job/severance-pay`;
                             navigator.clipboard.writeText(text);
                             alert("복사되었습니다.");
                         }} className="flex-1 py-5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-black rounded-2xl hover:bg-gray-200 transition-all active:scale-95 shadow-sm">결과 복사</button>
@@ -322,3 +322,4 @@ export default function SeverancePay() {
         </div>
     );
 }
+
