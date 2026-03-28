@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
 import ShareSheet from '../../components/ShareSheet';
@@ -165,9 +165,9 @@ export default function Salary() {
 
     const handleCopy = () => {
         if (!result) return;
-        const text = `💰 연봉/월급 실수령액 계산 결과\n\n기준: ${calcType === "YEARLY" ? "연봉" : "월급"} ${formatNumber(parseInt(amount))}원\n예상 실수령액(월): ${formatNumber(result.netPay)}원\n\n- 공제액 합계: ${formatNumber(result.deductions.total)}원\n(국민연금: ${formatNumber(result.deductions.pension)}원 등)\n\n📌 JIKO 계산기에서 확인하기:\nhttps://jiko.kr/calculator/job/salary`;
+        const text = `💰 연봉/월급 실수령액 계산 결과\n\n기준: ${calcType === "YEARLY" ? "연봉" : "월급"} ${formatNumber(parseInt(amount))}원\n예상 실수령액(월): ${formatNumber(result.netPay)}원\n\n- 공제액 합계: ${formatNumber(result.deductions.total)}원\n(국민연금: ${formatNumber(result.deductions.pension)}원 등)\n\n📌JIKO 연봉/월급 계산기에서 확인하기:\nhttps://jiko.kr/calculator/job/salary`;
         navigator.clipboard.writeText(text);
-        alert("결과가 클립보드에 복사되었습니다.");
+        alert("계산 결과 텍스트가 복사되었습니다!");
     };
 
     return (
@@ -394,11 +394,11 @@ export default function Salary() {
                     </div>
 
                     <div className="flex gap-4">
-                        <button onClick={handleCopy} className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-bold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex justify-center items-center gap-2">
-                            <span>📋</span> 결과 텍스트 복사
+                        <button onClick={handleCopy} className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-bold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex justify-center items-center gap-2">
+                            <span>📋</span> 결과 복사하기
                         </button>
                         <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-colors flex justify-center items-center gap-2">
-                            <span>💬</span> 친구에게 공유
+                            <span>💬</span> 친구에게 공유하기
                         </button>
                     </div>
 

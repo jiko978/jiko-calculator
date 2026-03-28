@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import ShareSheet from '../../components/ShareSheet';
@@ -268,11 +268,15 @@ export default function NetPay() {
 
                     <div className="flex gap-4">
                         <button onClick={() => {
-                             const text = `💰 [실수령액 ${formatNumber(result.goal)}원 맞춤형 결과]\n\n계약 연봉 추정치: ${formatNumber(result.yearlyGross)}원\n월 기본급(세전): ${formatNumber(result.monthlyGross)}원\n\nJIKO 계산기에서 확인: https://jiko.kr/calculator/job/net-pay`;
+                             const text = `💰 [실수령액 ${formatNumber(result.goal)}원 맞춤형 결과]\n\n계약 연봉 추정치: ${formatNumber(result.yearlyGross)}원\n월 기본급(세전): ${formatNumber(result.monthlyGross)}원\n\n📌JIKO 실수령액 계산기에서 확인하기:\nhttps://jiko.kr/calculator/job/net-pay`;
                              navigator.clipboard.writeText(text);
-                             alert("복사되었습니다.");
-                        }} className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-bold rounded-xl hover:bg-gray-200 transition-colors">결과 복사</button>
-                        <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] text-black/80 font-bold rounded-xl hover:bg-[#FDD800] transition-colors">카카오톡 공유</button>
+                             alert("계산 결과 텍스트가 복사되었습니다!");
+                        }} className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-bold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex justify-center items-center gap-2">
+                            <span>📋</span> 결과 복사하기
+                        </button>
+                        <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-colors flex justify-center items-center gap-2">
+                            <span>💬</span> 친구에게 공유하기
+                        </button>
                     </div>
 
                     {isSharing && (

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { ANIMATION } from "@/app/config/animationConfig";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
+import ShareSheet from "@/app/calculator/components/ShareSheet";
 
 interface DividendProps {
     stockName?: string;
@@ -39,6 +40,7 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
     } | null>(null);
 
     const [shaking, setShaking] = useState(false);
+    const [isSharing, setIsSharing] = useState(false);
 
     const formatComma = (raw: string) =>
         raw.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -119,6 +121,23 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
         setErrorMessage("");
         setShaking(true);
         setTimeout(() => setShaking(false), 400);
+    };
+
+    const handleCopy = async () => {
+        if (!result) return;
+        const text = [
+            `[주식 배당금 계산 결과]`,
+            `매수가: ${buyPrice}원`,
+            `현재가: ${currentPrice}원`,
+            `주당 배당금: ${dividendPerShare}원`,
+            `보유수량: ${quantity}주`,
+            `-------------------`,
+            `세후 월평균 배당금: ${Math.floor(result.monthlyTaxPost).toLocaleString()}원`,
+            `나의 실제 배당률: ${result.yieldOnCost}%`,
+            `\n📌JIKO 배당금 계산기에서 확인하기:\nhttps://jiko.kr/calculator/stock/dividend`
+        ].join("\n");
+        await navigator.clipboard.writeText(text);
+        alert("계산 결과 텍스트가 복사되었습니다!");
     };
 
     // 생활 밀착형 비유 데이터
@@ -332,6 +351,27 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
                                     <p className="text-[10px] text-gray-500 dark:text-gray-400 text-right mt-2">* 세후 실수령액 기준 및 현재 주가 기준 계산</p>
                                 </div>
                             </div>
+                        )}
+
+                        <div className="pt-4 border-t border-gray-100 dark:border-gray-700 flex flex-col gap-2">
+                            <button
+                                onClick={handleCopy}
+                                className="w-full py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-bold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex justify-center items-center gap-2"
+                            >
+                                <span>📋</span> 결과 복사하기
+                            </button>
+                            <button onClick={() => setIsSharing(true)} className="w-full py-3 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-colors flex justify-center items-center gap-2">
+                                <span>💬</span> 친구에게 공유하기
+                            </button>
+                        </div>
+
+                        {isSharing && (
+                            <ShareSheet
+                                onClose={() => setIsSharing(false)}
+                                title="💸 나의 주식 배당금 계산 결과"
+                                description={`주당 배당금 ${dividendPerShare}원씩 ${quantity}주 보유시, 세후 월평균 배당금은 약 ${Math.floor(result.monthlyTaxPost).toLocaleString()}원 입니다!`}
+                                url={typeof window !== "undefined" ? window.location.href : ""}
+                            />
                         )}
                     </div>
                 )}

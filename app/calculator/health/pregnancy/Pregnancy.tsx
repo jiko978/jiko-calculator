@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
+import ShareSheet from "@/app/calculator/components/ShareSheet";
 
 type CalcType = "A" | "B" | "C";
 
@@ -29,6 +30,7 @@ export default function Pregnancy() {
     const [errors, setErrors] = useState<Set<string>>(new Set());
     const [errorMessage, setErrorMessage] = useState("");
     const [isShaking, setIsShaking] = useState(false);
+    const [isSharing, setIsSharing] = useState(false);
 
     const handleCalculate = () => {
         const newErrors = new Set<string>();
@@ -126,9 +128,9 @@ export default function Pregnancy() {
 
     const handleCopy = () => {
         if (resultDueDate) {
-            const text = `출산 예정일: ${resultDueDate}\n현재 임신기간: ${resultCurrentWeeks}주 ${resultCurrentDays}일차 (${resultTrimester})\n진행률: ${resultProgress.toFixed(1)}%`;
+            const text = `출산 예정일: ${resultDueDate}\n현재 임신기간: ${resultCurrentWeeks}주 ${resultCurrentDays}일차 (${resultTrimester})\n진행률: ${resultProgress.toFixed(1)}%\n\n📌JIKO 임신주수 계산기에서 확인하기:\nhttps://jiko.kr/calculator/health/pregnancy`;
             navigator.clipboard.writeText(text);
-            alert("복사되었습니다.");
+            alert("계산 결과 텍스트가 복사되었습니다!");
         }
     };
 
@@ -159,7 +161,7 @@ export default function Pregnancy() {
                                     id="last-period"
                                     type="date" 
                                     max="9999-12-31"
-                                    className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 border ${errors.has("lastPeriod") ? "border-red-600 ring-2 ring-red-500/20" : "border-gray-300 dark:border-gray-600"} rounded-xl outline-none transition-all [text-align:right] md:[text-align:left] focus:ring-2 focus:ring-purple-500 dark:text-gray-100 placeholder-gray-400`} 
+                                    className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 border font-semibold ${errors.has("lastPeriod") ? "border-red-600 ring-2 ring-red-500/20" : "border-gray-300 dark:border-gray-600"} rounded-xl outline-none transition-all [text-align:right] md:[text-align:left] focus:ring-2 focus:ring-purple-500 dark:text-gray-100 placeholder-gray-400`}
                                     value={lastPeriod} 
                                     onChange={(e) => {
                                         const val = e.target.value;
@@ -321,8 +323,27 @@ export default function Pregnancy() {
                                 * 초음파 진단과 생리학적 편차가 있을 수 있습니다.
                             </p>
 
-                            <button onClick={handleCopy} className="w-full py-3 bg-white dark:bg-gray-800 text-purple-600 dark:text-purple-400 font-bold rounded-xl border border-purple-200 dark:border-purple-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">결과 복사하기</button>
+                            <div className="flex gap-4 mt-6 w-full">
+                                <button
+                                    onClick={handleCopy}
+                                    className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-bold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex justify-center items-center gap-2"
+                                >
+                                    <span>📋</span> 결과 복사하기
+                                </button>
+                                <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-colors flex justify-center items-center gap-2">
+                                    <span>💬</span> 친구에게 공유하기
+                                </button>
+                            </div>
                         </div>
+                    )}
+
+                    {isSharing && (
+                        <ShareSheet
+                            onClose={() => setIsSharing(false)}
+                            title="👶 나의 임신주수 계산 결과"
+                            description={`우리 아기를 만나는 예상 출산일은 ${resultDueDate} 이며, 현재 임신 ${resultCurrentWeeks}주 ${resultCurrentDays}일차 입니다!`}
+                            url={typeof window !== "undefined" ? window.location.href : ""}
+                        />
                     )}
                 </div>
             </div>

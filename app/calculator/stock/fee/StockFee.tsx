@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { ANIMATION } from "@/app/config/animationConfig";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
+import ShareSheet from "@/app/calculator/components/ShareSheet";
 
 const MARKETS = [
     { label: "코스피", value: "KOSPI", tax: 0.0020 }, // 0.20% (거래세 0.05% + 농특세 0.15%)
@@ -37,6 +38,7 @@ export default function StockFee({ stockName, initialCode }: StockFeeProps) {
     const [errors, setErrors] = useState<Set<string>>(new Set());
     const [errorMessage, setErrorMessage] = useState("");
     const [shaking, setShaking] = useState(false);
+    const [isSharing, setIsSharing] = useState(false);
 
     const [result, setResult] = useState<{
         grossProfit: number;
@@ -145,6 +147,25 @@ export default function StockFee({ stockName, initialCode }: StockFeeProps) {
         setErrorMessage("");
         setShaking(true);
         setTimeout(() => setShaking(false), 400);
+    };
+
+    const handleCopy = async () => {
+        if (!result) return;
+        const text = [
+            `[주식 매매 수수료 계산 결과]`,
+            `시장구분: ${market.label}`,
+            `매수가: ${buyPrice}원`,
+            `매도가: ${sellPrice}원`,
+            `수량: ${quantity}주`,
+            `-------------------`,
+            `세금 및 수수료: ${(result.totalCommission + result.totalTax).toLocaleString()}원`,
+            `세후 순이익: ${result.netProfit >= 0 ? "+" : ""}${result.netProfit.toLocaleString()}원`,
+            `최종 수익률: ${result.profitRate}%`,
+            `최소 익절가: ${result.minSellPrice.toLocaleString()}원`,
+            `\n📌JIKO 주식 수수료 계산기에서 확인하기:\nhttps://jiko.kr/calculator/stock/fee`
+        ].join("\n");
+        await navigator.clipboard.writeText(text);
+        alert("계산 결과 텍스트가 복사되었습니다!");
     };
 
     return (
@@ -340,6 +361,27 @@ export default function StockFee({ stockName, initialCode }: StockFeeProps) {
                                 증권사별 우대 수수료나 기타 제세금 차이에 따라 실제 금액과 다를 수 있습니다.
                             </p>
                         </div>
+
+                        <div className="pt-4 border-t border-gray-100 dark:border-gray-700 flex flex-col gap-2">
+                            <button
+                                onClick={handleCopy}
+                                className="w-full py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-bold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex justify-center items-center gap-2"
+                            >
+                                <span>📋</span> 결과 복사하기
+                            </button>
+                            <button onClick={() => setIsSharing(true)} className="w-full py-3 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-colors flex justify-center items-center gap-2">
+                                <span>💬</span> 친구에게 공유하기
+                            </button>
+                        </div>
+
+                        {isSharing && (
+                            <ShareSheet
+                                onClose={() => setIsSharing(false)}
+                                title="💳 나의 주식 수수료 계산 결과"
+                                description={`${market.label} 시장에서 매수 ${buyPrice}원, 매도 ${sellPrice}원 거래 시 세후 순이익은 ${result.netProfit >= 0 ? "+" : ""}${result.netProfit.toLocaleString()}원 입니다!`}
+                                url={typeof window !== "undefined" ? window.location.href : ""}
+                            />
+                        )}
                     </div>
                 )}
                 <InstallBanner />

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
+import ShareSheet from "@/app/calculator/components/ShareSheet";
 
 export default function Bmr() {
     const [gender, setGender] = useState<"M" | "F">("M");
@@ -12,6 +13,7 @@ export default function Bmr() {
     const [errors, setErrors] = useState<Set<string>>(new Set());
     const [errorMessage, setErrorMessage] = useState("");
     const [isShaking, setIsShaking] = useState(false);
+    const [isSharing, setIsSharing] = useState(false);
 
     const handleCalculate = () => {
         const newErrors = new Set<string>();
@@ -58,9 +60,9 @@ export default function Bmr() {
 
     const handleCopy = () => {
         if (resultBmr !== null) {
-            const text = `내 기초대사량(BMR)은 ${resultBmr.toLocaleString()} kcal 입니다.`;
+            const text = `내 기초대사량(BMR)은 ${resultBmr.toLocaleString()} kcal 입니다.\n\n📌JIKO 기초대사량 계산기에서 확인하기:\nhttps://jiko.kr/calculator/health/bmr`;
             navigator.clipboard.writeText(text);
-            alert("복사되었습니다.");
+            alert("계산 결과 텍스트가 복사되었습니다!");
         }
     };
 
@@ -192,13 +194,27 @@ export default function Bmr() {
                                 <span className="text-lg font-bold text-red-800 dark:text-red-300 ml-2">kcal</span>
                             </div>
 
-                            <button
-                                onClick={handleCopy}
-                                className="w-full py-3 bg-white dark:bg-gray-800 text-red-600 dark:text-red-400 font-bold rounded-xl border border-red-200 dark:border-red-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-                            >
-                                결과 복사하기
-                            </button>
+                            <div className="flex gap-4 mt-6 w-full">
+                                <button
+                                    onClick={handleCopy}
+                                    className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-bold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex justify-center items-center gap-2"
+                                >
+                                    <span>📋</span> 결과 복사하기
+                                </button>
+                                <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-colors flex justify-center items-center gap-2">
+                                    <span>💬</span> 친구에게 공유하기
+                                </button>
+                            </div>
                         </div>
+                    )}
+
+                    {isSharing && (
+                        <ShareSheet
+                            onClose={() => setIsSharing(false)}
+                            title="🔥 나의 기초대사량(BMR) 계산 결과"
+                            description={`내 하루 기초대사량은 약 ${resultBmr?.toLocaleString()} kcal 입니다!`}
+                            url={typeof window !== "undefined" ? window.location.href : ""}
+                        />
                     )}
                 </div>
             </div>

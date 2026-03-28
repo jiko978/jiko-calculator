@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
+import ShareSheet from "@/app/calculator/components/ShareSheet";
 
 const EXERCISES = [
     { label: "걷기", mets: 3.5, icon: "🚶" },
@@ -69,6 +70,7 @@ export default function Calorie() {
     const [errors, setErrors] = useState<Set<string>>(new Set());
     const [errorMessage, setErrorMessage] = useState("");
     const [isShaking, setIsShaking] = useState(false);
+    const [isSharing, setIsSharing] = useState(false);
 
     const handleFoodChange = (idx: number, delta: number) => {
         setFoodCounts(prev => ({
@@ -152,9 +154,9 @@ export default function Calorie() {
 
     const handleCopy = () => {
         if (result) {
-            const text = `[JIKO 칼로리 계산기 결과]\n소모: ${result.burned.toLocaleString()}kcal | 섭취: ${result.intake.toLocaleString()}kcal\n순 밸런스: ${result.balance > 0 ? '+' : ''}${result.balance.toLocaleString()}kcal`;
+            const text = `[JIKO 칼로리 계산기 결과]\n소모: ${result.burned.toLocaleString()}kcal | 섭취: ${result.intake.toLocaleString()}kcal\n순 밸런스: ${result.balance > 0 ? '+' : ''}${result.balance.toLocaleString()}kcal\n\n📌JIKO 칼로리 계산기에서 확인하기:\nhttps://jiko.kr/calculator/health/calorie`;
             navigator.clipboard.writeText(text);
-            alert("복사되었습니다.");
+            alert("계산 결과 텍스트가 복사되었습니다!");
         }
     };
 
@@ -352,9 +354,25 @@ export default function Calorie() {
                                         </div>
                                     </div>
 
-                                    <button onClick={handleCopy} className="w-full py-4 bg-white text-orange-600 rounded-2xl font-black text-sm shadow-xl hover:bg-gray-50 transition-colors">분석 결과 공유하기</button>
+                                    <div className="flex gap-4">
+                                        <button onClick={handleCopy} className="flex-1 py-4 bg-white text-orange-600 font-bold rounded-xl hover:bg-gray-100 transition-colors flex justify-center items-center gap-2 shadow-xl">
+                                            <span>📋</span> 결과 복사하기
+                                        </button>
+                                        <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-colors flex justify-center items-center gap-2 shadow-xl">
+                                            <span>💬</span> 친구에게 공유하기
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
+
+                            {isSharing && (
+                                <ShareSheet
+                                    onClose={() => setIsSharing(false)}
+                                    title="🏃‍♂️ 나의 칼로리 계산 결과"
+                                    description={`오늘 나의 순 칼로리 밸런스는 ${result.balance > 0 ? '+' : ''}${result.balance.toLocaleString()}kcal 입니다!`}
+                                    url={typeof window !== "undefined" ? window.location.href : ""}
+                                />
+                            )}
                         </div>
                     )}
 

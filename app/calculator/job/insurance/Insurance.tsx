@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
+import ShareSheet from "@/app/calculator/components/ShareSheet";
 
 export default function Insurance() {
     const [salaryType, setSalaryType] = useState<"YEARLY" | "MONTHLY">("YEARLY");
@@ -11,6 +12,7 @@ export default function Insurance() {
     const [sanjaeRate, setSanjaeRate] = useState<string>("0.9"); // 기본 0.9% 세팅
     
     const [result, setResult] = useState<any>(null);
+    const [isSharing, setIsSharing] = useState(false);
     const [errors, setErrors] = useState<Set<string>>(new Set());
     const [shakeField, setShakeField] = useState<string | null>(null);
 
@@ -157,7 +159,8 @@ export default function Insurance() {
 - 산재보험 : ${formatComma(result.employer.sanjae.toString())} 원
 * 합계: 월 ${formatComma(result.employer.sum.toString())} 원 회사가 추가 납부
 
-> 정확한 계산은 JIKO 직장 계산기로: https://jiko.kr/calculator/job/insurance`;
+📌JIKO 4대보험 계산기에서 확인하기:
+https://jiko.kr/calculator/job/insurance`;
 
         navigator.clipboard.writeText(textToCopy);
         alert("계산 결과 텍스트가 복사되었습니다!");
@@ -406,10 +409,22 @@ export default function Insurance() {
 
                         {/* 결과 복사 & 공유 */}
                         <div className="mt-8 flex gap-4">
-                            <button onClick={copyResultToClipboard} className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-bold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex justify-center items-center gap-2">
-                                <span>📋</span> 결과 요약 복사
+                            <button onClick={copyResultToClipboard} className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-bold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex justify-center items-center gap-2">
+                                <span>📋</span> 결과 복사하기
+                            </button>
+                            <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-colors flex justify-center items-center gap-2">
+                                <span>💬</span> 친구에게 공유하기
                             </button>
                         </div>
+
+                        {isSharing && (
+                            <ShareSheet
+                                onClose={() => setIsSharing(false)}
+                                title="🛡️ 나의 4대보험 공제액 계산 결과"
+                                description={`[${salaryType === "YEARLY" ? "연봉" : "월급"}]\n근로자 부담금: 월 ${formatComma(result.employee.sum.toString())}원이 공제됩니다!`}
+                                url={typeof window !== "undefined" ? window.location.href : ""}
+                            />
+                        )}
 
                     </div>
                 </div>

@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ANIMATION } from "@/app/config/animationConfig";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
+import ShareSheet from "@/app/calculator/components/ShareSheet";
 
 interface SavingsProps {
     productName?: string;
@@ -21,6 +22,7 @@ const Savings = ({ productName }: SavingsProps) => {
     const [copied, setCopied] = useState(false);
     const [errors, setErrors] = useState<Set<string>>(new Set());
     const [errorMessage, setErrorMessage] = useState("");
+    const [isSharing, setIsSharing] = useState(false);
 
     const n = (v: string) => Number(v.replace(/[^0-9.]/g, ""));
     const formatComma = (raw: string) => raw.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -141,11 +143,12 @@ const Savings = ({ productName }: SavingsProps) => {
             `세전이자: ${Math.floor(preTaxInterest).toLocaleString()}원`,
             `이자과세: -${taxAmount.toLocaleString()}원`,
             `세후이자: ${postTaxInterest.toLocaleString()}원`,
-            `만기수령액: ${totalMaturity.toLocaleString()}원`
+            `만기수령액: ${totalMaturity.toLocaleString()}원`,
+            `\n📌JIKO 적금 계산기에서 확인하기:`,
+            `https://jiko.kr/calculator/finance/savings`
         ].join("\n");
         await navigator.clipboard.writeText(text);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        alert("계산 결과 텍스트가 복사되었습니다!");
     };
 
     return (
@@ -362,16 +365,15 @@ const Savings = ({ productName }: SavingsProps) => {
                                 </div>
                             </div>
 
-                            <div className="mt-8 flex justify-center">
+                            <div className="mt-8 flex gap-4 w-full">
                                 <button
                                     onClick={handleCopy}
-                                    className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-bold transition-all active:scale-95 ${copied ? "bg-green-500 text-white" : "bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"}`}
+                                    className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-bold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex justify-center items-center gap-2"
                                 >
-                                    {copied ? (
-                                        <><span className="text-lg">✅</span> 복사되었습니다</>
-                                    ) : (
-                                        <><span className="text-lg">📋</span> 결과 복사하기</>
-                                    )}
+                                    <span>📋</span> 결과 복사하기
+                                </button>
+                                <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-colors flex justify-center items-center gap-2">
+                                    <span>💬</span> 친구에게 공유하기
                                 </button>
                             </div>
                         </div>
@@ -446,6 +448,15 @@ const Savings = ({ productName }: SavingsProps) => {
                                 </div>
                             </div>
                         </div>
+
+                        {isSharing && (
+                            <ShareSheet
+                                onClose={() => setIsSharing(false)}
+                                title="💰 나의 적금 계산 결과"
+                                description={`매월 ${monthlyAmount}원씩 ${term}${termUnit === "month" ? "개월" : "년"} 동안 납입하면 만기 시 총 ${totalMaturity.toLocaleString()}원을 받을 수 있어요!`}
+                                url={typeof window !== "undefined" ? window.location.href : ""}
+                            />
+                        )}
                     </div>
                 )}
                 <InstallBanner />

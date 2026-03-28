@@ -4,6 +4,7 @@ import { useState } from "react";
 import NavBar from "@/app/calculator/components/NavBar";
 import { ANIMATION } from "@/app/config/animationConfig";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
+import ShareSheet from "@/app/calculator/components/ShareSheet";
 
 interface ProfitRateProps {
     stockName?: string;
@@ -18,6 +19,7 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
     const [result, setResult] = useState<{ profit: number; rate: string; buyTotal: number; currentTotal: number } | null>(null);
     const [copied, setCopied] = useState(false);
     const [shaking, setShaking] = useState(false);
+    const [isSharing, setIsSharing] = useState(false);
 
     const [errors, setErrors] = useState<Set<string>>(new Set());
     const [errorMessage, setErrorMessage] = useState("");
@@ -79,14 +81,19 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
     const handleCopyResult = async () => {
         if (!result) return;
         const text = [
+            `[주식 수익률 계산 결과]`,
+            `매수가: ${buyPrice}원`,
+            `현재가: ${currentPrice}원`,
+            `수량: ${quantity}주`,
+            `-------------------`,
             `매수 금액 : ${result.buyTotal.toLocaleString()} 원`,
             `현재 금액 : ${result.currentTotal.toLocaleString()} 원`,
-            `수익금   : ${result.profit.toLocaleString()} 원`,
-            `수익률   : ${result.rate} %`,
+            `수익금   : ${result.profit >= 0 ? "+" : ""}${result.profit.toLocaleString()} 원`,
+            `수익률   : ${Number(result.rate) >= 0 ? "+" : ""}${result.rate} %`,
+            `\n📌JIKO 수익률 계산기에서 확인하기:\nhttps://jiko.kr/calculator/stock/profit-rate`
         ].join("\n");
         await navigator.clipboard.writeText(text);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        alert("계산 결과 텍스트가 복사되었습니다!");
     };
 
     // 그래프 계산
@@ -203,16 +210,15 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
                                 </div>
 
                                 {/* 복사 버튼 */}
-                                <div className="pt-2 border-t border-gray-100 dark:border-gray-700 flex justify-center">
-                                    <button onClick={handleCopyResult}
-                                        className={`inline-flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${copied ? "bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-400"
-                                            : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
-                                            }`}>
-                                        {copied ? (
-                                            <><svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>복사 완료!</>
-                                        ) : (
-                                            <><svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>결과 복사</>
-                                        )}
+                                <div className="pt-4 border-t border-gray-100 dark:border-gray-700 flex flex-col gap-2">
+                                    <button
+                                        onClick={handleCopyResult}
+                                        className="w-full py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-bold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex justify-center items-center gap-2"
+                                    >
+                                        <span>📋</span> 결과 복사하기
+                                    </button>
+                                    <button onClick={() => setIsSharing(true)} className="w-full py-3 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-colors flex justify-center items-center gap-2">
+                                        <span>💬</span> 친구에게 공유하기
                                     </button>
                                 </div>
                             </div>
@@ -276,6 +282,14 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
                             </div>
 
                         </div>
+                        {isSharing && (
+                            <ShareSheet
+                                onClose={() => setIsSharing(false)}
+                                title="💰 나의 주식 수익률 계산 결과"
+                                description={`현재 ${quantity}주 보유시, 수익금은 ${result.profit >= 0 ? "+" : ""}${result.profit.toLocaleString()}원 이며 수익률은 ${Number(result.rate) >= 0 ? "+" : ""}${result.rate}% 입니다!`}
+                                url={typeof window !== "undefined" ? window.location.href : ""}
+                            />
+                        )}
                     </div>
                 )}
                 <InstallBanner />

@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ANIMATION } from "@/app/config/animationConfig";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
+import ShareSheet from "@/app/calculator/components/ShareSheet";
 
 interface LoansProps {
     productName?: string;
@@ -21,6 +22,7 @@ const Loans = ({ productName }: LoansProps) => {
     const [copied, setCopied] = useState(false);
     const [errors, setErrors] = useState<Set<string>>(new Set());
     const [errorMessage, setErrorMessage] = useState("");
+    const [isSharing, setIsSharing] = useState(false);
 
     const n = (v: string) => Number(v.replace(/[^0-9.]/g, ""));
     const formatComma = (raw: string) => raw.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -172,11 +174,12 @@ const Loans = ({ productName }: LoansProps) => {
             `-------------------`,
             `총 상환금액: ${totalRepayment.toLocaleString()}원`,
             `총 대출이자: ${totalInterest.toLocaleString()}원`,
-            `1회차 상환액: ${firstMonthPayment.toLocaleString()}원`
+            `1회차 상환액: ${firstMonthPayment.toLocaleString()}원`,
+            `\n📌JIKO 대출 계산기에서 확인하기:`,
+            `https://jiko.kr/calculator/finance/loans`
         ].join("\n");
         await navigator.clipboard.writeText(text);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        alert("계산 결과 텍스트가 복사되었습니다!");
     };
 
     return (
@@ -384,12 +387,15 @@ const Loans = ({ productName }: LoansProps) => {
                                 </div>
                             </div>
 
-                            <div className="mt-8 flex justify-center">
+                            <div className="mt-8 flex gap-4 w-full">
                                 <button
                                     onClick={handleCopy}
-                                    className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-bold transition-all active:scale-95 ${copied ? "bg-green-500 text-white" : "bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"}`}
+                                    className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-bold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex justify-center items-center gap-2"
                                 >
-                                    {copied ? "✅ 복사되었습니다" : "📋 결과 복사하기"}
+                                    <span>📋</span> 결과 복사하기
+                                </button>
+                                <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-colors flex justify-center items-center gap-2">
+                                    <span>💬</span> 친구에게 공유하기
                                 </button>
                             </div>
                         </div>
@@ -497,6 +503,15 @@ const Loans = ({ productName }: LoansProps) => {
                             </div>
                             <p className="text-[10px] text-gray-400 mt-4 text-center">* 1~12회차 및 최종회차 요약 정보입니다.</p>
                         </div>
+
+                        {isSharing && (
+                            <ShareSheet
+                                onClose={() => setIsSharing(false)}
+                                title="💰 나의 대출 계산 결과"
+                                description={`대출금액 ${loanAmount}원을 빌릴 경우, 1회차 상환액은 ${firstMonthPayment.toLocaleString()}원 이며 총 대출이자는 ${totalInterest.toLocaleString()}원 입니다!`}
+                                url={typeof window !== "undefined" ? window.location.href : ""}
+                            />
+                        )}
                     </div>
                 )}
                 <InstallBanner />
