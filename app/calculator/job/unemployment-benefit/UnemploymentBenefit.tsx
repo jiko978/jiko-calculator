@@ -198,7 +198,7 @@ export default function UnemploymentBenefit() {
                                 placeholder="예) 19900101"
                                 value={birthDate}
                                 onChange={(e) => setBirthDate(e.target.value.replace(/[^0-9]/g, ''))}
-                                className={`w-full p-4 bg-gray-50 dark:bg-gray-900 border ${errors.has('birthDate') ? 'border-red-600 ring-2 ring-red-500/10' : 'border-gray-300 dark:border-gray-600'} rounded-2xl outline-none focus:ring-2 focus:ring-blue-600 transition-all font-medium text-gray-800 dark:text-gray-100 text-right ${shakeField === 'birthDate' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-900 border font-semibold ${errors.has('birthDate') ? 'border-red-600 ring-2 ring-red-500/10' : 'border-gray-300 dark:border-gray-600'} rounded-2xl outline-none focus:ring-2 focus:ring-blue-600 transition-all font-medium text-gray-800 dark:text-gray-100 text-right ${shakeField === 'birthDate' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                             />
                         </div>
                         <div>
@@ -236,7 +236,7 @@ export default function UnemploymentBenefit() {
                                             value={company.startDate}
                                             max="9999-12-31"
                                             onChange={(e) => updateCompany(company.id, 'startDate', e.target.value)}
-                                            className="w-full p-3 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-500 text-right"
+                                            className="w-full p-3 bg-white dark:bg-gray-800 border font-semibold border-gray-100 dark:border-gray-700 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-500 text-right"
                                         />
                                     </div>
                                     <div className="text-right">
@@ -246,7 +246,7 @@ export default function UnemploymentBenefit() {
                                             value={company.endDate}
                                             max="9999-12-31"
                                             onChange={(e) => updateCompany(company.id, 'endDate', e.target.value)}
-                                            className="w-full p-3 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-500 text-right"
+                                            className="w-full p-3 bg-white dark:bg-gray-800 border font-semibold border-gray-100 dark:border-gray-700 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-500 text-right"
                                         />
                                     </div>
                                 </div>

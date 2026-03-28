@@ -263,7 +263,7 @@ export default function Salary() {
                                 type="text"
                                 value={taxFreeAmount ? formatNumber(parseInt(taxFreeAmount)) : ''}
                                 onChange={handleTaxFreeChange}
-                                className={`w-full p-4 text-right bg-gray-50 dark:bg-gray-900 border ${errors.has('taxFreeAmount') ? 'border-red-600 ring-2 ring-red-500/20' : 'border-gray-300 dark:border-gray-600'} rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all text-gray-800 dark:text-gray-100 ${shakeField === 'taxFreeAmount' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
+                                className={`w-full p-4 text-right bg-gray-50 dark:bg-gray-900 border font-semibold ${errors.has('taxFreeAmount') ? 'border-red-600 ring-2 ring-red-500/20' : 'border-gray-300 dark:border-gray-600'} rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all text-gray-800 dark:text-gray-100 ${shakeField === 'taxFreeAmount' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                             />
                             <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">※ 2024년부터 식대 비과세 한도가 20만원으로 상향되었습니다.</p>
                         </div>

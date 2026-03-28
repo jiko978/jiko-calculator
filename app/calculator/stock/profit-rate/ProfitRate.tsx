@@ -139,7 +139,7 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
                                             type="text" inputMode="numeric" placeholder={placeholder}
                                             value={value}
                                             onChange={handleChange(setter, key)}
-                                            className={`w-full border-2 rounded-lg px-4 py-2 text-right focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 text-base transition-all ${
+                                            className={`w-full border-2 rounded-lg px-4 py-2 text-right focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 text-base transition-all font-semibold ${
                                                 errors.has(key) ? "border-red-500 ring-2 ring-red-200 dark:ring-red-900/30" : "border-gray-300 dark:border-gray-600 focus:ring-blue-400 ring-blue-400/10 focus:ring-4"
                                             }`}
                                         />

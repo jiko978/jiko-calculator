@@ -198,7 +198,7 @@ export default function NetPay() {
                                 type="text"
                                 value={taxFreeAmount ? formatNumber(parseInt(taxFreeAmount)) : ''}
                                 onChange={(e) => setTaxFreeAmount(e.target.value.replace(/[^0-9]/g, ''))}
-                                className="w-full p-4 text-right bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all text-gray-800 dark:text-gray-100"
+                                className="w-full p-4 text-right bg-gray-50 dark:bg-gray-900 border font-semibold border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all text-gray-800 dark:text-gray-100"
                             />
                             <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">※ 2024년부터 식대 비과세 한도가 20만원으로 상향되었습니다.</p>
                         </div>

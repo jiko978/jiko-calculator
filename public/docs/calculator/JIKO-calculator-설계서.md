@@ -78,7 +78,7 @@ Tool Site.
 ㄴ [1차]퇴직금(severance-pay) : 잡코리아, 사람인 참고
 ㄴ [1차]실업급여(unemployment-benefit) : 잡코리아, 사람인, MoneyNest 참고 
 ㄴ [1차]실수령액(net-pay) : 사람인, MoneyNest 참고 
-ㄴ [1차]4대보험(4대-insurance) : MoneyNest 참고 
+ㄴ [1차]4대보험(insurance) : MoneyNest 참고 
 ㄴ [1차]주휴수당(paid-holiday-allowance) : MoneyNest 참고 
 ㄴ [1차]연차(paid-leave) : 잡코리아, 사람인, MoneyNest 참고  
 

@@ -166,7 +166,7 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
                                             id={id}
                                             type="text" inputMode="numeric" placeholder={placeholder}
                                             value={value} onChange={handleChange(setter, key)}
-                                            className={`w-full border-2 rounded-xl px-4 py-3 text-right focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 dark:text-white transition-all ${
+                                            className={`w-full border-2 rounded-xl px-4 py-3 text-right focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 dark:text-white transition-all font-semibold ${
                                                 errors.has(key) ? "border-red-500 ring-2 ring-red-200 dark:ring-red-900/30" : "border-gray-300 dark:border-gray-600 focus:ring-green-400 ring-green-400/10 focus:ring-4"
                                             }`}
                                         />
@@ -184,7 +184,7 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
                                         id="dividend-per-share"
                                         type="text" inputMode="numeric" placeholder="1주당 배당액"
                                         value={dividendPerShare} onChange={handleChange(setDividendPerShare, "dividendPerShare")}
-                                        className={`w-full border-2 rounded-xl px-4 py-3 text-right focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 dark:text-white transition-all ${
+                                        className={`w-full border-2 rounded-xl px-4 py-3 text-right focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 dark:text-white transition-all font-semibold ${
                                             errors.has("dividendPerShare") ? "border-red-500 ring-2 ring-red-200 dark:ring-red-900/30" : "border-gray-300 dark:border-gray-600 focus:ring-green-400 ring-green-400/10 focus:ring-4"
                                         }`}
                                     />
@@ -221,7 +221,7 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
                                         id="target-monthly-dividend"
                                         type="text" inputMode="numeric" placeholder="받고 싶은 월 배당금"
                                         value={targetMonthlyDividend} onChange={handleChange(setTargetMonthlyDividend)}
-                                        className="w-full border-2 border-orange-200 dark:border-orange-800 rounded-xl px-4 py-3 text-right focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50/30 dark:bg-orange-900/10 dark:text-white ring-orange-400/10 focus:ring-4"
+                                        className="w-full border-2 border-orange-200 font-semibold dark:border-orange-800 rounded-xl px-4 py-3 text-right focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50/30 dark:bg-orange-900/10 dark:text-white ring-orange-400/10 focus:ring-4"
                                     />
                                     <span aria-hidden="true" className="ml-2 text-sm text-orange-500 w-4 shrink-0 font-bold">원</span>
                                 </div>

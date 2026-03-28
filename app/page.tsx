@@ -57,7 +57,8 @@ const services: Service[] = [
             { label: "✔ 연봉/월급 계산기", href: "/calculator/job/salary" },
             { label: "✔ 실수령액 계산기", href: "/calculator/job/net-pay" },
             { label: "✔ 퇴직금 계산기", href: "/calculator/job/severance-pay" },
-            { label: "✔ 실업급여 계산기", href: "/calculator/job/unemployment-benefit" }
+            { label: "✔ 실업급여 계산기", href: "/calculator/job/unemployment-benefit" },
+            { label: "✔ 4대보험 계산기", href: "/calculator/job/insurance" }
         ]
     },
     {

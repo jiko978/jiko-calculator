@@ -28,6 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: "/calculator/job/net-pay",  priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/job/severance-pay",  priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/job/unemployment-benefit",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/job/insurance",  priority: 0.8, changeFrequency: "monthly" as const },
 
         // ── 건강 ──
         { url: "/calculator/health",  priority: 0.8, changeFrequency: "monthly" as const },

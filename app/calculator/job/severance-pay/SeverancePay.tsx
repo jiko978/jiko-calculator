@@ -154,7 +154,7 @@ export default function SeverancePay() {
                                      if (yearPart && yearPart.length > 4) return;
                                      setJoinDate(val);
                                 }}
-                                className={`w-full p-4 bg-gray-50 dark:bg-gray-900 border ${errors.has('joinDate') ? 'border-red-600 ring-2 ring-red-500/10' : 'border-gray-300 dark:border-gray-600'} rounded-2xl outline-none focus:ring-2 focus:ring-blue-600 transition-all font-medium text-gray-800 dark:text-gray-100 [text-align:right] md:[text-align:left] ${shakeField === 'joinDate' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-900 border font-semibold ${errors.has('joinDate') ? 'border-red-600 ring-2 ring-red-500/10' : 'border-gray-300 dark:border-gray-600'} rounded-2xl outline-none focus:ring-2 focus:ring-blue-600 transition-all font-medium text-gray-800 dark:text-gray-100 [text-align:right] md:[text-align:left] ${shakeField === 'joinDate' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                             />
                         </div>
                         {/* 퇴사일 */}
@@ -171,7 +171,7 @@ export default function SeverancePay() {
                                      if (yearPart && yearPart.length > 4) return;
                                      setQuitDate(val);
                                 }}
-                                className={`w-full p-4 bg-gray-50 dark:bg-gray-900 border ${errors.has('quitDate') ? 'border-red-600 ring-2 ring-red-500/10' : 'border-gray-300 dark:border-gray-600'} rounded-2xl outline-none focus:ring-2 focus:ring-blue-600 transition-all font-medium text-gray-800 dark:text-gray-100 [text-align:right] md:[text-align:left] ${shakeField === 'quitDate' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-900 border font-semibold ${errors.has('quitDate') ? 'border-red-600 ring-2 ring-red-500/10' : 'border-gray-300 dark:border-gray-600'} rounded-2xl outline-none focus:ring-2 focus:ring-blue-600 transition-all font-medium text-gray-800 dark:text-gray-100 [text-align:right] md:[text-align:left] ${shakeField === 'quitDate' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                             />
                         </div>
                     </div>

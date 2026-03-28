@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,7 +10,8 @@ export default function JobMoreCalculators() {
         { name: "연봉/월급 계산기", href: "/calculator/job/salary", emoji: "💸", description: "2025 최신 4대보험 반영 연봉/월급 실수령액" },
         { name: "실수령액 계산기", href: "/calculator/job/net-pay", emoji: "💰", description: "2025 최신 4대보험 반영 연봉/월급 실수령액" },
         { name: "퇴직금 계산기", href: "/calculator/job/severance-pay", emoji: "💼", description: "2025 최신 4대보험 반영 퇴직금 실수령액" },
-        { name: "실업급여 계산기", href: "/calculator/job/unemployment-benefit", emoji: "💡", description: "2025 최신 4대보험 반영 실업급여 실수령액" }
+        { name: "실업급여 계산기", href: "/calculator/job/unemployment-benefit", emoji: "📑", description: "2025 최신 4대보험 반영 실업급여 실수령액" },
+        { name: "4대보험 계산기", href: "/calculator/job/insurance", emoji: "🛡️", description: "근로자 사업주 분담 4대보험 내역 추출" }
     ];
 
     // 현재 페이지는 제외하고 다른 계산기 보여주기

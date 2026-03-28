@@ -30,6 +30,11 @@ const jobCalculators = [
         description: "2025년 고용보험법 개정 기준을 반영하여 예상 수급액과 지급 기간을 정확하게 산출해드립니다.",
         href: "/calculator/job/unemployment-benefit",
     },
+    {
+        title: "🛡️ 4대보험 계산기",
+        description: "국민연금, 건강보험, 고용보험, 산재보험 중 나와 회사가 각각 부담하는 금액의 비율을 시각화하여 파악하세요.",
+        href: "/calculator/job/insurance",
+    },
 ];
 
 export default function JobHubPage() {
