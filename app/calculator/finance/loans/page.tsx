@@ -66,6 +66,9 @@ export default function LoansPage() {
                     <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                         주택담보대출·신용대출 등 다양한 대출 상품의 월 상환액과 총 이자를 계산합니다. 원리금균등·원금균등·만기일시 상환 방식과 거치 기간 설정을 지원하여 최적의 상환 플랜을 설계할 수 있습니다.
                     </p>
+                    <p className="text-xs mt-3 text-red-500/80 dark:text-red-400/80 font-medium bg-red-50/50 dark:bg-red-900/10 p-2.5 rounded-lg border border-red-100/50 dark:border-red-900/20 inline-block">
+                        ※ 본 계산기는 참고용이며 투자 판단의 책임은 사용자에게 있습니다.
+                    </p>
                 </section>
 
                 {/* 사용 방법 & 계산 예시 */}

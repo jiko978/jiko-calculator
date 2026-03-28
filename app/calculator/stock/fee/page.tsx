@@ -127,6 +127,9 @@ export default function Page() {
                         국내 코스피/코스닥부터 해외 주식 거래 시 발생하는 모든 수수료와 세금을 계산해 드립니다. 
                         단순히 사고파는 가격 차이를 넘어, 실제 수익에 영향을 주는 모든 비용을 미리 모의계산하여 성공적인 투자 전략을 세워보세요.
                     </p>
+                    <p className="text-xs mt-3 text-red-500/80 dark:text-red-400/80 font-medium bg-red-50/50 dark:bg-red-900/10 p-2.5 rounded-lg border border-red-100/50 dark:border-red-900/20 inline-block text-left">
+                        ※ 본 계산기는 참고용이며 투자 판단의 책임은 사용자에게 있습니다.
+                    </p>
                 </section>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

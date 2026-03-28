@@ -140,6 +140,9 @@ export default function Page() {
                         주식을 여러 번 나누어 매수했을 때 평균 매입 단가를 계산할 수 있는 계산기입니다.
                         물타기를 할 때 현재 보유 주식의 전체 평균단가를 손쉽게 확인할 수 있습니다.
                     </p>
+                    <p className="text-xs mt-3 text-red-500/80 dark:text-red-400/80 font-medium bg-red-50/50 dark:bg-red-900/10 p-2.5 rounded-lg border border-red-100/50 dark:border-red-900/20 inline-block text-left">
+                        ※ 본 계산기는 참고용이며 투자 판단의 책임은 사용자에게 있습니다.
+                    </p>
                 </section>
 
                 {/* 사용 방법 및 예시 */}

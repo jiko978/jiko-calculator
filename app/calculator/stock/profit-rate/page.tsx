@@ -144,6 +144,9 @@ export default function Page() {
             매수가, 현재가, 보유 수량을 입력하면 주식 투자 수익금과 수익률을
             자동으로 상세하게 계산할 수 있는 계산기입니다. 손쉬운 모의계산으로 투자 성과를 빠르고 직관적으로 확인해보세요.
           </p>
+          <p className="text-xs mt-3 text-red-500/80 dark:text-red-400/80 font-medium bg-red-50/50 dark:bg-red-900/10 p-2.5 rounded-lg border border-red-100/50 dark:border-red-900/20 inline-block text-left">
+            ※ 본 계산기는 참고용이며 투자 판단의 책임은 사용자에게 있습니다.
+          </p>
         </section>
 
         {/* 사용 방법 및 예시 */}

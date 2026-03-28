@@ -66,6 +66,9 @@ export default function DepositsPage() {
                     <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                         목돈을 한 번에 맡기는 정기예금의 만기 수령액을 계산합니다. 단리·월복리 선택은 물론, 일반과세·세금우대·비과세 등 과세 유형별 세후 실수령액을 확인할 수 있습니다.
                     </p>
+                    <p className="text-xs mt-3 text-red-500/80 dark:text-red-400/80 font-medium bg-red-50/50 dark:bg-red-900/10 p-2.5 rounded-lg border border-red-100/50 dark:border-red-900/20 inline-block">
+                        ※ 본 계산기는 참고용이며 투자 판단의 책임은 사용자에게 있습니다.
+                    </p>
                 </section>
 
                 {/* 사용 방법 & 계산 예시 */}

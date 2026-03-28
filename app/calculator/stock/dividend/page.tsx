@@ -130,6 +130,9 @@ export default function Page() {
                         내가 보유한 주식의 배당금과 배당 수익률을 정확하게 시뮬레이션 해볼 수 있는 계산기입니다. 
                         단순한 수익 계산을 넘어, 배당금이 나의 월 생활비에 얼마나 기여하는지, 목표 배당을 위해 얼마나 더 투자해야 하는지 직관적으로 보여드립니다.
                     </p>
+                    <p className="text-xs mt-3 text-red-500/80 dark:text-red-400/80 font-medium bg-red-50/50 dark:bg-red-900/10 p-2.5 rounded-lg border border-red-100/50 dark:border-red-900/20 inline-block text-left">
+                        ※ 본 계산기는 참고용이며 투자 판단의 책임은 사용자에게 있습니다.
+                    </p>
                 </section>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

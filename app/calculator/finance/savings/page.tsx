@@ -66,6 +66,9 @@ export default function SavingsPage() {
                     <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                         매월 일정액을 납입하는 정기적금의 만기 수령액을 계산합니다. 적금은 납입 시점마다 남은 기간에 따라 이자가 다르게 적용되므로, 본 계산기로 정확한 세후 금액을 미리 파악하세요.
                     </p>
+                    <p className="text-xs mt-3 text-red-500/80 dark:text-red-400/80 font-medium bg-red-50/50 dark:bg-red-900/10 p-2.5 rounded-lg border border-red-100/50 dark:border-red-900/20 inline-block">
+                        ※ 본 계산기는 참고용이며 투자 판단의 책임은 사용자에게 있습니다.
+                    </p>
                 </section>
 
                 {/* 사용 방법 & 계산 예시 */}
