@@ -16,6 +16,7 @@ export default function Salary() {
 
     const [result, setResult] = useState<any>(null);
     const [isSharing, setIsSharing] = useState(false);
+    const [copied, setCopied] = useState(false);
 
     // UI Validation states
     const [errors, setErrors] = useState<Set<string>>(new Set());
@@ -167,7 +168,8 @@ export default function Salary() {
         if (!result) return;
         const text = `💰 연봉/월급 실수령액 계산 결과\n\n기준: ${calcType === "YEARLY" ? "연봉" : "월급"} ${formatNumber(parseInt(amount))}원\n예상 실수령액(월): ${formatNumber(result.netPay)}원\n\n- 공제액 합계: ${formatNumber(result.deductions.total)}원\n(국민연금: ${formatNumber(result.deductions.pension)}원 등)\n\n📌JIKO 연봉/월급 계산기에서 확인하기:\nhttps://jiko.kr/calculator/job/salary`;
         navigator.clipboard.writeText(text);
-        alert("계산 결과 텍스트가 복사되었습니다!");
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
     };
 
     return (
@@ -393,14 +395,21 @@ export default function Salary() {
                         </div>
                     </div>
 
-                    <div className="flex gap-4">
-                        <button onClick={handleCopy} className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-bold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex justify-center items-center gap-2">
-                            <span>📋</span> 결과 복사하기
-                        </button>
-                        <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-colors flex justify-center items-center gap-2">
-                            <span>💬</span> 친구에게 공유하기
-                        </button>
-                    </div>
+                    <div className="mt-8 flex gap-4 w-full">
+                                <button
+                                    onClick={handleCopy}
+                                    className={`flex-1 py-4 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 ${copied ? "bg-green-500 text-white" : "bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600"}`}
+                                >
+                                    {copied ? (
+                                        <><span>✅</span> 복사 완료</>
+                                    ) : (
+                                        <><span>📋</span> 결과 복사하기</>
+                                    )}
+                                </button>
+                                <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 shadow-xl">
+                                    <span>💬</span> 친구에게 공유하기
+                                </button>
+                            </div>
 
                     {isSharing && (
                         <ShareSheet

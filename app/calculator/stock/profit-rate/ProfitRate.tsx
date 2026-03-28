@@ -93,7 +93,8 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
             `\n📌JIKO 수익률 계산기에서 확인하기:\nhttps://jiko.kr/calculator/stock/profit-rate`
         ].join("\n");
         await navigator.clipboard.writeText(text);
-        alert("계산 결과 텍스트가 복사되었습니다!");
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
     };
 
     // 그래프 계산
@@ -210,17 +211,21 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
                                 </div>
 
                                 {/* 복사 버튼 */}
-                                <div className="pt-4 border-t border-gray-100 dark:border-gray-700 flex flex-col gap-2">
-                                    <button
-                                        onClick={handleCopyResult}
-                                        className="w-full py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-bold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex justify-center items-center gap-2"
-                                    >
-                                        <span>📋</span> 결과 복사하기
-                                    </button>
-                                    <button onClick={() => setIsSharing(true)} className="w-full py-3 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-colors flex justify-center items-center gap-2">
-                                        <span>💬</span> 친구에게 공유하기
-                                    </button>
-                                </div>
+                                <div className="mt-8 flex flex-col gap-3 w-full">
+                                <button
+                                    onClick={handleCopyResult}
+                                    className={`w-full py-4 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 ${copied ? "bg-green-500 text-white" : "bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600"}`}
+                                >
+                                    {copied ? (
+                                        <><span>✅</span> 복사 완료</>
+                                    ) : (
+                                        <><span>📋</span> 결과 복사하기</>
+                                    )}
+                                </button>
+                                <button onClick={() => setIsSharing(true)} className="w-full py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 shadow-xl">
+                                    <span>💬</span> 친구에게 공유하기
+                                </button>
+                            </div>
                             </div>
 
                             {/* 우측: 그래프 */}
