@@ -27,26 +27,16 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
       
-      <div className="flex-grow px-4 py-8 w-full max-w-3xl mx-auto">
+      <div className="flex-grow px-4 py-6 w-full max-w-3xl mx-auto">
         {/* 상단 타이틀 섹션 */}
-        <div className="text-center mb-10">
-          <h1 className="text-4xl md:text-4xl font-bold mb-6 text-gray-800 dark:text-gray-100">
-            🧮 JIKO 계산기
-          </h1>
-          
-          {/* 보강된 설명 섹션 (하위 메뉴와 통일감 있는 카드 스타일) */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 mb-10 text-left">
-            <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2">왜 JIKO 계산기인가요? ✨</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
-              JIKO는 복잡한 금융 수식과 건강 데이터를 가장 직관적이고 정확하게 풀어냅니다. 
-              검증된 로직과 깔끔한 인터페이스를 통해 당신의 일상을 숫자로 명확하게 확인하고 투자 및 건강 계획을 전략적으로 세워보세요.
-            </p>
-          </div>
+        <h1 className="text-4xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">
+          🧮 JIKO 계산기
+        </h1>
+        <p className="text-xl font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">
+          필요한 계산기를 선택하세요.
+        </p>
 
-          <p className="text-xl font-semibold mb-6 text-gray-400 dark:text-gray-500">필요한 계산기를 선택하세요</p>
-        </div>
-
-        {/* 메뉴 그리드 (기존 큼직한 카드 규격 복구) */}
+        {/* 메뉴 그리드 */}
         <div className="grid gap-4 w-full md:grid-cols-2">
           {mainCalculators.map((calc) => (
             <Link
@@ -72,10 +62,25 @@ export default function Home() {
           ))}
         </div>
 
-        {/* 하단 섹션 - 간격 대폭 축소 */}
-        <div className="mt-12 mb-8 pt-8 border-t border-gray-100 dark:border-gray-800 text-center">
-          <p className="text-[11px] text-gray-400 dark:text-gray-600 max-w-md mx-auto leading-relaxed mb-6">
-            JIKO 계산기의 모든 결과값은 표준 공식에 기반한 참고용 데이터이며, 실제 금융 거래나 의료적 판단을 대체할 수 없습니다. 투자 및 건강에 관한 최종 결정은 전문가와 상의하시기 바랍니다.
+        {/* 보강된 설명 섹션 (하위 메뉴와 통일감 있는 하단 카드 스타일) */}
+        <section className="mt-6 bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-lg border border-gray-100 dark:border-gray-700 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/5 rounded-full -mr-24 -mt-24 blur-2xl"></div>
+          <div className="relative">
+            <h2 className="text-xl font-black text-gray-900 dark:text-white mb-2">왜 JIKO 계산기인가요? ✨</h2>
+            <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-1">
+              JIKO는 복잡한 금융 수식과 건강 데이터를 가장 직관적이고 정확하게 풀어냅니다.
+            </p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+              검증된 로직과 깔끔한 인터페이스를 통해 당신의 일상을 숫자로 명확하게 확인하고 투자 및 건강 계획을 전략적으로 세워보세요.
+            </p>
+          </div>
+        </section>
+
+        {/* 하단 섹션 - 간격 디자인 통일 */}
+        <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-800 text-left">
+          <p className="text-[11px] max-w-xl text-gray-400 dark:text-gray-600 max-w-md mx-auto leading-relaxed mb-6">
+            JIKO 계산기의 모든 결과값은 표준 공식에 기반한 참고용 데이터이며, 실제 금융 거래나 의료적 판단을 대체할 수 없습니다.
+            투자 및 건강에 관한 최종 결정은 전문가와 상의하시기 바랍니다.
           </p>
           <div className="flex justify-center opacity-80 hover:opacity-100 transition-opacity">
             <SiteQR />

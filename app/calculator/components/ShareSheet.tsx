@@ -4,7 +4,8 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 interface ShareSheetProps {
     url:         string;
@@ -16,6 +17,11 @@ interface ShareSheetProps {
 export default function ShareSheet({ url, title, description, onClose }: ShareSheetProps) {
     const [linkCopied, setLinkCopied] = useState(false);
     const [kakaoError, setKakaoError] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     // ── 카카오톡 링크형 공유 ──────────────────────────────────
     const shareKakao = () => {
@@ -93,14 +99,14 @@ export default function ShareSheet({ url, title, description, onClose }: ShareSh
 
     const hasNativeShare = typeof navigator !== "undefined" && !!navigator.share;
 
-    return (
+    const sheetContent = (
         <>
             {/* 딤 배경 */}
             <div className="fixed inset-0 bg-black/40 z-[9998]" onClick={onClose} />
 
             {/* 시트 */}
-            <div className="fixed bottom-0 left-0 right-0 z-[9999] animate-slide-up">
-                <div className="bg-white dark:bg-gray-800 rounded-t-3xl shadow-2xl px-5 pt-5 pb-10 max-w-lg mx-auto">
+            <div className="fixed top-0 bottom-0 left-0 right-0 z-[9999] pointer-events-none flex flex-col justify-end">
+                <div className="bg-white dark:bg-gray-800 rounded-t-3xl shadow-2xl px-5 pt-5 pb-10 max-w-lg mx-auto w-full pointer-events-auto animate-slide-up relative">
 
                     {/* 핸들 바 */}
                     <div className="w-10 h-1 bg-gray-300 dark:bg-gray-600 rounded-full mx-auto mb-5" />
@@ -181,6 +187,9 @@ export default function ShareSheet({ url, title, description, onClose }: ShareSh
       `}</style>
         </>
     );
+
+    if (!mounted) return null;
+    return createPortal(sheetContent, document.body);
 }
 
 // ── 아이콘 버튼 서브 컴포넌트 ─────────────────────────────
