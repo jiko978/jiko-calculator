@@ -129,7 +129,7 @@ export default function Pregnancy() {
 
     const handleCopy = () => {
         if (resultDueDate) {
-            const text = `출산 예정일: ${resultDueDate}\n현재 임신기간: ${resultCurrentWeeks}주 ${resultCurrentDays}일차 (${resultTrimester})\n진행률: ${resultProgress.toFixed(1)}%\n\n📌JIKO 임신주수 계산기에서 확인하기:\nhttps://jiko.kr/calculator/health/pregnancy`;
+            const text = `[👶️ 임신주수 계산 결과]\n\n출산 예정일 : ${resultDueDate}\n현재 임신기간 : ${resultCurrentWeeks}주 ${resultCurrentDays}일차 (${resultTrimester})\n진행률 : ${resultProgress.toFixed(1)}%\n\n📌JIKO 임신주수 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/pregnancy`;
             navigator.clipboard.writeText(text);
             setCopied(true);
         setTimeout(() => setCopied(false), 2000);

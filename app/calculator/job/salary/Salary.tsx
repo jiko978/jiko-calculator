@@ -166,7 +166,7 @@ export default function Salary() {
 
     const handleCopy = () => {
         if (!result) return;
-        const text = `💰 연봉/월급 실수령액 계산 결과\n\n기준: ${calcType === "YEARLY" ? "연봉" : "월급"} ${formatNumber(parseInt(amount))}원\n예상 실수령액(월): ${formatNumber(result.netPay)}원\n\n- 공제액 합계: ${formatNumber(result.deductions.total)}원\n(국민연금: ${formatNumber(result.deductions.pension)}원 등)\n\n📌JIKO 연봉/월급 계산기에서 확인하기:\nhttps://jiko.kr/calculator/job/salary`;
+        const text = `[💸 연봉/월급 계산 결과]\n\n기준 : ${calcType === "YEARLY" ? "연봉" : "월급"} ${formatNumber(parseInt(amount))}원\n예상 실수령액(월) : ${formatNumber(result.netPay)}원\n공제액 합계 : ${formatNumber(result.deductions.total)}원\n(국민연금 : ${formatNumber(result.deductions.pension)}원 등)\n\n📌JIKO 연봉/월급 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/salary`;
         navigator.clipboard.writeText(text);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);

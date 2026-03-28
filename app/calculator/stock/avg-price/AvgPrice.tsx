@@ -209,17 +209,18 @@ export default function AvgPrice({ stockName, initialCode }: AvgPriceProps) {
 
     const handleCopyResult = async () => {
         const lines = [
-            `평균 단가       : ${avgPrice.toLocaleString(undefined, { maximumFractionDigits: 0 })} 원`,
-            `합계 수량       : ${totalQty.toLocaleString()} 개`,
-            `매수 합계 금액  : ${totalCost.toLocaleString()} 원`,
+            `[💧 주식 물타기 계산 결과]`,
+            `평균 단가 : ${avgPrice.toLocaleString(undefined, { maximumFractionDigits: 0 })} 원`,
+            `합계 수량 : ${totalQty.toLocaleString()} 개`,
+            `매수 합계 금액 : ${totalCost.toLocaleString()} 원`,
         ];
         if (hasCurrent) {
-            lines.push(`현재 평가금액   : ${evalTotal.toLocaleString()} 원`);
-            lines.push(`수익금          : ${profitAmt >= 0 ? "+" : ""}${profitAmt.toLocaleString()} 원`);
-            lines.push(`수익률          : ${Number(profitRate) >= 0 ? "+" : ""}${profitRate} %`);
-            if (breakevenQty !== null) lines.push(`본전 추가매수    : ${breakevenQty.toLocaleString()} 개`);
+            lines.push(`현재 평가금액 : ${evalTotal.toLocaleString()} 원`);
+            lines.push(`수익금 : ${profitAmt >= 0 ? "+" : ""}${profitAmt.toLocaleString()} 원`);
+            lines.push(`수익률 : ${Number(profitRate) >= 0 ? "+" : ""}${profitRate} %`);
+            if (breakevenQty !== null) lines.push(`본전 추가매수 : ${breakevenQty.toLocaleString()} 개`);
         }
-        lines.push(`\n📌JIKO 물타기 계산기에서 확인하기:\nhttps://jiko.kr/calculator/stock/avg-price`);
+        lines.push(`\n📌JIKO 주식 물타기 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/stock/avg-price`);
         await navigator.clipboard.writeText(lines.join("\n"));
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);

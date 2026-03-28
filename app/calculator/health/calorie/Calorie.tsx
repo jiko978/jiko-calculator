@@ -155,7 +155,7 @@ export default function Calorie() {
 
     const handleCopy = () => {
         if (result) {
-            const text = `[JIKO 칼로리 계산기 결과]\n소모: ${result.burned.toLocaleString()}kcal | 섭취: ${result.intake.toLocaleString()}kcal\n순 밸런스: ${result.balance > 0 ? '+' : ''}${result.balance.toLocaleString()}kcal\n\n📌JIKO 칼로리 계산기에서 확인하기:\nhttps://jiko.kr/calculator/health/calorie`;
+            const text = `[🏃‍♂️ 칼로리 계산기 결과]\n\n소모 : ${result.burned.toLocaleString()}kcal\n섭취 : ${result.intake.toLocaleString()}kcal\n순 밸런스 : ${result.balance > 0 ? '+' : ''}${result.balance.toLocaleString()}kcal\n\n📌JIKO 칼로리 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/calorie`;
             navigator.clipboard.writeText(text);
             setCopied(true);
         setTimeout(() => setCopied(false), 2000);

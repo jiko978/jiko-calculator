@@ -181,7 +181,7 @@ export default function UnemploymentBenefit() {
 
     const handleCopy = () => {
         if (!result) return;
-        const text = `📋 [JIKO 실업급여 계산 결과]\n\n예상 수급일수: ${result.benefitDays}일\n1일 수령액: ${formatNumber(result.dailyBenefit)}원\n총 예상 수급액: ${formatNumber(result.totalBenefit)}원\n\n📌JIKO 실업급여 계산기에서 확인하기:\nhttps://jiko.kr/calculator/job/unemployment-benefit`;
+        const text = `[📋 실업급여 계산 결과]\n\n예상 수급일수 : ${result.benefitDays}일\n1일 수령액 : ${formatNumber(result.dailyBenefit)}원\n총 예상 수급액 : ${formatNumber(result.totalBenefit)}원\n\n📌JIKO 실업급여 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/unemployment-benefit`;
         navigator.clipboard.writeText(text);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);

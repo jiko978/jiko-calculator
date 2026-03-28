@@ -81,16 +81,15 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
     const handleCopyResult = async () => {
         if (!result) return;
         const text = [
-            `[주식 수익률 계산 결과]`,
-            `매수가: ${buyPrice}원`,
-            `현재가: ${currentPrice}원`,
-            `수량: ${quantity}주`,
-            `-------------------`,
+            `[💰 주식 수익률 계산 결과]`,
+            `매수가 : ${buyPrice}원`,
+            `현재가 : ${currentPrice}원`,
+            `수량 : ${quantity}주`,
             `매수 금액 : ${result.buyTotal.toLocaleString()} 원`,
             `현재 금액 : ${result.currentTotal.toLocaleString()} 원`,
-            `수익금   : ${result.profit >= 0 ? "+" : ""}${result.profit.toLocaleString()} 원`,
-            `수익률   : ${Number(result.rate) >= 0 ? "+" : ""}${result.rate} %`,
-            `\n📌JIKO 수익률 계산기에서 확인하기:\nhttps://jiko.kr/calculator/stock/profit-rate`
+            `수익금 : ${result.profit >= 0 ? "+" : ""}${result.profit.toLocaleString()} 원`,
+            `수익률 : ${Number(result.rate) >= 0 ? "+" : ""}${result.rate} %`,
+            `\n📌JIKO 주식 수익률 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/stock/profit-rate`
         ].join("\n");
         await navigator.clipboard.writeText(text);
         setCopied(true);

@@ -69,7 +69,7 @@ export default function Bmi() {
 
     const handleCopy = () => {
         if (resultBmi !== null) {
-            const text = `내 비만도(BMI)는 ${resultBmi.toFixed(1)} (${resultCategory}) 입니다.\n\n📌JIKO 비만도 계산기에서 확인하기:\nhttps://jiko.kr/calculator/health/bmi`;
+            const text = `[⚖️ 비만도(BMI) 계산 결과]\n\n내 비만도(BMI)는 ${resultBmi.toFixed(1)} (${resultCategory}) 입니다.\n\n📌JIKO 비만도 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/bmi`;
             navigator.clipboard.writeText(text);
             setCopied(true);
         setTimeout(() => setCopied(false), 2000);

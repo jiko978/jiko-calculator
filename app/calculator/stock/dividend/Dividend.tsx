@@ -127,15 +127,14 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
     const handleCopy = async () => {
         if (!result) return;
         const text = [
-            `[주식 배당금 계산 결과]`,
-            `매수가: ${buyPrice}원`,
-            `현재가: ${currentPrice}원`,
-            `주당 배당금: ${dividendPerShare}원`,
-            `보유수량: ${quantity}주`,
-            `-------------------`,
-            `세후 월평균 배당금: ${Math.floor(result.monthlyTaxPost).toLocaleString()}원`,
-            `나의 실제 배당률: ${result.yieldOnCost}%`,
-            `\n📌JIKO 배당금 계산기에서 확인하기:\nhttps://jiko.kr/calculator/stock/dividend`
+            `[💸 주식 배당금 계산 결과]`,
+            `매수가 : ${buyPrice}원`,
+            `현재가 : ${currentPrice}원`,
+            `주당 배당금 : ${dividendPerShare}원`,
+            `보유수량 : ${quantity}주`,
+            `세후 월평균 배당금 : ${Math.floor(result.monthlyTaxPost).toLocaleString()}원`,
+            `나의 실제 배당률 : ${result.yieldOnCost}%`,
+            `\n📌JIKO 주식 배당금 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/stock/dividend`
         ].join("\n");
         await navigator.clipboard.writeText(text);
         setCopied(true);

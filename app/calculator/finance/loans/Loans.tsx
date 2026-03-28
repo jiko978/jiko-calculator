@@ -165,17 +165,16 @@ const Loans = ({ productName }: LoansProps) => {
 
     const handleCopy = async () => {
         const text = [
-            `[대출 계산 결과]`,
-            `대출금액: ${loanAmount}원`,
-            `대출기간: ${loanTerm}${termUnit === "year" ? "년" : "개월"}`,
-            `연이자율: ${interestRate}%`,
-            `상환방식: ${repaymentMethod === "pmt" ? "원리금균등" : repaymentMethod === "ppmt" ? "원금균등" : "만기일시상환"}`,
-            `거치기간: ${defermentPeriod}개월`,
-            `-------------------`,
-            `총 상환금액: ${totalRepayment.toLocaleString()}원`,
-            `총 대출이자: ${totalInterest.toLocaleString()}원`,
-            `1회차 상환액: ${firstMonthPayment.toLocaleString()}원`,
-            `\n📌JIKO 대출 계산기에서 확인하기:`,
+            `[📊 대출 이자 계산 결과]`,
+            `대출금액 : ${loanAmount}원`,
+            `대출기간 : ${loanTerm}${termUnit === "year" ? "년" : "개월"}`,
+            `연이자율 : ${interestRate}%`,
+            `상환방식 : ${repaymentMethod === "pmt" ? "원리금균등" : repaymentMethod === "ppmt" ? "원금균등" : "만기일시상환"}`,
+            `거치기간 : ${defermentPeriod}개월`,
+            `총 상환금액 : ${totalRepayment.toLocaleString()}원`,
+            `총 대출이자 : ${totalInterest.toLocaleString()}원`,
+            `1회차 상환액 : ${firstMonthPayment.toLocaleString()}원`,
+            `\n📌JIKO 대출 계산기에서 확인하기 :`,
             `https://jiko.kr/calculator/finance/loans`
         ].join("\n");
         await navigator.clipboard.writeText(text);

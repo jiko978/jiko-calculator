@@ -153,17 +153,16 @@ export default function StockFee({ stockName, initialCode }: StockFeeProps) {
     const handleCopy = async () => {
         if (!result) return;
         const text = [
-            `[주식 매매 수수료 계산 결과]`,
-            `시장구분: ${market.label}`,
-            `매수가: ${buyPrice}원`,
-            `매도가: ${sellPrice}원`,
-            `수량: ${quantity}주`,
-            `-------------------`,
-            `세금 및 수수료: ${(result.totalCommission + result.totalTax).toLocaleString()}원`,
-            `세후 순이익: ${result.netProfit >= 0 ? "+" : ""}${result.netProfit.toLocaleString()}원`,
-            `최종 수익률: ${result.profitRate}%`,
-            `최소 익절가: ${result.minSellPrice.toLocaleString()}원`,
-            `\n📌JIKO 주식 수수료 계산기에서 확인하기:\nhttps://jiko.kr/calculator/stock/fee`
+            `[💳️️ 주식 매매 수수료 계산 결과]`,
+            `시장구분 : ${market.label}`,
+            `매수가 : ${buyPrice}원`,
+            `매도가 : ${sellPrice}원`,
+            `수량 : ${quantity}주`,
+            `세금 및 수수료 : ${(result.totalCommission + result.totalTax).toLocaleString()}원`,
+            `세후 순이익 : ${result.netProfit >= 0 ? "+" : ""}${result.netProfit.toLocaleString()}원`,
+            `최종 수익률 : ${result.profitRate}%`,
+            `최소 익절가 : ${result.minSellPrice.toLocaleString()}원`,
+            `\n📌JIKO 주식 수수료 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/stock/fee`
         ].join("\n");
         await navigator.clipboard.writeText(text);
         setCopied(true);

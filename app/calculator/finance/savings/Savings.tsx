@@ -134,17 +134,16 @@ const Savings = ({ productName }: SavingsProps) => {
 
     const handleCopy = async () => {
         const text = [
-            `[적금 계산 결과]`,
-            `월 납입액: ${monthlyAmount}원`,
-            `적립기간: ${term}${termUnit === "month" ? "개월" : "년"} (총 ${totalPrincipal.toLocaleString()}원)`,
-            `연이자율: ${rate}% (${interestType === "simple" ? "단리" : "월복리"})`,
-            `과세유형: ${taxType === "normal" ? "일반과세(15.4%)" : taxType === "preferential" ? "세금우대(9.5%)" : "비과세"}`,
-            `-------------------`,
-            `세전이자: ${Math.floor(preTaxInterest).toLocaleString()}원`,
-            `이자과세: -${taxAmount.toLocaleString()}원`,
-            `세후이자: ${postTaxInterest.toLocaleString()}원`,
-            `만기수령액: ${totalMaturity.toLocaleString()}원`,
-            `\n📌JIKO 적금 계산기에서 확인하기:`,
+            `[💰 적금 이자 계산 결과]`,
+            `월 납입액 : ${monthlyAmount}원`,
+            `적립기간 : ${term}${termUnit === "month" ? "개월" : "년"} (총 ${totalPrincipal.toLocaleString()}원)`,
+            `연이자율 : ${rate}% (${interestType === "simple" ? "단리" : "월복리"})`,
+            `과세유형 : ${taxType === "normal" ? "일반과세(15.4%)" : taxType === "preferential" ? "세금우대(9.5%)" : "비과세"}`,
+            `세전이자 : ${Math.floor(preTaxInterest).toLocaleString()}원`,
+            `이자과세 : -${taxAmount.toLocaleString()}원`,
+            `세후이자 : ${postTaxInterest.toLocaleString()}원`,
+            `만기수령액 : ${totalMaturity.toLocaleString()}원`,
+            `\n📌JIKO 적금 이자 계산기에서 확인하기 :`,
             `https://jiko.kr/calculator/finance/savings`
         ].join("\n");
         await navigator.clipboard.writeText(text);

@@ -142,26 +142,26 @@ export default function Insurance() {
 
     const copyResultToClipboard = () => {
         if (!result) return;
-        const textToCopy = `📋 [4대보험 분담 내역서]
-- 급여 기준: ${salaryType === "YEARLY" ? "연봉" : "월급"}
-- 월 산출액 (상세 기준액): ${formatComma(result.taxBase.toString())} 원
+        const textToCopy = `[🛡️ 4대보험 계산 결과]\n
+급여 기준 : ${salaryType === "YEARLY" ? "연봉" : "월급"}
+월 산출액 (상세 기준액) : ${formatComma(result.taxBase.toString())} 원
 
-[🙋 근로자 (나의 부담분)]
-- 국민연금 : ${formatComma(result.employee.pension.toString())} 원
-- 건강보험 : ${formatComma(result.employee.health.toString())} 원
-- 장기요양 : ${formatComma(result.employee.longTerm.toString())} 원
-- 고용보험 : ${formatComma(result.employee.employment.toString())} 원
-* 합계: 월 ${formatComma(result.employee.sum.toString())} 원 공제
+[🙋 근로자 (개인 부담분)]
+국민연금 : ${formatComma(result.employee.pension.toString())} 원
+건강보험 : ${formatComma(result.employee.health.toString())} 원
+장기요양 : ${formatComma(result.employee.longTerm.toString())} 원
+고용보험 : ${formatComma(result.employee.employment.toString())} 원
+합계: 월 ${formatComma(result.employee.sum.toString())} 원 개인 납부
 
-[🏢 회사 (사업주 추가 납부액)]
-- 국민연금 : ${formatComma(result.employer.pension.toString())} 원
-- 건강보험 : ${formatComma(result.employer.health.toString())} 원
-- 장기요양 : ${formatComma(result.employer.longTerm.toString())} 원
-- 고용보험 : ${formatComma(result.employer.employment.toString())} 원
-- 산재보험 : ${formatComma(result.employer.sanjae.toString())} 원
-* 합계: 월 ${formatComma(result.employer.sum.toString())} 원 회사가 추가 납부
+[🏢 사업주 (회사 부담분)]
+국민연금 : ${formatComma(result.employer.pension.toString())} 원
+건강보험 : ${formatComma(result.employer.health.toString())} 원
+장기요양 : ${formatComma(result.employer.longTerm.toString())} 원
+고용보험 : ${formatComma(result.employer.employment.toString())} 원
+산재보험 : ${formatComma(result.employer.sanjae.toString())} 원
+합계: 월 ${formatComma(result.employer.sum.toString())} 원 회사 납부
 
-📌JIKO 4대보험 계산기에서 확인하기:
+📌JIKO 4대보험 계산기에서 확인하기 :
 https://jiko.kr/calculator/job/insurance`;
 
         navigator.clipboard.writeText(textToCopy);

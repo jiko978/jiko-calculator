@@ -77,7 +77,7 @@ export default function Ovulation() {
 
     const handleCopy = () => {
         if (resultNextPeriod) {
-            const text = `다음 생리 예정일: ${resultNextPeriod}\n배란 예정일: ${resultOvulation}\n가임기: ${resultFertileWindow}\n\n📌JIKO 배란일 계산기에서 확인하기:\nhttps://jiko.kr/calculator/health/ovulation`;
+            const text = `[📅️ 배란일 계산 결과]\n\n다음 생리 예정일 : ${resultNextPeriod}\n배란 예정일 : ${resultOvulation}\n가임기 : ${resultFertileWindow}\n\n📌JIKO 배란일 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/ovulation`;
             navigator.clipboard.writeText(text);
             setCopied(true);
         setTimeout(() => setCopied(false), 2000);

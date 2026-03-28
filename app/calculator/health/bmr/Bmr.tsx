@@ -61,7 +61,7 @@ export default function Bmr() {
 
     const handleCopy = () => {
         if (resultBmr !== null) {
-            const text = `내 기초대사량(BMR)은 ${resultBmr.toLocaleString()} kcal 입니다.\n\n📌JIKO 기초대사량 계산기에서 확인하기:\nhttps://jiko.kr/calculator/health/bmr`;
+            const text = `[🔥️ 기초대사량(BMR) 계산 결과]\n\n내 기초대사량(BMR)은 ${resultBmr.toLocaleString()} kcal 입니다.\n\n📌JIKO 기초대사량 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/bmr`;
             navigator.clipboard.writeText(text);
             setCopied(true);
         setTimeout(() => setCopied(false), 2000);
