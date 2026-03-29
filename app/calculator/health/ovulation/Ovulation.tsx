@@ -203,8 +203,8 @@ export default function Ovulation() {
                     {isSharing && (
                         <ShareSheet
                             onClose={() => setIsSharing(false)}
-                            title="📅 나의 배란일 계산 결과"
-                            description={`예상 배란일은 ${resultOvulation} 이며, 가임기는 ${resultFertileWindow} 입니다!`}
+                            title="[📅 배란일 계산 결과]"
+                            description={`예상 배란일 : ${resultOvulation}, 다음 생리 예정일 : ${resultNextPeriod}`}
                             url={typeof window !== "undefined" ? window.location.href : ""}
                         />
                     )}

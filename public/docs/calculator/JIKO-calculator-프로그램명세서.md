@@ -18,7 +18,7 @@
 | `Header.tsx` | 상단 레이아웃 | 서비스 로고, 메뉴 내비게이션, 홈 이동 | |
 | `Footer.tsx` | 하단 레이아웃 | 저작권 정보, 앱 설치 버튼 연동, 사이트 정적 링크 | |
 | `NavBar.tsx` | 페이지 내비 바 | 뒤로가기, 페이지 제목, 공유 버튼(ShareSheet) 통합 | 필수 상단 UI |
-| `ShareSheet.tsx` | 공유 레이어 | 카카오톡 공유 SDK 연동, 클립보드 복사, 브라우저 기본 공유 | `Kakao.Share` 활용 |
+| `ShareSheet.tsx` | 공유 레이어 | 카카오톡 SDK 연동, 클립보드 복사. `createPortal`을 통한 Document Body 직접 렌더링으로 화면 최하단 고정(CSS 충돌/간섭 원천 차단) | `Kakao.Share`, React Portal 활용 |
 | `PWAInstallProvider.tsx` | PWA 상태 관리 | 브라우저 설치 권한(`beforeinstallprompt`) 감지 및 상태 제공 | Context API 사용 |
 | `InstallBanner.tsx` | 설치 유도 배너 | 모바일 사용자 대상 PWA 설치 제안 | 슬라이드 애니메이션 |
 | `RegisterSW.tsx` | 서비스 워커 등록 | PWA 구현을 위한 `sw.js` 등록 로직 | |
@@ -136,8 +136,13 @@
 ### 5.2 정적 페이지 생성 (`generateStaticParams`)
 한글 슬러그가 포함된 정적 페이지 생성을 위해 `encodeURIComponent`를 활용하여 안전한 파일 시스템 및 서버 경로를 확보합니다.
 
-### 5.3 동적 뒤로가기 (`BackButton`)
+### 6.3 동적 뒤로가기 (`BackButton`)
 `policy/` 레이아웃 등에서 사용자의 유입 경로(Referrer)를 분석하여 플랫폼 홈 또는 서비스 홈으로 지능적으로 이동하는 `BackButton` 컴포넌트를 제공합니다.
+
+### 6.4 UI/UX 표준화 아키텍처 (최신 반영)
+- **Bottom Sheet 일관성**: `ShareSheet` 컴포넌트는 `createPortal`을 사용하여 부모의 `position`, `overflow`, `transform` 속성과 무관하게 화면 뷰포트 최하단(Bottom)에 항상 부착되도록 구조화되어 있습니다.
+- **상태 기반 피드백**: 모바일 환경에서의 조작 경험 향상을 위해, 시스템 `alert` 대신 컴포넌트 내의 상태(`state`)를 변경하여 아이콘, 레이블, 배경색상을 자연스럽게 전환하는 넌블로킹(Non-blocking) 피드백 방식을 채택합니다.
+- **면책 조항 통일성**: 민감한 결괏값을 노출하는 `page.tsx`(설명 카드 하단)에는 어플리케이션 전역 통일된 경고 디자인 포맷(`bg-red-50 text-red-500` 클래스)의 면책 조항을 강제하여 법적 대응 및 사용자 안내를 강화했습니다.
 
 ---
 

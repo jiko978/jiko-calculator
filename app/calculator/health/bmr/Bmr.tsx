@@ -217,8 +217,8 @@ export default function Bmr() {
                     {isSharing && (
                         <ShareSheet
                             onClose={() => setIsSharing(false)}
-                            title="🔥 나의 기초대사량(BMR) 계산 결과"
-                            description={`내 하루 기초대사량은 약 ${resultBmr?.toLocaleString()} kcal 입니다!`}
+                            title="[🔥 기초대사량(BMR) 계산 결과]"
+                            description={`내 기초대사량은 ${resultBmr?.toLocaleString()} kcal 입니다.`}
                             url={typeof window !== "undefined" ? window.location.href : ""}
                         />
                     )}

@@ -136,7 +136,8 @@ const Savings = ({ productName }: SavingsProps) => {
         const text = [
             `[💰 적금 이자 계산 결과]`,
             `월 납입액 : ${monthlyAmount}원`,
-            `적립기간 : ${term}${termUnit === "month" ? "개월" : "년"} (총 ${totalPrincipal.toLocaleString()}원)`,
+            `총 납입액 : ${totalPrincipal.toLocaleString()}원`,
+            `적립기간 : ${term}${termUnit === "month" ? "개월" : "년"}`,
             `연이자율 : ${rate}% (${interestType === "simple" ? "단리" : "월복리"})`,
             `과세유형 : ${taxType === "normal" ? "일반과세(15.4%)" : taxType === "preferential" ? "세금우대(9.5%)" : "비과세"}`,
             `세전이자 : ${Math.floor(preTaxInterest).toLocaleString()}원`,
@@ -456,8 +457,8 @@ const Savings = ({ productName }: SavingsProps) => {
                         {isSharing && (
                             <ShareSheet
                                 onClose={() => setIsSharing(false)}
-                                title="💰 나의 적금 계산 결과"
-                                description={`매월 ${monthlyAmount}원씩 ${term}${termUnit === "month" ? "개월" : "년"} 동안 납입하면 만기 시 총 ${totalMaturity.toLocaleString()}원을 받을 수 있어요!`}
+                                title="[💰 적금 이자 계산 결과]"
+                                description={`총 납입액 : ${totalPrincipal.toLocaleString()}원\n세후이자 : ${postTaxInterest.toLocaleString()}원`}
                                 url={typeof window !== "undefined" ? window.location.href : ""}
                             />
                         )}

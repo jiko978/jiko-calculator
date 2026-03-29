@@ -236,8 +236,8 @@ export default function Bmi() {
                     {isSharing && (
                         <ShareSheet
                             onClose={() => setIsSharing(false)}
-                            title="⚖️ 나의 비만도(BMI) 계산 결과"
-                            description={`내 비만도(BMI) 지수는 ${resultBmi?.toFixed(1)}로 [${resultCategory}]에 해당합니다!`}
+                            title="[⚖️ 비만도(BMI) 계산 결과]"
+                            description={`내 비만도(BMI)는 ${resultBmi?.toFixed(1)} (${resultCategory}) 입니다.`}
                             url={typeof window !== "undefined" ? window.location.href : ""}
                         />
                     )}

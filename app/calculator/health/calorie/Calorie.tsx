@@ -377,8 +377,8 @@ export default function Calorie() {
                             {isSharing && (
                                 <ShareSheet
                                     onClose={() => setIsSharing(false)}
-                                    title="🏃‍♂️ 나의 칼로리 계산 결과"
-                                    description={`오늘 나의 순 칼로리 밸런스는 ${result.balance > 0 ? '+' : ''}${result.balance.toLocaleString()}kcal 입니다!`}
+                                    title="[🏃‍♂️ 칼로리 계산 결과]"
+                                    description={`소모 : ${result.burned.toLocaleString()}kcal\n섭취 : ${result.intake.toLocaleString()}kcal`}
                                     url={typeof window !== "undefined" ? window.location.href : ""}
                                 />
                             )}

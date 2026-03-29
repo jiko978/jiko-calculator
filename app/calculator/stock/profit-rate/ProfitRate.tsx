@@ -289,8 +289,8 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
                         {isSharing && (
                             <ShareSheet
                                 onClose={() => setIsSharing(false)}
-                                title="💰 나의 주식 수익률 계산 결과"
-                                description={`현재 ${quantity}주 보유시, 수익금은 ${result.profit >= 0 ? "+" : ""}${result.profit.toLocaleString()}원 이며 수익률은 ${Number(result.rate) >= 0 ? "+" : ""}${result.rate}% 입니다!`}
+                                title="[💰 주식 수익률 계산 결과]"
+                                description={`수익금 : ${result.profit >= 0 ? "+" : ""}${result.profit.toLocaleString()} 원\n수익률 : ${Number(result.rate) >= 0 ? "+" : ""}${result.rate} %`}
                                 url={typeof window !== "undefined" ? window.location.href : ""}
                             />
                         )}

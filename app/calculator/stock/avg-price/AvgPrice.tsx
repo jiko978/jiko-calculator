@@ -211,14 +211,14 @@ export default function AvgPrice({ stockName, initialCode }: AvgPriceProps) {
         const lines = [
             `[💧 주식 물타기 계산 결과]`,
             `평균 단가 : ${avgPrice.toLocaleString(undefined, { maximumFractionDigits: 0 })} 원`,
-            `합계 수량 : ${totalQty.toLocaleString()} 개`,
+            `합계 수량 : ${totalQty.toLocaleString()} 주`,
             `매수 합계 금액 : ${totalCost.toLocaleString()} 원`,
         ];
         if (hasCurrent) {
             lines.push(`현재 평가금액 : ${evalTotal.toLocaleString()} 원`);
             lines.push(`수익금 : ${profitAmt >= 0 ? "+" : ""}${profitAmt.toLocaleString()} 원`);
             lines.push(`수익률 : ${Number(profitRate) >= 0 ? "+" : ""}${profitRate} %`);
-            if (breakevenQty !== null) lines.push(`본전 추가매수 : ${breakevenQty.toLocaleString()} 개`);
+            if (breakevenQty !== null) lines.push(`본전 추가매수 : ${breakevenQty.toLocaleString()} 주`);
         }
         lines.push(`\n📌JIKO 주식 물타기 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/stock/avg-price`);
         await navigator.clipboard.writeText(lines.join("\n"));
@@ -549,8 +549,8 @@ export default function AvgPrice({ stockName, initialCode }: AvgPriceProps) {
                 {isSharing && (
                     <ShareSheet
                         onClose={() => setIsSharing(false)}
-                        title="💧 나의 주식 물타기 계산 결과"
-                        description={`현재 평단가 ${avgPrice.toLocaleString(undefined, { maximumFractionDigits: 0 })}원, 총 ${totalQty.toLocaleString()}주 보유 중입니다!`}
+                        title="[💧 주식 물타기 계산 결과]"
+                        description={`평균 단가 : ${avgPrice.toLocaleString(undefined, { maximumFractionDigits: 0 })}원\n합계 수량 : ${totalQty.toLocaleString()}주`}
                         url={typeof window !== "undefined" ? window.location.href : ""}
                     />
                 )}

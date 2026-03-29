@@ -133,6 +133,8 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
             `주당 배당금 : ${dividendPerShare}원`,
             `보유수량 : ${quantity}주`,
             `세후 월평균 배당금 : ${Math.floor(result.monthlyTaxPost).toLocaleString()}원`,
+            `세전 연간 배당금 : ${Math.floor(result.yearlyTaxPre).toLocaleString()}원`,
+            `세후 연간 배당금 : ${Math.floor(result.yearlyTaxPost).toLocaleString()}원`,
             `나의 실제 배당률 : ${result.yieldOnCost}%`,
             `\n📌JIKO 주식 배당금 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/stock/dividend`
         ].join("\n");
@@ -373,8 +375,8 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
                         {isSharing && (
                             <ShareSheet
                                 onClose={() => setIsSharing(false)}
-                                title="💸 나의 주식 배당금 계산 결과"
-                                description={`주당 배당금 ${dividendPerShare}원씩 ${quantity}주 보유시, 세후 월평균 배당금은 약 ${Math.floor(result.monthlyTaxPost).toLocaleString()}원 입니다!`}
+                                title="[💸 주식 배당금 계산 결과]"
+                                description={`세후 월평균 배당금 : ${Math.floor(result.monthlyTaxPost).toLocaleString()}원\n세후 연간 배당금 : ${Math.floor(result.yearlyTaxPost).toLocaleString()}원`}
                                 url={typeof window !== "undefined" ? window.location.href : ""}
                             />
                         )}

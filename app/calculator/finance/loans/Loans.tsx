@@ -511,8 +511,8 @@ const Loans = ({ productName }: LoansProps) => {
                         {isSharing && (
                             <ShareSheet
                                 onClose={() => setIsSharing(false)}
-                                title="💰 나의 대출 계산 결과"
-                                description={`대출금액 ${loanAmount}원을 빌릴 경우, 1회차 상환액은 ${firstMonthPayment.toLocaleString()}원 이며 총 대출이자는 ${totalInterest.toLocaleString()}원 입니다!`}
+                                title="[📊 대출 이자 계산 결과]"
+                                description={`총 대출금액 : ${loanAmount}원\n총 대출이자 : ${totalInterest.toLocaleString()}원`}
                                 url={typeof window !== "undefined" ? window.location.href : ""}
                             />
                         )}

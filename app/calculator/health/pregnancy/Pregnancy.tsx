@@ -346,8 +346,8 @@ export default function Pregnancy() {
                     {isSharing && (
                         <ShareSheet
                             onClose={() => setIsSharing(false)}
-                            title="👶 나의 임신주수 계산 결과"
-                            description={`우리 아기를 만나는 예상 출산일은 ${resultDueDate} 이며, 현재 임신 ${resultCurrentWeeks}주 ${resultCurrentDays}일차 입니다!`}
+                            title="[👶 임신주수 계산 결과]"
+                            description={`출산 예정일 : ${resultDueDate}, 현재 임신기간 : ${resultCurrentWeeks}주 ${resultCurrentDays}일차`}
                             url={typeof window !== "undefined" ? window.location.href : ""}
                         />
                     )}

@@ -482,8 +482,8 @@ const Deposits = ({ productName }: DepositsProps) => {
                         {isSharing && (
                             <ShareSheet
                                 onClose={() => setIsSharing(false)}
-                                title="🏦 나의 예금 계산 결과"
-                                description={`예치금액 ${amount}원을 ${term}${termUnit === "month" ? "개월" : "년"} 동안 맡기면 만기 시 총 ${totalMaturity.toLocaleString()}원을 받을 수 있어요!`}
+                                title="[🏦 예금 이자 계산 결과]"
+                                description={`예치금액 : ${amount}원\n세후이자 : ${postTaxInterest.toLocaleString()}원`}
                                 url={typeof window !== "undefined" ? window.location.href : ""}
                             />
                         )}

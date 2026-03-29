@@ -435,8 +435,8 @@ export default function UnemploymentBenefit() {
                     {isSharing && (
                         <ShareSheet
                             onClose={() => setIsSharing(false)}
-                            title="📋 나의 실업급여 예상 수급액 결과"
-                            description={`[예상 수급일수: ${result.benefitDays}일]\n총 ${formatNumber(result.totalBenefit)}원을 받을 수 있을 것으로 예상됩니다!`}
+                            title="[📋 실업급여 계산 결과]"
+                            description={`예상 수급일수 : ${result.benefitDays}일\n총 ${formatNumber(result.totalBenefit)}원`}
                             url={typeof window !== "undefined" ? window.location.href : ""}
                         />
                     )}

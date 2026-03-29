@@ -414,8 +414,8 @@ export default function Salary() {
                     {isSharing && (
                         <ShareSheet
                             onClose={() => setIsSharing(false)}
-                            title="💰 연봉/월급 실수령액 계산 결과"
-                            description={`[${calcType === "YEARLY" ? "연봉" : "월급"} ${formatNumber(parseInt(amount))}원]\n제 통장에는 매월 ${formatNumber(result.netPay)}원이 찍힙니다!\n\n(세금 및 공제 합계: -${formatNumber(result.deductions.total)}원)`}
+                            title="[💸 연봉/월급 계산 결과]"
+                            description={`월 실수령액(세전) : ${formatNumber(parseInt(result.monthlyGross))}원\n월 실수령액(세후) : ${formatNumber(result.netPay)}원`}
                             url={window.location.href}
                         />
                     )}

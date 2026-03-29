@@ -223,18 +223,22 @@ Tool Site.
 ## 공통 기능
 1. 뒤로가기, 공유, FAQ, 더 보기 버튼
 2. 구조 분리 (루트 랜딩 vs 도메인 허브)
-ㄴ 루트 홈 (`app/page.tsx`): JIKO Platform 메인 그리드 및 서비스 소개
-ㄴ 계산기 홈 (`app/calculator/page.tsx`): 계산기 메뉴 특화 서브 허브
+ㄴ 루트 홈 (`app/page.tsx`): JIKO Platform 메인 그리드 및 서비스 핵심 가치(USP) 안내
+ㄴ 계산기 홈 (`app/calculator/page.tsx`): 계산기 메뉴 특화 서브 허브 (하위 도메인 허브와 동일한 `max-w-3xl` 등 규격화된 카드 디자인 통일 적용)
 ㄴ 로직 분리: Server Component(`page.tsx`) / Client Component(`메뉴명.tsx`)
 3. 전역 컴포넌트 동기화 (Header & Footer)
-ㄴ **루트 허브(Platform)** 와 **서브 허브(Calculator)** 상/하단바의 레이아웃, 크기 세팅 통일 (`px-4 py-4` / `py-8` 등 기본 Width 동기화)
+ㄴ **루트 허브(Platform)** 와 **서브 허브(Calculator)** 상/하단바의 레이아웃, 크기 세팅 통일 (`px-4 py-6` / `max-w-3xl` 등 기본 규격 동기화)
 ㄴ Cross-Navigation(교차 이동): 계산기 메뉴의 Header와 Footer에는 `🏠 JIKO 플랫폼 홈` 단축 링크를 강제 삽입하여 허브 간 자유로운 이동 보장.
 3. UI/UX
 ㄴ 카드 UI : 흰색 배경 + 라운드 처리
 ㄴ 그림자
 ㄴㄴ 카드, 계산하기 버튼
-ㄴㄴ ShareSheet 바텀 시트
+ㄴㄴ ShareSheet 바텀 시트 (React Portal을 사용하여 `document.body`에 직접 렌더링하여 항상 화면 최하단에 일관되게 고정되도록 처리)
 ㄴㄴ 공유 아이콘 버튼
+ㄴ 버튼 레이아웃 : "결과 복사하기", "친구에게 공유하기" 등 하단 주요 액션 버튼은 모바일 가독성과 클릭 편의성을 위해 상하 2단 스택(`flex-col`) 배치를 우선 고려합니다.
+ㄴ 사용자 피드백 : 복사 완료 등 상태 알림은 시스템 `alert` 대신 상태(`state`) 기반 전환(예: 버튼 색상 변경 및 텍스트 전환)을 사용하여 UX를 개선합니다.
+ㄴ 면책 조항(Disclaimer) : 금융/주식 등 결괏값이 민감한 계산기의 메인 설명 카드(`page.tsx` 내) 하단에는 필수로 면책 조항(`※ 본 계산기는 참고용이며 투자 판단의 책임은 사용자에게 있습니다.`)을 붉은색 계열(`text-red-500/80`, `bg-red-50/50` 등) 박스 형태로 추가합니다.
+4. 다크모드 : 모든 요소에 dark: 접두사로 적용
 7. 표준 검증 UI (Standard Validation)
 ㄴ 입력 누락 시 빨간색 테두리(Ring) 및 흔들림(Shake) 효과
 ㄴ 하단 인라인 에러 메시지(Pulse 애니메이션 적용)

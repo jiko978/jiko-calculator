@@ -430,8 +430,8 @@ https://jiko.kr/calculator/job/insurance`;
                         {isSharing && (
                             <ShareSheet
                                 onClose={() => setIsSharing(false)}
-                                title="🛡️ 나의 4대보험 공제액 계산 결과"
-                                description={`[${salaryType === "YEARLY" ? "연봉" : "월급"}]\n근로자 부담금: 월 ${formatComma(result.employee.sum.toString())}원이 공제됩니다!`}
+                                title="[🛡️ 4대보험 계산 결과]"
+                                description={`급여 기준 : ${salaryType === "YEARLY" ? "연봉" : "월급"}\n근로자 부담금 : 월 ${formatComma(result.employee.sum.toString())}원`}
                                 url={typeof window !== "undefined" ? window.location.href : ""}
                             />
                         )}

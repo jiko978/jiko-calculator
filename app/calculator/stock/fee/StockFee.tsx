@@ -153,7 +153,7 @@ export default function StockFee({ stockName, initialCode }: StockFeeProps) {
     const handleCopy = async () => {
         if (!result) return;
         const text = [
-            `[💳️️ 주식 매매 수수료 계산 결과]`,
+            `[💳️ ️주식 매매 수수료 계산 결과]`,
             `시장구분 : ${market.label}`,
             `매수가 : ${buyPrice}원`,
             `매도가 : ${sellPrice}원`,
@@ -382,8 +382,8 @@ export default function StockFee({ stockName, initialCode }: StockFeeProps) {
                         {isSharing && (
                             <ShareSheet
                                 onClose={() => setIsSharing(false)}
-                                title="💳 나의 주식 수수료 계산 결과"
-                                description={`${market.label} 시장에서 매수 ${buyPrice}원, 매도 ${sellPrice}원 거래 시 세후 순이익은 ${result.netProfit >= 0 ? "+" : ""}${result.netProfit.toLocaleString()}원 입니다!`}
+                                title="[💳 주식 매매 수수료 계산 결과]"
+                                description={`세후 순이익 : ${result.netProfit >= 0 ? "+" : ""}${result.netProfit.toLocaleString()}원\n최종 수익률 : ${result.profitRate}%`}
                                 url={typeof window !== "undefined" ? window.location.href : ""}
                             />
                         )}

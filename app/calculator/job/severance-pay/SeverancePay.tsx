@@ -328,8 +328,8 @@ export default function SeverancePay() {
                     {isSharing && (
                         <ShareSheet
                             onClose={() => setIsSharing(false)}
-                            title="💼 나의 예상 퇴직금 계산 결과"
-                            description={`재직 ${result.totalDays}일 기준, 세후 약 ${formatNumber(result.postTax)}원을 수령할 것으로 예상됩니다!`}
+                            title="[💼 퇴직금 계산 결과]"
+                            description={`총 재직일 : ${result.totalDays}일\n세후 예상 실수령액 : ${formatNumber(result.postTax)}원`}
                             url={typeof window !== "undefined" ? window.location.href : ""}
                         />
                     )}
