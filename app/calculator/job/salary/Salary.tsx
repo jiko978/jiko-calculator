@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
-import ShareSheet from '../../components/ShareSheet';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import CalculatorActions from '../../components/CalculatorActions';
+import { useCalculatorScroll } from '../../hooks/useCalculatorScroll';
 
 export default function Salary() {
     const pathname = usePathname();
@@ -15,8 +16,7 @@ export default function Salary() {
     const [children, setChildren] = useState<number>(0);
 
     const [result, setResult] = useState<any>(null);
-    const [isSharing, setIsSharing] = useState(false);
-    const [copied, setCopied] = useState(false);
+    const resultRef = useCalculatorScroll(result);
 
     // UI Validation states
     const [errors, setErrors] = useState<Set<string>>(new Set());
@@ -164,12 +164,10 @@ export default function Salary() {
         }
     };
 
-    const handleCopy = () => {
+    const handleCopy = async () => {
         if (!result) return;
         const text = `[💸 연봉/월급 계산 결과]\n\n기준 : ${calcType === "YEARLY" ? "연봉" : "월급"} ${formatNumber(parseInt(amount))}원\n예상 실수령액(월) : ${formatNumber(result.netPay)}원\n공제액 합계 : ${formatNumber(result.deductions.total)}원\n(국민연금 : ${formatNumber(result.deductions.pension)}원 등)\n\n📌JIKO 연봉/월급 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/salary`;
-        navigator.clipboard.writeText(text);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        await navigator.clipboard.writeText(text);
     };
 
     return (
@@ -267,7 +265,7 @@ export default function Salary() {
                                 onChange={handleTaxFreeChange}
                                 className={`w-full p-4 text-right bg-gray-50 dark:bg-gray-900 border font-semibold ${errors.has('taxFreeAmount') ? 'border-red-600 ring-2 ring-red-500/20' : 'border-gray-300 dark:border-gray-600'} rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all text-gray-800 dark:text-gray-100 ${shakeField === 'taxFreeAmount' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                             />
-                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">※ 2024년부터 식대 비과세 한도가 20만원으로 상향되었습니다.</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">✨ 2024년부터 식대 비과세 한도가 20만원으로 상향되었습니다.</p>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
@@ -311,7 +309,7 @@ export default function Salary() {
 
             {/* Results */}
             {result && (
-                <div id="result-section" className="mt-8 space-y-6 animate-fade-in-up">
+                <div id="result-section" ref={resultRef} className="mt-8 space-y-6 animate-fade-in-up">
                     <div className="bg-gradient-to-br from-blue-600 relative to-blue-800 rounded-3xl p-8 shadow-xl text-white overflow-hidden">
                         <div className="absolute -right-10 -top-10 text-9xl opacity-10">💸</div>
                         <h3 className="text-blue-100 font-medium mb-2 opacity-90">예상 실수령액 (월)</h3>
@@ -395,30 +393,11 @@ export default function Salary() {
                         </div>
                     </div>
 
-                    <div className="mt-8 flex gap-4 w-full">
-                                <button
-                                    onClick={handleCopy}
-                                    className={`flex-1 py-4 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 ${copied ? "bg-green-500 text-white" : "bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600"}`}
-                                >
-                                    {copied ? (
-                                        <><span>✅</span> 복사 완료</>
-                                    ) : (
-                                        <><span>📋</span> 결과 복사하기</>
-                                    )}
-                                </button>
-                                <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 shadow-xl">
-                                    <span>💬</span> 친구에게 공유하기
-                                </button>
-                            </div>
-
-                    {isSharing && (
-                        <ShareSheet
-                            onClose={() => setIsSharing(false)}
-                            title="[💸 연봉/월급 계산 결과]"
-                            description={`월 실수령액(세전) : ${formatNumber(parseInt(result.monthlyGross))}원\n월 실수령액(세후) : ${formatNumber(result.netPay)}원`}
-                            url={window.location.href}
-                        />
-                    )}
+                    <CalculatorActions
+                        onCopy={handleCopy}
+                        shareTitle="[💸 연봉/월급 계산 결과]"
+                        shareDescription={`월 실수령액(세전) : ${formatNumber(parseInt(result.monthlyGross))}원\n월 실수령액(세후) : ${formatNumber(result.netPay)}원`}
+                    />
                 </div>
             )}
         </div>

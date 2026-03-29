@@ -35,6 +35,11 @@ const jobCalculators = [
         description: "국민연금, 건강보험, 고용보험, 산재보험 중 나와 회사가 각각 부담하는 금액의 비율을 시각화하여 파악하세요.",
         href: "/calculator/job/insurance",
     },
+    {
+        title: "🏖️ 주휴수당 계산기",
+        description: "시급과 주간근로시간만 입력하여 주휴수당 발생 여부 및 정확한 월급/주급을 계산합니다.",
+        href: "/calculator/job/holiday-allowance",
+    },
 ];
 
 export default function JobHubPage() {

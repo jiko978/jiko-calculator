@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import ShareSheet from '@/app/calculator/components/ShareSheet';
+import CalculatorActions from '@/app/calculator/components/CalculatorActions';
+import { useCalculatorScroll } from '@/app/calculator/hooks/useCalculatorScroll';
 import { usePathname } from 'next/navigation';
 
 interface CompanyHistory {
@@ -21,8 +22,7 @@ export default function UnemploymentBenefit() {
     const [salaries, setSalaries] = useState<string[]>(["", "", ""]); // [최근, 1개월전, 2개월전]
 
     const [result, setResult] = useState<any>(null);
-    const [isSharing, setIsSharing] = useState(false);
-    const [copied, setCopied] = useState(false);
+    const resultRef = useCalculatorScroll(result);
 
     const [errors, setErrors] = useState<Set<string>>(new Set());
     const [shakeField, setShakeField] = useState<string | null>(null);
@@ -179,12 +179,10 @@ export default function UnemploymentBenefit() {
         setErrorMessage("");
     };
 
-    const handleCopy = () => {
+    const handleCopy = async () => {
         if (!result) return;
         const text = `[📋 실업급여 계산 결과]\n\n예상 수급일수 : ${result.benefitDays}일\n1일 수령액 : ${formatNumber(result.dailyBenefit)}원\n총 예상 수급액 : ${formatNumber(result.totalBenefit)}원\n\n📌JIKO 실업급여 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/unemployment-benefit`;
-        navigator.clipboard.writeText(text);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        await navigator.clipboard.writeText(text);
     };
 
     const quickAmounts = [100000, 500000, 1000000, 5000000];
@@ -236,7 +234,7 @@ export default function UnemploymentBenefit() {
                     <div className="space-y-4">
                         <div className="flex justify-between items-center">
                             <label className="block text-sm font-bold text-gray-700 dark:text-gray-300">고용보험 가입 이력 (최대 5개)</label>
-                            <p className="text-[10px] text-gray-400">※ 최종 퇴사일 기준 18개월 내 기간 합산</p>
+                            <p className="text-[10px] text-gray-400">✨ 최종 퇴사일 기준 18개월 내 기간 합산</p>
                         </div>
                         {companies.map((company) => (
                             <div key={company.id} className="p-5 bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 space-y-4 relative group">
@@ -364,7 +362,7 @@ export default function UnemploymentBenefit() {
 
             {/* Result Display */}
             {result && (
-                <div className="mt-8 space-y-6 animate-fade-in-up text-left">
+                <div id="result-section" ref={resultRef} className="mt-8 space-y-6 animate-fade-in-up text-left">
                     <div className={`rounded-[32px] p-8 md:p-10 shadow-2xl relative overflow-hidden ${result.isEligible ? 'bg-gradient-to-br from-blue-600 to-blue-800 text-white' : 'bg-gradient-to-br from-amber-500 to-orange-600 text-white'}`}>
                         <div className="absolute -right-6 -top-6 text-[120px] opacity-10 rotate-12">📋</div>
                         <h3 className="text-white/80 text-xs font-bold mb-4 opacity-90 flex items-center gap-2">
@@ -412,34 +410,15 @@ export default function UnemploymentBenefit() {
                         </div>
                     </div>
 
-                    <div className="mt-8 flex gap-4 w-full">
-                                <button
-                                    onClick={handleCopy}
-                                    className={`flex-1 py-4 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 ${copied ? "bg-green-500 text-white" : "bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600"}`}
-                                >
-                                    {copied ? (
-                                        <><span>✅</span> 복사 완료</>
-                                    ) : (
-                                        <><span>📋</span> 결과 복사하기</>
-                                    )}
-                                </button>
-                                <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 shadow-xl">
-                                    <span>💬</span> 친구에게 공유하기
-                                </button>
-                            </div>
-
-                    <a href="https://m.work24.go.kr/cm/main.do" target="_blank" rel="noopener noreferrer" className="block w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors text-center shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2">
-                        실업급여 신청하기 🚀
+                    <a href="https://m.work24.go.kr/cm/main.do" target="_blank" rel="noopener noreferrer" className="block w-full py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-colors text-center shadow-lg shadow-indigo-500/20 flex items-center justify-center gap-2 mb-4">
+                        고용24 실업급여 신청하기 🚀
                     </a>
 
-                    {isSharing && (
-                        <ShareSheet
-                            onClose={() => setIsSharing(false)}
-                            title="[📋 실업급여 계산 결과]"
-                            description={`예상 수급일수 : ${result.benefitDays}일\n총 ${formatNumber(result.totalBenefit)}원`}
-                            url={typeof window !== "undefined" ? window.location.href : ""}
-                        />
-                    )}
+                    <CalculatorActions
+                        onCopy={handleCopy}
+                        shareTitle="[📋 실업급여 계산 결과]"
+                        shareDescription={`예상 수급일수 : ${result.benefitDays}일\n총 ${formatNumber(result.totalBenefit)}원`}
+                    />
                 </div>
             )}
         </div>

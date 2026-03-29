@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import ShareSheet from '../../components/ShareSheet';
+import CalculatorActions from '../../components/CalculatorActions';
+import { useCalculatorScroll } from '../../hooks/useCalculatorScroll';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -15,8 +16,7 @@ export default function NetPay() {
     const [includesSeverance, setIncludesSeverance] = useState<boolean>(false);
 
     const [result, setResult] = useState<any>(null);
-    const [isSharing, setIsSharing] = useState(false);
-    const [copied, setCopied] = useState(false);
+    const resultRef = useCalculatorScroll(result);
     
     const [errors, setErrors] = useState<Set<string>>(new Set());
     const [shakeField, setShakeField] = useState<string | null>(null);
@@ -113,12 +113,10 @@ export default function NetPay() {
         }
     };
 
-    const handleCopy = () => {
+    const handleCopy = async () => {
         if (!result) return;
         const text = `[💰 실수령액 계산 결과]\n\n월 실수령액(세후) : ${formatNumber(result.goal)}원\n계약 연봉 추정치 : ${formatNumber(result.yearlyGross)}원\n월 실수령액(세전) : ${formatNumber(result.monthlyGross)}원\n\n📌JIKO 실수령액 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/net-pay`;
-        navigator.clipboard.writeText(text);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        await navigator.clipboard.writeText(text);
     };
 
     const addAmount = (addValue: number) => {
@@ -209,7 +207,7 @@ export default function NetPay() {
                                 onChange={(e) => setTaxFreeAmount(e.target.value.replace(/[^0-9]/g, ''))}
                                 className="w-full p-4 text-right bg-gray-50 dark:bg-gray-900 border font-semibold border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all text-gray-800 dark:text-gray-100"
                             />
-                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">※ 2024년부터 식대 비과세 한도가 20만원으로 상향되었습니다.</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">✨ 2024년부터 식대 비과세 한도가 20만원으로 상향되었습니다.</p>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
@@ -242,7 +240,7 @@ export default function NetPay() {
             </div>
 
             {result && (
-                <div className="mt-8 space-y-6 animate-fade-in-up">
+                <div id="result-section" ref={resultRef} className="mt-8 space-y-6 animate-fade-in-up">
                     <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-3xl p-8 shadow-xl text-white relative overflow-hidden">
                         <div className="absolute -right-10 -top-10 text-9xl opacity-10">📄</div>
                         <h3 className="text-blue-100 font-medium mb-2 opacity-90">필요한 세전 계약 {calcType === "YEARLY" ? "연봉" : "월급"} (추정)</h3>
@@ -275,30 +273,11 @@ export default function NetPay() {
                         </div>
                     </div>
 
-                    <div className="mt-8 flex gap-4 w-full">
-                                <button
-                                    onClick={handleCopy}
-                                    className={`flex-1 py-4 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 ${copied ? "bg-green-500 text-white" : "bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600"}`}
-                                >
-                                    {copied ? (
-                                        <><span>✅</span> 복사 완료</>
-                                    ) : (
-                                        <><span>📋</span> 결과 복사하기</>
-                                    )}
-                                </button>
-                                <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 shadow-xl">
-                                    <span>💬</span> 친구에게 공유하기
-                                </button>
-                            </div>
-
-                    {isSharing && (
-                        <ShareSheet
-                            onClose={() => setIsSharing(false)}
-                            title="[💰 실수령액 계산 결과]"
-                            description={`월 실수령액(세후) : ${formatNumber(result.goal)}원\n월 실수령액(세전) : ${formatNumber(result.monthlyGross)}원`}
-                            url={typeof window !== "undefined" ? window.location.href : ""}
-                        />
-                    )}
+                    <CalculatorActions
+                        onCopy={handleCopy}
+                        shareTitle="[💰 실수령액 계산 결과]"
+                        shareDescription={`월 실수령액(세후) : ${formatNumber(result.goal)}원\n월 실수령액(세전) : ${formatNumber(result.monthlyGross)}원`}
+                    />
                 </div>
             )}
         </div>

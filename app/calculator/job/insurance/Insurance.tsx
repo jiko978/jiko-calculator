@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
-import ShareSheet from "@/app/calculator/components/ShareSheet";
+import CalculatorActions from "@/app/calculator/components/CalculatorActions";
+import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
 
 export default function Insurance() {
     const [salaryType, setSalaryType] = useState<"YEARLY" | "MONTHLY">("YEARLY");
@@ -12,8 +13,7 @@ export default function Insurance() {
     const [sanjaeRate, setSanjaeRate] = useState<string>("0.9"); // 기본 0.9% 세팅
     
     const [result, setResult] = useState<any>(null);
-    const [isSharing, setIsSharing] = useState(false);
-    const [copied, setCopied] = useState(false);
+    const resultRef = useCalculatorScroll(result);
     const [errors, setErrors] = useState<Set<string>>(new Set());
     const [shakeField, setShakeField] = useState<string | null>(null);
 
@@ -59,8 +59,6 @@ export default function Insurance() {
         if (sVal === 0) fieldErrors.add("salary");
         if (ntVal > sVal) {
             fieldErrors.add("nonTaxable");
-            setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
         }
 
         if (fieldErrors.size > 0) {
@@ -140,7 +138,7 @@ export default function Insurance() {
         setErrors(new Set());
     };
 
-    const copyResultToClipboard = () => {
+    const copyResultToClipboard = async () => {
         if (!result) return;
         const textToCopy = `[🛡️ 4대보험 계산 결과]\n
 급여 기준 : ${salaryType === "YEARLY" ? "연봉" : "월급"}
@@ -164,9 +162,7 @@ export default function Insurance() {
 📌JIKO 4대보험 계산기에서 확인하기 :
 https://jiko.kr/calculator/job/insurance`;
 
-        navigator.clipboard.writeText(textToCopy);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        await navigator.clipboard.writeText(textToCopy);
     };
 
     return (
@@ -242,7 +238,7 @@ https://jiko.kr/calculator/job/insurance`;
                                 } ${shakeField === 'nonTaxable' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                             />
                         </div>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">※ 2024년부터 식대 비과세 한도가 20만원으로 상향되었습니다.</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">✨ 2024년부터 식대 비과세 한도가 20만원으로 상향되었습니다.</p>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
@@ -283,7 +279,7 @@ https://jiko.kr/calculator/job/insurance`;
 
             {/* 계산 결과 화면 */}
             {result && (
-                <div id="result-section" className="mt-8 space-y-6 animate-fade-in-up">
+                <div id="result-section" ref={resultRef} className="mt-8 space-y-6 animate-fade-in-up">
                     
                     {/* Top Insight Card */}
                     <div className="bg-gradient-to-br from-indigo-600 to-indigo-800 rounded-3xl p-8 shadow-xl text-white relative overflow-hidden">
@@ -411,30 +407,11 @@ https://jiko.kr/calculator/job/insurance`;
                         </div>
 
                         {/* 결과 복사 & 공유 */}
-                        <div className="mt-8 flex gap-4 w-full">
-                                <button
-                                    onClick={copyResultToClipboard}
-                                    className={`flex-1 py-4 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 ${copied ? "bg-green-500 text-white" : "bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600"}`}
-                                >
-                                    {copied ? (
-                                        <><span>✅</span> 복사 완료</>
-                                    ) : (
-                                        <><span>📋</span> 결과 복사하기</>
-                                    )}
-                                </button>
-                                <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 shadow-xl">
-                                    <span>💬</span> 친구에게 공유하기
-                                </button>
-                            </div>
-
-                        {isSharing && (
-                            <ShareSheet
-                                onClose={() => setIsSharing(false)}
-                                title="[🛡️ 4대보험 계산 결과]"
-                                description={`급여 기준 : ${salaryType === "YEARLY" ? "연봉" : "월급"}\n근로자 부담금 : 월 ${formatComma(result.employee.sum.toString())}원`}
-                                url={typeof window !== "undefined" ? window.location.href : ""}
-                            />
-                        )}
+                        <CalculatorActions
+                            onCopy={copyResultToClipboard}
+                            shareTitle="[🛡️ 4대보험 계산 결과]"
+                            shareDescription={`급여 기준 : ${salaryType === "YEARLY" ? "연봉" : "월급"}\n근로자 부담금 : 월 ${formatComma(result.employee.sum.toString())}원`}
+                        />
 
                     </div>
                 </div>

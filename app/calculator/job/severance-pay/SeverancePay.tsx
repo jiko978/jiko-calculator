@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import ShareSheet from '@/app/calculator/components/ShareSheet';
+import CalculatorActions from '@/app/calculator/components/CalculatorActions';
+import { useCalculatorScroll } from '@/app/calculator/hooks/useCalculatorScroll';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -15,8 +16,7 @@ export default function SeverancePay() {
     const [holidayPayYearly, setHolidayPayYearly] = useState<string>("0");
 
     const [result, setResult] = useState<any>(null);
-    const [isSharing, setIsSharing] = useState(false);
-    const [copied, setCopied] = useState(false);
+    const resultRef = useCalculatorScroll(result);
 
     const [errors, setErrors] = useState<Set<string>>(new Set());
     const [shakeField, setShakeField] = useState<string | null>(null);
@@ -108,12 +108,10 @@ export default function SeverancePay() {
         }
     };
 
-    const handleCopy = () => {
+    const handleCopy = async () => {
         if (!result) return;
         const text = `[💼 퇴직금 계산 결과]\n\n총 재직일 : ${result.totalDays}일\n세전 퇴직금 : ${formatNumber(result.preTax)}원\n세후 예상 실수령액 : ${formatNumber(result.postTax)}원\n\n📌JIKO 퇴직금 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/severance-pay`;
-        navigator.clipboard.writeText(text);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        await navigator.clipboard.writeText(text);
     };
 
     const addAmount = (val: number) => {
@@ -261,7 +259,7 @@ export default function SeverancePay() {
 
             {/* 결과 출력 영역 */}
             {result && (
-                <div className="mt-8 space-y-6 animate-fade-in-up text-left">
+                <div id="result-section" ref={resultRef} className="mt-8 space-y-6 animate-fade-in-up text-left">
                     <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-[32px] p-8 md:p-10 shadow-2xl text-white relative overflow-hidden">
                         <div className="absolute -right-6 -top-6 text-[120px] opacity-10 rotate-12">💼</div>
                         <h3 className="text-blue-100 text-sm font-bold mb-4 opacity-90 flex items-center gap-2">
@@ -309,30 +307,11 @@ export default function SeverancePay() {
                         </div>
                     </div>
 
-                    <div className="mt-8 flex gap-4 w-full">
-                                <button
-                                    onClick={handleCopy}
-                                    className={`flex-1 py-4 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 ${copied ? "bg-green-500 text-white" : "bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600"}`}
-                                >
-                                    {copied ? (
-                                        <><span>✅</span> 복사 완료</>
-                                    ) : (
-                                        <><span>📋</span> 결과 복사하기</>
-                                    )}
-                                </button>
-                                <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 shadow-xl">
-                                    <span>💬</span> 친구에게 공유하기
-                                </button>
-                            </div>
-
-                    {isSharing && (
-                        <ShareSheet
-                            onClose={() => setIsSharing(false)}
-                            title="[💼 퇴직금 계산 결과]"
-                            description={`총 재직일 : ${result.totalDays}일\n세후 예상 실수령액 : ${formatNumber(result.postTax)}원`}
-                            url={typeof window !== "undefined" ? window.location.href : ""}
-                        />
-                    )}
+                    <CalculatorActions
+                        onCopy={handleCopy}
+                        shareTitle="[💼 퇴직금 계산 결과]"
+                        shareDescription={`총 재직일 : ${result.totalDays}일\n세후 예상 실수령액 : ${formatNumber(result.postTax)}원`}
+                    />
                 </div>
             )}
         </div>

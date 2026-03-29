@@ -203,9 +203,12 @@ Tool Site.
 ## 공통파일 관리
 1. 뒤로가기, 공유, FAQ, 더 보기 버튼
 ㄴ app/components/NavBar.tsx (뒤로가기, 공유)
-ㄴ app/components/ShareSheet.tsx (공유)
+ㄴ app/components/ShareSheet.tsx (공유 바텀 시트)
+ㄴ app/calculator/components/CalculatorActions.tsx (결과 복사하기 및 공유하기 2분할 버튼)
 ㄴ app/calculator/components/FAQ.tsx (FAQ)
-ㄴ app/calculator/components/StockMoreCalculators.tsx (더 보기)
+ㄴ app/calculator/components/StockMoreCalculators.tsx (더 보기 등)
+2. UI 및 기타 Hook 로직
+ㄴ app/calculator/hooks/useCalculatorScroll.ts (결과 화면 자동 스크롤 동기화)
 
 ## MD파일 관리 (바이브 코딩 가이드)
 1. 전체 경로 : public/docs
@@ -234,8 +237,8 @@ Tool Site.
 ㄴ 그림자
 ㄴㄴ 카드, 계산하기 버튼
 ㄴㄴ ShareSheet 바텀 시트 (React Portal을 사용하여 `document.body`에 직접 렌더링하여 항상 화면 최하단에 일관되게 고정되도록 처리)
-ㄴㄴ 공유 아이콘 버튼
-ㄴ 버튼 레이아웃 : "결과 복사하기", "친구에게 공유하기" 등 하단 주요 액션 버튼은 모바일 가독성과 클릭 편의성을 위해 상하 2단 스택(`flex-col`) 배치를 우선 고려합니다.
+ㄴ 화면 전환 (자동 스크롤) : 모바일 가독성을 위해 [계산하기] 클릭 시 `useCalculatorScroll` Hook을 호출하여 결과 영역(`id="result-section"`)으로 부드럽게 스크롤(Smooth Scroll)되도록 모든 계산기가 통일됩니다.
+ㄴ 버튼 레이아웃 : "결과 복사하기", "친구에게 공유하기" 등 하단 주요 액션 버튼은 `CalculatorActions.tsx` 공통 컴포넌트를 사용하여 디자인(둥근 2분할 레이아웃 등) 및 내부 상태 코드를 강제 규격화합니다.
 ㄴ 사용자 피드백 : 복사 완료 등 상태 알림은 시스템 `alert` 대신 상태(`state`) 기반 전환(예: 버튼 색상 변경 및 텍스트 전환)을 사용하여 UX를 개선합니다.
 ㄴ 면책 조항(Disclaimer) : 금융/주식 등 결괏값이 민감한 계산기의 메인 설명 카드(`page.tsx` 내) 하단에는 필수로 면책 조항(`※ 본 계산기는 참고용이며 투자 판단의 책임은 사용자에게 있습니다.`)을 붉은색 계열(`text-red-500/80`, `bg-red-50/50` 등) 박스 형태로 추가합니다.
 4. 다크모드 : 모든 요소에 dark: 접두사로 적용
