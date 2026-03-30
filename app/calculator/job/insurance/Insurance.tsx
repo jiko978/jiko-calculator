@@ -16,6 +16,7 @@ export default function Insurance() {
     const resultRef = useCalculatorScroll(result);
     const [errors, setErrors] = useState<Set<string>>(new Set());
     const [shakeField, setShakeField] = useState<string | null>(null);
+    const [errorMessage, setErrorMessage] = useState<string>("");
 
     const formatComma = (raw: string) => raw.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     const parseNum = (val: string) => Number(val.replace(/[^0-9]/g, ""));
@@ -57,18 +58,17 @@ export default function Insurance() {
         const ntVal = parseNum(nonTaxable);
 
         if (sVal === 0) fieldErrors.add("salary");
-        if (ntVal > sVal) {
-            fieldErrors.add("nonTaxable");
-        }
 
         if (fieldErrors.size > 0) {
             setErrors(fieldErrors);
             setShakeField(Array.from(fieldErrors)[0]);
             setTimeout(() => setShakeField(null), 500);
+            setErrorMessage("급여액을 입력해주세요.");
             return;
         }
 
         setErrors(new Set());
+        setErrorMessage("");
 
         // 로직 산출 (월 단위)
         const monthlyTotal = salaryType === "YEARLY" ? Math.floor(sVal / 12) : sVal;
@@ -136,6 +136,12 @@ export default function Insurance() {
         setSanjaeRate("0.9");
         setResult(null);
         setErrors(new Set());
+        setErrorMessage("");
+        
+        // 스크롤 상단 이동
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
     };
 
     const copyResultToClipboard = async () => {
@@ -274,6 +280,13 @@ https://jiko.kr/calculator/job/insurance`;
                     <button id="resetBtn" onClick={handleReset} className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">초기화</button>
                     <button onClick={calculateInsurance} className="flex-[2] py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20">계산하기</button>
                 </div>
+
+                {/* Error Message */}
+                {errorMessage && (
+                    <div className="mt-4 bg-red-50 dark:bg-red-900/20 text-red-500 text-sm font-bold p-4 rounded-xl text-center border border-red-100 dark:border-red-800 animate-pulse">
+                        🚨 {errorMessage}
+                    </div>
+                )}
                 </div>
             </div>
 

@@ -65,7 +65,7 @@ export default function Salary() {
             newErrors.add("amount");
             setShakeField("amount");
             setTimeout(() => setShakeField(null), 500);
-            setErrorMessage("연봉/월급을 입력해주세요.");
+            setErrorMessage(`${calcType === "YEARLY" ? "연봉" : "월급"}을 입력해주세요.`);
             setErrors(newErrors);
             return;
         }
@@ -162,6 +162,11 @@ export default function Salary() {
                 btn.classList.remove("animate-[shake_0.5s_ease-in-out]");
             }, 500);
         }
+        
+        // 스크롤 상단 이동
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
     };
 
     const handleCopy = async () => {

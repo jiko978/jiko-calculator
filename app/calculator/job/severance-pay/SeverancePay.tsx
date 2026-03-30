@@ -106,6 +106,11 @@ export default function SeverancePay() {
             btn.classList.add("animate-[shake_0.5s_ease-in-out]");
             setTimeout(() => btn.classList.remove("animate-[shake_0.5s_ease-in-out]"), 500);
         }
+        
+        // 스크롤 상단 이동
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
     };
 
     const handleCopy = async () => {

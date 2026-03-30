@@ -50,6 +50,8 @@ export default function UnemploymentBenefit() {
         const yearPart = val.split('-')[0];
         if (yearPart && yearPart.length > 4) return;
         setCompanies(companies.map(c => c.id === id ? { ...c, [field]: val } : c));
+        setErrors(new Set());
+        setErrorMessage("");
     };
 
     const calculateAge = (birth: string, quitDate: string) => {
@@ -177,6 +179,11 @@ export default function UnemploymentBenefit() {
         setResult(null);
         setErrors(new Set());
         setErrorMessage("");
+        
+        // 스크롤 상단 이동
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
     };
 
     const handleCopy = async () => {
@@ -246,7 +253,7 @@ export default function UnemploymentBenefit() {
                                             value={company.startDate}
                                             max="9999-12-31"
                                             onChange={(e) => updateCompany(company.id, 'startDate', e.target.value)}
-                                            className="w-full p-3 bg-white dark:bg-gray-800 border font-semibold border-gray-100 dark:border-gray-700 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-500 text-right"
+                                            className={`w-full p-3 bg-white dark:bg-gray-800 border font-semibold ${errors.has('companies') && !company.startDate ? 'border-red-600 ring-2 ring-red-500/20' : 'border-gray-100 dark:border-gray-700'} rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-500 text-right ${shakeField === 'companies' && !company.startDate ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                                         />
                                     </div>
                                     <div className="text-right">
@@ -256,7 +263,7 @@ export default function UnemploymentBenefit() {
                                             value={company.endDate}
                                             max="9999-12-31"
                                             onChange={(e) => updateCompany(company.id, 'endDate', e.target.value)}
-                                            className="w-full p-3 bg-white dark:bg-gray-800 border font-semibold border-gray-100 dark:border-gray-700 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-500 text-right"
+                                            className={`w-full p-3 bg-white dark:bg-gray-800 border font-semibold ${errors.has('companies') && !company.endDate ? 'border-red-600 ring-2 ring-red-500/20' : 'border-gray-100 dark:border-gray-700'} rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-500 text-right ${shakeField === 'companies' && !company.endDate ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                                         />
                                     </div>
                                 </div>
@@ -294,8 +301,10 @@ export default function UnemploymentBenefit() {
                                             onChange={(e) => {
                                                 const val = e.target.value.replace(/[^0-9]/g, '');
                                                 setSalaries([val, val, val]);
+                                                setErrors(new Set());
+                                                setErrorMessage("");
                                             }}
-                                            className="w-full p-4 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-2xl outline-none focus:ring-2 focus:ring-blue-600 text-right font-black text-xl text-gray-800 dark:text-gray-100"
+                                            className={`w-full p-4 bg-gray-50 dark:bg-gray-900 border ${errors.has('salaries') ? 'border-red-600 ring-2 ring-red-500/20' : 'border-gray-300 dark:border-gray-600'} rounded-2xl outline-none focus:ring-2 focus:ring-blue-600 text-right font-black text-xl text-gray-800 dark:text-gray-100 ${shakeField === 'salaries' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                                         />
                                         <span className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-300 font-bold text-lg" aria-hidden="true">₩</span>
                                     </div>
@@ -326,8 +335,10 @@ export default function UnemploymentBenefit() {
                                                         const newSalaries = [...salaries];
                                                         newSalaries[idx] = e.target.value.replace(/[^0-9]/g, '');
                                                         setSalaries(newSalaries);
+                                                        setErrors(new Set());
+                                                        setErrorMessage("");
                                                     }}
-                                                    className="w-full p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-right font-bold text-lg outline-none focus:ring-2 focus:ring-blue-500"
+                                                    className={`w-full p-3 bg-white dark:bg-gray-800 border ${errors.has('salaries') && !salaries[idx] ? 'border-red-600 ring-2 ring-red-500/20' : 'border-gray-200 dark:border-gray-700'} rounded-xl text-right font-bold text-lg outline-none focus:ring-2 focus:ring-blue-500 ${shakeField === 'salaries' && !salaries[idx] ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                                                 />
                                                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 font-bold">₩</span>
                                             </div>
@@ -356,7 +367,11 @@ export default function UnemploymentBenefit() {
                         <button onClick={handleCalculate} className="flex-[2] py-5 bg-blue-600 text-white font-black rounded-2xl hover:bg-blue-700 transition-all active:scale-95 shadow-xl shadow-blue-500/20">계산하기</button>
                     </div>
 
-                    {errorMessage && <div className="bg-red-50 dark:bg-red-900/10 text-red-500 text-[11px] font-bold p-4 rounded-2xl text-center animate-pulse">🚨 {errorMessage}</div>}
+                    {errorMessage && (
+                        <div className="mt-4 bg-red-50 dark:bg-red-900/20 text-red-500 text-sm font-bold p-4 rounded-xl text-center border border-red-100 dark:border-red-800 animate-pulse">
+                            🚨 {errorMessage}
+                        </div>
+                    )}
                 </div>
             </div>
 

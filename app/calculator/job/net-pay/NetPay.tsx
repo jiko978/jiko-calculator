@@ -56,7 +56,7 @@ export default function NetPay() {
             setErrors(new Set(["targetNetPay"]));
             setShakeField("targetNetPay");
             setTimeout(() => setShakeField(null), 500);
-            setErrorMessage(`${calcType === "YEARLY" ? "연봉" : "월급"}(실수령액)을 입력해주세요.`);
+            setErrorMessage(`${calcType === "YEARLY" ? "연봉" : "월급"}을 입력해주세요.`);
             return;
         }
 
@@ -111,6 +111,11 @@ export default function NetPay() {
             btn.classList.add("animate-[shake_0.5s_ease-in-out]");
             setTimeout(() => btn.classList.remove("animate-[shake_0.5s_ease-in-out]"), 500);
         }
+        
+        // 스크롤 상단 이동
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
     };
 
     const handleCopy = async () => {

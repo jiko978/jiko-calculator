@@ -21,8 +21,9 @@ export default function HolidayAllowance() {
     
     const [result, setResult] = useState<CalculationResult | null>(null);
     const resultRef = useCalculatorScroll(result);
-    // Validation States
-    const [errorFocus, setErrorFocus] = useState<"wage" | "hours" | null>(null);
+    const [errors, setErrors] = useState<Set<string>>(new Set());
+    const [shakeField, setShakeField] = useState<string | null>(null);
+    const [errorMessage, setErrorMessage] = useState<string>("");
 
     // Format utility
     const formatNumber = (num: number) => Math.round(num).toLocaleString();
@@ -31,28 +32,34 @@ export default function HolidayAllowance() {
     const handleNumberInput = (e: React.ChangeEvent<HTMLInputElement>, setter: React.Dispatch<React.SetStateAction<string>>) => {
         const rawValue = e.target.value.replace(/[^0-9]/g, "");
         setter(rawValue);
-        if (errorFocus) setErrorFocus(null); // 에러 해제
     };
 
     const handleQuickSet = (hours: number) => {
         setHourlyWage("10320");
         setWorkHours(hours.toString());
-        setErrorFocus(null);
+        setErrors(new Set());
+        setErrorMessage("");
     };
 
     const handleCalculate = () => {
         const wage = parseInt(hourlyWage, 10);
         const hours = parseFloat(workHours);
 
-        // Validation
-        if (!wage || wage <= 0) {
-            setErrorFocus("wage");
+        const fieldErrors = new Set<string>();
+        if (!wage || wage <= 0) fieldErrors.add("wage");
+        if (!hours || hours <= 0) fieldErrors.add("hours");
+
+        if (fieldErrors.size > 0) {
+            setErrors(fieldErrors);
+            const firstError = Array.from(fieldErrors)[0];
+            setShakeField(firstError);
+            setTimeout(() => setShakeField(null), 500);
+            setErrorMessage(firstError === "wage" ? "시급을 입력해주세요." : "1주일간 총 근로시간을 입력해주세요.");
             return;
         }
-        if (!hours || hours <= 0) {
-            setErrorFocus("hours");
-            return;
-        }
+
+        setErrors(new Set());
+        setErrorMessage("");
 
         // Logic
         let holidayHours = 0;
@@ -96,7 +103,13 @@ export default function HolidayAllowance() {
         setHourlyWage("10320");
         setWorkHours("");
         setResult(null);
-        setErrorFocus(null);
+        setErrors(new Set());
+        setErrorMessage("");
+        
+        // 스크롤 상단 이동
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
     };
 
     const handleCopy = async () => {
@@ -147,15 +160,16 @@ export default function HolidayAllowance() {
                                 type="text"
                                 inputMode="numeric"
                                 value={hourlyWage ? parseInt(hourlyWage).toLocaleString() : ""}
-                                onChange={(e) => handleNumberInput(e, setHourlyWage)}
+                                onChange={(e) => {
+                                    handleNumberInput(e, setHourlyWage);
+                                    setErrors(new Set());
+                                    setErrorMessage("");
+                                }}
                                 placeholder="적용 받을 시급 입력"
-                                className={`w-full p-4 pr-12 text-right bg-gray-50 dark:bg-gray-900 border ${errorFocus === "wage" ? "border-red-600 ring-2 ring-red-500/20 animate-shake" : "border-gray-300 dark:border-gray-600"} rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all font-semibold text-gray-800 dark:text-gray-100`}
+                                className={`w-full p-4 pr-12 text-right bg-gray-50 dark:bg-gray-900 border ${errors.has("wage") ? 'border-red-600 ring-2 ring-red-500/20' : 'border-gray-300 dark:border-gray-600'} rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all font-semibold text-gray-800 dark:text-gray-100 ${shakeField === 'wage' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                             />
                             <span className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500 font-bold">원</span>
                         </div>
-                        {errorFocus === "wage" && (
-                            <p className="mt-2 text-xs font-bold text-red-500 animate-pulse">! 시급을 입력해주세요.</p>
-                        )}
                         <p className="mt-2 pl-2 text-xs text-blue-500 font-medium">✨ 2026년 최저시급 : 10,320원</p>
                     </div>
 
@@ -164,21 +178,19 @@ export default function HolidayAllowance() {
                         <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">1주일간 총 근로시간 (시간)</label>
                         <div className="relative group">
                             <input
-                                type="number"
+                                type="text"
                                 inputMode="decimal"
                                 value={workHours}
                                 onChange={(e) => {
-                                    setWorkHours(e.target.value);
-                                    if(errorFocus) setErrorFocus(null);
+                                    setWorkHours(e.target.value.replace(/[^0-9.]/g, ''));
+                                    setErrors(new Set());
+                                    setErrorMessage("");
                                 }}
                                 placeholder="예: 20"
-                                className={`w-full p-4 pr-16 text-right bg-gray-50 dark:bg-gray-900 border ${errorFocus === "hours" ? "border-red-600 ring-2 ring-red-500/20 animate-shake" : "border-gray-300 dark:border-gray-600"} rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all font-semibold text-gray-800 dark:text-gray-100`}
+                                className={`w-full p-4 pr-16 text-right bg-gray-50 dark:bg-gray-900 border ${errors.has("hours") ? 'border-red-600 ring-2 ring-red-500/20' : 'border-gray-300 dark:border-gray-600'} rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all font-semibold text-gray-800 dark:text-gray-100 ${shakeField === 'hours' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                             />
                             <span className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500 font-bold">시간</span>
                         </div>
-                        {errorFocus === "hours" && (
-                            <p className="mt-2 text-xs font-bold text-red-500 animate-pulse">! 1주일 근로시간을 입력해주세요.</p>
-                        )}
                         <p className="mt-2 pl-2 text-xs text-blue-500 font-medium">✨ 주 15시간 이상 근무 시에만 주휴수당 발생함</p>
                     </div>
 
@@ -224,6 +236,13 @@ export default function HolidayAllowance() {
                     계산하기
                 </button>
             </div>
+
+            {/* Error Message */}
+            {errorMessage && (
+                <div className="bg-red-50 dark:bg-red-900/20 text-red-500 text-sm font-bold p-4 rounded-xl text-center border border-red-100 dark:border-red-800 animate-pulse">
+                    🚨 {errorMessage}
+                </div>
+            )}
 
             {/* 계산 결과 */}
             {result && (

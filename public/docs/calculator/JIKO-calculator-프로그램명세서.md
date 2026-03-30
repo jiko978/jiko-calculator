@@ -141,11 +141,12 @@
 `policy/` 레이아웃 등에서 사용자의 유입 경로(Referrer)를 분석하여 플랫폼 홈 또는 서비스 홈으로 지능적으로 이동하는 `BackButton` 컴포넌트를 제공합니다.
 
 ### 6.4 UI/UX 표준화 아키텍처 (최신 반영)
-- **결과 스크롤 통일 (`useCalculatorScroll` Hook)**: `app/calculator/hooks/useCalculatorScroll.ts`를 도입하여 모든 계산기에서 '계산하기' 클릭 시 결과 영역으로 스르륵 부드럽게 이동(`scrollIntoView`)하는 직관적인 피드백 표준을 확립했습니다.
-- **액션 버튼 레이어 통일 (`CalculatorActions.tsx`)**: 기존 개별 구현된 복사/공유 버튼과 `copied`, `showShare` 상태를 통합하여 모든 계산기에서 완벽히 동일한 패턴과 렌더링 일관성을 보증합니다.
-- **Bottom Sheet 일관성**: `ShareSheet` 컴포넌트는 `createPortal`을 사용하여 부모의 `position`, `overflow`, `transform` 속성과 무관하게 화면 뷰포트 최하단(Bottom)에 항상 부착되도록 구조화되어 있습니다.
-- **상태 기반 피드백**: 모바일 환경에서의 조작 경험 향상을 위해, 시스템 `alert` 대신 컴포넌트 내의 상태(`state`)를 변경하여 아이콘, 레이블, 배경색상을 자연스럽게 전환하는 넌블로킹(Non-blocking) 피드백 방식을 채택합니다.
-- **면책 조항 통일성**: 민감한 결괏값을 노출하는 `page.tsx`(설명 카드 하단)에는 어플리케이션 전역 통일된 경고 디자인 포맷(`bg-red-50 text-red-500` 클래스)의 면책 조항을 강제하여 법적 대응 및 사용자 안내를 강화했습니다.
+- **[1] 계산하기 후 화면 스크롤 (`useCalculatorScroll` Hook)**: `app/calculator/hooks/useCalculatorScroll.ts`를 도입하여 모든 계산기에서 '계산하기' 클릭 시 결과 영역(`id="result-section"`)으로 부드럽게 이동하는 피드백 표준을 확립했습니다.
+- **[2] 초기화(Reset) 후 상단 화면 스크롤**: 계산기 `handleReset` 수행 시 `window.scrollTo({ top: 0, behavior: "smooth" })`를 호출하여 사용자 뷰(화면)를 즉시 입력 폼 최상단으로 귀환시키는 직관적인 피드백을 확보했습니다.
+- **[3] 필수 입력 체크 공통화 (Validation)**: 필드 누락 시 컴포넌트 붉은 테두리 변화(`ring-red-500/20`), 흔들림 효과(`shake`), 하단 글로벌 에러 메시지 카드 출력을 3가지 상태(`errors`, `shakeField`, `errorMessage`)로 캡슐화하여 전역 규격화시켰습니다.
+- **액션 버튼 레이어 통일 (`CalculatorActions.tsx`)**: 복사/공유 UI 및 `copied`, `isSharing` 상태를 내부 통합하여 모든 계산기에서 완벽히 동일한 패턴과 레이아웃 일관성을 보증합니다.
+- **Bottom Sheet 구조화 및 상태 기반 피드백**: 모바일 환경 조작 경험을 위해 `alert` 대신 넌블로킹 상태 기반 피드백을 구현하며, ShareSheet는 `createPortal`을 사용해 언제나 뷰포트 최하단에 간섭 없이 부착됩니다.
+- **면책 조항 통일성**: 민감한 결괏값을 노출하는 설명창(`page.tsx`) 하단에는 경고 디자인 포맷(`bg-red-50 text-red-500`)의 면책 조항 카드를 강제 추가하여 사용자 안내 책임을 강화했습니다.
 
 ---
 

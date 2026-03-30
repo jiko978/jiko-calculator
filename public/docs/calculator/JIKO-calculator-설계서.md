@@ -232,28 +232,18 @@ Tool Site.
 3. 전역 컴포넌트 동기화 (Header & Footer)
 ㄴ **루트 허브(Platform)** 와 **서브 허브(Calculator)** 상/하단바의 레이아웃, 크기 세팅 통일 (`px-4 py-6` / `max-w-3xl` 등 기본 규격 동기화)
 ㄴ Cross-Navigation(교차 이동): 계산기 메뉴의 Header와 Footer에는 `🏠 JIKO 플랫폼 홈` 단축 링크를 강제 삽입하여 허브 간 자유로운 이동 보장.
-3. UI/UX
-ㄴ 카드 UI : 흰색 배경 + 라운드 처리
-ㄴ 그림자
-ㄴㄴ 카드, 계산하기 버튼
-ㄴㄴ ShareSheet 바텀 시트 (React Portal을 사용하여 `document.body`에 직접 렌더링하여 항상 화면 최하단에 일관되게 고정되도록 처리)
-ㄴ 화면 전환 (자동 스크롤) : 모바일 가독성을 위해 [계산하기] 클릭 시 `useCalculatorScroll` Hook을 호출하여 결과 영역(`id="result-section"`)으로 부드럽게 스크롤(Smooth Scroll)되도록 모든 계산기가 통일됩니다.
-ㄴ 버튼 레이아웃 : "결과 복사하기", "친구에게 공유하기" 등 하단 주요 액션 버튼은 `CalculatorActions.tsx` 공통 컴포넌트를 사용하여 디자인(둥근 2분할 레이아웃 등) 및 내부 상태 코드를 강제 규격화합니다.
-ㄴ 사용자 피드백 : 복사 완료 등 상태 알림은 시스템 `alert` 대신 상태(`state`) 기반 전환(예: 버튼 색상 변경 및 텍스트 전환)을 사용하여 UX를 개선합니다.
-ㄴ 면책 조항(Disclaimer) : 금융/주식 등 결괏값이 민감한 계산기의 메인 설명 카드(`page.tsx` 내) 하단에는 필수로 면책 조항(`※ 본 계산기는 참고용이며 투자 판단의 책임은 사용자에게 있습니다.`)을 붉은색 계열(`text-red-500/80`, `bg-red-50/50` 등) 박스 형태로 추가합니다.
-4. 다크모드 : 모든 요소에 dark: 접두사로 적용
-7. 표준 검증 UI (Standard Validation)
-ㄴ 입력 누락 시 빨간색 테두리(Ring) 및 흔들림(Shake) 효과
-ㄴ 하단 인라인 에러 메시지(Pulse 애니메이션 적용)
-ㄴ 입력 시 실시간 에러 해제 및 초기화 버튼 연동
-4. 다크모드 : 모든 요소에 dark: 접두사로 적용
-5. 버튼 hover 효과
-ㄴ 계산하기
-ㄴ 초기화
-ㄴ 뒤로가기
-ㄴ 공유 아이콘
-ㄴ 입력창 포커스 스타일
-6. 전역 설정 영역별 분리 구조
+3. 코어 UI/UX 표준 (전체 계산기 공통 적용 필수)
+ㄴ [1] 계산하기 후 화면 스크롤 (`useCalculatorScroll` Hook) : 모바일 가독성을 위해 [계산하기] 클릭 시 결과 영역(`id="result-section"`)으로 부드럽게 스크롤(Smooth Scroll)됩니다.
+ㄴ [2] 초기화 후 화면 스크롤 : [초기화] 클릭(`handleReset`) 시 `setTimeout`과 `window.scrollTo({ top: 0, behavior: "smooth" })`를 호출하여 최상단 폼으로 화면을 복귀시킵니다.
+ㄴ [3] 필수 입력 체크 공통화 (Standard Validation) : 
+   - 입력 누락 시 해당 필드에 빨간색 테두리(`ring-2 ring-red-500/20`) 및 흔들림(`animate-[shake_0.5s_ease-in-out]`) 효과를 적용합니다.
+   - 버튼 상단에 공통 에러 카드(`bg-red-50 ... animate-pulse`)를 출력합니다.
+   - 텍스트 입력(`onChange`) 시 실시간으로 에러 값(`errors, errorMessage, shakeField`) 상태를 즉각 해제합니다.
+ㄴ [4] 공통 액션 버튼 (`CalculatorActions.tsx`) : "결과 복사하기/공유하기" 기능은 분할된 공통 컴포넌트를 사용해 캡슐화 및 디자인을 제한합니다.
+ㄴ [기본] 바탕 및 레이아웃 : 카드 UI(흰색 배경 + 라운드 처리), 다크모드(`dark:` 접두사), 버튼 Hover 디자인 통일.
+ㄴ [기본] 사용자 피드백 : 상태 알림은 alert 대신 State 기반 컴포넌트 시각적 전환 시스템을 채택하며, Bottom Sheet(`ShareSheet`)는 React Portal을 활용해 깊이(Depth) 문제를 원천 차단합니다.
+ㄴ [기본] 면책 조항 : 금융/주식 등 결괏값이 민감한 계산기 사이드 설명 창에는 붉은색 계열(`bg-red-50`) 면책 조항 박스를 강제 추가합니다.
+4. 전역 설정 영역별 분리 구조
 ㄴ 루트 레이아웃 (`app/layout.tsx` - jiko.kr 공통) : 웹 분석(Google Analytics / GA4), 카카오 SDK 연동(KakaoInit) 등 논리적 최상단 처리
 ㄴ 루트 UI 렌더링 (`app/page.tsx`) : 전역 공통 Header & Footer 래핑 및 메인 타이틀 네비게이션 적용(`🧮 JIKO 계산기` -> `/calculator`)
 ㄴ 계산기 레이아웃 (`app/calculator/layout.tsx` - jiko.kr/calculator 한정) : PWA 설정(manifest), Service Worker 등록(RegisterSW), QR 코드 등 서브 라우트 특화 처리
