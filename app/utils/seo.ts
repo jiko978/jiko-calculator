@@ -40,6 +40,7 @@ export const COMMON_BREADCRUMBS = {
     NET_PAY: { name: "실수령액 계산기", item: "/calculator/job/net-pay" },
     SEVERANCE_PAY: { name: "퇴직금 계산기", item: "/calculator/job/severance-pay" },
     HOLIDAY_ALLOWANCE: { name: "주휴수당 계산기", item: "/calculator/job/holiday-allowance" },
+    ANNUAL: { name: "연차 계산기", item: "/calculator/job/annual" },
 
     HEALTH_HOME: { name: "건강 계산기", item: "/calculator/health" },
     BMI: { name: "비만도 계산기", item: "/calculator/health/bmi" },

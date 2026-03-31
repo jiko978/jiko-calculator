@@ -418,15 +418,15 @@ https://jiko.kr/calculator/job/insurance`;
                                 <div className="text-sm text-right font-black text-orange-500 dark:text-orange-400">{formatComma(result.employer.sum.toString())}</div>
                             </div>
                         </div>
-
-                        {/* 결과 복사 & 공유 */}
-                        <CalculatorActions
-                            onCopy={copyResultToClipboard}
-                            shareTitle="[🛡️ 4대보험 계산 결과]"
-                            shareDescription={`급여 기준 : ${salaryType === "YEARLY" ? "연봉" : "월급"}\n근로자 부담금 : 월 ${formatComma(result.employee.sum.toString())}원`}
-                        />
-
                     </div>
+                    
+                    {/* 결과 복사 & 공유 */}
+                    <CalculatorActions
+                        onCopy={copyResultToClipboard}
+                        shareTitle="[🛡️ 4대보험 계산 결과]"
+                        shareDescription={`급여 기준 : ${salaryType === "YEARLY" ? "연봉" : "월급"}\n근로자 부담금 : 월 ${formatComma(result.employee.sum.toString())}원`}
+                    />
+
                 </div>
             )}
             

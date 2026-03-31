@@ -4,20 +4,20 @@ import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../utils/seo";
 
 export const metadata: Metadata = {
-    title: "직장 계산기 | 연봉, 퇴직금, 실업급여 계산기 모음 - JIKO 계산기",
-    description: "내 연봉/실수령액은 얼마일까? 퇴직금과 실업급여는? 일상 생활에 꼭 필요한 급여, 세금, 실업급여 계산기를 2025년 최신 기준으로 이용하세요.",
-    keywords: ["직장 계산기", "연봉 계산기", "월급 계산기", "실수령액 계산기", "퇴직금 계산기", "실업급여 계산기", "세금 계산기", "JIKO 계산기"],
+    title: "직장 계산기 | 연봉, 연차, 퇴직금, 실업급여 계산기 모음 - JIKO 계산기",
+    description: "내 연봉/실수령액은 얼마일까? 내 휴가는 며칠일까? 연차, 퇴직금과 실업급여 등 직장 생활에 꼭 필요한 계산기를 2025년 최신 기준으로 이용하세요.",
+    keywords: ["직장 계산기", "연봉 계산기", "월급 계산기", "실수령액 계산기", "연차 계산기", "연차수당 계산기", "퇴직금 계산기", "실업급여 계산기", "세금 계산기", "JIKO 계산기"],
 };
 
 const jobCalculators = [
     {
         title: "💸 연봉/월급 계산기",
-        description: "2025년 최신 세율을 반영하여 내 연봉이나 월급의 정확한 세금과 실수령액을 계산합니다.",
+        description: "2025년 최신 세율을 반영하여 내 연봉이나 월급의 정확한 세금과 실수령액을 계산해드립니다.",
         href: "/calculator/job/salary",
     },
     {
         title: "💰 실수령액 계산기",
-        description: "목표로 하는 한 달 실수령액을 받기 위해 필요한 세전 계약 연봉과 월급을 찾아드립니다.",
+        description: "목표로 하는 한 달 실수령액을 받기 위해 필요한 세전 계약 연봉과 월급을 계산해드립니다.",
         href: "/calculator/job/net-pay",
     },
     {
@@ -27,18 +27,23 @@ const jobCalculators = [
     },
     {
         title: "📑 실업급여 계산기",
-        description: "2025년 고용보험법 개정 기준을 반영하여 예상 수급액과 지급 기간을 정확하게 산출해드립니다.",
+        description: "2025년 고용보험법 개정 기준을 반영하여 예상 수급액과 지급 기간을 정확하게 계산해드립니다.",
         href: "/calculator/job/unemployment-benefit",
     },
     {
         title: "🛡️ 4대보험 계산기",
-        description: "국민연금, 건강보험, 고용보험, 산재보험 중 나와 회사가 각각 부담하는 금액의 비율을 시각화하여 파악하세요.",
+        description: "국민연금, 건강보험, 고용보험, 산재보험 중 나와 회사가 각각 부담하는 금액의 비율을 시각화하여 계산해드립니다.",
         href: "/calculator/job/insurance",
     },
     {
         title: "🏖️ 주휴수당 계산기",
-        description: "시급과 주간근로시간만 입력하여 주휴수당 발생 여부 및 정확한 월급/주급을 계산합니다.",
+        description: "시급과 주간근로시간만 입력하여 주휴수당 발생 여부 및 정확한 월급/주급을 계산해드립니다.",
         href: "/calculator/job/holiday-allowance",
+    },
+    {
+        title: "🌴 연차 계산기",
+        description: "입사일 및 회계기준별 예상 연차 발생일수를 자동으로 계산하고 미사용 연차수당을 계산해드립니다.",
+        href: "/calculator/job/annual",
     },
 ];
 
