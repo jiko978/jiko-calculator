@@ -1,14 +1,23 @@
-﻿import { Metadata } from "next";
+import { Metadata } from "next";
 import UnemploymentBenefit from "./UnemploymentBenefit";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../utils/seo";
 import NavBar from "@/app/calculator/components/NavBar";
 import JobMoreCalculators from "@/app/calculator/components/JobMoreCalculators";
 import FAQ from "@/app/calculator/components/FAQ";
 
+const BASE_URL = "https://jiko.kr";
+
 export const metadata: Metadata = {
     title: "실업급여 계산기 | 2025 최신 고용보험법 기준 - JIKO 계산기",
     description: "2025년 최신 실업급여 지급액과 기간을 계산하세요. 피보험 단위기간 180일 확인부터 1일 최대 66,000원까지, 내 조건에 맞는 실업급여를 정밀하게 산출합니다.",
     keywords: ["실업급여 계산기", "2025 실업급여", "실업급여 하한액", "실업급여 상한액", "실업급여 신청방법", "고용보험 실업급여", "JIKO 계산기"],
+    alternates: { canonical: `${BASE_URL}/calculator/job/unemployment-benefit` },
+    openGraph: {
+        title: "실업급여 계산기 | 2025 최신 고용보험법 기준",
+        description: "내가 받을 수 있는 실업급여는 얼마일까요? 지급액과 기간을 정확하게 확인하세요.",
+        url: `${BASE_URL}/calculator/job/unemployment-benefit`,
+        images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "실업급여 계산기" }],
+    },
 };
 
 const unemploymentFaqs = [

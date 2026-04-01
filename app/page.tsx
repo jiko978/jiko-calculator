@@ -129,7 +129,7 @@ export default function Home() {
                             </Link>
                         </h1>
                         <p className="text-sm font-bold md:text-xl text-gray-600 dark:text-gray-300">
-                            일상에 필요한 모든 계산기를 한 곳에서 만나보세요.
+                            일상에 필요한 주식, 금융, 직장, 건강, 생활, 세금, 부동산 계산기를 한 곳에서 만나보세요.
                         </p>
                     </div>
 

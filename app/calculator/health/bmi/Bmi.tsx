@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
-import ShareSheet from "@/app/calculator/components/ShareSheet";
+import CalculatorActions from "@/app/calculator/components/CalculatorActions";
+import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
 
 export default function Bmi() {
     const [gender, setGender] = useState<"M" | "F">("M");
@@ -19,9 +20,8 @@ export default function Bmi() {
 
     const [errors, setErrors] = useState<Set<string>>(new Set());
     const [errorMessage, setErrorMessage] = useState("");
-    const [isShaking, setIsShaking] = useState(false);
-    const [isSharing, setIsSharing] = useState(false);
-    const [copied, setCopied] = useState(false);
+    const [shakeField, setShakeField] = useState<string | null>(null);
+    const resultRef = useCalculatorScroll(resultBmi);
 
     const handleCalculate = () => {
         const newErrors = new Set<string>();
@@ -33,8 +33,8 @@ export default function Bmi() {
 
         if (newErrors.size > 0) {
             setErrorMessage("항목을 정확히 입력해주세요.");
-            setIsShaking(true);
-            setTimeout(() => setIsShaking(false), 500);
+            setShakeField(Array.from(newErrors)[0]);
+            setTimeout(() => setShakeField(null), 500);
             return;
         }
 
@@ -55,8 +55,6 @@ export default function Bmi() {
     };
 
     const handleReset = () => {
-        setIsShaking(true);
-        setTimeout(() => setIsShaking(false), 500);
         setAge("");
         setHeight("");
         setWeight("");
@@ -65,14 +63,22 @@ export default function Bmi() {
         setResultCategory("");
         setErrors(new Set());
         setErrorMessage("");
+
+        const btn = document.getElementById("resetBtn");
+        if (btn) {
+            btn.classList.add("animate-[shake_0.5s_ease-in-out]");
+            setTimeout(() => btn.classList.remove("animate-[shake_0.5s_ease-in-out]"), 500);
+        }
+
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
     };
 
-    const handleCopy = () => {
+    const handleCopy = async () => {
         if (resultBmi !== null) {
             const text = `[⚖️ 비만도(BMI) 계산 결과]\n\n내 비만도(BMI)는 ${resultBmi.toFixed(1)} (${resultCategory}) 입니다.\n\n📌JIKO 비만도 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/bmi`;
-            navigator.clipboard.writeText(text);
-            setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+            await navigator.clipboard.writeText(text);
         }
     };
 
@@ -112,8 +118,7 @@ export default function Bmi() {
                             <input
                                 id="bmi-age"
                                 type="number"
-                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none border-2 transition-all text-right ${errors.has("age") ? "ring-2 ring-red-500 border-red-500" : "border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 dark:text-gray-100"
-                                    }`}
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none border transition-all text-right focus:ring-2 focus:ring-blue-500 dark:text-gray-100 ${errors.has("age") ? "border-red-600 ring-2 ring-red-500/20" : "border-gray-200 dark:border-gray-600"} ${shakeField === "age" ? "animate-[shake_0.5s_ease-in-out]" : ""}`}
                                 placeholder="예: 30"
                                 value={age}
                                 onChange={(e) => {
@@ -137,8 +142,7 @@ export default function Bmi() {
                             <input
                                 id="bmi-height"
                                 type="number"
-                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none border-2 transition-all text-right ${errors.has("height") ? "ring-2 ring-red-500 border-red-500" : "border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 dark:text-gray-100"
-                                    }`}
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none border transition-all text-right focus:ring-2 focus:ring-blue-500 dark:text-gray-100 ${errors.has("height") ? "border-red-600 ring-2 ring-red-500/20" : "border-gray-200 dark:border-gray-600"} ${shakeField === "height" ? "animate-[shake_0.5s_ease-in-out]" : ""}`}
                                 placeholder="예: 175"
                                 value={height}
                                 onChange={(e) => {
@@ -158,8 +162,7 @@ export default function Bmi() {
                             <input
                                 id="bmi-weight"
                                 type="number"
-                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none border-2 transition-all text-right ${errors.has("weight") ? "ring-2 ring-red-500 border-red-500" : "border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 dark:text-gray-100"
-                                    }`}
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl outline-none border transition-all text-right focus:ring-2 focus:ring-blue-500 dark:text-gray-100 ${errors.has("weight") ? "border-red-600 ring-2 ring-red-500/20" : "border-gray-200 dark:border-gray-600"} ${shakeField === "weight" ? "animate-[shake_0.5s_ease-in-out]" : ""}`}
                                 placeholder="예: 70"
                                 value={weight}
                                 onChange={(e) => {
@@ -177,72 +180,53 @@ export default function Bmi() {
                     </div>
 
                     {/* Buttons */}
-                    <div className="flex flex-col items-center gap-3 pt-4">
-                        <div className="flex gap-3 w-full">
+                    <div className="flex flex-col items-center gap-3 pt-4 border-t border-gray-100 dark:border-gray-700">
+                        <div className="flex gap-4 w-full">
                             <button
+                                id="resetBtn"
                                 onClick={handleReset}
-                                className={`flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-bold hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors ${isShaking ? "animate-[shake_0.5s_ease-in-out]" : ""}`}
+                                className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-bold hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                             >
                                 초기화
                             </button>
                             <button
                                 onClick={handleCalculate}
-                                className="flex-[2] py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-colors shadow-sm"
+                                className="flex-[2] py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-colors shadow-lg shadow-blue-500/20 active:scale-95"
                             >
                                 계산하기
                             </button>
                         </div>
                         {errorMessage && (
-                            <p className="text-center text-red-500 text-sm font-bold flex items-center justify-center gap-1 animate-pulse">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                </svg>
-                                {errorMessage}
-                            </p>
+                            <div className="w-full mt-2 bg-red-50 dark:bg-red-900/20 text-red-500 text-sm font-bold p-4 rounded-xl text-center border border-red-100 dark:border-red-800 animate-pulse">
+                                🚨 {errorMessage}
+                            </div>
                         )}
                     </div>
 
                     {/* 결과 */}
                     {resultBmi !== null && (
-                        <div className="mt-8 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl border border-blue-100 dark:border-blue-800">
-                            <h3 className="text-center text-sm font-semibold text-blue-800 dark:text-blue-300 mb-2">나의 비만도 (BMI)</h3>
-                            <div className="text-center mb-4">
-                                <span className="text-4xl font-black text-blue-600 dark:text-blue-400">{resultBmi.toFixed(1)}</span>
-                            </div>
-                            <div className="text-center mb-6">
-                                <span className="inline-block px-4 py-2 bg-white dark:bg-gray-800 rounded-lg text-lg font-bold text-gray-800 dark:text-gray-200 shadow-sm">
+                        <div id="result-section" ref={resultRef} className="animate-fade-in-up space-y-6 mt-8">
+                            <div className="p-8 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[32px] text-white shadow-xl relative overflow-hidden text-center">
+                                <div className="absolute -right-6 -top-6 text-9xl opacity-10">⚖️</div>
+                                <p className="text-blue-100 font-medium mb-2 opacity-90">나의 비만도 (BMI)</p>
+                                <div className="text-5xl font-black mb-4 tracking-tighter">
+                                    {resultBmi.toFixed(1)}
+                                </div>
+                                <div className="inline-block px-6 py-2 bg-white/20 backdrop-blur-md rounded-2xl text-xl font-bold border border-white/30">
                                     {resultCategory}
-                                </span>
+                                </div>
                             </div>
 
-                            <div className="mt-8 flex gap-4 w-full">
-                                <button
-                                    onClick={handleCopy}
-                                    className={`flex-1 py-4 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 ${copied ? "bg-green-500 text-white" : "bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600"}`}
-                                >
-                                    {copied ? (
-                                        <><span>✅</span> 복사 완료</>
-                                    ) : (
-                                        <><span>📋</span> 결과 복사하기</>
-                                    )}
-                                </button>
-                                <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 shadow-xl">
-                                    <span>💬</span> 친구에게 공유하기
-                                </button>
-                            </div>
+                            <CalculatorActions
+                                onCopy={handleCopy}
+                                shareTitle="[⚖️ 비만도(BMI) 계산 결과]"
+                                shareDescription={`내 비만도(BMI)는 ${resultBmi.toFixed(1)} (${resultCategory}) 입니다.`}
+                            />
                         </div>
-                    )}
-
-                    {isSharing && (
-                        <ShareSheet
-                            onClose={() => setIsSharing(false)}
-                            title="[⚖️ 비만도(BMI) 계산 결과]"
-                            description={`내 비만도(BMI)는 ${resultBmi?.toFixed(1)} (${resultCategory}) 입니다.`}
-                            url={typeof window !== "undefined" ? window.location.href : ""}
-                        />
                     )}
                 </div>
             </div>
+
 
             {/* BMI 기준 정보 섹션 */}
             <div className="mt-8 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">

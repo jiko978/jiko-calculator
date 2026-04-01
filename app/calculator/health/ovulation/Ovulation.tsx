@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
-import ShareSheet from "@/app/calculator/components/ShareSheet";
+import CalculatorActions from "@/app/calculator/components/CalculatorActions";
+import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
 
 export default function Ovulation() {
     const [lastPeriodDate, setLastPeriodDate] = useState<string>("");
@@ -14,9 +15,8 @@ export default function Ovulation() {
 
     const [errors, setErrors] = useState<Set<string>>(new Set());
     const [errorMessage, setErrorMessage] = useState("");
-    const [isShaking, setIsShaking] = useState(false);
-    const [isSharing, setIsSharing] = useState(false);
-    const [copied, setCopied] = useState(false);
+    const [shakeField, setShakeField] = useState<string | null>(null);
+    const resultRef = useCalculatorScroll(resultNextPeriod);
 
     const handleCalculate = () => {
         const newErrors = new Set<string>();
@@ -27,8 +27,8 @@ export default function Ovulation() {
 
         if (newErrors.size > 0) {
             setErrorMessage("항목을 정확히 입력해주세요.");
-            setIsShaking(true);
-            setTimeout(() => setIsShaking(false), 500);
+            setShakeField(Array.from(newErrors)[0]);
+            setTimeout(() => setShakeField(null), 500);
             return;
         }
 
@@ -64,8 +64,6 @@ export default function Ovulation() {
     };
 
     const handleReset = () => {
-        setIsShaking(true);
-        setTimeout(() => setIsShaking(false), 500);
         setLastPeriodDate("");
         setCycleLength(28);
         setResultNextPeriod(null);
@@ -73,14 +71,22 @@ export default function Ovulation() {
         setResultFertileWindow(null);
         setErrors(new Set());
         setErrorMessage("");
+
+        const btn = document.getElementById("resetBtn");
+        if (btn) {
+            btn.classList.add("animate-[shake_0.5s_ease-in-out]");
+            setTimeout(() => btn.classList.remove("animate-[shake_0.5s_ease-in-out]"), 500);
+        }
+
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
     };
 
-    const handleCopy = () => {
+    const handleCopy = async () => {
         if (resultNextPeriod) {
             const text = `[📅️ 배란일 계산 결과]\n\n다음 생리 예정일 : ${resultNextPeriod}\n배란 예정일 : ${resultOvulation}\n가임기 : ${resultFertileWindow}\n\n📌JIKO 배란일 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/ovulation`;
-            navigator.clipboard.writeText(text);
-            setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+            await navigator.clipboard.writeText(text);
         }
     };
 
@@ -102,7 +108,7 @@ export default function Ovulation() {
                             id="last-period-date"
                             type="date"
                             max="9999-12-31"
-                            className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 border font-semibold ${errors.has("date") ? "border-red-600 ring-2 ring-red-500/20" : "border-gray-300 dark:border-gray-600"} rounded-xl outline-none transition-all [text-align:right] md:[text-align:left] focus:ring-2 focus:ring-pink-500 dark:text-gray-100 placeholder-gray-400`}
+                            className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 border font-semibold ${errors.has("date") ? "border-red-600 ring-2 ring-red-500/20" : "border-gray-300 dark:border-gray-600"} rounded-xl outline-none transition-all [text-align:right] md:[text-align:left] focus:ring-2 focus:ring-pink-500 dark:text-gray-100 placeholder-gray-400 ${shakeField === "date" ? "animate-[shake_0.5s_ease-in-out]" : ""}`}
                             value={lastPeriodDate}
                             onChange={(e) => {
                                 const val = e.target.value;
@@ -125,7 +131,7 @@ export default function Ovulation() {
                             <input
                                 id="cycle-length"
                                 type="number"
-                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 border font-semibold ${errors.has("cycle") ? "border-red-600 ring-2 ring-red-500/20" : "border-gray-300 dark:border-gray-600"} rounded-xl outline-none transition-all pr-12 text-right focus:ring-2 focus:ring-pink-500 dark:text-gray-100 placeholder-gray-400`}
+                                className={`w-full p-4 bg-gray-50 dark:bg-gray-700/50 border font-semibold ${errors.has("cycle") ? "border-red-600 ring-2 ring-red-500/20" : "border-gray-300 dark:border-gray-600"} rounded-xl outline-none transition-all pr-12 text-right focus:ring-2 focus:ring-pink-500 dark:text-gray-100 placeholder-gray-400 ${shakeField === "cycle" ? "animate-[shake_0.5s_ease-in-out]" : ""}`}
                                 value={cycleLength}
                                 onChange={(e) => {
                                     const val = parseInt(e.target.value);
@@ -145,71 +151,64 @@ export default function Ovulation() {
                         </div>
                     </div>
 
-                    <div className="flex flex-col items-center gap-3 pt-4">
-                        <div className="flex gap-3 w-full">
-                            <button onClick={handleReset} className={`flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-bold transition-colors ${isShaking ? "animate-[shake_0.5s_ease-in-out]" : ""}`}>초기화</button>
-                            <button onClick={handleCalculate} className="flex-[2] py-4 bg-pink-500 hover:bg-pink-600 text-white rounded-xl font-bold transition-colors shadow-sm">계산하기</button>
+                    <div className="flex flex-col items-center gap-3 pt-4 border-t border-gray-100 dark:border-gray-700">
+                        <div className="flex gap-4 w-full">
+                            <button
+                                id="resetBtn"
+                                onClick={handleReset}
+                                className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-bold transition-colors hover:bg-gray-200 dark:hover:bg-gray-600"
+                            >
+                                초기화
+                            </button>
+                            <button
+                                onClick={handleCalculate}
+                                className="flex-[2] py-4 bg-pink-500 hover:bg-pink-600 text-white rounded-xl font-bold transition-colors shadow-lg shadow-pink-500/20 active:scale-95"
+                            >
+                                계산하기
+                            </button>
                         </div>
                         {errorMessage && (
-                            <p className="text-center text-red-500 text-sm font-bold flex items-center justify-center gap-1 animate-pulse">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                </svg>
-                                {errorMessage}
-                            </p>
+                            <div className="w-full mt-2 bg-red-50 dark:bg-red-900/20 text-red-500 text-sm font-bold p-4 rounded-xl text-center border border-red-100 dark:border-red-800 animate-pulse">
+                                🚨 {errorMessage}
+                            </div>
                         )}
                     </div>
 
                     {resultNextPeriod && (
-                        <div className="mt-8 p-6 bg-pink-50 dark:bg-pink-900/20 rounded-2xl border border-pink-100 dark:border-pink-800">
-                            <div className="space-y-4 mb-6">
-                                <div className="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm">
-                                    <span className="text-gray-600 dark:text-gray-300 font-semibold text-sm">다음 생리 예정일</span>
-                                    <span className="text-pink-600 dark:text-pink-400 font-bold">{resultNextPeriod}</span>
+                        <div id="result-section" ref={resultRef} className="mt-8 space-y-6 animate-fade-in-up">
+                            <div className="p-10 bg-gradient-to-br from-pink-500 to-rose-600 rounded-[40px] text-white shadow-2xl relative overflow-hidden text-center">
+                                <div className="absolute -right-6 -top-6 text-9xl opacity-10">🌸</div>
+                                <p className="text-pink-100 font-medium mb-2 opacity-90">배란 예정일</p>
+                                <div className="text-4xl md:text-5xl font-black mb-4 tracking-tighter">
+                                    {resultOvulation}
                                 </div>
-                                <div className="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-pink-200 dark:border-pink-700">
-                                    <span className="text-gray-600 dark:text-gray-300 font-semibold text-sm">🌸 배란 예정일</span>
-                                    <span className="text-pink-600 dark:text-pink-400 font-bold text-lg">{resultOvulation}</span>
-                                </div>
-                                <div className="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm">
-                                    <span className="text-gray-600 dark:text-gray-300 font-semibold text-sm">가임기 캘린더</span>
-                                    <span className="text-pink-600 dark:text-pink-400 font-bold">{resultFertileWindow}</span>
+                                <div className="inline-block px-4 py-1 bg-white/20 backdrop-blur-md rounded-full text-white font-bold text-sm border border-white/30">
+                                    {resultNextPeriod} (생리 예정일)
                                 </div>
                             </div>
 
-                            <p className="text-xs text-gray-500 dark:text-gray-400 mb-6 text-center">
-                                * 생리 주기가 불규칙한 경우 계산 결과가 부정확할 수 있습니다.
-                                본 계산 결과는 단순 참조용이며, 의학적 피임이나 진단을 대체할 수 없습니다.
-                            </p>
-
-                            <div className="mt-8 flex gap-4 w-full">
-                                <button
-                                    onClick={handleCopy}
-                                    className={`flex-1 py-4 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 ${copied ? "bg-green-500 text-white" : "bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600"}`}
-                                >
-                                    {copied ? (
-                                        <><span>✅</span> 복사 완료</>
-                                    ) : (
-                                        <><span>📋</span> 결과 복사하기</>
-                                    )}
-                                </button>
-                                <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 shadow-xl">
-                                    <span>💬</span> 친구에게 공유하기
-                                </button>
+                            <div className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-sm border border-gray-100 dark:border-gray-700">
+                                <div className="flex justify-between items-center py-4 border-b border-gray-100 dark:border-gray-700">
+                                    <span className="text-gray-500 dark:text-gray-400 font-bold text-sm uppercase tracking-widest">🗓️ 가임기 기간</span>
+                                    <span className="text-pink-600 dark:text-pink-400 font-black text-lg">{resultFertileWindow}</span>
+                                </div>
+                                <p className="mt-6 text-xs text-center text-gray-400 leading-relaxed">
+                                    * 주기나 스트레스 등 개인 상황에 따라 오차가 있을 수 있습니다.
+                                </p>
                             </div>
+
+                            <CalculatorActions
+                                onCopy={handleCopy}
+                                shareTitle="[📅 배란일 계산 결과]"
+                                shareDescription={`예상 배란일 : ${resultOvulation}, 다음 생리 예정일 : ${resultNextPeriod}`}
+                            />
                         </div>
-                    )}
-
-                    {isSharing && (
-                        <ShareSheet
-                            onClose={() => setIsSharing(false)}
-                            title="[📅 배란일 계산 결과]"
-                            description={`예상 배란일 : ${resultOvulation}, 다음 생리 예정일 : ${resultNextPeriod}`}
-                            url={typeof window !== "undefined" ? window.location.href : ""}
-                        />
                     )}
                 </div>
             </div>
+
+
+
             <InstallBanner />
         </div>
     );

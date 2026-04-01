@@ -5,13 +5,18 @@ import FAQ from "@/app/calculator/components/FAQ";
 import FinanceMoreCalculators from "@/app/calculator/components/FinanceMoreCalculators";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 
+const BASE_URL = "https://jiko.kr";
+
 export const metadata: Metadata = {
     title: "적금 이자 계산기 | 정기적금 만기 수령액 및 이자 계산기 - JIKO 계산기",
     description: "매월 일정액을 저축하는 정기적금의 만기 수령액을 정확하게 계산하세요. 단리/복리와 과세 유형에 따른 세후 이자 확인이 가능합니다.",
     keywords: ["적금 계산기", "정기적금 계산", "만기 수령액", "적금 이자", "목돈 마련", "금융 계산기"],
+    alternates: { canonical: `${BASE_URL}/calculator/finance/savings` },
     openGraph: {
         title: "적금 이자 계산기 | 정기적금 만기 수령액 및 이자 계산기 - JIKO 계산기",
         description: "매월 쌓이는 목돈의 가치를 확인해보세요.",
+        url: `${BASE_URL}/calculator/finance/savings`,
+        images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "적금 이자 계산기" }],
         type: "website",
     }
 };

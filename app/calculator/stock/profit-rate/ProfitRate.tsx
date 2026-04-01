@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import NavBar from "@/app/calculator/components/NavBar";
 import { ANIMATION } from "@/app/config/animationConfig";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
-import ShareSheet from "@/app/calculator/components/ShareSheet";
+import CalculatorActions from "@/app/calculator/components/CalculatorActions";
+import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
 
 interface ProfitRateProps {
     stockName?: string;
@@ -18,8 +18,8 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
     const [stockCode, setStockCode] = useState(initialCode || "");
     const [result, setResult] = useState<{ profit: number; rate: string; buyTotal: number; currentTotal: number } | null>(null);
     const [copied, setCopied] = useState(false);
-    const [shaking, setShaking] = useState(false);
-    const [isSharing, setIsSharing] = useState(false);
+    const [shakeField, setShakeField] = useState<string | null>(null);
+    const resultRef = useCalculatorScroll(result);
 
     const [errors, setErrors] = useState<Set<string>>(new Set());
     const [errorMessage, setErrorMessage] = useState("");
@@ -54,8 +54,8 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
 
         if (newErrors.size > 0) {
             setErrorMessage("필수 항목을 모두 입력해주세요.");
-            setShaking(true);
-            setTimeout(() => setShaking(false), 400);
+            setShakeField(Array.from(newErrors)[0]);
+            setTimeout(() => setShakeField(null), 500);
             return;
         }
 
@@ -74,8 +74,16 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
         setBuyPrice(""); setCurrentPrice(""); setQuantity("");
         setResult(null); setCopied(false);
         setErrors(new Set()); setErrorMessage("");
-        setShaking(true);
-        setTimeout(() => setShaking(false), 400);
+        
+        const btn = document.getElementById("resetBtn");
+        if (btn) {
+            btn.classList.add("animate-[shake_0.5s_ease-in-out]");
+            setTimeout(() => btn.classList.remove("animate-[shake_0.5s_ease-in-out]"), 500);
+        }
+
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
     };
 
     const handleCopyResult = async () => {
@@ -148,7 +156,7 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
                                             onChange={handleChange(setter, key)}
                                             className={`w-full border-2 rounded-lg px-4 py-2 text-right focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 text-base transition-all font-semibold ${
                                                 errors.has(key) ? "border-red-500 ring-2 ring-red-200 dark:ring-red-900/30" : "border-gray-300 dark:border-gray-600 focus:ring-blue-400 ring-blue-400/10 focus:ring-4"
-                                            }`}
+                                            } ${shakeField === key ? "animate-[shake_0.5s_ease-in-out]" : ""}`}
                                         />
                                         <span aria-hidden="true" className={`ml-2 w-8 shrink-0 ${errors.has(key) ? "text-red-500 font-bold" : "text-gray-500 dark:text-gray-400"}`}>{unit}</span>
                                     </div>
@@ -161,8 +169,8 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
                 {/* 버튼 */}
                 <div className="mt-6 flex flex-col items-center gap-3">
                     <div className="flex justify-center gap-3 w-full">
-                        <button onClick={handleReset}
-                            className={`flex-1 px-6 py-3 min-h-[44px] border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 transition-colors duration-150 text-base ${ANIMATION.resetShake && shaking ? "animate-shake" : ""}`}>
+                        <button id="resetBtn" onClick={handleReset}
+                            className="flex-1 px-6 py-3 min-h-[44px] border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 transition-colors duration-150 text-base">
                             초기화
                         </button>
                         <button onClick={handleCalculate}
@@ -171,18 +179,15 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
                         </button>
                     </div>
                     {errorMessage && (
-                        <p className="text-center text-red-500 text-sm font-bold flex items-center justify-center gap-1 animate-pulse">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                            </svg>
-                            {errorMessage}
-                        </p>
+                        <div className="w-full mt-2 bg-red-50 dark:bg-red-900/20 text-red-500 text-sm font-bold p-4 rounded-xl text-center border border-red-100 dark:border-red-800 animate-pulse">
+                            🚨 {errorMessage}
+                        </div>
                     )}
                 </div>
 
-                {/* 결과 영역 — 모바일: 상하 / PC: 좌우 */}
+                {/* 결과 영역 */}
                 {result && (
-                    <div className={`mt-6 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
+                    <div ref={resultRef} className={`mt-6 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
                         <div className="flex flex-col sm:flex-row gap-4">
 
                             {/* 좌측: 결과 수치 */}
@@ -208,23 +213,6 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
                                         {Number(result.rate) >= 0 ? "+" : ""}{result.rate} %
                                     </strong>
                                 </div>
-
-                                {/* 복사 버튼 */}
-                                <div className="mt-8 flex flex-col gap-3 w-full">
-                                <button
-                                    onClick={handleCopyResult}
-                                    className={`w-full py-4 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 ${copied ? "bg-green-500 text-white" : "bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600"}`}
-                                >
-                                    {copied ? (
-                                        <><span>✅</span> 복사 완료</>
-                                    ) : (
-                                        <><span>📋</span> 결과 복사하기</>
-                                    )}
-                                </button>
-                                <button onClick={() => setIsSharing(true)} className="w-full py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 shadow-xl">
-                                    <span>💬</span> 친구에게 공유하기
-                                </button>
-                            </div>
                             </div>
 
                             {/* 우측: 그래프 */}
@@ -286,14 +274,11 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
                             </div>
 
                         </div>
-                        {isSharing && (
-                            <ShareSheet
-                                onClose={() => setIsSharing(false)}
-                                title="[💰 주식 수익률 계산 결과]"
-                                description={`수익금 : ${result.profit >= 0 ? "+" : ""}${result.profit.toLocaleString()} 원\n수익률 : ${Number(result.rate) >= 0 ? "+" : ""}${result.rate} %`}
-                                url={typeof window !== "undefined" ? window.location.href : ""}
-                            />
-                        )}
+                        <CalculatorActions
+                            onCopy={handleCopyResult}
+                            shareTitle="[💰 주식 수익률 계산 결과]"
+                            shareDescription={`수익금 : ${result.profit >= 0 ? "+" : ""}${result.profit.toLocaleString()} 원\n수익률 : ${Number(result.rate) >= 0 ? "+" : ""}${result.rate} %`}
+                        />
                     </div>
                 )}
                 <InstallBanner />

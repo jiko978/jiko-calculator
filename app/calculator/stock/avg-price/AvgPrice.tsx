@@ -3,7 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import { ANIMATION } from "@/app/config/animationConfig";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
-import ShareSheet from "@/app/calculator/components/ShareSheet";
+import CalculatorActions from "@/app/calculator/components/CalculatorActions";
+import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
 
 const MAX_ROWS = 10;
 
@@ -38,11 +39,10 @@ export default function AvgPrice({ stockName, initialCode }: AvgPriceProps) {
     const [currentPrice, setCurrentPrice] = useState("");
     const [stockCode, setStockCode] = useState(initialCode || "");
     const [calculated, setCalculated] = useState(false);
-    const [copied, setCopied] = useState(false);
-    const [shaking, setShaking] = useState(false);
+    const resultRef = useCalculatorScroll(calculated ? rows : null);
+    const [shakeField, setShakeField] = useState<string | null>(null);
     const [errors, setErrors] = useState<Set<string>>(new Set());
     const [errorMessage, setErrorMessage] = useState("");
-    const [isSharing, setIsSharing] = useState(false);
     const currentPriceRef = useRef<HTMLInputElement>(null);
     const [placeholderFontSize, setPlaceholderFontSize] = useState(16);
 
@@ -123,7 +123,7 @@ export default function AvgPrice({ stockName, initialCode }: AvgPriceProps) {
 
     const handleChange = (id: number, field: "price" | "qty") =>
         (e: React.ChangeEvent<HTMLInputElement>) => {
-            setCalculated(false); setCopied(false);
+            setCalculated(false);
             const raw = e.target.value.replace(/[^0-9]/g, "").replace(/^0+/, "");
             if (raw.length > 9) return;
             setRows(prev => prev.map(r =>
@@ -166,8 +166,8 @@ export default function AvgPrice({ stockName, initialCode }: AvgPriceProps) {
         if (newErrors.size > 0) {
             setErrorMessage("항목을 정확히 입력해주세요.");
             setCalculated(false);
-            setShaking(true);
-            setTimeout(() => setShaking(false), 400);
+            setShakeField(Array.from(newErrors)[0] || null);
+            setTimeout(() => setShakeField(null), 500);
             return;
         }
 
@@ -192,15 +192,24 @@ export default function AvgPrice({ stockName, initialCode }: AvgPriceProps) {
     const handleRemoveRow = (id: number) => {
         if (rows.length <= 1) return;
         setRows(prev => prev.filter(r => r.id !== id));
-        setCalculated(false); setCopied(false);
+        setCalculated(false);
     };
 
     const handleReset = () => {
         setRows([createRow(1), createRow(2), createRow(3)]);
         setCurrentPrice("");
-        setCalculated(false); setCopied(false);
-        setShaking(true);
-        setTimeout(() => setShaking(false), 400);
+        setCalculated(false);
+        setErrors(new Set()); setErrorMessage("");
+
+        const btn = document.getElementById("resetBtn");
+        if (btn) {
+            btn.classList.add("animate-[shake_0.5s_ease-in-out]");
+            setTimeout(() => btn.classList.remove("animate-[shake_0.5s_ease-in-out]"), 500);
+        }
+
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
     };
 
     const breakevenQty = hasCurrent && curPrice < avgPrice && curPrice > 0
@@ -222,8 +231,6 @@ export default function AvgPrice({ stockName, initialCode }: AvgPriceProps) {
         }
         lines.push(`\n📌JIKO 주식 물타기 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/stock/avg-price`);
         await navigator.clipboard.writeText(lines.join("\n"));
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
     };
 
     const priceBarMax = Math.max(maxPrice, curPrice, avgPrice, 1);
@@ -269,7 +276,7 @@ export default function AvgPrice({ stockName, initialCode }: AvgPriceProps) {
                                             aria-label={`${idx + 1}차 매수가`}
                                             className={`w-full p-3 bg-gray-50 dark:bg-gray-900 border rounded-xl text-right font-bold text-gray-800 dark:text-gray-100 outline-none focus:ring-2 focus:ring-blue-500 transition-all pr-8 ${
                                                 errors.has(`price-${row.id}`) ? "border-red-500 ring-2 ring-red-200 dark:ring-red-900/30" : "border-gray-200 dark:border-gray-600"
-                                            }`} />
+                                            } ${shakeField === `price-${row.id}` ? "animate-[shake_0.5s_ease-in-out]" : ""}`} />
                                             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 text-xs font-bold pointer-events-none">원</span>
                                     </div>
                                 </div>
@@ -281,7 +288,7 @@ export default function AvgPrice({ stockName, initialCode }: AvgPriceProps) {
                                             aria-label={`${idx + 1}차 수량`}
                                             className={`w-full p-3 bg-gray-50 dark:bg-gray-900 border rounded-xl text-right font-bold text-gray-800 dark:text-gray-100 outline-none focus:ring-2 focus:ring-blue-500 transition-all pr-8 ${
                                                 errors.has(`qty-${row.id}`) ? "border-red-500 ring-2 ring-red-200 dark:ring-red-900/30" : "border-gray-200 dark:border-gray-600"
-                                            }`} />
+                                            } ${shakeField === `qty-${row.id}` ? "animate-[shake_0.5s_ease-in-out]" : ""}`} />
                                             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 text-xs font-bold pointer-events-none">개</span>
                                     </div>
                                 </div>
@@ -355,8 +362,8 @@ export default function AvgPrice({ stockName, initialCode }: AvgPriceProps) {
                 {/* 버튼 */}
                 <div className="mt-4 flex flex-col items-center gap-3">
                     <div className="flex justify-center gap-3 w-full">
-                        <button onClick={handleReset}
-                            className={`flex-1 px-6 py-3 min-h-[44px] border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 transition-colors duration-150 text-base ${ANIMATION.resetShake && shaking ? "animate-shake" : ""}`}>
+                        <button id="resetBtn" onClick={handleReset}
+                            className={`flex-1 px-6 py-3 min-h-[44px] border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 transition-colors duration-150 text-base`}>
                             초기화
                         </button>
                         <button onClick={handleCalculate}
@@ -365,18 +372,15 @@ export default function AvgPrice({ stockName, initialCode }: AvgPriceProps) {
                         </button>
                     </div>
                     {errorMessage && (
-                        <p className="text-center text-red-500 text-sm font-bold flex items-center justify-center gap-1 animate-pulse">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                            </svg>
-                            {errorMessage}
-                        </p>
+                        <div className="w-full mt-2 bg-red-50 dark:bg-red-900/20 text-red-500 text-sm font-bold p-4 rounded-xl text-center border border-red-100 dark:border-red-800 animate-pulse">
+                            🚨 {errorMessage}
+                        </div>
                     )}
                 </div>
 
-                {/* 결과 — 모바일: 상하 / PC: 좌우 */}
+                {/* 결과 */}
                 {calculated && (
-                    <div className={`mt-6 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
+                    <div ref={resultRef} className={`mt-6 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
                         <div className="flex flex-col sm:flex-row gap-4">
 
                             {/* 좌측: 결과 수치 */}
@@ -429,22 +433,6 @@ export default function AvgPrice({ stockName, initialCode }: AvgPriceProps) {
                                         )}
                                     </>
                                 )}
-
-                                <div className="mt-8 flex flex-col gap-3 w-full">
-                                    <button
-                                        onClick={handleCopyResult}
-                                        className={`w-full py-4 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 ${copied ? "bg-green-500 text-white" : "bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600"}`}
-                                    >
-                                        {copied ? (
-                                            <><span>✅</span> 복사 완료</>
-                                        ) : (
-                                            <><span>📋</span> 결과 복사하기</>
-                                        )}
-                                    </button>
-                                    <button onClick={() => setIsSharing(true)} className="w-full py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 shadow-xl">
-                                        <span>💬</span> 친구에게 공유하기
-                                    </button>
-                                </div>
                             </div>
 
                             {/* 우측: 그래프 */}
@@ -544,15 +532,12 @@ export default function AvgPrice({ stockName, initialCode }: AvgPriceProps) {
                                 )}
                             </div>
                         </div>
+                        <CalculatorActions
+                            onCopy={handleCopyResult}
+                            shareTitle="[💧 주식 물타기 계산 결과]"
+                            shareDescription={`평균 단가 : ${avgPrice.toLocaleString(undefined, { maximumFractionDigits: 0 })}원\n합계 수량 : ${totalQty.toLocaleString()}주`}
+                        />
                     </div>
-                )}
-                {isSharing && (
-                    <ShareSheet
-                        onClose={() => setIsSharing(false)}
-                        title="[💧 주식 물타기 계산 결과]"
-                        description={`평균 단가 : ${avgPrice.toLocaleString(undefined, { maximumFractionDigits: 0 })}원\n합계 수량 : ${totalQty.toLocaleString()}주`}
-                        url={typeof window !== "undefined" ? window.location.href : ""}
-                    />
                 )}
                 <InstallBanner />
             </div>

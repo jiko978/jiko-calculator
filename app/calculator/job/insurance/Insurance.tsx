@@ -197,11 +197,12 @@ https://jiko.kr/calculator/job/insurance`;
                     </div>
 
                     <div>
-                        <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 block mb-2">
+                        <label htmlFor="total-salary" className="text-sm font-semibold text-gray-700 dark:text-gray-300 block mb-2">
                             총 {salaryType === "YEARLY" ? "연봉액" : "월급액"} (원)
                         </label>
                         <div className="relative">
                             <input
+                                id="total-salary"
                                 type="text" inputMode="numeric"
                                 placeholder={salaryType === "YEARLY" ? "예: 50,000,000" : "예: 3,000,000"}
                                 value={salary}

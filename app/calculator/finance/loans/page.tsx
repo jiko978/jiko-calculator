@@ -5,13 +5,18 @@ import FAQ from "@/app/calculator/components/FAQ";
 import FinanceMoreCalculators from "@/app/calculator/components/FinanceMoreCalculators";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 
+const BASE_URL = "https://jiko.kr";
+
 export const metadata: Metadata = {
     title: "대출 이자 계산기 | 원리금균등 및 원금균등 상환 계산기 - JIKO 계산기",
     description: "대출 금액, 이자율, 상환 방식을 선택하여 월 상환액과 총 대출 이자를 정확하게 계산하세요. 거치 기간 설정을 지원합니다.",
     keywords: ["대출이자 계산기", "원리금균등상환", "원금균등상환", "만기일시상환", "대출금리", "금융 계산기"],
+    alternates: { canonical: `${BASE_URL}/calculator/finance/loans` },
     openGraph: {
         title: "대출 이자 계산기 | 원리금균등 및 원금균등 상환 계산기 - JIKO 계산기",
         description: "다양한 상환 방식별 이자 차이를 한눈에 비교해보세요.",
+        url: `${BASE_URL}/calculator/finance/loans`,
+        images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "대출 이자 계산기" }],
         type: "website",
     }
 };

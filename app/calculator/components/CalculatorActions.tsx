@@ -25,7 +25,7 @@ export default function CalculatorActions({ onCopy, shareTitle, shareDescription
 
     return (
         <>
-            <div className="mt-8 flex gap-4 w-full">
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 w-full">
                 <button
                     onClick={handleCopyClick}
                     className={`flex-1 py-4 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 ${copied ? "bg-green-500 text-white" : "bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600"} shadow-xl`}

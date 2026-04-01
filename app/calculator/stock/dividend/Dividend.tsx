@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { ANIMATION } from "@/app/config/animationConfig";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
-import ShareSheet from "@/app/calculator/components/ShareSheet";
+import CalculatorActions from "@/app/calculator/components/CalculatorActions";
+import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
 
 interface DividendProps {
     stockName?: string;
@@ -39,9 +40,8 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
         neededCapital: number;
     } | null>(null);
 
-    const [shaking, setShaking] = useState(false);
-    const [isSharing, setIsSharing] = useState(false);
-    const [copied, setCopied] = useState(false);
+    const resultRef = useCalculatorScroll(result);
+    const [shakeField, setShakeField] = useState<string | null>(null);
 
     const formatComma = (raw: string) =>
         raw.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -77,8 +77,8 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
         if (newErrors.size > 0) {
             setErrors(newErrors);
             setErrorMessage("필수 항목을 모두 입력해 주세요.");
-            setShaking(true);
-            setTimeout(() => setShaking(false), 400);
+            setShakeField(Array.from(newErrors)[0]);
+            setTimeout(() => setShakeField(null), 500);
             return;
         }
 
@@ -120,8 +120,16 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
         setResult(null);
         setErrors(new Set());
         setErrorMessage("");
-        setShaking(true);
-        setTimeout(() => setShaking(false), 400);
+        
+        const btn = document.getElementById("resetBtn");
+        if (btn) {
+            btn.classList.add("animate-[shake_0.5s_ease-in-out]");
+            setTimeout(() => btn.classList.remove("animate-[shake_0.5s_ease-in-out]"), 500);
+        }
+
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
     };
 
     const handleCopy = async () => {
@@ -139,8 +147,6 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
             `\n📌JIKO 주식 배당금 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/stock/dividend`
         ].join("\n");
         await navigator.clipboard.writeText(text);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
     };
 
     // 생활 밀착형 비유 데이터
@@ -190,7 +196,7 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
                                             value={value} onChange={handleChange(setter, key)}
                                             className={`w-full border-2 rounded-xl px-4 py-3 text-right focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 dark:text-white transition-all font-semibold ${
                                                 errors.has(key) ? "border-red-500 ring-2 ring-red-200 dark:ring-red-900/30" : "border-gray-300 dark:border-gray-600 focus:ring-green-400 ring-green-400/10 focus:ring-4"
-                                            }`}
+                                            } ${shakeField === key ? "animate-[shake_0.5s_ease-in-out]" : ""}`}
                                         />
                                         <span aria-hidden="true" className={`ml-2 text-sm w-4 shrink-0 ${errors.has(key) ? "text-red-500 font-bold" : "text-gray-500 dark:text-gray-400"}`}>{unit}</span>
                                     </div>
@@ -208,7 +214,7 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
                                         value={dividendPerShare} onChange={handleChange(setDividendPerShare, "dividendPerShare")}
                                         className={`w-full border-2 rounded-xl px-4 py-3 text-right focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 dark:text-white transition-all font-semibold ${
                                             errors.has("dividendPerShare") ? "border-red-500 ring-2 ring-red-200 dark:ring-red-900/30" : "border-gray-300 dark:border-gray-600 focus:ring-green-400 ring-green-400/10 focus:ring-4"
-                                        }`}
+                                        } ${shakeField === "dividendPerShare" ? "animate-[shake_0.5s_ease-in-out]" : ""}`}
                                     />
                                     <span aria-hidden="true" className={`ml-2 text-sm w-4 shrink-0 ${errors.has("dividendPerShare") ? "text-red-500 font-bold" : "text-gray-500 dark:text-gray-400"}`}>원</span>
                                 </div>
@@ -254,8 +260,8 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
                     {/* 버튼 섹션 */}
                     <div className="pt-4 space-y-3">
                         <div className="flex gap-3">
-                            <button onClick={handleReset}
-                                    className={`flex-1 py-4 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 font-bold rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-750 transition-all ${shaking ? "animate-shake" : ""}`}>
+                            <button id="resetBtn" onClick={handleReset}
+                                    className={`flex-1 py-4 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 font-bold rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-750 transition-all`}>
                                 초기화
                             </button>
                             <button onClick={handleCalculate}
@@ -264,19 +270,16 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
                             </button>
                         </div>
                         {errorMessage && (
-                            <p className="text-center text-red-500 text-sm font-bold flex items-center justify-center gap-1 animate-pulse">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                </svg>
-                                {errorMessage}
-                            </p>
+                            <div className="w-full mt-2 bg-red-50 dark:bg-red-900/20 text-red-500 text-sm font-bold p-4 rounded-xl text-center border border-red-100 dark:border-red-800 animate-pulse">
+                                🚨 {errorMessage}
+                            </div>
                         )}
                     </div>
                 </div>
 
                 {/* 결과 섹션 */}
                 {result && (
-                    <div className={`mt-8 space-y-6 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
+                    <div ref={resultRef} className={`mt-8 space-y-6 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
                         
                         {/* 1. 메인 결과 카드: 세후 배당액 */}
                         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 border-t-4 border-green-500">
@@ -356,30 +359,11 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
                             </div>
                         )}
 
-                        <div className="mt-8 flex gap-4 w-full">
-                                <button
-                                    onClick={handleCopy}
-                                    className={`flex-1 py-4 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 ${copied ? "bg-green-500 text-white" : "bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600"}`}
-                                >
-                                    {copied ? (
-                                        <><span>✅</span> 복사 완료</>
-                                    ) : (
-                                        <><span>📋</span> 결과 복사하기</>
-                                    )}
-                                </button>
-                                <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 shadow-xl">
-                                    <span>💬</span> 친구에게 공유하기
-                                </button>
-                            </div>
-
-                        {isSharing && (
-                            <ShareSheet
-                                onClose={() => setIsSharing(false)}
-                                title="[💸 주식 배당금 계산 결과]"
-                                description={`세후 월평균 배당금 : ${Math.floor(result.monthlyTaxPost).toLocaleString()}원\n세후 연간 배당금 : ${Math.floor(result.yearlyTaxPost).toLocaleString()}원`}
-                                url={typeof window !== "undefined" ? window.location.href : ""}
-                            />
-                        )}
+                        <CalculatorActions
+                            onCopy={handleCopy}
+                            shareTitle="[💸 주식 배당금 계산 결과]"
+                            shareDescription={`세후 월평균 배당금 : ${Math.floor(result.monthlyTaxPost).toLocaleString()}원\n세후 연간 배당금 : ${Math.floor(result.yearlyTaxPost).toLocaleString()}원`}
+                        />
                     </div>
                 )}
             <InstallBanner />

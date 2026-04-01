@@ -29,11 +29,11 @@ export default function Home() {
       
       <div className="flex-grow px-4 py-6 w-full max-w-3xl mx-auto">
         {/* 상단 타이틀 섹션 */}
-        <h1 className="text-4xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">
+        <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">
           🧮 JIKO 계산기
         </h1>
-        <p className="text-xl font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">
-          필요한 계산기를 선택하세요.
+        <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">
+          일상에 필요한 주식, 금융, 직장, 건강, 생활, 세금, 부동산 계산기를 한 곳에서 만나보세요.
         </p>
 
         {/* 메뉴 그리드 */}

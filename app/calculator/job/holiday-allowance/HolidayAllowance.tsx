@@ -154,9 +154,10 @@ export default function HolidayAllowance() {
                     
                     {/* 시급 입력 */}
                     <div>
-                        <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">시급 (원)</label>
+                        <label htmlFor="hourly-wage" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">시급 (원)</label>
                         <div className="relative group">
                             <input
+                                id="hourly-wage"
                                 type="text"
                                 inputMode="numeric"
                                 value={hourlyWage ? parseInt(hourlyWage).toLocaleString() : ""}
@@ -168,16 +169,17 @@ export default function HolidayAllowance() {
                                 placeholder="적용 받을 시급 입력"
                                 className={`w-full p-4 pr-12 text-right bg-gray-50 dark:bg-gray-900 border ${errors.has("wage") ? 'border-red-600 ring-2 ring-red-500/20' : 'border-gray-300 dark:border-gray-600'} rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all font-semibold text-gray-800 dark:text-gray-100 ${shakeField === 'wage' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                             />
-                            <span className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500 font-bold">원</span>
+                            <span className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 font-bold">원</span>
                         </div>
-                        <p className="mt-2 pl-2 text-xs text-blue-500 font-medium">✨ 2026년 최저시급 : 10,320원</p>
+                        <p className="mt-2 pl-2 text-xs text-blue-500 font-medium font-bold italic">✨ 2026년 최저시급 : 10,320원</p>
                     </div>
 
                     {/* 주간 근로시간 입력 */}
                     <div>
-                        <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">1주일간 총 근로시간 (시간)</label>
+                        <label htmlFor="weekly-hours" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">1주일간 총 근로시간 (시간)</label>
                         <div className="relative group">
                             <input
+                                id="weekly-hours"
                                 type="text"
                                 inputMode="decimal"
                                 value={workHours}
@@ -189,9 +191,9 @@ export default function HolidayAllowance() {
                                 placeholder="예: 20"
                                 className={`w-full p-4 pr-16 text-right bg-gray-50 dark:bg-gray-900 border ${errors.has("hours") ? 'border-red-600 ring-2 ring-red-500/20' : 'border-gray-300 dark:border-gray-600'} rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all font-semibold text-gray-800 dark:text-gray-100 ${shakeField === 'hours' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                             />
-                            <span className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500 font-bold">시간</span>
+                            <span className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 font-bold">시간</span>
                         </div>
-                        <p className="mt-2 pl-2 text-xs text-blue-500 font-medium">✨ 주 15시간 이상 근무 시에만 주휴수당 발생함</p>
+                        <p className="mt-2 pl-2 text-xs text-blue-500 font-medium font-bold italic">✨ 주 15시간 이상 근무 시에만 주휴수당 발생함</p>
                     </div>
 
                     {/* 빠른 시간 설정 */}

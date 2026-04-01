@@ -3,7 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import { ANIMATION } from "@/app/config/animationConfig";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
-import ShareSheet from "@/app/calculator/components/ShareSheet";
+import CalculatorActions from "@/app/calculator/components/CalculatorActions";
+import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
 
 interface LoansProps {
     productName?: string;
@@ -23,6 +24,7 @@ const Loans = ({ productName }: LoansProps) => {
     const [errors, setErrors] = useState<Set<string>>(new Set());
     const [errorMessage, setErrorMessage] = useState("");
     const [isSharing, setIsSharing] = useState(false);
+    const resultRef = useCalculatorScroll(calculated);
 
     const n = (v: string) => Number(v.replace(/[^0-9.]/g, ""));
     const formatComma = (raw: string) => raw.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -80,6 +82,10 @@ const Loans = ({ productName }: LoansProps) => {
         setErrorMessage("");
         setShaking(true);
         setTimeout(() => setShaking(false), 400);
+
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
     };
 
     const handleCalculate = () => {
@@ -387,21 +393,11 @@ const Loans = ({ productName }: LoansProps) => {
                                 </div>
                             </div>
 
-                            <div className="mt-8 flex gap-4 w-full">
-                                <button
-                                    onClick={handleCopy}
-                                    className={`flex-1 py-4 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 ${copied ? "bg-green-500 text-white" : "bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600"}`}
-                                >
-                                    {copied ? (
-                                        <><span>✅</span> 복사 완료</>
-                                    ) : (
-                                        <><span>📋</span> 결과 복사하기</>
-                                    )}
-                                </button>
-                                <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 shadow-xl">
-                                    <span>💬</span> 친구에게 공유하기
-                                </button>
-                            </div>
+                            <CalculatorActions
+                                onCopy={handleCopy}
+                                shareTitle="[📊 대출 이자 계산 결과]"
+                                shareDescription={`총 대출금액 : ${loanAmount}원\n총 대출이자 : ${totalInterest.toLocaleString()}원`}
+                            />
                         </div>
 
                         {/* 비중 차트 카드 추가 */}
@@ -508,14 +504,7 @@ const Loans = ({ productName }: LoansProps) => {
                             <p className="text-[10px] text-gray-400 mt-4 text-center">* 1~12회차 및 최종회차 요약 정보입니다.</p>
                         </div>
 
-                        {isSharing && (
-                            <ShareSheet
-                                onClose={() => setIsSharing(false)}
-                                title="[📊 대출 이자 계산 결과]"
-                                description={`총 대출금액 : ${loanAmount}원\n총 대출이자 : ${totalInterest.toLocaleString()}원`}
-                                url={typeof window !== "undefined" ? window.location.href : ""}
-                            />
-                        )}
+
                     </div>
                 )}
                 <InstallBanner />

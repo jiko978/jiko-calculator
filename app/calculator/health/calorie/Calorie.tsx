@@ -2,7 +2,8 @@
 
 import { useState, useMemo } from "react";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
-import ShareSheet from "@/app/calculator/components/ShareSheet";
+import CalculatorActions from "@/app/calculator/components/CalculatorActions";
+import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
 
 const EXERCISES = [
     { label: "걷기", mets: 3.5, icon: "🚶" },
@@ -69,9 +70,8 @@ export default function Calorie() {
 
     const [errors, setErrors] = useState<Set<string>>(new Set());
     const [errorMessage, setErrorMessage] = useState("");
-    const [isShaking, setIsShaking] = useState(false);
-    const [isSharing, setIsSharing] = useState(false);
-    const [copied, setCopied] = useState(false);
+    const [shakeField, setShakeField] = useState<string | null>(null);
+    const resultRef = useCalculatorScroll(result);
 
     const handleFoodChange = (idx: number, delta: number) => {
         setFoodCounts(prev => ({
@@ -106,8 +106,8 @@ export default function Calorie() {
 
         if (newErrors.size > 0) {
             setErrorMessage("항목을 정확히 입력해주세요.");
-            setIsShaking(true);
-            setTimeout(() => setIsShaking(false), 500);
+            setShakeField(Array.from(newErrors)[0]);
+            setTimeout(() => setShakeField(null), 500);
             return;
         }
 
@@ -139,8 +139,6 @@ export default function Calorie() {
     };
 
     const handleReset = () => {
-        setIsShaking(true);
-        setTimeout(() => setIsShaking(false), 500);
         setWeight("");
         setExerciseTime("");
         setSelectedExerciseIdx(0);
@@ -151,14 +149,22 @@ export default function Calorie() {
         setResult(null);
         setErrors(new Set());
         setErrorMessage("");
+
+        const btn = document.getElementById("resetBtn");
+        if (btn) {
+            btn.classList.add("animate-[shake_0.5s_ease-in-out]");
+            setTimeout(() => btn.classList.remove("animate-[shake_0.5s_ease-in-out]"), 500);
+        }
+
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
     };
 
-    const handleCopy = () => {
+    const handleCopy = async () => {
         if (result) {
             const text = `[🏃‍♂️ 칼로리 계산기 결과]\n\n소모 : ${result.burned.toLocaleString()}kcal\n섭취 : ${result.intake.toLocaleString()}kcal\n순 밸런스 : ${result.balance > 0 ? '+' : ''}${result.balance.toLocaleString()}kcal\n\n📌JIKO 칼로리 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/calorie`;
-            navigator.clipboard.writeText(text);
-            setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+            await navigator.clipboard.writeText(text);
         }
     };
 
@@ -187,7 +193,7 @@ export default function Calorie() {
                             <input
                                 id="user-weight"
                                 type="number"
-                                className={`w-full p-5 bg-gray-50 dark:bg-gray-700/50 border ${errors.has("weight") ? "border-red-600 ring-4 ring-red-500/20" : "border-gray-200 dark:border-gray-700"} rounded-2xl outline-none transition-all text-xl font-bold dark:text-gray-100 placeholder-gray-300`}
+                                className={`w-full p-5 bg-gray-50 dark:bg-gray-700/50 border ${errors.has("weight") ? "border-red-600 ring-4 ring-red-500/20" : "border-gray-200 dark:border-gray-700"} rounded-2xl outline-none transition-all text-xl font-bold dark:text-gray-100 placeholder-gray-300 ${shakeField === "weight" ? "animate-[shake_0.5s_ease-in-out]" : ""}`}
                                 placeholder="0.0"
                                 value={weight}
                                 onChange={(e) => {
@@ -309,23 +315,31 @@ export default function Calorie() {
                         </div>
                     </section>
 
-                    <div className="flex flex-col items-center gap-4 pt-4">
+                    <div className="flex flex-col items-center gap-3 pt-4 border-t border-gray-100 dark:border-gray-700">
                         <div className="flex gap-4 w-full">
-                            <button onClick={handleReset} className={`flex-1 py-5 bg-gray-100 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 rounded-2xl font-bold transition-all hover:bg-gray-200 ${isShaking ? "animate-[shake_0.5s_ease-in-out]" : ""}`}>초기화</button>
-                            <button onClick={handleCalculate} className="flex-[2] py-5 bg-orange-500 hover:bg-orange-600 text-white rounded-2xl font-black text-lg transition-all shadow-lg shadow-orange-500/20 active:scale-95">계산하기</button>
+                            <button
+                                id="resetBtn"
+                                onClick={handleReset}
+                                className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-bold transition-colors hover:bg-gray-200 dark:hover:bg-gray-600"
+                            >
+                                초기화
+                            </button>
+                            <button
+                                onClick={handleCalculate}
+                                className="flex-[2] py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold transition-colors shadow-lg shadow-orange-500/20 active:scale-95 text-lg"
+                            >
+                                계산하기
+                            </button>
                         </div>
                         {errorMessage && (
-                            <p className="text-center text-red-500 text-sm font-bold flex items-center justify-center gap-1 animate-pulse">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                </svg>
-                                {errorMessage}
-                            </p>
+                            <div className="w-full mt-2 bg-red-50 dark:bg-red-900/20 text-red-500 text-sm font-bold p-4 rounded-xl text-center border border-red-100 dark:border-red-800 animate-pulse">
+                                🚨 {errorMessage}
+                            </div>
                         )}
                     </div>
 
                     {result && (
-                        <div className="mt-12 animate-in zoom-in-95 duration-300">
+                        <div ref={resultRef} className="mt-12 animate-in zoom-in-95 duration-300 animate-fade-in-up">
                             <div className="p-10 bg-gradient-to-br from-orange-400 to-amber-500 dark:from-orange-600 dark:to-amber-700 rounded-[40px] text-white shadow-2xl relative overflow-hidden">
                                 <div className="absolute -right-4 -top-4 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
                                 <div className="relative z-10 text-center">
@@ -355,36 +369,16 @@ export default function Calorie() {
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div className="mt-8 flex gap-4 w-full">
-                                <button
-                                    onClick={handleCopy}
-                                    className={`flex-1 py-4 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 ${copied ? "bg-green-500 text-white" : "bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600"}`}
-                                >
-                                    {copied ? (
-                                        <><span>✅</span> 복사 완료</>
-                                    ) : (
-                                        <><span>📋</span> 결과 복사하기</>
-                                    )}
-                                </button>
-                                <button onClick={() => setIsSharing(true)} className="flex-1 py-4 bg-[#FEE500] hover:bg-[#FDD800] text-[#000000]/80 font-bold rounded-xl transition-all active:scale-95 flex justify-center items-center gap-2 shadow-xl">
-                                    <span>💬</span> 친구에게 공유하기
-                                </button>
-                            </div>
                                 </div>
                             </div>
 
-                            {isSharing && (
-                                <ShareSheet
-                                    onClose={() => setIsSharing(false)}
-                                    title="[🏃‍♂️ 칼로리 계산 결과]"
-                                    description={`소모 : ${result.burned.toLocaleString()}kcal\n섭취 : ${result.intake.toLocaleString()}kcal`}
-                                    url={typeof window !== "undefined" ? window.location.href : ""}
-                                />
-                            )}
+                            <CalculatorActions
+                                onCopy={handleCopy}
+                                shareTitle="[🏃‍♂️ 칼로리 계산 결과]"
+                                shareDescription={`소모 : ${result.burned.toLocaleString()}kcal\n섭취 : ${result.intake.toLocaleString()}kcal`}
+                            />
                         </div>
                     )}
-
                     <section className="p-8 bg-gray-50 dark:bg-gray-800/50 rounded-[32px] border border-gray-100 dark:border-gray-700">
                         <h4 className="font-black text-gray-800 dark:text-white mb-6 flex items-center gap-3">
                             <span className="text-2xl">🥗</span> WHO 권장 올바른 식생활 지침
@@ -407,6 +401,9 @@ export default function Calorie() {
                     </section>
                 </div>
             </div>
+
+
+
             <InstallBanner />
         </div>
     );

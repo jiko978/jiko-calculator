@@ -41,8 +41,8 @@ export default function FinanceHubPage() {
             <NavBar title="금융 계산기" description="예금 이자, 적금 이자, 대출 이자 계산기 - JIKO 계산기" />
 
             <div className="flex-grow px-4 py-6">
-                <h1 className="text-4xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">💵 금융 계산기</h1>
-                <p className="text-xl font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">필요한 금융 계산기를 선택하세요.</p>
+                <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">💵 금융 계획 계산기 모음</h1>
+                <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">예금/적금/대출 이자 계산기를 통해 간편하게 금융 계획을 세워보세요.</p>
 
                 <div className="grid gap-4 w-full max-w-3xl mx-auto md:grid-cols-2">
                     {financeCalculators.map((calc) => (

@@ -5,10 +5,19 @@ import JobMoreCalculators from "@/app/calculator/components/JobMoreCalculators";
 import Insurance from "./Insurance";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 
+const BASE_URL = "https://jiko.kr";
+
 export const metadata: Metadata = {
     title: "4대보험 계산기 | 2026 최신 근로자·사업주 보험료 계산 - JIKO 계산기",
     description: "내 연봉/월급에서 빠져나가는 4대보험! 근로자와 회사가 각각 얼마씩 내는지 정확한 비율과 금액을 차트로 직관적으로 확인하세요.",
     keywords: ["4대보험 계산기", "국민연금 상한액", "건강보험료 계산", "고용보험료", "산재보험 요율", "사업주 부담금", "실수령액 차이", "4대보험 징수 비율"],
+    alternates: { canonical: `${BASE_URL}/calculator/job/insurance` },
+    openGraph: {
+        title: "4대보험 계산기 | 2026 최신 근로자·사업주 보험료 계산",
+        description: "회사가 내 대신 내주는 4대보험은 얼마일까요? 정확한 비율과 공제액을 확인하세요.",
+        url: `${BASE_URL}/calculator/job/insurance`,
+        images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "4대보험 계산기" }],
+    },
 };
 
 export default function InsurancePage() {
