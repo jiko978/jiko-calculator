@@ -3,6 +3,7 @@
 import { useState } from "react";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
 import CalculatorActions from "@/app/calculator/components/CalculatorActions";
+import CalculatorButtons from "@/app/calculator/components/CalculatorButtons";
 import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
 
 export default function Insurance() {
@@ -277,10 +278,10 @@ https://jiko.kr/calculator/job/insurance`;
                 </div>
 
                 {/* 동작 버튼 */}
-                <div className="flex gap-4 pt-4">
-                    <button id="resetBtn" onClick={handleReset} className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">초기화</button>
-                    <button onClick={calculateInsurance} className="flex-[2] py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20">계산하기</button>
-                </div>
+                <CalculatorButtons 
+                    onReset={handleReset} 
+                    onCalculate={calculateInsurance} 
+                />
 
                 {/* Error Message */}
                 {errorMessage && (

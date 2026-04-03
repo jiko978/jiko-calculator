@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { ANIMATION } from "@/app/config/animationConfig";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
 import CalculatorActions from "@/app/calculator/components/CalculatorActions";
+import CalculatorButtons from "@/app/calculator/components/CalculatorButtons";
 import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
 
 const MAX_ROWS = 10;
@@ -359,18 +360,11 @@ export default function AvgPrice({ stockName, initialCode }: AvgPriceProps) {
                     </div>
                 </div>
 
-                {/* 버튼 */}
-                <div className="mt-4 flex flex-col items-center gap-3">
-                    <div className="flex justify-center gap-3 w-full">
-                        <button id="resetBtn" onClick={handleReset}
-                            className={`flex-1 px-6 py-3 min-h-[44px] border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 transition-colors duration-150 text-base`}>
-                            초기화
-                        </button>
-                        <button onClick={handleCalculate}
-                            className="flex-[2] px-8 py-3 min-h-[44px] bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-bold rounded-xl shadow-md transition-colors duration-150 text-base">
-                            계산하기
-                        </button>
-                    </div>
+                <div className="mt-4">
+                    <CalculatorButtons 
+                        onReset={handleReset} 
+                        onCalculate={handleCalculate} 
+                    />
                     {errorMessage && (
                         <div className="w-full mt-2 bg-red-50 dark:bg-red-900/20 text-red-500 text-sm font-bold p-4 rounded-xl text-center border border-red-100 dark:border-red-800 animate-pulse">
                             🚨 {errorMessage}

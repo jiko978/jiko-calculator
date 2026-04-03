@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { ANIMATION } from "@/app/config/animationConfig";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
 import CalculatorActions from "@/app/calculator/components/CalculatorActions";
+import CalculatorButtons from "@/app/calculator/components/CalculatorButtons";
 import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
 
 interface LoansProps {
@@ -346,20 +347,10 @@ const Loans = ({ productName }: LoansProps) => {
                     </div>
                     {/* 제어 버튼 */}
                     <div className="space-y-3 pt-4">
-                        <div className="flex gap-3">
-                            <button
-                                onClick={handleReset}
-                                className={`flex-1 h-14 border-2 border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 font-bold rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all active:scale-95 ${shaking ? "animate-shake" : ""}`}
-                            >
-                                초기화
-                            </button>
-                            <button
-                                onClick={handleCalculate}
-                                className="flex-[2] h-14 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-2xl shadow-lg shadow-amber-500/20 transition-all active:scale-[0.98]"
-                            >
-                                계산하기
-                            </button>
-                        </div>
+                        <CalculatorButtons 
+                            onReset={handleReset} 
+                            onCalculate={handleCalculate} 
+                        />
                         {errorMessage && (
                             <p className="text-center text-red-500 text-sm font-bold flex items-center justify-center gap-1 animate-pulse">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>

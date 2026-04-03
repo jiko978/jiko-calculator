@@ -1,5 +1,5 @@
 import type { Metadata, ResolvingMetadata } from "next";
-import StockFee from "../StockFee";
+import StockFee from "../Fee";
 import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../../utils/seo";
 import StockMoreCalculators from "@/app/calculator/components/StockMoreCalculators";
@@ -119,7 +119,7 @@ export default async function Page({ params }: Props) {
                         <span className="text-2xl">📊</span> {stockName} 주식 수수료 계산기
                     </h2>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
-                        {stockName}({stockCode}) 종목 거래 시 발생하는 모든 수수료와 세금을 계산해 드립니다. 
+                        {stockName}({stockCode}) 종목 거래 시 발생하는 모든 수수료와 세금을 계산해 드립니다.
                         단순히 사고파는 가격 차이를 넘어, 실제 수익에 영향을 주는 모든 비용을 미리 모의계산하여 성공적인 투자 전략을 세워보세요.
                     </p>
                 </section>
@@ -165,7 +165,7 @@ export default async function Page({ params }: Props) {
                         📊 주식 매매 시 꼭 알아야 할 수수료 및 세금 상식
                     </h2>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6 font-medium">
-                        주식 투자에서 가장 중요한 것은 '벌었을 때 얼마나 지키느냐'입니다. 
+                        주식 투자에서 가장 중요한 것은 '벌었을 때 얼마나 지키느냐'입니다.
                         수익이 났더라도 수수료와 세금을 고려하지 않으면 실질적인 이익이 생각보다 작을 수 있습니다.
                     </p>
 

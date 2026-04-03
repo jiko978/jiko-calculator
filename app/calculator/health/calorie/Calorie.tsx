@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
 import CalculatorActions from "@/app/calculator/components/CalculatorActions";
+import CalculatorButtons from "@/app/calculator/components/CalculatorButtons";
 import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
 
 const EXERCISES = [
@@ -315,22 +316,11 @@ export default function Calorie() {
                         </div>
                     </section>
 
-                    <div className="flex flex-col items-center gap-3 pt-4 border-t border-gray-100 dark:border-gray-700">
-                        <div className="flex gap-4 w-full">
-                            <button
-                                id="resetBtn"
-                                onClick={handleReset}
-                                className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-bold transition-colors hover:bg-gray-200 dark:hover:bg-gray-600"
-                            >
-                                초기화
-                            </button>
-                            <button
-                                onClick={handleCalculate}
-                                className="flex-[2] py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold transition-colors shadow-lg shadow-orange-500/20 active:scale-95 text-lg"
-                            >
-                                계산하기
-                            </button>
-                        </div>
+                    <div className="pt-4 border-t border-gray-100 dark:border-gray-700">
+                        <CalculatorButtons 
+                            onReset={handleReset} 
+                            onCalculate={handleCalculate} 
+                        />
                         {errorMessage && (
                             <div className="w-full mt-2 bg-red-50 dark:bg-red-900/20 text-red-500 text-sm font-bold p-4 rounded-xl text-center border border-red-100 dark:border-red-800 animate-pulse">
                                 🚨 {errorMessage}

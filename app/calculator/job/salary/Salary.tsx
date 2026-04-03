@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import CalculatorActions from '../../components/CalculatorActions';
+import CalculatorButtons from '../../components/CalculatorButtons';
 import { useCalculatorScroll } from '../../hooks/useCalculatorScroll';
 
 export default function Salary() {
@@ -293,14 +294,11 @@ export default function Salary() {
                         </div>
                     </div>
 
-                    {/* Actions */}
-                    <div className="flex gap-4 pt-4">
-                        <button id="resetBtn" onClick={handleReset} className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-                            초기화
-                        </button>
-                        <button onClick={handleCalculate} className="flex-[2] py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20">
-                            계산하기
-                        </button>
+                    <div className="pt-4 border-t border-gray-100 dark:border-gray-700">
+                        <CalculatorButtons 
+                            onReset={handleReset} 
+                            onCalculate={handleCalculate} 
+                        />
                     </div>
 
                     {/* Error Message */}

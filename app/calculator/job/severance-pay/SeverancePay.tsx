@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import CalculatorActions from '@/app/calculator/components/CalculatorActions';
+import CalculatorButtons from '@/app/calculator/components/CalculatorButtons';
 import { useCalculatorScroll } from '@/app/calculator/hooks/useCalculatorScroll';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -253,9 +254,11 @@ export default function SeverancePay() {
                         </div>
                     </div>
 
-                    <div className="flex gap-4 pt-4">
-                        <button id="resetBtn" onClick={handleReset} className="flex-1 py-5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-bold rounded-2xl hover:bg-gray-200 transition-all active:scale-95">초기화</button>
-                        <button onClick={handleCalculate} className="flex-[2] py-5 bg-blue-600 text-white font-black rounded-2xl hover:bg-blue-700 transition-all active:scale-95 shadow-xl shadow-blue-500/20">계산하기</button>
+                    <div className="pt-4 border-t border-gray-100 dark:border-gray-700">
+                        <CalculatorButtons 
+                            onReset={handleReset} 
+                            onCalculate={handleCalculate} 
+                        />
                     </div>
 
                     {errorMessage && <div className="bg-red-50 dark:bg-red-900/10 text-red-500 text-sm font-bold p-5 rounded-2xl text-center border border-red-100 dark:border-red-900/20 animate-pulse tracking-tight">🚨 {errorMessage}</div>}

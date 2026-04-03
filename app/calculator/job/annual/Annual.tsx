@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useCalculatorScroll } from '@/app/calculator/hooks/useCalculatorScroll';
 import CalculatorActions from '@/app/calculator/components/CalculatorActions';
+import CalculatorButtons from '@/app/calculator/components/CalculatorButtons';
 
 interface LeaveHistory {
     type: string;
@@ -326,10 +327,11 @@ export default function Annual() {
                         </div>
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="flex gap-4 pt-4 border-t border-gray-50 dark:border-gray-700">
-                        <button id="resetBtn" onClick={handleReset} className="flex-1 py-4 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-bold rounded-2xl hover:bg-gray-200 transition-all active:scale-95">초기화</button>
-                        <button onClick={handleCalculate} className="flex-[2] py-4 bg-blue-600 text-white font-black rounded-2xl hover:bg-blue-700 transition-all active:scale-95 shadow-xl shadow-blue-500/20">계산하기</button>
+                    <div className="pt-4 border-t border-gray-100 dark:border-gray-700">
+                        <CalculatorButtons 
+                            onReset={handleReset} 
+                            onCalculate={handleCalculate} 
+                        />
                     </div>
 
                     {errorMessage && (

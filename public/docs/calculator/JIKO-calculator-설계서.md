@@ -1,7 +1,7 @@
 # JIKO Calculator 프로젝트
 
 **작성일** : 2026-03-09
-**수정일** : 2026-03-23
+**수정일** : 2026-04-03
 **작성자** : 고재일
 **프로젝트 경로** : C:\Users\kji\jiko-project
 
@@ -39,7 +39,7 @@ Tool Site.
       - `avg-price/` : 평균 단가 계산기 페이지
       - `profit-rate/` : 수익률 계산기 페이지
       - `dividend/` : 배당금 계산기 페이지
-      - `fee/` : 수수료 계산기 페이지  
+      - `fee/` : 수수료 계산기 페이지 (Fee.tsx)
     - `finance/` : 금융 메뉴
       - `deposits/` : 예금 이자 계산기 페이지
       - `savings/` : 적금 이자 계산기 페이지
@@ -205,6 +205,7 @@ Tool Site.
 ㄴ app/components/NavBar.tsx (뒤로가기, 공유)
 ㄴ app/components/ShareSheet.tsx (공유 바텀 시트)
 ㄴ app/calculator/components/CalculatorActions.tsx (결과 복사하기 및 공유하기 2분할 버튼)
+ㄴ app/calculator/components/CalculatorButtons.tsx (초기화 및 계산하기 공통 버튼)
 ㄴ app/calculator/components/FAQ.tsx (FAQ)
 ㄴ app/calculator/components/StockMoreCalculators.tsx (더 보기 등)
 2. UI 및 기타 Hook 로직
@@ -233,8 +234,9 @@ Tool Site.
 ㄴ **루트 허브(Platform)** 와 **서브 허브(Calculator)** 상/하단바의 레이아웃, 크기 세팅 통일 (`px-4 py-6` / `max-w-3xl` 등 기본 규격 동기화)
 ㄴ Cross-Navigation(교차 이동): 계산기 메뉴의 Header와 Footer에는 `🏠 JIKO 플랫폼 홈` 단축 링크를 강제 삽입하여 허브 간 자유로운 이동 보장.
 3. 코어 UI/UX 표준 (전체 계산기 공통 적용 필수)
-ㄴ [1] 계산하기 후 화면 스크롤 (`useCalculatorScroll` Hook) : 모바일 가독성을 위해 [계산하기] 클릭 시 결과 영역(`id="result-section"`)으로 부드럽게 스크롤(Smooth Scroll)됩니다.
-ㄴ [2] 초기화 후 화면 스크롤 : [초기화] 클릭(`handleReset`) 시 `setTimeout`과 `window.scrollTo({ top: 0, behavior: "smooth" })`를 호출하여 최상단 폼으로 화면을 복귀시킵니다.
+ㄴ [1] 공통 액션 버튼 UI (CalculatorButtons.tsx) : [NEW] 모든 계산기의 '초기화' 및 '계산하기' 버튼은 이 컴포넌트를 통해 디자인과 인터랙션(활성/비활성, 호버 효과 등)을 통일합니다.
+ㄴ [2] 계산하기 후 화면 스크롤 (useCalculatorScroll Hook) : 모바일 가독성을 위해 [계산하기] 클릭 시 결과 영역(id="result-section")으로 부드럽게 스크롤(Smooth Scroll)됩니다.
+ㄴ [3] 초기화 후 화면 스크롤 : [초기화] 클릭(handleReset) 시 setTimeout과 window.scrollTo({ top: 0, behavior: "smooth" })를 호출하여 최상단 폼으로 화면을 복귀시킵니다.
 ㄴ [3] 필수 입력 체크 공통화 (Standard Validation) : 
    - 입력 누락 시 해당 필드에 빨간색 테두리(`ring-2 ring-red-500/20`) 및 흔들림(`animate-[shake_0.5s_ease-in-out]`) 효과를 적용합니다.
    - 버튼 상단에 공통 에러 카드(`bg-red-50 ... animate-pulse`)를 출력합니다.

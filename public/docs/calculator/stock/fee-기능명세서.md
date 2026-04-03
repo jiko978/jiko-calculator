@@ -9,7 +9,7 @@
 3. 파일
    ㄴ 서버 : `app/calculator/stock/fee/page.tsx`
    ㄴ 동적 서버 : `app/calculator/stock/fee/[slug]/page.tsx`
-   ㄴ 클라이언트 : `app/calculator/stock/fee/StockFee.tsx`
+   ㄴ 클라이언트 : `app/calculator/stock/fee/Fee.tsx`
 
 ## 4. 화면 기능
 ### 3.1 입력 데이터
@@ -35,6 +35,9 @@
    - **주식 계산기 더 보기**: 다른 주식 계산기 메뉴 바로가기 (**공통 `StockMoreCalculators` 컴포넌트 적용**)
 2. **[개별 카드세션]**
    - **세금 상식**: 국내 주식(거래세) vs 해외 주식(양도세) 비교 가이드
+3. **버튼 기능**
+   - **초기화 및 계산하기** : 공통 컴포넌트인 **`CalculatorButtons`**를 적용하여 UI와 인터랙션(활성 상태, 호버 효과 등)을 전역 표준에 맞춰 통일했습니다. 
+   - **결과 복사 & 공유하기** : 코어 컴포넌트인 `CalculatorActions`를 배치하여 2분할 버튼 형태로 통일 조치하였습니다.
 
 ## 5. UI/UX 차별화 포인트
 1. **손절/익절 컬러 가이드**: 세후 수익이 0원 이하일 경우 테두리 및 텍스트 컬러를 즉각 변경하여 직관적 파악 가능.

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import StockFee from "./StockFee";
+import Fee from "./Fee";
 import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../utils/seo";
 import StockMoreCalculators from "@/app/calculator/components/StockMoreCalculators";
@@ -115,7 +115,7 @@ export default function Page() {
             />
 
             <NavBar title="주식 수수료 계산기" description="국내 코스피, 코스닥 증권사 수수료부터 해외 주식 양도소득세까지 정확하게 계산해 보세요." position="top" />
-            <StockFee />
+            <Fee />
 
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-8">
                 {/* [공통 카드세션] 1. 메뉴 설명 */}

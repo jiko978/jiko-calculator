@@ -20,6 +20,7 @@
 | `NavBar.tsx` | 페이지 내비 바 | 뒤로가기, 페이지 제목, 공유 버튼(ShareSheet) 통합 | 필수 상단 UI |
 | `ShareSheet.tsx` | 공유 레이어 | 카카오톡 SDK 연동, 클립보드 복사. `createPortal`을 통한 Document Body 직접 렌더링으로 화면 최하단 고정(CSS 충돌/간섭 원천 차단) | `Kakao.Share`, React Portal 활용 |
 | `CalculatorActions.tsx` | 공통 버튼 레이어 | [NEW] 결과 복사하기 및 친구에게 공유하기 2분할 레이아웃 통일. 내부 상태 처리를 캡슐화 | 재사용성 강화 |
+| `CalculatorButtons.tsx` | 액션 버튼 레이어 | [NEW] 초기화 및 계산하기 버튼 UI 및 인터랙션 통합 | 디자인 표준화 |
 | `PWAInstallProvider.tsx` | PWA 상태 관리 | 브라우저 설치 권한(`beforeinstallprompt`) 감지 및 상태 제공 | Context API 사용 |
 | `InstallBanner.tsx` | 설치 유도 배너 | 모바일 사용자 대상 PWA 설치 제안 | 슬라이드 애니메이션 |
 | `RegisterSW.tsx` | 서비스 워커 등록 | PWA 구현을 위한 `sw.js` 등록 로직 | |
@@ -60,7 +61,7 @@
 | :--- | :--- | :--- |
 | `page.tsx` | 범용 페이지 | 수수료 계산기 진입로 및 주식 수수료 상식 가이드 통합 |
 | `[slug]/page.tsx` | 종목 전용 페이지 | 종목별 수수료 테마 SEO 최적화 |
-| `StockFee.tsx` | 계산기 본체 | 국내(거래비용)/해외(양도세) 통합 계산기, 최소 익절가 산출 로직, 섹션별 하단 가이드 제거 완료 |
+| `Fee.tsx` | 계산기 본체 | 국내(거래비용)/해외(양도세) 통합 계산기, 최소 익절가 산출 로직, 섹션별 하단 가이드 제거 완료 |
 
 ---
 
@@ -141,9 +142,10 @@
 `policy/` 레이아웃 등에서 사용자의 유입 경로(Referrer)를 분석하여 플랫폼 홈 또는 서비스 홈으로 지능적으로 이동하는 `BackButton` 컴포넌트를 제공합니다.
 
 ### 6.4 UI/UX 표준화 아키텍처 (최신 반영)
-- **[1] 계산하기 후 화면 스크롤 (`useCalculatorScroll` Hook)**: `app/calculator/hooks/useCalculatorScroll.ts`를 도입하여 모든 계산기에서 '계산하기' 클릭 시 결과 영역(`id="result-section"`)으로 부드럽게 이동하는 피드백 표준을 확립했습니다.
-- **[2] 초기화(Reset) 후 상단 화면 스크롤**: 계산기 `handleReset` 수행 시 `window.scrollTo({ top: 0, behavior: "smooth" })`를 호출하여 사용자 뷰(화면)를 즉시 입력 폼 최상단으로 귀환시키는 직관적인 피드백을 확보했습니다.
-- **[3] 필수 입력 체크 공통화 (Validation)**: 필드 누락 시 컴포넌트 붉은 테두리 변화(`ring-red-500/20`), 흔들림 효과(`shake`), 하단 글로벌 에러 메시지 카드 출력을 3가지 상태(`errors`, `shakeField`, `errorMessage`)로 캡슐화하여 전역 규격화시켰습니다.
+- **[1] 초기화 및 계산하기 버튼 통합 (`CalculatorButtons.tsx`)**: 모든 계산기에서 '초기화' 및 '계산하기' 버튼은 이 공통 컴포넌트를 사용합니다. 이를 통해 일관된 호버 애니메이션, 액티브 상태, 그리고 프리미엄한 디자인 통일성을 보증합니다.
+- **[2] 계산하기 후 화면 스크롤 (`useCalculatorScroll` Hook)**: `app/calculator/hooks/useCalculatorScroll.ts`를 도입하여 모든 계산기에서 '계산하기' 클릭 시 결과 영역(`id="result-section"`)으로 부드럽게 이동하는 피드백 표준을 확립했습니다.
+- **[3] 초기화(Reset) 후 상단 화면 스크롤**: 계산기 `handleReset` 수행 시 `window.scrollTo({ top: 0, behavior: "smooth" })`를 호출하여 사용자 뷰(화면)를 즉시 입력 폼 최상단으로 귀환시키는 직관적인 피드백을 확보했습니다.
+- **[4] 필수 입력 체크 공통화 (Validation)**: 필드 누락 시 컴포넌트 붉은 테두리 변화(`ring-red-500/20`), 흔들림 효과(`shake`), 하단 글로벌 에러 메시지 카드 출력을 3가지 상태(`errors`, `shakeField`, `errorMessage`)로 캡슐화하여 전역 규격화시켰습니다.
 - **액션 버튼 레이어 통일 (`CalculatorActions.tsx`)**: 복사/공유 UI 및 `copied`, `isSharing` 상태를 내부 통합하여 모든 계산기에서 완벽히 동일한 패턴과 레이아웃 일관성을 보증합니다.
 - **Bottom Sheet 구조화 및 상태 기반 피드백**: 모바일 환경 조작 경험을 위해 `alert` 대신 넌블로킹 상태 기반 피드백을 구현하며, ShareSheet는 `createPortal`을 사용해 언제나 뷰포트 최하단에 간섭 없이 부착됩니다.
 - **면책 조항 통일성**: 민감한 결괏값을 노출하는 설명창(`page.tsx`) 하단에는 경고 디자인 포맷(`bg-red-50 text-red-500`)의 면책 조항 카드를 강제 추가하여 사용자 안내 책임을 강화했습니다.

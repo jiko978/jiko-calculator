@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { ANIMATION } from "@/app/config/animationConfig";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
 import CalculatorActions from "@/app/calculator/components/CalculatorActions";
+import CalculatorButtons from "@/app/calculator/components/CalculatorButtons";
 import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
 
 interface DividendProps {
@@ -259,16 +260,11 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
 
                     {/* 버튼 섹션 */}
                     <div className="pt-4 space-y-3">
-                        <div className="flex gap-3">
-                            <button id="resetBtn" onClick={handleReset}
-                                    className={`flex-1 py-4 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 font-bold rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-750 transition-all`}>
-                                초기화
-                            </button>
-                            <button onClick={handleCalculate}
-                                    className="flex-[2] py-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-2xl shadow-lg shadow-green-200 dark:shadow-none transition-all active:scale-95">
-                                배당 계산하기
-                            </button>
-                        </div>
+                        <CalculatorButtons 
+                            onReset={handleReset} 
+                            onCalculate={handleCalculate} 
+                            calculateText="배당 계산하기"
+                        />
                         {errorMessage && (
                             <div className="w-full mt-2 bg-red-50 dark:bg-red-900/20 text-red-500 text-sm font-bold p-4 rounded-xl text-center border border-red-100 dark:border-red-800 animate-pulse">
                                 🚨 {errorMessage}

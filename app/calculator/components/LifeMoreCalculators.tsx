@@ -8,9 +8,7 @@ export default function LifeMoreCalculators() {
 
     const CALCULATORS = [
         { name: "나이 계산기", href: "/calculator/life/age", emoji: "🎂", description: "만 나이, 연 나이, 띠 정보 및 생애 마일스톤" },
-        { name: "날짜/디데이", href: "/calculator/life/date", emoji: "📅", description: "D-day 계산 및 특정 날짜/주수 확인" },
-        { name: "단위 변환기", href: "/calculator/life/unit", emoji: "📏", description: "길이, 넓이, 무게 등 다양한 단위 변환" },
-        { name: "학점 계산기", href: "/calculator/life/grade", emoji: "🎓", description: "평균 평점 및 전공 평점 산출" }
+        { name: "날짜/디데이", href: "/calculator/life/date", emoji: "📅", description: "D-day 계산 및 특정 날짜/주수 확인" }
     ];
 
     // 현재 페이지는 제외하고 다른 계산기 보여주기
