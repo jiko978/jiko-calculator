@@ -1,0 +1,47 @@
+'use client';
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+export default function LifeMoreCalculators() {
+    const pathname = usePathname();
+
+    const CALCULATORS = [
+        { name: "나이 계산기", href: "/calculator/life/age", emoji: "🎂", description: "만 나이, 연 나이, 띠 정보 및 생애 마일스톤" },
+        { name: "날짜/디데이", href: "/calculator/life/date", emoji: "📅", description: "D-day 계산 및 특정 날짜/주수 확인" },
+        { name: "단위 변환기", href: "/calculator/life/unit", emoji: "📏", description: "길이, 넓이, 무게 등 다양한 단위 변환" },
+        { name: "학점 계산기", href: "/calculator/life/grade", emoji: "🎓", description: "평균 평점 및 전공 평점 산출" }
+    ];
+
+    // 현재 페이지는 제외하고 다른 계산기 보여주기
+    const otherCalculators = CALCULATORS.filter((calc) => !pathname.includes(calc.href));
+
+    if (otherCalculators.length === 0) return null;
+
+    return (
+        <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 mt-8">
+            <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+                <span className="text-blue-500">📎</span> 생활 계산기 더 보기
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {otherCalculators.map((calc) => (
+                    <Link
+                        key={calc.href}
+                        href={calc.href}
+                        className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 transition-all group"
+                    >
+                        <span className="text-2xl group-hover:scale-110 transition-transform shrink-0">{calc.emoji}</span>
+                        <div>
+                            <p className="font-bold text-gray-800 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 text-sm">
+                                {calc.name}
+                            </p>
+                            <p className="text-[11px] text-gray-400 dark:text-gray-500">
+                                {calc.description}
+                            </p>
+                        </div>
+                    </Link>
+                ))}
+            </div>
+        </section>
+    );
+}

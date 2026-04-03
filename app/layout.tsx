@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import KakaoInit from "./components/KakaoInit";
 import "./globals.css";
@@ -74,11 +74,6 @@ export const metadata: Metadata = {
             "max-image-preview": "large",
             "max-snippet": -1,
         },
-    },
-
-    // ── canonical (기본값, 각 페이지에서 override 가능) ──
-    alternates: {
-        canonical: BASE_URL,
     },
 };
 

@@ -48,6 +48,8 @@ export const COMMON_BREADCRUMBS = {
     CALORIE: { name: "칼로리 계산기", item: "/calculator/health/calorie" },
     OVULATION: { name: "배란일 계산기", item: "/calculator/health/ovulation" },
     PREGNANCY: { name: "임신주수 계산기", item: "/calculator/health/pregnancy" },
-    
+
+    LIFE_HOME: { name: "생활 계산기", item: "/calculator/life" },
+    AGE: { name: "나이 계산기", item: "/calculator/life/age" },
 };
 

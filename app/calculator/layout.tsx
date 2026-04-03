@@ -75,11 +75,6 @@ export const metadata: Metadata = {
             "max-snippet": -1,
         },
     },
-
-    // ── canonical (기본값, 각 페이지에서 override 가능) ──
-    alternates: {
-        canonical: BASE_URL,
-    },
 };
 
 export default function RootLayout({
