@@ -131,7 +131,6 @@ export default function AgePage() {
                 </section>
 
                 <FAQ faqList={faqList} />
-                <LifeMoreCalculators />
             </main>
         </div>
     );
