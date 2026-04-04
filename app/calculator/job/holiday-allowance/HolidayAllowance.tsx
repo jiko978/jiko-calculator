@@ -145,7 +145,7 @@ export default function HolidayAllowance() {
             <div className="flex flex-col items-center gap-4 mb-8">
                 <div className="flex justify-center flex-wrap gap-2">
                     <span className="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 rounded-full text-sm font-semibold">
-                        🏖️ 주휴수당 계산기
+                        💰 주휴수당 계산기
                     </span>
                 </div>
             </div>

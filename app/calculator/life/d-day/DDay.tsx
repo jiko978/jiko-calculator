@@ -13,10 +13,10 @@ const DDayCalculator = () => {
     const today = new Date().toISOString().split("T")[0];
     const [baseDate, setBaseDate] = useState(today);
     const [calcMode, setCalcMode] = useState<DDayMode>("TARGET_DATE");
-    
+
     // Mode A: Target Date
     const [targetDate, setTargetDate] = useState(today);
-    
+
     // Mode B: Days Offset
     const [offsetDays, setOffsetDays] = useState<string>("100");
     const [offsetType, setOffsetType] = useState<"AFTER" | "BEFORE">("AFTER");
@@ -58,24 +58,31 @@ const DDayCalculator = () => {
         }
 
         setErrorMessage("");
-        const base = new Date(baseDate);
+
+        // 날짜 객체 생성 시 로컬 시간 기준으로 자정 설정
+        const [bY, bM, bD] = baseDate.split('-').map(Number);
+        const base = new Date(bY, bM - 1, bD);
         base.setHours(0, 0, 0, 0);
 
         let mainResultText = "";
         let mainResultSubText = "";
 
         if (calcMode === "TARGET_DATE") {
-            const target = new Date(targetDate);
+            const [tY, tM, tD] = targetDate.split('-').map(Number);
+            const target = new Date(tY, tM - 1, tD);
             target.setHours(0, 0, 0, 0);
+
             const diffTime = target.getTime() - base.getTime();
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
             mainResultText = diffDays === 0 ? "D-Day" : diffDays > 0 ? `D-${diffDays}` : `D+${Math.abs(diffDays)}`;
             mainResultSubText = `${targetDate}까지`;
         } else {
             const daysV = parseInt(offsetDays) || 0;
             const target = new Date(base);
-            if (offsetType === "AFTER") target.setDate(target.getDate() + daysV);
-            else target.setDate(target.getDate() - daysV);
+            // AFTER/BEFORE 계산
+            if (offsetType === "AFTER") target.setDate(base.getDate() + daysV);
+            else target.setDate(base.getDate() - daysV);
+
             const yyyy = target.getFullYear();
             const mm = String(target.getMonth() + 1).padStart(2, '0');
             const dd = String(target.getDate()).padStart(2, '0');
@@ -86,11 +93,16 @@ const DDayCalculator = () => {
         const milestones = [100, 200, 300, 365, 500, 730, 1000];
         const timeline = milestones.map(days => {
             const mDate = new Date(base);
-            mDate.setDate(mDate.getDate() + days);
+            mDate.setDate(base.getDate() + days);
+            const y = mDate.getFullYear();
+            const m = String(mDate.getMonth() + 1).padStart(2, '0');
+            const d = String(mDate.getDate()).padStart(2, '0');
+            const formatted = `${y}-${m}-${d}`;
+
             return {
                 label: days % 365 === 0 ? `${days / 365}주년` : `${days}일`,
-                date: mDate.toISOString().split("T")[0],
-                isToday: mDate.toISOString().split("T")[0] === today
+                date: formatted,
+                isToday: formatted === today
             };
         });
 
@@ -117,21 +129,21 @@ const DDayCalculator = () => {
 
     const handleCopy = async () => {
         if (!resultData) return;
-        const text = `[🕯️ 디데이 계산기 결과]\n기준일: ${resultData.baseDate}\n계산: ${resultData.mainResultSubText}\n결과: ${resultData.mainResultText}\n\n📌 JIKO 디데이 계산기: https://jiko.kr/calculator/life/d-day`;
+        const text = `[🕯️ 디데이 계산기 결과]\n기준일 : ${resultData.baseDate}\n목표일 : ${resultData.mainResultSubText} ${resultData.mainResultText}\n\n📌 JIKO 디데이 계산기에서 확인하기 : \nhttps://jiko.kr/calculator/life/d-day`;
         await navigator.clipboard.writeText(text);
     };
 
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen border-t border-gray-100 dark:border-gray-800">
             <div className={`max-w-3xl mx-auto px-4 py-8 pb-safe ${ANIMATION.pageEnter ? "animate-fade-in" : ""}`}>
-                
+
                 <div className="flex flex-col items-center gap-3 mb-8">
                     <div className="px-3 py-1 bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 rounded-full text-sm font-semibold tracking-tight">🕯️ 디데이 계산기</div>
                 </div>
 
                 <CalculatorTabs tabs={lifeTabs} />
 
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700/50 space-y-8">
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700/50 space-y-8">
                     <div className="flex bg-gray-50 dark:bg-gray-900 p-1 rounded-2xl">
                         <button onClick={() => { setCalcMode("TARGET_DATE"); setCalculated(false); }} className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all ${calcMode === "TARGET_DATE" ? "bg-white dark:bg-gray-800 text-blue-600 shadow-sm" : "text-gray-400"}`}>D-day 날짜 선택</button>
                         <button onClick={() => { setCalcMode("DAYS_OFFSET"); setCalculated(false); }} className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all ${calcMode === "DAYS_OFFSET" ? "bg-white dark:bg-gray-800 text-blue-600 shadow-sm" : "text-gray-400"}`}>전/후 날짜 계산</button>
@@ -207,16 +219,16 @@ const DDayCalculator = () => {
                     )}
 
                     <div className="pt-4 border-t border-gray-100 dark:border-gray-700">
-                        <CalculatorButtons 
-                            onReset={handleReset} 
-                            onCalculate={handleCalculate} 
+                        <CalculatorButtons
+                            onReset={handleReset}
+                            onCalculate={handleCalculate}
                         />
                     </div>
                 </div>
 
                 {calculated && resultData && (
-                    <div ref={resultRef} className={`mt-8 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
-                        <div className="bg-white dark:bg-gray-800 p-8 rounded-[40px] shadow-2xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden">
+                    <div ref={resultRef} className={`mt-4 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
+                        <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
                             <p className="text-sm font-black text-gray-400 mb-2 uppercase tracking-widest leading-none">{resultData.mainResultSubText}</p>
                             <h2 className={`text-6xl md:text-7xl font-black mb-6 tracking-tighter ${resultData.mainResultText.startsWith("D-") ? "text-blue-600" : "text-pink-600"}`}>
@@ -233,13 +245,17 @@ const DDayCalculator = () => {
                                     ))}
                                 </div>
                             </div>
-                            <CalculatorActions onCopy={handleCopy} shareTitle={`[🕯️ 디데이 계산 결과] ${resultData.mainResultText}`} shareDescription={`${resultData.baseDate} 기준 결과입니다.`} />
+                            <CalculatorActions
+                                onCopy={handleCopy}
+                                shareTitle={`[🕯️ 디데이 계산 결과] ${resultData.baseDate} 기준 ${resultData.mainResultSubText}는 ${resultData.mainResultText} 입니다.`}
+                                shareDescription={`목표일 ${resultData.mainResultText}!`}
+                            />
                         </div>
                     </div>
                 )}
 
                 {/* 하단 가이드 (상시 노출) */}
-                <div className="bg-white dark:bg-gray-800 p-8 rounded-[40px] shadow-xl border border-gray-100 dark:border-gray-700 mt-8">
+                <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 mt-4">
                     <h3 className="text-lg font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2">
                         <span className="w-2 h-6 bg-pink-500 rounded-full"></span>
                         디데이 계산 팁

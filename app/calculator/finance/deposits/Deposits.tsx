@@ -165,7 +165,7 @@ const Deposits = ({ productName }: DepositsProps) => {
 
     const handleCopy = async () => {
         const text = [
-            `[📊 예금 이자 계산 결과]`,
+            `[🏦 예금 이자 계산 결과]`,
             `예치금액 : ${amount}원`,
             `예금기간 : ${term}${termUnit === "month" ? "개월" : "년"}`,
             `연이자율 : ${rate}% (${interestType === "simple" ? "단리" : "월복리"})`,
@@ -194,7 +194,7 @@ const Deposits = ({ productName }: DepositsProps) => {
                                 🏦 {productName}
                             </span>
                         )}
-                        <span className="px-3 py-1 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-full font-semibold shadow-sm border border-gray-100 dark:border-gray-700">📊 예금 이자 계산기</span>
+                        <span className="px-3 py-1 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-full font-semibold shadow-sm border border-gray-100 dark:border-gray-700">🏦 예금 이자 계산기</span>
                     </div>
                 </div>
 

@@ -44,24 +44,28 @@ const DateCalculator = () => {
         }
 
         setErrorMessage("");
-        const start = new Date(startDate);
-        const end = new Date(endDate);
+        // 날짜 객체 생성 시 로컬 시간 기준으로 자정 설정
+        const [sY, sM, sD] = startDate.split('-').map(Number);
+        const start = new Date(sY, sM - 1, sD);
         start.setHours(0, 0, 0, 0);
+
+        const [eY, eM, eD] = endDate.split('-').map(Number);
+        const end = new Date(eY, eM - 1, eD);
         end.setHours(0, 0, 0, 0);
 
         const diffTime = end.getTime() - start.getTime();
-        const diffDaysRaw = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+        const includeStartDays = diffDays + 1;
         
         let mainResult = "";
-        const inclusiveDays = diffDaysRaw + 1;
 
         if (calcType === "DDAY") {
-            mainResult = diffDaysRaw === 0 ? "D-Day" : diffDaysRaw > 0 ? `D+${diffDaysRaw}` : `D${diffDaysRaw}`;
+            mainResult = diffDays === 0 ? "D-Day" : diffDays > 0 ? `D+${diffDays}` : `D${diffDays}`;
         } else if (calcType === "DAYS") {
-            mainResult = `${inclusiveDays.toLocaleString()}일째`;
+            mainResult = `${includeStartDays.toLocaleString()}일째`;
         } else if (calcType === "WEEKS") {
-            const weeks = Math.floor(inclusiveDays / 7);
-            const days = inclusiveDays % 7;
+            const weeks = Math.floor(includeStartDays / 7);
+            const days = includeStartDays % 7;
             mainResult = `${weeks}주 ${days}일째`;
         } else if (calcType === "MONTHS") {
             const monthDiff = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
@@ -89,11 +93,16 @@ const DateCalculator = () => {
         const milestones = [100, 200, 300, 365, 500, 730, 1000];
         const timeline = milestones.map(days => {
             const mDate = new Date(start);
-            mDate.setDate(mDate.getDate() + days - 1);
+            mDate.setDate(start.getDate() + days - 1); // 당일포함 기준
+            const y = mDate.getFullYear();
+            const m = String(mDate.getMonth() + 1).padStart(2, '0');
+            const d = String(mDate.getDate()).padStart(2, '0');
+            const formatted = `${y}-${m}-${d}`;
+
             return {
                 label: days % 365 === 0 ? `${days / 365}주년` : `${days}일`,
-                date: mDate.toISOString().split("T")[0],
-                isPassed: mDate < new Date()
+                date: formatted,
+                isToday: formatted === today
             };
         });
 
@@ -119,7 +128,7 @@ const DateCalculator = () => {
 
     const handleCopy = async () => {
         if (!resultData) return;
-        const text = `[📅 날짜 계산기 결과]\n시작일: ${resultData.startStr}\n종료일: ${resultData.endStr}\n결과: ${resultData.mainResult}\n\n📌 JIKO 날짜 계산기: https://jiko.kr/calculator/life/date`;
+        const text = `[📅 날짜 계산기 결과]\n시작일 : ${resultData.startStr}\n종료일 : ${resultData.endStr}\n결과 : ${resultData.mainResult}\n\n📌 JIKO 날짜 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/life/date`;
         await navigator.clipboard.writeText(text);
     };
 
@@ -133,7 +142,7 @@ const DateCalculator = () => {
 
                 <CalculatorTabs tabs={lifeTabs} />
 
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700/50 space-y-8">
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700/50 space-y-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className={`space-y-4 ${shakeField === 'startDate' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}>
                             <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 ml-1">시작일 (기준일)</label>
@@ -209,8 +218,8 @@ const DateCalculator = () => {
                 </div>
 
                 {calculated && resultData && (
-                    <div ref={resultRef} className={`mt-8 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
-                        <div className="bg-white dark:bg-gray-800 p-8 rounded-[40px] shadow-2xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden">
+                    <div ref={resultRef} className={`mt-4 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
+                        <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600"></div>
                             <p className="text-sm font-bold text-blue-500 bg-blue-50 dark:bg-blue-900/30 px-4 py-1.5 rounded-full inline-block mb-4 tracking-tighter">
                                 {resultData.startStr} ~ {resultData.endStr}
@@ -241,7 +250,7 @@ const DateCalculator = () => {
                 )}
 
                 {/* 하단 상세 가이드 카드 (상시 노출) */}
-                <div className="bg-white dark:bg-gray-800 p-8 rounded-[40px] shadow-xl border border-gray-100 dark:border-gray-700 mt-8">
+                <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 mt-4">
                     <h3 className="text-lg font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2">
                         <span className="w-2 h-6 bg-blue-600 rounded-full"></span>
                         날짜 계산 상식 가이드
