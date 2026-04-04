@@ -2,10 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { ANIMATION } from "@/app/config/animationConfig";
-import InstallBanner from "@/app/calculator/components/InstallBanner";
+import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
 import CalculatorActions from "@/app/calculator/components/CalculatorActions";
 import CalculatorButtons from "@/app/calculator/components/CalculatorButtons";
-import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
 
 const Age = () => {
     const today = new Date();
@@ -266,8 +265,15 @@ const Age = () => {
                         <input
                             id="ref-date"
                             type="date"
+                            max="9999-12-31"
                             value={refDate}
-                            onChange={(e) => { setRefDate(e.target.value); setCalculated(false); }}
+                            onChange={(e) => {
+                                const val = e.target.value;
+                                const yearPart = val.split("-")[0];
+                                if (yearPart && yearPart.length > 4) return;
+                                setRefDate(val);
+                                setCalculated(false);
+                            }}
                             className="w-full h-14 px-4 font-bold bg-gray-50 dark:bg-gray-900/50 border-2 border-gray-100 dark:border-gray-700 rounded-2xl outline-none focus:border-blue-500 ring-blue-500/10 focus:ring-4 transition-all"
                         />
                     </div>
@@ -282,8 +288,8 @@ const Age = () => {
 
                 {/* 결과 영역 */}
                 {calculated && (
-                    <div ref={resultRef} className={`mt-8 space-y-6 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
-                        <div className="bg-white dark:bg-gray-800 p-8 rounded-[40px] shadow-2xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden">
+                    <div ref={resultRef} className={`mt-4 space-y-4 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
+                        <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600"></div>
 
                             <div className="flex items-center justify-between mb-2">
@@ -361,7 +367,7 @@ const Age = () => {
                             />
                         </div>
 
-                        <div className="bg-white dark:bg-gray-800 p-8 rounded-[40px] shadow-xl border border-gray-100 dark:border-gray-700">
+                        <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700">
                             <h3 className="text-lg font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2">
                                 <span className="w-2 h-6 bg-purple-500 rounded-full"></span>
                                 나이별 용어 정보 (만 나이 기준)
@@ -382,7 +388,7 @@ const Age = () => {
                             </p>
                         </div>
 
-                        <div className="bg-white dark:bg-gray-800 p-8 rounded-[40px] shadow-xl border border-gray-100 dark:border-gray-700">
+                        <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700">
                             <h3 className="text-lg font-black text-gray-900 dark:text-white mb-8 flex items-center gap-2">
                                 <span className="w-2 h-6 bg-blue-600 rounded-full"></span>
                                 생애 주기 마일스톤 ({bY}년생 기준)
@@ -413,8 +419,6 @@ const Age = () => {
                         </div>
                     </div>
                 )}
-
-                <InstallBanner />
             </div>
         </div>
     );

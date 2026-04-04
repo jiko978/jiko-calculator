@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import LifeMoreCalculators from "@/app/calculator/components/LifeMoreCalculators";
+import InstallBanner from "@/app/calculator/components/InstallBanner";
 import Age from "./Age";
 import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 import FAQ from "@/app/calculator/components/FAQ";
-import LifeMoreCalculators from "@/app/calculator/components/LifeMoreCalculators";
 
 const BASE_URL = "https://jiko.kr";
 
@@ -61,7 +62,7 @@ export default function AgePage() {
             <NavBar title="나이 계산기" description="정확한 만 나이와 법적 권리를 확인하세요." position="top" />
             <Age />
 
-            <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">
+            <main className="max-w-3xl mx-auto px-4 pb-16 space-y-4 mt-4">
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
                         <span className="text-2xl">🎂</span> 나이 계산기 가이드
@@ -131,6 +132,8 @@ export default function AgePage() {
                 </section>
 
                 <FAQ faqList={faqList} />
+                <LifeMoreCalculators />
+                <InstallBanner />
             </main>
         </div>
     );

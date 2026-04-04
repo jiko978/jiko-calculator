@@ -3,6 +3,7 @@ import Dividend from "../Dividend";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../../utils/seo";
 import NavBar from "@/app/calculator/components/NavBar";
 import StockMoreCalculators from "@/app/calculator/components/StockMoreCalculators";
+import InstallBanner from "@/app/calculator/components/InstallBanner";
 import FAQ from "@/app/calculator/components/FAQ";
 import stocksData from "../../data/stocks.json";
 import highDividendData from "../../data/high-dividend.json";
@@ -224,6 +225,7 @@ export default async function Page({ params }: Props) {
 
                 {/* 주식 계산기 더 보기 */}
                 <StockMoreCalculators />
+                <InstallBanner />
             </main>
         </div>
     );

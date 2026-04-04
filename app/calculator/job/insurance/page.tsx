@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import NavBar from "@/app/calculator/components/NavBar";
 import FAQ from "@/app/calculator/components/FAQ";
 import JobMoreCalculators from "@/app/calculator/components/JobMoreCalculators";
+import InstallBanner from "@/app/calculator/components/InstallBanner";
 import Insurance from "./Insurance";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 
@@ -133,6 +134,7 @@ export default function InsurancePage() {
 
                 <FAQ faqList={faqList} />
                 <JobMoreCalculators />
+                <InstallBanner />
             </main>
         </div>
     );

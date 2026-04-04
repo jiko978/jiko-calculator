@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import InstallBanner from "@/app/calculator/components/InstallBanner";
 import CalculatorActions from "@/app/calculator/components/CalculatorActions";
 import CalculatorButtons from "@/app/calculator/components/CalculatorButtons";
 import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
@@ -225,7 +224,7 @@ export default function Bmi() {
                     성인 비만도 측정 (BMI 지수)
                 </h2>
 
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-10">
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-10 text-sm">
                     성인 비만 진단은 체질량지수(BMI: body mass index)를 주로 이용합니다.<br />
                     BMI 지수는 키와 몸무게를 이용하여 전반적인 체지방량을 추정하는 값으로서, 체중(kg)을 신장의 제곱(m²)으로 나눈 값으로 비만도를 측정합니다.
                 </p>
@@ -270,7 +269,7 @@ export default function Bmi() {
                         <div className="absolute left-0">BMI</div>
                         <div className="absolute left-1/4 -translate-x-1/2">18.5</div>
                         <div className="absolute left-2/4 -translate-x-1/2">23</div>
-                        <div className="absolute left-3/4 -translate-x-1/2">25.00</div>
+                        <div className="absolute left-3/4 -translate-x-1/2">25.0</div>
                     </div>
                 </div>
 
@@ -293,8 +292,6 @@ export default function Bmi() {
                     </div>
                 </div>
             </div>
-
-            <InstallBanner />
         </div>
     );
 }

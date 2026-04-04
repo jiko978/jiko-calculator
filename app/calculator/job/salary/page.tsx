@@ -1,9 +1,10 @@
-﻿// app/calculator/job/salary/page.tsx
+// app/calculator/job/salary/page.tsx
 import type { Metadata } from "next";
 import Salary from "./Salary";
 import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 import JobMoreCalculators from "@/app/calculator/components/JobMoreCalculators";
+import InstallBanner from "@/app/calculator/components/InstallBanner";
 import FAQ from "@/app/calculator/components/FAQ";
 
 const BASE_URL = "https://jiko.kr";
@@ -113,6 +114,7 @@ export default function Page() {
 
                 <FAQ faqList={faqList} />
                 <JobMoreCalculators />
+                <InstallBanner />
             </main>
         </div>
     );

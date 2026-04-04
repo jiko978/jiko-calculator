@@ -26,6 +26,10 @@
 | `RegisterSW.tsx` | 서비스 워커 등록 | PWA 구현을 위한 `sw.js` 등록 로직 | |
 | `FAQ.tsx` | 공통 FAQ | 질문(Q)과 답변(A)을 상시 노출하는 카드 섹션 | [Common] |
 | `StockMoreCalculators.tsx` | 주식 메뉴 네비게이션 | 다른 주식 계산기 메뉴로의 이동 링크 제공 | [Stock Only] |
+| `FinanceMoreCalculators.tsx` | 금융 메뉴 네비게이션 | 다른 금융 계산기 메뉴로의 이동 링크 제공 | [Finance Only] |
+| `HealthMoreCalculators.tsx` | 건강 메뉴 네비게이션 | 다른 건강 계산기 메뉴로의 이동 링크 제공 | [Health Only] |
+| `LifeMoreCalculators.tsx` | 생활 메뉴 네비게이션 | 다른 생활 계산기 메뉴로의 이동 링크 제공 | [Life Only] |
+| `CalculatorTabs.tsx` | 카테고리 탭 | 메뉴 간 상단 이동 탭 구조 제공 | [Common] |
 
 ---
 
@@ -127,7 +131,29 @@
 
 ---
 
-## 6. 핵심 기술 로직
+## 6. 생활 계산기 모듈 (`app/calculator/life/`)
+
+### 6.1 나이 계산기 (`age/`)
+| 소스명 | 설명 | 주요 특징 |
+| :--- | :--- | :--- |
+| `page.tsx` | 나이 페이지 | SEO 및 JSON-LD 통합 |
+| `Age.tsx` | 계산기 본체 | 만/연/세는 나이 산출, 띠 정보(스크롤 가이드), 생애 마일스톤 시각화 |
+
+### 6.2 날짜 및 디데이 계산기 (`date/`, `d-day/`)
+| 소스명 | 설명 | 주요 특징 |
+| :--- | :--- | :--- |
+| `date/Date.tsx` | 날짜 계산기 | 시작/종료일 간 기간(일,주,월,년) 계산, 초일불산입 가이드 제공 |
+| `d-day/DDay.tsx` | 디데이 계산기 | 목표일 카운트다운(D-Day) 및 특정 일수 전/후 날짜 예측 |
+
+### 6.3 전역일 계산기 (`discharge-day/`)
+| 소스명 | 설명 | 주요 특징 |
+| :--- | :--- | :--- |
+| `page.tsx` | 전역일 페이지 | 군별 복무 정보 SEO 통합 |
+| `DischargeDay.tsx` | 계산기 본체 | 군별(육/해/공 등) 전역일 산출, 실시간 복무율 프로그레스 바, 진급 타임라인 제공 |
+
+---
+
+## 7. 핵심 기술 로직
 
 ### 5.1 하이브리드 및 한글 슬러그 파싱
 `[slug]/page.tsx`에서 사용되는 핵심 데이터 매핑 로직입니다.
@@ -146,6 +172,7 @@
 - **[2] 계산하기 후 화면 스크롤 (`useCalculatorScroll` Hook)**: `app/calculator/hooks/useCalculatorScroll.ts`를 도입하여 모든 계산기에서 '계산하기' 클릭 시 결과 영역(`id="result-section"`)으로 부드럽게 이동하는 피드백 표준을 확립했습니다.
 - **[3] 초기화(Reset) 후 상단 화면 스크롤**: 계산기 `handleReset` 수행 시 `window.scrollTo({ top: 0, behavior: "smooth" })`를 호출하여 사용자 뷰(화면)를 즉시 입력 폼 최상단으로 귀환시키는 직관적인 피드백을 확보했습니다.
 - **[4] 필수 입력 체크 공통화 (Validation)**: 필드 누락 시 컴포넌트 붉은 테두리 변화(`ring-red-500/20`), 흔들림 효과(`shake`), 하단 글로벌 에러 메시지 카드 출력을 3가지 상태(`errors`, `shakeField`, `errorMessage`)로 캡슐화하여 전역 규격화시켰습니다.
+- **[5] 하단 푸터 시퀀스 통합 (Fixed Footer)**: 모든 계산기의 절대 하단은 `[MoreCalculators] -> [InstallBanner]` 순서로 고정하여 서비스 순환과 앱 설치 전환율을 극대화합니다.
 - **액션 버튼 레이어 통일 (`CalculatorActions.tsx`)**: 복사/공유 UI 및 `copied`, `isSharing` 상태를 내부 통합하여 모든 계산기에서 완벽히 동일한 패턴과 레이아웃 일관성을 보증합니다.
 - **Bottom Sheet 구조화 및 상태 기반 피드백**: 모바일 환경 조작 경험을 위해 `alert` 대신 넌블로킹 상태 기반 피드백을 구현하며, ShareSheet는 `createPortal`을 사용해 언제나 뷰포트 최하단에 간섭 없이 부착됩니다.
 - **면책 조항 통일성**: 민감한 결괏값을 노출하는 설명창(`page.tsx`) 하단에는 경고 디자인 포맷(`bg-red-50 text-red-500`)의 면책 조항 카드를 강제 추가하여 사용자 안내 책임을 강화했습니다.

@@ -3,6 +3,7 @@ import UnemploymentBenefit from "./UnemploymentBenefit";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../utils/seo";
 import NavBar from "@/app/calculator/components/NavBar";
 import JobMoreCalculators from "@/app/calculator/components/JobMoreCalculators";
+import InstallBanner from "@/app/calculator/components/InstallBanner";
 import FAQ from "@/app/calculator/components/FAQ";
 
 const BASE_URL = "https://jiko.kr";
@@ -172,6 +173,7 @@ export default function UnemploymentBenefitPage() {
                 {/* FAQ 및 다른 계산기 */}
                 <FAQ faqList={unemploymentFaqs} />
                 <JobMoreCalculators />
+                <InstallBanner />
             </div>
         </main>
     );

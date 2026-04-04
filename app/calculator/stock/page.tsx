@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import NavBar from "@/app/calculator/components/NavBar";
+import InstallBanner from "@/app/calculator/components/InstallBanner";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../utils/seo";
 
 export const metadata: Metadata = {
@@ -74,7 +75,7 @@ export default function StockHubPage() {
                     ))}
                 </div>
 
-                <section className="mt-6 max-w-3xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-lg border border-gray-100 dark:border-gray-700 relative overflow-hidden">
+                <section className="mt-4 max-w-3xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/5 rounded-full -mr-24 -mt-24 blur-2xl"></div>
                     <div className="relative">
                         <h2 className="text-xl font-black text-gray-900 dark:text-white mb-5">JIKO 주식 계산기만의 특징</h2>
@@ -110,6 +111,7 @@ export default function StockHubPage() {
                         </ul>
                     </div>
                 </section>
+                <InstallBanner />
             </div>
         </main>
     );

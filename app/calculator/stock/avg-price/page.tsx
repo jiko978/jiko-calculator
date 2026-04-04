@@ -7,6 +7,7 @@ import AvgPriceCalculator from "./AvgPrice";
 import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../utils/seo";
 import StockMoreCalculators from "@/app/calculator/components/StockMoreCalculators";
+import InstallBanner from "@/app/calculator/components/InstallBanner";
 import FAQ from "@/app/calculator/components/FAQ";
 
 const BASE_URL = "https://jiko.kr";
@@ -177,6 +178,7 @@ export default function Page() {
 
                 {/* 주식 계산기 더 보기 */}
                 <StockMoreCalculators />
+                <InstallBanner />
             </main>
         </div>
     );

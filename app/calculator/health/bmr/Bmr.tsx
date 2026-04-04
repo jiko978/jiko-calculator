@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import InstallBanner from "@/app/calculator/components/InstallBanner";
 import CalculatorActions from "@/app/calculator/components/CalculatorActions";
 import CalculatorButtons from "@/app/calculator/components/CalculatorButtons";
 import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
@@ -248,7 +247,7 @@ export default function Bmr() {
                             }}
                         >
                             <div className="flex flex-col items-center">
-                                <span className="text-xs font-black text-red-600 dark:text-red-400 mb-1 bg-red-50 dark:bg-red-900/40 px-2 py-0.5 rounded-md border border-red-100 dark:border-red-800 shadow-sm whitespace-nowrap">
+                                <span className="text-xs font-black text-red-600 dark:text-blue-400 mb-1 bg-red-50 dark:bg-red-900/40 px-2 py-0.5 rounded-md border border-red-100 dark:border-red-800 shadow-sm whitespace-nowrap">
                                     나의 BMR : {resultBmr.toLocaleString()}
                                 </span>
                                 <div className="w-0.5 h-10 bg-red-500 relative">
@@ -310,8 +309,6 @@ export default function Bmr() {
                     * 보건복지부/한국영양학회 한국인 영양소 섭취기준 참고. 개인의 근육량, 체지방률, 활동량에 따라 실제 기초대사량은 차이가 있을 수 있습니다.
                 </p>
             </div>
-
-            <InstallBanner />
         </div>
     );
 }

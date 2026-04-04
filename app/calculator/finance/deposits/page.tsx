@@ -3,6 +3,7 @@ import Deposits from "./Deposits";
 import NavBar from "@/app/calculator/components/NavBar";
 import FAQ from "@/app/calculator/components/FAQ";
 import FinanceMoreCalculators from "@/app/calculator/components/FinanceMoreCalculators";
+import InstallBanner from "@/app/calculator/components/InstallBanner";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 
 const BASE_URL = "https://jiko.kr";
@@ -108,6 +109,7 @@ export default function DepositsPage() {
 
                 {/* 계산기 더 보기 */}
                 <FinanceMoreCalculators />
+                <InstallBanner />
             </div>
         </main>
     );

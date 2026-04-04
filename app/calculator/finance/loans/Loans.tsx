@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import { ANIMATION } from "@/app/config/animationConfig";
-import InstallBanner from "@/app/calculator/components/InstallBanner";
 import CalculatorActions from "@/app/calculator/components/CalculatorActions";
 import CalculatorButtons from "@/app/calculator/components/CalculatorButtons";
 import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
@@ -498,7 +497,6 @@ const Loans = ({ productName }: LoansProps) => {
 
                     </div>
                 )}
-                <InstallBanner />
             </div>
         </div>
     );

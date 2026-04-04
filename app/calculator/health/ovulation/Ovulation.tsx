@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import InstallBanner from "@/app/calculator/components/InstallBanner";
 import CalculatorActions from "@/app/calculator/components/CalculatorActions";
 import CalculatorButtons from "@/app/calculator/components/CalculatorButtons";
 import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
@@ -196,10 +195,6 @@ export default function Ovulation() {
                     )}
                 </div>
             </div>
-
-
-
-            <InstallBanner />
         </div>
     );
 }

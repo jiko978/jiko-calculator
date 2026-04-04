@@ -244,7 +244,10 @@ export default function Annual() {
                                 value={hireDate}
                                 max="9999-12-31"
                                 onChange={(e) => {
-                                    setHireDate(e.target.value);
+                                    const val = e.target.value;
+                                    const yearPart = val.split('-')[0];
+                                    if (yearPart && yearPart.length > 4) return;
+                                    setHireDate(val);
                                     setErrors(new Set());
                                     setErrorMessage("");
                                 }}
@@ -260,7 +263,10 @@ export default function Annual() {
                                 value={targetDate}
                                 max="9999-12-31"
                                 onChange={(e) => {
-                                    setTargetDate(e.target.value);
+                                    const val = e.target.value;
+                                    const yearPart = val.split('-')[0];
+                                    if (yearPart && yearPart.length > 4) return;
+                                    setTargetDate(val);
                                     setErrors(new Set());
                                     setErrorMessage("");
                                 }}

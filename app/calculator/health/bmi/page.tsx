@@ -4,6 +4,7 @@ import Bmi from "./Bmi";
 import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 import HealthMoreCalculators from "@/app/calculator/components/HealthMoreCalculators";
+import InstallBanner from "@/app/calculator/components/InstallBanner";
 import FAQ from "@/app/calculator/components/FAQ";
 
 const BASE_URL = "https://jiko.kr";
@@ -107,6 +108,7 @@ export default function Page() {
 
                 <FAQ faqList={faqList} />
                 <HealthMoreCalculators />
+                <InstallBanner />
             </main>
         </div>
     );

@@ -91,16 +91,13 @@ Tool Site.
 ㄴ [1차]임신주수(pregnancy) : 마지막 생리일/초음파/예정일 기반 주수 및 D-Day 확인
 
 
-생활(life)
 ㄴ [1차]나이(age) : 출생일 기준 년도별 나이
 ㄴㄴ 출생일 기준 만 나이/년 나이/세는 나이
 ㄴㄴ 출생일 기준 띠
-ㄴ [1차]날짜/디데이(date/d-day)
-ㄴㄴ 시작일 기준 카운트(0부터 시작) : D+* 표시
-ㄴㄴ 시작일 기준 일수(1부터 시작) : *일 표시
-ㄴㄴ 시작일 기준 주수(1부터 시작) : *주*일 표시
-ㄴㄴ 시작일 기준 월수(1부터 시작) : *월*주*일 표시
-ㄴㄴ 시작일 기준 년수(1부터 시작) : *년*월*주*일 표시
+ㄴ [1차]날짜(date) : 두 날짜 사이의 정확한 기간 계산 (일수, 주수, 월수, 년수 등)
+ㄴ [1차]디데이(d-day) : 특정 기념일까지의 남은 날짜 계산 및 기념일 타임라인 제공
+ㄴ [1차]전역일(discharge-day) : 군별(육/해/공/해병 등) 전역일 계산 및 실시간 복무율 시각화
+
 ㄴ [2차]단위(unit)
 ㄴㄴ 길이 : 네이버 참고
 ㄴㄴ 넓이 : 네이버 참고
@@ -113,7 +110,6 @@ Tool Site.
 ㄴㄴ 데이터 : 네이버 참고
 ㄴㄴ 시간 : 네이버 참고 
 ㄴ [2차]학점(grade)
-ㄴ [2차]전역일(discharge-date) : 네이버 참고
 
 
 세금(tax)
@@ -207,7 +203,12 @@ Tool Site.
 ㄴ app/calculator/components/CalculatorActions.tsx (결과 복사하기 및 공유하기 2분할 버튼)
 ㄴ app/calculator/components/CalculatorButtons.tsx (초기화 및 계산하기 공통 버튼)
 ㄴ app/calculator/components/FAQ.tsx (FAQ)
-ㄴ app/calculator/components/StockMoreCalculators.tsx (더 보기 등)
+ㄴ app/calculator/components/StockMoreCalculators.tsx (주식 카테고리 더 보기)
+ㄴ app/calculator/components/FinanceMoreCalculators.tsx (금융 카테고리 더 보기)
+ㄴ app/calculator/components/HealthMoreCalculators.tsx (건강 카테고리 더 보기)
+ㄴ app/calculator/components/LifeMoreCalculators.tsx (생활 카테고리 더 보기)
+ㄴ app/calculator/components/InstallBanner.tsx (앱 설치 유도 배너 - 최하단 고정)
+ㄴ app/calculator/components/CalculatorTabs.tsx (카테고리 내 메뉴 이동 탭)
 2. UI 및 기타 Hook 로직
 ㄴ app/calculator/hooks/useCalculatorScroll.ts (결과 화면 자동 스크롤 동기화)
 
@@ -241,7 +242,10 @@ Tool Site.
    - 입력 누락 시 해당 필드에 빨간색 테두리(`ring-2 ring-red-500/20`) 및 흔들림(`animate-[shake_0.5s_ease-in-out]`) 효과를 적용합니다.
    - 버튼 상단에 공통 에러 카드(`bg-red-50 ... animate-pulse`)를 출력합니다.
    - 텍스트 입력(`onChange`) 시 실시간으로 에러 값(`errors, errorMessage, shakeField`) 상태를 즉각 해제합니다.
-ㄴ [4] 공통 액션 버튼 (`CalculatorActions.tsx`) : "결과 복사하기/공유하기" 기능은 분할된 공통 컴포넌트를 사용해 캡슐화 및 디자인을 제한합니다.
+ㄴ [5] 하단 컴포넌트 배치 순서 (Standard Footer Sequence) : 
+   - 모든 계산기 페이지 하단은 반드시 `[카테고리별 MoreCalculators] -> [InstallBanner]` 순서로 배치하여 사용자 잔류 및 앱 설치를 유도합니다.
+ㄴ [6] 카테고리 탭 시스템 (CalculatorTabs.tsx) : 
+   - 생활, 직장 등 연관성이 높은 메뉴들은 상단에 탭을 배치하여 이질감 없는 이동 환경을 제공합니다.
 ㄴ [기본] 바탕 및 레이아웃 : 카드 UI(흰색 배경 + 라운드 처리), 다크모드(`dark:` 접두사), 버튼 Hover 디자인 통일.
 ㄴ [기본] 사용자 피드백 : 상태 알림은 alert 대신 State 기반 컴포넌트 시각적 전환 시스템을 채택하며, Bottom Sheet(`ShareSheet`)는 React Portal을 활용해 깊이(Depth) 문제를 원천 차단합니다.
 ㄴ [기본] 면책 조항 : 금융/주식 등 결괏값이 민감한 계산기 사이드 설명 창에는 붉은색 계열(`bg-red-50`) 면책 조항 박스를 강제 추가합니다.

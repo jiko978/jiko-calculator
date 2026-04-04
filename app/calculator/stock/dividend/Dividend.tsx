@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { ANIMATION } from "@/app/config/animationConfig";
-import InstallBanner from "@/app/calculator/components/InstallBanner";
 import CalculatorActions from "@/app/calculator/components/CalculatorActions";
 import CalculatorButtons from "@/app/calculator/components/CalculatorButtons";
 import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
@@ -263,7 +262,7 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
                         <CalculatorButtons 
                             onReset={handleReset} 
                             onCalculate={handleCalculate} 
-                            calculateText="배당 계산하기"
+                            calculateText="계산하기"
                         />
                         {errorMessage && (
                             <div className="w-full mt-2 bg-red-50 dark:bg-red-900/20 text-red-500 text-sm font-bold p-4 rounded-xl text-center border border-red-100 dark:border-red-800 animate-pulse">
@@ -362,7 +361,6 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
                         />
                     </div>
                 )}
-            <InstallBanner />
             </div>
     );
 }

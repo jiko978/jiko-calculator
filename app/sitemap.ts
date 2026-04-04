@@ -40,8 +40,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: "/calculator/health/ovulation", priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/health/pregnancy", priority: 0.8, changeFrequency: "monthly" as const },
 
-        // ── 생활(1) ──
+        // ── 생활(5) ──
+        { url: "/calculator/life",  priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/life/age",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/life/date",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/life/d-day",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/life/discharge-day",  priority: 0.8, changeFrequency: "monthly" as const },
 
         // ── policy(5) ──
         { url: "/policy/about", priority: 0.5, changeFrequency: "monthly" as const },

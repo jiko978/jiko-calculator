@@ -82,7 +82,10 @@ const services: Service[] = [
         bgColor: "bg-amber-50 dark:bg-amber-900/20",
         borderColor: "border-amber-100 dark:border-amber-800",
         links: [
-            { label: "서비스 준비 중", href: "#", disabled: true }
+            { label: "✔ 나이 계산기", href: "/calculator/health/age" },
+            { label: "✔ 날짜 계산기", href: "/calculator/health/date" },
+            { label: "✔ 디데이 계산기", href: "/calculator/health/d-day" },
+            { label: "✔ 전역일 계산기", href: "/calculator/health/discharge-day" }
         ]
     },
     {

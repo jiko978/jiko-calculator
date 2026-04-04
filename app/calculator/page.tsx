@@ -9,7 +9,7 @@ const mainCalculators = [
   { title: "💵 금융 계산기(3)", description: "예금 이자, 적금 이자, 대출 이자 계산기", href: "/calculator/finance" },
   { title: "💼 직장 계산기(7)", description: "연봉/월급, 실수령액, 퇴직금, 실업급여, 4대보험, 주휴수당, 연차 계산기", href: "/calculator/job" },
   { title: "💪 건강 계산기(5)", description: "비만도, 기초대사량, 칼로리, 배란일, 임신주수 계산기", href: "/calculator/health" },
-  { title: "🏠 생활 계산기(0)", description: "준비 중입니다.", href: "/calculator/life" },
+  { title: "🏠 생활 계산기(4)", description: "나이, 디데이, 날짜 수, 전역일 계산기 모음", href: "/calculator/life" },
   { title: "🧾 세금 계산기(0)", description: "준비 중입니다.", href: "/calculator/tax" },
   { title: "🏢 부동산 계산기(0)", description: "준비 중입니다.", href: "/calculator/real-estate" }
 ];

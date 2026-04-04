@@ -51,5 +51,8 @@ export const COMMON_BREADCRUMBS = {
 
     LIFE_HOME: { name: "생활 계산기", item: "/calculator/life" },
     AGE: { name: "나이 계산기", item: "/calculator/life/age" },
+    D_DAY: { name: "디데이 계산기", item: "/calculator/life/d-day" },
+    DATE: { name: "날짜 계산기", item: "/calculator/life/date" },
+    DISCHARGE_DAY: { name: "전역일 계산기", item: "/calculator/life/discharge-day" },
 };
 

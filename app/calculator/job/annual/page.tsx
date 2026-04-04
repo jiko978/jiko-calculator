@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Annual from './Annual';
 import FAQ from '@/app/calculator/components/FAQ';
 import JobMoreCalculators from '@/app/calculator/components/JobMoreCalculators';
+import InstallBanner from '@/app/calculator/components/InstallBanner';
 import NavBar from '@/app/calculator/components/NavBar';
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from '@/app/utils/seo';
 
@@ -138,6 +139,7 @@ export default function AnnualLeavePage() {
 
                 <FAQ faqList={faqData} />
                 <JobMoreCalculators />
+                <InstallBanner />
             </main>
         </div>
     );
