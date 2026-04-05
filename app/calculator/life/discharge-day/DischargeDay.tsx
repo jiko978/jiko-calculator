@@ -112,7 +112,7 @@ const DischargeDayCalculator = () => {
 
     const handleCopy = async () => {
         if (!resultData) return;
-        const text = `[🎖️ 전역일 계산 결과]\n입대일 : ${resultData.startDate}\n전역일 : ${resultData.dischargeDate}\n복무율 : ${resultData.progress}%\n남은일수 : ${resultData.remainingDays}일\n\n📌 JIKO 전역일 계산기에서 확인하기 : \nhttps://jiko.kr/calculator/life/discharge-day`;
+        const text = `[🪖 전역일 계산 결과]\n입대일 : ${resultData.startDate}\n전역일 : ${resultData.dischargeDate}\n복무율 : ${resultData.progress}%\n남은일수 : ${resultData.remainingDays}일\n\n📌 JIKO 전역일 계산기에서 확인하기 : \nhttps://jiko.kr/calculator/life/discharge-day`;
         await navigator.clipboard.writeText(text);
     };
 
@@ -121,7 +121,7 @@ const DischargeDayCalculator = () => {
             <div className={`max-w-3xl mx-auto px-4 py-8 pb-safe ${ANIMATION.pageEnter ? "animate-fade-in" : ""}`}>
 
                 <div className="flex flex-col items-center gap-3 mb-8">
-                    <div className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-semibold tracking-tight">🎖️ 전역일 계산기</div>
+                    <div className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-semibold tracking-tight">🪖 전역일 계산기</div>
                 </div>
 
                 <CalculatorTabs tabs={lifeTabs} />
@@ -216,7 +216,7 @@ const DischargeDayCalculator = () => {
                             </div>
                             <CalculatorActions
                                 onCopy={handleCopy}
-                                shareTitle={`[🎖️ 전역일 계산 결과] ${resultData.dischargeDate} 전역!`}
+                                shareTitle={`[🪖 전역일 계산 결과] ${resultData.dischargeDate} 전역!`}
                                 shareDescription={`현재 복무율은 ${resultData.progress}% 입니다.`}
                             />
                         </div>

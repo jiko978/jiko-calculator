@@ -5,13 +5,13 @@ import SiteQR from "./components/SiteQR";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../utils/seo";
 
 const mainCalculators = [
-  { title: "📈 주식 계산기(4)", description: "주식 물타기, 수익률, 배당금, 수수료 계산기", href: "/calculator/stock" },
-  { title: "💵 금융 계산기(3)", description: "예금 이자, 적금 이자, 대출 이자 계산기", href: "/calculator/finance" },
+  { title: "💵 금융 계산기(3)", description: "대출 이자, 예금 이자, 적금 이자 계산기", href: "/calculator/finance" },
   { title: "💼 직장 계산기(7)", description: "연봉/월급, 실수령액, 퇴직금, 실업급여, 4대보험, 주휴수당, 연차 계산기", href: "/calculator/job" },
-  { title: "💪 건강 계산기(5)", description: "비만도, 기초대사량, 칼로리, 배란일, 임신주수 계산기", href: "/calculator/health" },
-  { title: "🏠 생활 계산기(4)", description: "나이, 디데이, 날짜, 전역일 계산기", href: "/calculator/life" },
+  { title: "🏠 생활 계산기(4)", description: "나이, 날짜, 디데이, 전역일 계산기", href: "/calculator/life" },
+  { title: "💪 건강 계산기(5)", description: "비만도, 배란일, 기초대사량, 임신주수 , 칼로리 계산기", href: "/calculator/health" },
   { title: "🧾 세금 계산기(0)", description: "준비 중입니다.", href: "/calculator/tax" },
-  { title: "🏢 부동산 계산기(0)", description: "준비 중입니다.", href: "/calculator/real-estate" }
+  { title: "📈 주식 계산기(4)", description: "주식 물타기, 수익률, 수수료, 배당금 계산기", href: "/calculator/stock" },
+  { title: "🏢 부동산 계산기(1)", description: "DSR 계산기", href: "/calculator/real-estate" }
 ];
 
 export default function Home() {
@@ -26,14 +26,14 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
-      
+
       <div className="flex-grow px-4 py-6 w-full max-w-3xl mx-auto">
         {/* 상단 타이틀 섹션 */}
         <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">
           🧮 JIKO 계산기
         </h1>
         <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">
-          일상에 필요한 주식, 금융, 직장, 건강, 생활, 세금, 부동산 계산기를 한 곳에서 만나보세요.
+          일상에 필요한 금융, 직장, 생활, 건강, 세금, 주식, 부동산 계산기를 한 곳에서 만나보세요.
         </p>
 
         {/* 메뉴 그리드 */}

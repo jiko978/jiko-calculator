@@ -278,11 +278,16 @@ const Age = () => {
                         />
                     </div>
 
-                    <div className="pt-4 border-t border-gray-100 dark:border-gray-700">
+                    <div className="pt-4 border-t border-gray-100 dark:border-gray-700 text-center space-y-4">
                         <CalculatorButtons 
                             onReset={handleReset} 
                             onCalculate={handleCalculate} 
                         />
+                        {errorMessage && (
+                            <div className="bg-red-50 dark:bg-red-900/20 text-red-500 text-xs font-bold p-4 rounded-xl text-center border border-red-100 animate-pulse">
+                                🚨 {errorMessage}
+                            </div>
+                        )}
                     </div>
                 </div>
 

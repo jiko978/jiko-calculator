@@ -27,13 +27,13 @@ export default function Header() {
     };
 
     const navLinks = [
-        { href: "/calculator/stock", label: "📈 주식" },
         { href: "/calculator/finance", label: "💵 금융" },
         { href: "/calculator/job", label: "💼 직장" },
-        { href: "/calculator/health", label: "💪 건강" },
         { href: "/calculator/life", label: "🏠 생활" },
+        { href: "/calculator/health", label: "💪 건강" },
         { href: "/calculator/tax", label: "🧾 세금" },
-        { href: "/calculator/real-state", label: "🏢 부동산" },
+        { href: "/calculator/stock", label: "📈 주식" },
+        { href: "/calculator/real-estate", label: "🏢 부동산" },
     ];
 
     return (

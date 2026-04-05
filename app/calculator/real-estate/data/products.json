@@ -1,0 +1,58 @@
+[
+    {
+        "id": "dsr-mortgage",
+        "name": "주택담보대출DSR",
+        "slug": "주택담보대출DSR",
+        "keywords": ["주담대DSR", "주택담보대출한도", "DSR계산기"],
+        "category": "DSR"
+    },
+    {
+        "id": "dsr-credit",
+        "name": "신용대출DSR",
+        "slug": "신용대출DSR",
+        "keywords": ["마통DSR", "신용대출한도", "직장인DSR"],
+        "category": "DSR"
+    },
+    {
+        "id": "dsr-jeonse",
+        "name": "전세대출DSR",
+        "slug": "전세대출DSR",
+        "keywords": ["전세자금대출DSR", "전세한도계산"],
+        "category": "DSR"
+    },
+    {
+        "id": "dsr-car",
+        "name": "자동차담보대출DSR",
+        "slug": "자동차담보대출DSR",
+        "keywords": ["차담보DSR", "자동차한도", "중고차DSR"],
+        "category": "DSR"
+    },
+    {
+        "id": "dsr-deposit",
+        "name": "예적금담보대출DSR",
+        "slug": "예적금담보대출DSR",
+        "keywords": ["예금담보DSR", "적금한도"],
+        "category": "DSR"
+    },
+    {
+        "id": "dsr-insurance",
+        "name": "보험계약대출DSR",
+        "slug": "보험계약대출DSR",
+        "keywords": ["보험대출DSR", "약대DSR"],
+        "category": "DSR"
+    },
+    {
+        "id": "dsr-nonhouse",
+        "name": "비주택부동산담보대출DSR",
+        "slug": "비주택부동산담보대출DSR",
+        "keywords": ["상가DSR", "오피스텔한도", "토지DSR"],
+        "category": "DSR"
+    },
+    {
+        "id": "dsr-etc-mortgage",
+        "name": "기타담보대출DSR",
+        "slug": "기타담보대출DSR",
+        "keywords": ["기타담보DSR", "특수담보"],
+        "category": "DSR"
+    }
+]

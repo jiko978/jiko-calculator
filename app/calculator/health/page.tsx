@@ -17,24 +17,24 @@ const healthCalculators = [
         href: "/calculator/health/bmi",
     },
     {
-        title: "🔥 기초대사량 계산기",
-        description: "나이가 들수록 중요한 기초대사량! 숨만 쉬어도 소모되는 최소 에너지를 계산합니다.",
-        href: "/calculator/health/bmr",
-    },
-    {
-        title: "🏃‍♂️ 칼로리 계산기",
-        description: "평소 활동량을 고려한 하루 권장 섭취 칼로리와 유지 에너지를 정확히 산출합니다.",
-        href: "/calculator/health/calorie",
-    },
-    {
         title: "📅 배란일 계산기",
         description: "생리 주기와 마지막 생리일을 입력하여 배란 예정일과 가임기를 예측합니다.",
         href: "/calculator/health/ovulation",
     },
     {
+        title: "🔥 기초대사량 계산기",
+        description: "나이가 들수록 중요한 기초대사량! 숨만 쉬어도 소모되는 최소 에너지를 계산합니다.",
+        href: "/calculator/health/bmr",
+    },
+    {
         title: "👶 임신주수 계산기",
         description: "출산 예정일과 현재 임신 주수, 아기를 만나기까지의 D-Day를 확인하세요.",
         href: "/calculator/health/pregnancy",
+    },
+    {
+        title: "🏃‍♂️ 칼로리 계산기",
+        description: "평소 활동량을 고려한 하루 권장 섭취 칼로리와 유지 에너지를 정확히 산출합니다.",
+        href: "/calculator/health/calorie",
     },
 ];
 

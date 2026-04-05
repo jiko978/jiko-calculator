@@ -17,14 +17,14 @@ const lifeCalculators = [
         href: "/calculator/life/age",
     },
     {
-        title: "🕯️ 디데이 계산기",
-        description: "커플 기념일, 시험일 등 중요한 날까지 남은 기간을 계산하거나 특정 일수 전후의 날짜를 찾아드립니다.",
-        href: "/calculator/life/d-day",
-    },
-    {
         title: "📅 날짜 계산기",
         description: "두 날짜 사이의 정확한 일수, 주수, 개월수를 계산하고 주요 기념일 타임라인을 제공합니다.",
         href: "/calculator/life/date",
+    },
+    {
+        title: "🕯️ 디데이 계산기",
+        description: "커플 기념일, 시험일 등 중요한 날까지 남은 기간을 계산하거나 특정 일수 전후의 날짜를 찾아드립니다.",
+        href: "/calculator/life/d-day",
     },
     {
         title: "🪖 전역일 계산기",

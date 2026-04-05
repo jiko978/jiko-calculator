@@ -10,7 +10,7 @@ export default function LifeMoreCalculators() {
         { name: "나이 계산기", href: "/calculator/life/age", emoji: "🎂", description: "만 나이, 연 나이, 띠 정보 및 생애 마일스톤" },
         { name: "날짜 계산기", href: "/calculator/life/date", emoji: "📅", description: "두 날짜 사이의 정확한 기간 및 일수 계산" },
         { name: "디데이 계산기", href: "/calculator/life/d-day", emoji: "🕯️", description: "목표일까지 남은 날짜 및 기념일 확인" },
-        { name: "전역일 계산기", href: "/calculator/life/discharge-day", emoji: "🎖️", description: "군별 전역일 계산 및 실시간 복무율 확인" }
+        { name: "전역일 계산기", href: "/calculator/life/discharge-day", emoji: "🪖️", description: "군별 전역일 계산 및 실시간 복무율 확인" }
     ];
 
     // 현재 페이지는 정확히 일치할 때 제외

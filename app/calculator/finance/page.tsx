@@ -12,6 +12,11 @@ export const metadata: Metadata = {
 
 const financeCalculators = [
     {
+        title: "📊 대출 이자 계산기",
+        description: "원리금균등, 원금균등 등 상환 방식에 따른 월 납입액과 총 이자를 계산합니다.",
+        href: "/calculator/finance/loans",
+    },
+    {
         title: "🏦 예금 이자 계산기",
         description: "목돈을 예치했을 때 만기 시 받을 수 있는 이자와 수령액을 계산합니다.",
         href: "/calculator/finance/deposits",
@@ -20,11 +25,6 @@ const financeCalculators = [
         title: "💰 적금 이자 계산기",
         description: "매월 일정 금액을 저축하여 만기 시 받을 수 있는 이자와 수령액을 계산합니다.",
         href: "/calculator/finance/savings",
-    },
-    {
-        title: "📊 대출 이자 계산기",
-        description: "원리금균등, 원금균등 등 상환 방식에 따른 월 납입액과 총 이자를 계산합니다.",
-        href: "/calculator/finance/loans",
     },
 ];
 

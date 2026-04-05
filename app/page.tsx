@@ -26,26 +26,14 @@ type Service = {
 
 const services: Service[] = [
     {
-        title: "📈 주식",
-        href: "/calculator/stock",
-        bgColor: "bg-blue-50 dark:bg-blue-900/20",
-        borderColor: "border-blue-100 dark:border-blue-800",
-        links: [
-            { label: "💧 주식 물타기 계산기", href: "/calculator/stock/avg-price" },
-            { label: "💰 주식 수익률 계산기", href: "/calculator/stock/profit-rate" },
-            { label: "💸 주식 배당금 계산기", href: "/calculator/stock/dividend" },
-            { label: "💳️️ 주식 수수료 계산기", href: "/calculator/stock/fee" }
-        ]
-    },
-    {
         title: "💵 금융",
         href: "/calculator/finance",
         bgColor: "bg-green-50 dark:bg-green-900/20",
         borderColor: "border-green-100 dark:border-green-800",
         links: [
+            { label: "📊 대출 이자 계산기", href: "/calculator/finance/loans" },
             { label: "🏦 예금 이자 계산기", href: "/calculator/finance/deposits" },
-            { label: "💰 적금 이자 계산기", href: "/calculator/finance/savings" },
-            { label: "📊 대출 이자 계산기", href: "/calculator/finance/loans" }
+            { label: "💰 적금 이자 계산기", href: "/calculator/finance/savings" }
         ]
     },
     {
@@ -64,19 +52,6 @@ const services: Service[] = [
         ]
     },
     {
-        title: "💪 건강",
-        href: "/calculator/health",
-        bgColor: "bg-rose-50 dark:bg-rose-900/20",
-        borderColor: "border-rose-100 dark:border-rose-800",
-        links: [
-            { label: "⚖️ 비만도 계산기", href: "/calculator/health/bmi" },
-            { label: "🔥 기초대사량 계산기", href: "/calculator/health/bmr" },
-            { label: "🏃‍♂️ 칼로리 계산기", href: "/calculator/health/calorie" },
-            { label: "📅 배란일 계산기", href: "/calculator/health/ovulation" },
-            { label: "👶 임신주수 계산기", href: "/calculator/health/pregnancy" }
-        ]
-    },
-    {
         title: "🏠 생활",
         href: "/calculator/life",
         bgColor: "bg-amber-50 dark:bg-amber-900/20",
@@ -85,7 +60,20 @@ const services: Service[] = [
             { label: "🎂 나이 계산기", href: "/calculator/health/age" },
             { label: "📅 날짜 계산기", href: "/calculator/health/date" },
             { label: "🕯️ 디데이 계산기", href: "/calculator/health/d-day" },
-            { label: "🎖️ 전역일 계산기", href: "/calculator/health/discharge-day" }
+            { label: "🪖 전역일 계산기", href: "/calculator/health/discharge-day" },
+        ]
+    },
+    {
+        title: "💪 건강",
+        href: "/calculator/health",
+        bgColor: "bg-rose-50 dark:bg-rose-900/20",
+        borderColor: "border-rose-100 dark:border-rose-800",
+        links: [
+            { label: "⚖️ 비만도 계산기", href: "/calculator/health/bmi" },
+            { label: "📅 배란일 계산기", href: "/calculator/health/ovulation" },
+            { label: "🔥 기초대사량 계산기", href: "/calculator/health/bmr" },
+            { label: "👶 임신주수 계산기", href: "/calculator/health/pregnancy" },
+            { label: "🏃‍♂️ 칼로리 계산기", href: "/calculator/health/calorie" },
         ]
     },
     {
@@ -98,12 +86,24 @@ const services: Service[] = [
         ]
     },
     {
+        title: "📈 주식",
+        href: "/calculator/stock",
+        bgColor: "bg-blue-50 dark:bg-blue-900/20",
+        borderColor: "border-blue-100 dark:border-blue-800",
+        links: [
+            { label: "💧 주식 물타기 계산기", href: "/calculator/stock/avg-price" },
+            { label: "💰 주식 수익률 계산기", href: "/calculator/stock/profit-rate" },
+            { label: "💳️️ 주식 수수료 계산기", href: "/calculator/stock/fee" },
+            { label: "💸 주식 배당금 계산기", href: "/calculator/stock/dividend" },
+        ]
+    },
+    {
         title: "🏢 부동산",
         href: "/calculator/real-estate",
         bgColor: "bg-amber-50 dark:bg-amber-900/20",
         borderColor: "border-amber-100 dark:border-amber-800",
         links: [
-            { label: "서비스 준비 중", href: "#", disabled: true }
+            { label: "📊 DSR 계산기", href: "/calculator/real-estate/dsr" },
         ]
     }
 ];
@@ -132,7 +132,7 @@ export default function Home() {
                             </Link>
                         </h1>
                         <p className="text-sm font-bold md:text-xl text-gray-600 dark:text-gray-300">
-                            일상에 필요한 주식, 금융, 직장, 건강, 생활, 세금, 부동산 계산기를 한 곳에서 만나보세요.
+                            일상에 필요한 금융, 직장, 생활, 건강, 세금, 주식, 부동산 계산기를 한 곳에서 만나보세요.
                         </p>
                     </div>
 

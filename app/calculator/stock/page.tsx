@@ -22,14 +22,14 @@ const stockCalculators = [
         href: "/calculator/stock/profit-rate",
     },
     {
-        title: "💸 주식 배당금 계산기",
-        description: "보유 주식수와 배당금을 입력하면 배당수익률 및 실수령액을 계산합니다.",
-        href: "/calculator/stock/dividend",
-    },
-    {
         title: "💳️ 주식 수수료 계산기",
         description: "매매 수수료와 세금을 반영한 실제 거래 비용과 순이익을 계산합니다.",
         href: "/calculator/stock/fee",
+    },
+    {
+        title: "💸 주식 배당금 계산기",
+        description: "보유 주식수와 배당금을 입력하면 배당수익률 및 실수령액을 계산합니다.",
+        href: "/calculator/stock/dividend",
     },
 ];
 
