@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image"
 
 export const metadata: Metadata = {
     title: "About | JIKO Platform",
@@ -43,14 +44,24 @@ export default function AboutPage() {
                 <h2 className="text-xl font-semibold mt-12 text-gray-900 dark:text-gray-100 border-b border-gray-100 dark:border-gray-700 pb-2">우리의 서비스</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-1 gap-4 mt-4">
                     <div className="group p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all hover:shadow-md">
-                        <h3 className="font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2 mb-3">
-                            <span className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg text-lg">🧮</span> JIKO 계산기
-                        </h3>
+                        {/* 로고 */}
+                        <div className="text-sm font-bold">
+                            <Link href="/calculator" className="hover:text-red-500 flex items-center gap-1">
+                                <Image
+                                    src="/icons/icon-512x512.png"
+                                    alt="JIKO 계산기 로고"
+                                    width={30}
+                                    height={30}
+                                    className="mr-3"
+                                />
+                                JIKO 계산기
+                            </Link>
+                        </div>
                         <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
-                            연봉/월급, 실수령액, 퇴직금 등 <strong>세무/직장</strong> 영역부터 주식 평단가, 수익률 등 <strong>금융/재테크</strong>까지 흩어져 있는 모든 수식을 한 곳에 모았습니다.
+                            일상에서 필요한 금융, 직장, 생활, 건강, 세금, 주식, 부동산 계산기를 한 곳에 모았습니다.
                         </p>
                         <div className="mt-4 flex flex-wrap gap-2">
-                            {['주식', '금융', '직장', '건강', '생활', '세금', '부동산'].map(tag => (
+                            {['금융', '직장', '생활', '건강', '세금', '주식', '부동산'].map(tag => (
                                 <span key={tag} className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-400 rounded text-[10px] font-bold">#{tag}</span>
                             ))}
                         </div>

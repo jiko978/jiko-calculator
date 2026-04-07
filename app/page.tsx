@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PlatformQR from "./components/PlatformQR";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "./utils/seo";
+import Image from "next/image"
 
 export const metadata: Metadata = {
     title: "JIKO Platform - JIKO 계산기 | 다양한 계산기와 투자 도구를 제공하는 JIKO Platform 입니다.",
@@ -127,8 +128,15 @@ export default function Home() {
                     {/* 메인 타이틀 영역 */}
                     <div className="text-center mb-14 space-y-4">
                         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-                            <Link href="/calculator" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                                🧮 JIKO 계산기
+                            <Link href="/calculator" className="hover:text-red-500 flex items-center justify-center gap-1">
+                                <Image
+                                    src="/icons/icon-512x512.png"
+                                    alt="JIKO 계산기 로고"
+                                    width={30}
+                                    height={30}
+                                    className="mr-3 items-center"
+                                />
+                                JIKO 계산기
                             </Link>
                         </h1>
                         <p className="text-sm font-bold md:text-xl text-gray-600 dark:text-gray-300">

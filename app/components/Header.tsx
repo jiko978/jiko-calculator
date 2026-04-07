@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 export default function Header() {
     const [isDark, setIsDark] = useState(() => {
@@ -26,13 +25,13 @@ export default function Header() {
     };
 
     const navLinks = [
-        { href: "/calculator", label: "📊 JIKO 계산기" },
+        { href: "/calculator", label: "JIKO 계산기", icon: "/icons/icon-512x512.png" },
     ];
 
     return (
         <header className="w-full bg-blue-600 text-white shadow-sm border-b border-gray-700 transition-colors">
             <div className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
-                
+
                 {/* 로고 영역 */}
                 <div className="text-lg font-bold tracking-tight shrink-0 flex items-center gap-2">
                     <Link href="/" className="hover:text-blue-400 flex items-center gap-2">
@@ -43,7 +42,10 @@ export default function Header() {
                 {/* 데스크탑 Nav */}
                 <nav className="hidden md:flex gap-6 items-center text-sm font-medium">
                     {navLinks.map((link) => (
-                        <Link key={link.label} href={link.href} className="hover:text-blue-300 transition-colors">
+                        <Link key={link.href} href={link.href} className="hover:text-blue-300 transition-colors flex items-center gap-1.5">
+                            {link.icon && (
+                                <img src={link.icon} alt="" width={24} height={24} />
+                            )}
                             {link.label}
                         </Link>
                     ))}
@@ -77,11 +79,14 @@ export default function Header() {
                 <div className="md:hidden mt-4 pt-4 border-t flex flex-col gap-4 text-sm font-medium max-w-5xl mx-auto">
                     {navLinks.map((link) => (
                         <Link
-                            key={link.label}
+                            key={link.href}
                             href={link.href}
-                            className="block hover:text-blue-300 pl-2"
+                            className="flex items-center gap-1.5 hover:text-blue-300 pl-2"
                             onClick={() => setMenuOpen(false)}
                         >
+                            {link.icon && (
+                                <img src={link.icon} alt="" width={24} height={24} />
+                            )}
                             {link.label}
                         </Link>
                     ))}

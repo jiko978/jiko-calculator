@@ -43,14 +43,14 @@ export default function Header() {
                 {/* 로고 */}
                 <div className="text-sm font-bold">
                     <Link href="/calculator" className="hover:text-red-500 flex items-center gap-1">
-                        JIKO 계산기
                         <Image
                             src="/icons/icon-512x512.png"
                             alt="JIKO 계산기 로고"
-                            width={30}
-                            height={30}
+                            width={24}
+                            height={24}
                             className="mr-3"
                         />
+                        JIKO 계산기
                     </Link>
                 </div>
 

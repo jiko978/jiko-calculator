@@ -3,6 +3,7 @@
 import Link from "next/link";
 import SiteQR from "./components/SiteQR";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../utils/seo";
+import Image from "next/image"
 
 const mainCalculators = [
   { title: "💵 금융 계산기(3)", description: "대출 이자, 예금 이자, 적금 이자 계산기", href: "/calculator/finance" },
@@ -30,7 +31,16 @@ export default function Home() {
       <div className="flex-grow px-4 py-6 w-full max-w-3xl mx-auto">
         {/* 상단 타이틀 섹션 */}
         <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">
-          🧮 JIKO 계산기
+          <Link href="/calculator" className="hover:text-red-500 flex items-center justify-center gap-1">
+            <Image
+                src="/icons/icon-512x512.png"
+                alt="JIKO 계산기 로고"
+                width={30}
+                height={30}
+                className="mr-3 items-center"
+            />
+            JIKO 계산기
+          </Link>
         </h1>
         <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">
           일상에 필요한 금융, 직장, 생활, 건강, 세금, 주식, 부동산 계산기를 한 곳에서 만나보세요.
