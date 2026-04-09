@@ -129,7 +129,7 @@ const DDayCalculator = () => {
 
     const handleCopy = async () => {
         if (!resultData) return;
-        const text = `[🕯️ 디데이 계산기 결과]\n기준일 : ${resultData.baseDate}\n목표일 : ${resultData.mainResultSubText} ${resultData.mainResultText}\n\n📌 JIKO 디데이 계산기에서 확인하기 : \nhttps://jiko.kr/calculator/life/d-day`;
+        const text = `[🕯️ 디데이 계산 결과]\n기준일 : ${resultData.baseDate}\n목표일 : ${resultData.mainResultSubText} ${resultData.mainResultText}\n\n📌 JIKO 디데이 계산기에서 확인하기 : \nhttps://jiko.kr/calculator/life/d-day`;
         await navigator.clipboard.writeText(text);
     };
 

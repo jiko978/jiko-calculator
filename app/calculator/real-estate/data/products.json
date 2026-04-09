@@ -21,6 +21,20 @@
         "category": "DSR"
     },
     {
+        "id": "dti-mortgage",
+        "name": "주택담보대출DTI",
+        "slug": "주택담보대출DTI",
+        "keywords": ["주담대DTI", "DTI계산기", "대출한도측정"],
+        "category": "DTI"
+    },
+    {
+        "id": "newdti-mortgage",
+        "name": "주택담보대출신DTI",
+        "slug": "주택담보대출신DTI",
+        "keywords": ["신DTI계산기", "다주택자DTI", "강화된DTI"],
+        "category": "NEWDTI"
+    },
+    {
         "id": "dsr-car",
         "name": "자동차담보대출DSR",
         "slug": "자동차담보대출DSR",

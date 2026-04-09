@@ -5,20 +5,15 @@ import InstallBanner from "@/app/calculator/components/InstallBanner";
 import FAQ from "@/app/calculator/components/FAQ";
 import NavBar from "@/app/calculator/components/NavBar";
 
+import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
+
+const BASE_URL = "https://jiko.kr";
+
 export const metadata: Metadata = {
     title: "DSR 계산기 | 총부채원리금상환비율 및 스트레스 DSR 한도 계산 - JIKO",
     description: "2025 최신 규제 반영! 연소득 대비 대출 원리금 상환액 비율(DSR)과 스트레스 DSR 단계별 한도, 추가 대출 가능액을 정밀하게 계산해 보세요.",
-    keywords: ["DSR계산기", "총부채원리금상환비율", "스트레스DSR", "대출한도계산", "부동산대출규제", "신용대출DSR"]
-};
-
-const COMMON_BREADCRUMBS = {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://jiko.kr" },
-        { "@type": "ListItem", "position": 2, "name": "계산기", "item": "https://jiko.kr/calculator" },
-        { "@type": "ListItem", "position": 3, "name": "부동산 계산기", "item": "https://jiko.kr/calculator/real-estate/dsr" },
-        { "@type": "ListItem", "position": 4, "name": "DSR 계산기" }
-    ]
+    keywords: ["DSR계산기", "총부채원리금상환비율", "스트레스DSR", "대출한도계산", "부동산대출규제", "신용대출DSR"],
+    alternates: { canonical: `${BASE_URL}/calculator/real-estate/dsr` },
 };
 
 const DSR_SCHEMA = {
@@ -47,9 +42,16 @@ const faqData = [
 ];
 
 export default function DsrPage() {
+    const breadcrumbLd = generateBreadcrumbJsonLd([
+        COMMON_BREADCRUMBS.HOME,
+        COMMON_BREADCRUMBS.CALC_HOME,
+        COMMON_BREADCRUMBS.REAL_ESTATE_HOME,
+        { name: "DSR 계산기", item: `${BASE_URL}/calculator/real-estate/dsr` }
+    ]);
+
     return (
-        <main>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(COMMON_BREADCRUMBS) }} />
+        <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(DSR_SCHEMA) }} />
 
             <NavBar title="📊 DSR 계산기" description="총부채원리금상환비율 및 대출 한도 분석 - JIKO" />
@@ -63,7 +65,7 @@ export default function DsrPage() {
                         <span className="w-2 h-6 bg-blue-600 rounded-full"></span>
                         DSR 및 스트레스 DSR 상식
                     </h2>
-                    
+
                     <div className="space-y-6">
                         <div className="p-5 bg-gray-50 dark:bg-gray-900/50 rounded-2xl border border-gray-100 dark:border-gray-700/50">
                             <p className="text-base font-black text-gray-800 dark:text-gray-200 mb-2 leading-relaxed">💡 DSR 부채산정 방식의 변화</p>
@@ -75,7 +77,7 @@ export default function DsrPage() {
                         </div>
 
                         <div className="p-5 bg-red-50 dark:bg-red-900/20 rounded-2xl border border-red-100 dark:border-red-900/30">
-                            <p className="text-sm font-black text-red-600 dark:text-red-400 mb-2 leading-relaxed">⚠️ 주의사항 (면책 조항)</p>
+                            <p className="text-base font-black text-red-600 dark:text-red-400 mb-2 leading-relaxed">⚠️ 주의사항 (면책 조항)</p>
                             <p className="text-xs text-red-500 dark:text-red-400/80 leading-relaxed font-bold tracking-tight">
                                 금융당국의 지침은 원론적인 규칙이며, 실제 대출 가능 여부와 한도는 각 은행의 심사 기준 및 대출 시점의 정책 변화에 따라 달라질 수 있습니다. 정확한 상담은 반드시 해당 금융기관을 통해 확인하시기 바랍니다.
                             </p>
@@ -88,11 +90,11 @@ export default function DsrPage() {
                 </div>
 
                 <RealEstateMoreCalculators />
-                
+
                 <div className="mt-4">
                     <InstallBanner />
                 </div>
             </div>
-        </main>
+        </div>
     );
 }

@@ -105,6 +105,8 @@ const services: Service[] = [
         borderColor: "border-amber-100 dark:border-amber-800",
         links: [
             { label: "📊 DSR 계산기", href: "/calculator/real-estate/dsr" },
+            { label: "🏢 신DTI 계산기", href: "/calculator/real-estate/new-dti" },
+            { label: "📉 DTI 계산기", href: "/calculator/real-estate/dti" },
         ]
     }
 ];

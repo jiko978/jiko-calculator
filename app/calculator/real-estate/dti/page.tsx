@@ -1,0 +1,60 @@
+import type { Metadata } from "next";
+import RealEstateMoreCalculators from "@/app/calculator/components/RealEstateMoreCalculators";
+import InstallBanner from "@/app/calculator/components/InstallBanner";
+import DtiCalculator from "./Dti";
+import NavBar from "@/app/calculator/components/NavBar";
+import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
+import FAQ from "@/app/calculator/components/FAQ";
+
+const BASE_URL = "https://jiko.kr";
+
+export const metadata: Metadata = {
+    title: "DTI 계산기 | 총부채상환비율 대출 한도 계산 - JIKO 계산기",
+    description: "내 연소득에 맞는 대출 한도는? 주택담보대출의 원리금과 기존 대출의 이자를 합산하여 DTI를 정밀하게 계산하고 추가 대출 여력을 확인하세요.",
+    keywords: ["DTI계산기", "총부채상환비율", "부동산대출한도", "주담대DTI", "JIKO계산기"],
+    alternates: { canonical: `${BASE_URL}/calculator/real-estate/dti` },
+};
+
+const faqList = [
+    {
+        question: "DTI와 DSR의 가장 큰 차이점은 무엇인가요?",
+        answer: "DTI는 '기존 대출의 이자'만 부채로 합산하지만, DSR은 '기존 대출의 이자와 원금'을 모두 부채로 합산합니다. 따라서 보통 DSR이 더 엄격한 기준이 됩니다."
+    },
+    {
+        question: "연소득 증빙이 어려운 경우는 어떻게 하나요?",
+        answer: "근로소득 외에 카드 사용액, 건강보험료 납부액 등으로 환산 소득을 인정받을 수 있습니다. JIKO 계산기는 증빙 가능한 정보를 기준으로 입력하시길 권장합니다."
+    }
+];
+
+export default function DtiPage() {
+    const breadcrumbLd = generateBreadcrumbJsonLd([
+        COMMON_BREADCRUMBS.HOME,
+        COMMON_BREADCRUMBS.CALC_HOME,
+        COMMON_BREADCRUMBS.REAL_ESTATE_HOME,
+        { name: "DTI 계산기", item: `${BASE_URL}/calculator/real-estate/dti` }
+    ]);
+
+    return (
+        <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+
+            <NavBar title="DTI 계산기" description="소득 대비 적정 부채 상환 능력 확인" position="top" />
+            <DtiCalculator />
+
+            <main className="max-w-3xl mx-auto px-4 pb-16 space-y-4 mt-4">
+                <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                        <span className="text-2xl">📊</span> DTI 계산 상식 가이드
+                    </h1>
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
+                        <strong>DTI(Debt to Income)</strong>는 총부채상환비율로, 차주의 연간 소득에서 부채 상환액이 차지하는 비중을 말합니다. 주택담보대출의 경우 원리금 전체를 합산하고, 신용대출 등 기타 대출은 <strong>이자 상환액</strong>만 합산하는 것이 특징입니다.
+                    </p>
+                </section>
+
+                <FAQ faqList={faqList} />
+                <RealEstateMoreCalculators />
+                <InstallBanner />
+            </main>
+        </div>
+    );
+}

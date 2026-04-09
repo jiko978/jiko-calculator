@@ -5,6 +5,7 @@ import { ANIMATION } from "@/app/config/animationConfig";
 import CalculatorActions from "@/app/calculator/components/CalculatorActions";
 import CalculatorButtons from "@/app/calculator/components/CalculatorButtons";
 import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
+import CalculatorTabs from "@/app/calculator/components/CalculatorTabs";
 
 type LoanType = "MORTGAGE" | "CREDIT" | "JEONSE" | "CAR" | "DEPOSIT" | "INSURANCE" | "INTERIM" | "NON_HOUSE" | "SECURITY" | "CARD" | "ETC_MORTGAGE" | "ETC_SECURITY" | "ETC";
 type RepaymentMethod = "EQU_AMOUNT" | "EQU_PRINCIPAL" | "MATURITY";
@@ -12,6 +13,11 @@ type InterestType = "VARIABLE" | "MIXED" | "PERIODIC";
 type StressPhase = 0 | 1 | 2 | 3;
 
 const DsrCalculator = () => {
+    const realEstateTabs = [
+        { label: "DSR 계산기", href: "/calculator/real-estate/dsr" },
+        { label: "신DTI 계산기", href: "/calculator/real-estate/new-dti" },
+        { label: "DTI 계산기", href: "/calculator/real-estate/dti" },
+    ];
     // 기본 입력 상태
     const [salary, setSalary] = useState<string>("50000000"); // 연소득
     const [loanType, setLoanType] = useState<LoanType>("MORTGAGE"); // 대출종류
@@ -20,10 +26,10 @@ const DsrCalculator = () => {
     const [termUnit, setTermUnit] = useState<"month" | "year">("year");
     const [interest, setInterest] = useState<string>("4.5"); // 금리(%)
     const [method, setMethod] = useState<RepaymentMethod>("EQU_AMOUNT"); // 상환방식
-    
+
     // 보유 대출 상태
     const [existingRepayment, setExistingRepayment] = useState<string>("0"); // 기존 대출 연간 원리금 합계
-    
+
     // 스트레스 DSR 옵션
     const [phase, setPhase] = useState<StressPhase>(2); // 현재 2단계 기준
     const [isMetropolitan, setIsMetropolitan] = useState<boolean>(true); // 수도권 여부
@@ -78,15 +84,15 @@ const DsrCalculator = () => {
         setErrors(new Set());
 
         // 스트레스 가산 금리 로직 (유형별 정밀 산출)
-        let baseStressRate = 1.50; 
+        let baseStressRate = 1.50;
         let phaseRatio = phase === 1 ? 0.25 : phase === 2 ? 0.50 : phase === 3 ? 1.00 : 0;
-        
+
         if (phase === 2 && isMetropolitan) baseStressRate = 2.40;
         if (phase === 2 && !isMetropolitan) baseStressRate = 1.50;
 
         let typeWeight = interestType === "VARIABLE" ? 1.0 : interestType === "MIXED" ? 0.6 : 0.3;
         const stressRate = baseStressRate * phaseRatio * typeWeight;
-        
+
         const totalInterest = interestV + stressRate;
         const r = totalInterest / 100 / 12;
         const n = totalMonths;
@@ -97,7 +103,7 @@ const DsrCalculator = () => {
             annualNewRepayment = monthly * 12;
         } else if (method === "EQU_PRINCIPAL") {
             const firstMonth = (principalV / n) + (principalV * r);
-            const twelfthMonth = (principalV / n) + ((principalV - (principalV/n*11)) * r);
+            const twelfthMonth = (principalV / n) + ((principalV - (principalV / n * 11)) * r);
             annualNewRepayment = ((firstMonth + twelfthMonth) / 2) * 12;
         } else {
             annualNewRepayment = principalV * (interestV / 100);
@@ -145,7 +151,7 @@ const DsrCalculator = () => {
 
     const handleCopy = async () => {
         if (!resultData) return;
-        const text = `[📊 DSR 분석 결과]\nDSR 스코어 : ${resultData.dsrScore}%\n연소득 : ${formatNumber(Number(salary))}원\n최대 추가 대출 한도 : ${formatNumber(resultData.maxAdditionalLoan)}원\n\n📌 JIKO 부동산 계산기에서 확인하기:\nhttps://jiko.kr/calculator/real-estate/dsr`;
+        const text = `[📊 DSR 계산 결과]\nDSR 스코어 : ${resultData.dsrScore}%\n연소득 : ${formatNumber(Number(salary))}원\n최대 추가 대출 한도 : ${formatNumber(resultData.maxAdditionalLoan)}원\n\n📌 JIKO 부동산 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/real-estate/dsr`;
         await navigator.clipboard.writeText(text);
     };
 
@@ -179,27 +185,31 @@ const DsrCalculator = () => {
         { id: "ETC", label: "기타대출" }
     ];
 
-    const amountButtons = [1000000, 3000000, 5000000, 10000000, 30000000, 50000000];
-    const principalButtons = [1000000, 10000000, 50000000, 100000000, 300000000, 500000000];
+    const amountButtons = [1000000, 3000000, 5000000, 10000000, 30000000, 50000000, 100000000];
+    const principalButtons = [1000000, 5000000, 10000000, 50000000, 100000000, 500000000];
 
     const formatBtnLabel = (val: number) => {
         if (val >= 100000000) return `${val / 100000000}억`;
+        if (val >= 10000000) return `${val / 10000000}천`;
+        if (val >= 1000000) return `${val / 1000000}백`;
         return `${val / 10000}`;
     };
 
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen border-t border-gray-100 dark:border-gray-800">
             <div className={`max-w-3xl mx-auto px-4 py-8 pb-safe ${ANIMATION.pageEnter ? "animate-fade-in" : ""}`}>
-                
+
                 <div className="flex flex-col items-center gap-3 mb-8">
                     <div className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full text-sm font-semibold tracking-tight">📊 DSR 계산기</div>
                 </div>
 
+                <CalculatorTabs tabs={realEstateTabs} />
+
                 <div className="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700/50 space-y-6">
-                    
+
                     <div className="space-y-3">
                         <label className="text-sm font-bold text-gray-700 dark:text-gray-200 ml-1">대출 구분</label>
-                        <select 
+                        <select
                             value={loanType}
                             onChange={(e) => { setLoanType(e.target.value as LoanType); setCalculated(false); }}
                             className="w-full h-14 px-4 font-bold bg-gray-50 dark:bg-gray-900/50 border-2 border-gray-100 dark:border-gray-700 rounded-2xl focus:border-emerald-500 transition-all outline-none appearance-none cursor-pointer"
@@ -223,7 +233,7 @@ const DsrCalculator = () => {
                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 font-bold text-gray-400 text-sm">원</span>
                             </div>
                             <div className="flex flex-wrap gap-1.5 mt-2">
-                                <button onClick={() => {setSalary(""); setCalculated(false);}} className="px-3 py-1.5 text-xs font-black bg-rose-50 dark:bg-rose-900/20 text-rose-500 border border-rose-100 dark:border-rose-800 rounded-xl hover:bg-rose-100">C</button>
+                                <button onClick={() => { setSalary(""); setCalculated(false); }} className="px-3 py-1.5 text-xs font-black bg-rose-50 dark:bg-rose-900/20 text-rose-500 border border-rose-100 dark:border-rose-800 rounded-xl hover:bg-rose-100">C</button>
                                 {amountButtons.map(v => (
                                     <button key={v} onClick={() => addValue(setSalary, salary, v)} className="px-3 py-1.5 text-xs font-semibold bg-gray-100 dark:bg-gray-700 hover:bg-emerald-50 text-gray-600 dark:text-gray-300 hover:text-emerald-600 rounded-xl transition-all active:scale-95">+{formatBtnLabel(v)}</button>
                                 ))}
@@ -244,7 +254,7 @@ const DsrCalculator = () => {
                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 font-bold text-gray-400 text-sm">원</span>
                             </div>
                             <div className="flex flex-wrap gap-1.5 mt-2">
-                                <button onClick={() => {setExistingRepayment(""); setCalculated(false);}} className="px-3 py-1.5 text-xs font-black bg-rose-50 dark:bg-rose-900/20 text-rose-500 border border-rose-100 dark:border-rose-800 rounded-xl hover:bg-rose-100">C</button>
+                                <button onClick={() => { setExistingRepayment(""); setCalculated(false); }} className="px-3 py-1.5 text-xs font-black bg-rose-50 dark:bg-rose-900/20 text-rose-500 border border-rose-100 dark:border-rose-800 rounded-xl hover:bg-rose-100">C</button>
                                 {amountButtons.map(v => (
                                     <button key={v} onClick={() => addValue(setExistingRepayment, existingRepayment, v)} className="px-3 py-1.5 text-xs font-semibold bg-gray-100 dark:bg-gray-700 hover:bg-emerald-50 text-gray-600 dark:text-gray-300 hover:text-emerald-600 rounded-xl transition-all active:scale-95">+{formatBtnLabel(v)}</button>
                                 ))}
@@ -268,7 +278,7 @@ const DsrCalculator = () => {
                                     <span className="absolute right-4 top-1/2 -translate-y-1/2 font-bold text-gray-400 text-sm">원</span>
                                 </div>
                                 <div className="flex flex-wrap gap-1.5 mt-2">
-                                    <button onClick={() => {setPrincipal(""); setCalculated(false);}} className="px-3 py-1.5 text-xs font-black bg-rose-50 dark:bg-rose-900/20 text-rose-500 border border-rose-100 dark:border-rose-800 rounded-xl hover:bg-rose-100">C</button>
+                                    <button onClick={() => { setPrincipal(""); setCalculated(false); }} className="px-3 py-1.5 text-xs font-black bg-rose-50 dark:bg-rose-900/20 text-rose-500 border border-rose-100 dark:border-rose-800 rounded-xl hover:bg-rose-100">C</button>
                                     {principalButtons.map(v => (
                                         <button key={v} onClick={() => addValue(setPrincipal, principal, v)} className="px-3 py-1.5 text-xs font-semibold bg-gray-100 dark:bg-gray-700 hover:bg-emerald-50 text-gray-600 dark:text-gray-300 hover:text-emerald-600 rounded-xl transition-all active:scale-95">+{formatBtnLabel(v)}</button>
                                     ))}
@@ -301,7 +311,7 @@ const DsrCalculator = () => {
                                         className={`w-full h-14 px-4 text-xl font-bold bg-gray-50 dark:bg-gray-900/50 border-2 rounded-2xl transition-all text-right ${errors.has('term') ? 'border-red-500' : 'border-gray-300 dark:border-gray-600 focus:border-emerald-500'}`}
                                     />
                                     <div className="flex bg-gray-100 dark:bg-gray-700 p-1 rounded-2xl shrink-0">
-                                        {[ {id: "month", label: "월"}, {id: "year", label: "년"} ].map((u) => (
+                                        {[{ id: "month", label: "월" }, { id: "year", label: "년" }].map((u) => (
                                             <button key={u.id} onClick={() => setTermUnit(u.id as any)} className={`px-3 py-1 rounded-xl text-xs font-bold transition-all ${termUnit === u.id ? "bg-white dark:bg-gray-800 text-emerald-600 shadow-sm" : "text-gray-400"}`}>{u.label}</button>
                                         ))}
                                     </div>
@@ -315,7 +325,7 @@ const DsrCalculator = () => {
                             <div className="space-y-3">
                                 <label className="text-sm font-bold text-gray-700 dark:text-gray-200 ml-1">상환 방식</label>
                                 <div className="flex bg-gray-100 dark:bg-gray-700 p-1.5 rounded-2xl gap-1">
-                                    {[ { id: "EQU_AMOUNT", label: "원리금균등" }, { id: "EQU_PRINCIPAL", label: "원금균등" }, { id: "MATURITY", label: "만기일시" } ].map(t => (
+                                    {[{ id: "EQU_AMOUNT", label: "원리금균등" }, { id: "EQU_PRINCIPAL", label: "원금균등" }, { id: "MATURITY", label: "만기일시" }].map(t => (
                                         <button key={t.id} onClick={() => setMethod(t.id as any)} className={`flex-1 py-3.5 rounded-xl text-[11px] font-bold transition-all ${method === t.id ? "bg-white dark:bg-gray-800 text-emerald-600 shadow-sm" : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"}`}>{t.label}</button>
                                     ))}
                                 </div>
@@ -326,8 +336,8 @@ const DsrCalculator = () => {
                     {/* 스트레스 DSR 정밀 옵션 */}
                     <div className="p-6 bg-gray-50 dark:bg-gray-900/50 rounded-2xl border border-gray-100 dark:border-gray-700/50 mt-6 space-y-6">
                         <div className="flex flex-col gap-4">
-                            <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-1">스트레스 DSR 3단계 시뮬레이션</label>
-                            
+                            <label className="text-[12px] font-black text-gray-400 uppercase tracking-[0.2em] mb-1">스트레스 DSR 3단계 시뮬레이션</label>
+
                             <div className="flex items-center justify-between gap-4">
                                 <span className="text-xs font-bold text-gray-500">시행 단계</span>
                                 <div className="flex bg-white dark:bg-gray-800 p-1 rounded-xl shadow-inner border border-gray-100 dark:border-gray-700">
@@ -340,7 +350,7 @@ const DsrCalculator = () => {
                             <div className="flex items-center justify-between gap-4">
                                 <span className="text-xs font-bold text-gray-500">금리 유형</span>
                                 <div className="flex bg-white dark:bg-gray-800 p-1 rounded-xl shadow-inner border border-gray-100 dark:border-gray-700 items-center justify-center">
-                                    {[ {id: "VARIABLE", label: "변동형"}, {id: "MIXED", label: "혼합형"}, {id: "PERIODIC", label: "주기형"} ].map(t => (
+                                    {[{ id: "VARIABLE", label: "변동형" }, { id: "MIXED", label: "혼합형" }, { id: "PERIODIC", label: "주기형" }].map(t => (
                                         <button key={t.id} onClick={() => { setInterestType(t.id as InterestType); setCalculated(false); }} className={`px-3 py-2 rounded-lg text-[11px] font-black transition-all whitespace-nowrap ${interestType === t.id ? "bg-emerald-500 text-white shadow-lg" : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"}`}>{t.label}</button>
                                     ))}
                                 </div>
@@ -358,7 +368,7 @@ const DsrCalculator = () => {
 
                     {/* 가이드 정보 (옵션 섹션 아래 위치) */}
                     <div className="p-5 bg-blue-50 dark:bg-blue-900/10 rounded-2xl border border-blue-100/50 dark:border-blue-900/30">
-                        <h3 className="text-[11px] font-black text-blue-700 dark:text-blue-300 mb-3 flex items-center gap-2 uppercase tracking-widest leading-none">
+                        <h3 className="text-[16px] font-black text-blue-700 dark:text-blue-300 mb-3 flex items-center gap-2 uppercase tracking-widest leading-none">
                             💡 스트레스 DSR 핵심 가이드
                         </h3>
                         <div className="space-y-3">
@@ -378,7 +388,7 @@ const DsrCalculator = () => {
                     <div className="pt-4 border-t border-gray-100 dark:border-gray-700 text-center space-y-4">
                         <CalculatorButtons onCalculate={calculateDSR} onReset={handleReset} />
                         {errorMessage && (
-                            <div className="bg-red-50 dark:bg-red-900/20 text-red-500 text-xs font-bold p-4 rounded-xl text-center border border-red-100 animate-pulse">
+                            <div className="w-full mt-2 bg-red-50 dark:bg-red-900/20 text-red-500 text-sm font-bold p-4 rounded-xl text-center border border-red-100 dark:border-red-800 animate-pulse">
                                 🚨 {errorMessage}
                             </div>
                         )}
@@ -389,7 +399,7 @@ const DsrCalculator = () => {
                     <div ref={resultRef} id="result-section" className={`mt-8 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
                         <div className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-2xl border border-gray-100 dark:border-gray-700 relative overflow-hidden">
                             <div className={`absolute top-0 left-0 w-full h-2 transition-colors duration-1000 ${getGaugeColor(Number(resultData.dsrScore))}`}></div>
-                            
+
                             <div className="text-center mb-10">
                                 <p className="text-[12px] font-black text-gray-400 mb-2 uppercase tracking-widest leading-none">나의 DSR 분석 리포트</p>
                                 <div className="flex items-center justify-center gap-3">
@@ -450,7 +460,7 @@ const DsrCalculator = () => {
 
                             <CalculatorActions
                                 onCopy={handleCopy}
-                                shareTitle={`[📊 DSR 분석 결과] 내 위험도는 ${getStatusText(Number(resultData.dsrScore)).label}입니다.`}
+                                shareTitle={`[📊 DSR 계산 결과] 내 위험도는 ${getStatusText(Number(resultData.dsrScore)).label}입니다.`}
                                 shareDescription={`총 부채 상환율 ${resultData.dsrScore}%! `}
                             />
                         </div>

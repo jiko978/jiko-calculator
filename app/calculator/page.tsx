@@ -12,7 +12,7 @@ const mainCalculators = [
   { title: "💪 건강 계산기(5)", description: "비만도, 배란일, 기초대사량, 임신주수 , 칼로리 계산기", href: "/calculator/health" },
   { title: "🧾 세금 계산기(0)", description: "준비 중입니다.", href: "/calculator/tax" },
   { title: "📈 주식 계산기(4)", description: "주식 물타기, 수익률, 수수료, 배당금 계산기", href: "/calculator/stock" },
-  { title: "🏢 부동산 계산기(1)", description: "DSR 계산기", href: "/calculator/real-estate" }
+  { title: "🏢 부동산 계산기(3)", description: "DSR, 신DTI, DTI 계산기", href: "/calculator/real-estate" }
 ];
 
 export default function Home() {

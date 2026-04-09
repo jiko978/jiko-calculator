@@ -215,13 +215,13 @@ https://jiko.kr/calculator/job/insurance`;
                         </div>
                         <div className="flex flex-wrap gap-2 mt-3">
                             <button onClick={() => { setSalary(""); setResult(null); }} className="px-3 py-1.5 text-xs font-black bg-rose-50 dark:bg-rose-900/20 text-rose-500 border border-rose-100 dark:border-rose-800 rounded-xl hover:bg-rose-100 transition-all active:scale-95">C</button>
-                            {[1000000, 3000000, 5000000, 10000000, 30000000, 50000000].map((val) => (
+                            {[1000000, 3000000, 5000000, 10000000, 30000000, 50000000, 100000000].map((val) => (
                                 <button
                                     key={val}
                                     onClick={() => addSalaryAmount(val)}
                                     className="px-3 py-1.5 text-xs font-semibold bg-gray-100 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 rounded-xl transition-all active:scale-95"
                                 >
-                                    +{val >= 100000000 ? `${val / 100000}` : `${val / 10000}`}
+                                    +{val >= 100000000 ? `${val / 100000000}억` : val >= 10000000 ? `${val / 10000000}천` : val >= 1000000 ? `${val / 1000000}백` : `${val / 10000}`}
                                 </button>
                             ))}
                         </div>

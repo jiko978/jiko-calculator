@@ -164,7 +164,7 @@ const Age = () => {
 
     const handleCopy = async () => {
         const text = [
-            `[🎂 나이 계산기 결과]`,
+            `[🎂 나이 계산 결과]`,
             `출생일 : ${bY}-${bM}-${bD} (${viewZodiac.name}띠)`,
             `기준일 : ${vY}년 ${sexagenaryYear}년 기준`,
             `만 나이 : ${intlAge}세${ageTerm ? ` ${ageTerm}` : ""}`,
@@ -367,7 +367,7 @@ const Age = () => {
 
                             <CalculatorActions
                                 onCopy={handleCopy}
-                                shareTitle={`[🎂 나이 계산기 결과] ${intlAge}세 ${ageTerm || ""}`}
+                                shareTitle={`[🎂 나이 계산 결과] ${intlAge}세 ${ageTerm || ""}`}
                                 shareDescription={`${bY}년생은 만 ${intlAge}세 (${viewZodiac.name}띠) 입니다.`}
                             />
                         </div>

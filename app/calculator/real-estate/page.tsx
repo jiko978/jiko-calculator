@@ -5,9 +5,9 @@ import InstallBanner from "@/app/calculator/components/InstallBanner";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 
 export const metadata: Metadata = {
-    title: "부동산 계산기 | DSR, LTV, 취득세 등 부동산 대출 및 세금 계산기 - JIKO",
-    description: "내 집 마련의 시작! DSR 대출 한도 계산부터 취득세, 중도상환수수료까지 부동산 투자와 대출에 필요한 모든 계산기를 JIKO에서 만나보세요.",
-    keywords: ["부동산계산기", "DSR계산기", "LTV계산기", "대출한도", "취득세계산기"]
+    title: "부동산 계산기 | DSR, DTI, 신DTI, LTV 등 부동산 대출 및 세금 계산기 - JIKO",
+    description: "내 집 마련의 시작! DSR 대출 한도 계산부터 DTI, 신DTI, 중도상환수수료까지 부동산 투자와 대출에 필요한 모든 계산기를 JIKO에서 만나보세요.",
+    keywords: ["부동산계산기", "DSR계산기", "DTI계산기", "신DTI계산기", "LTV계산기", "대출한도"]
 };
 
 const realEstateCalculators = [
@@ -15,6 +15,18 @@ const realEstateCalculators = [
         title: "📊 DSR 계산기",
         description: "최신 스트레스 DSR 규제 반영한 대출 한도 분석 및 시뮬레이션을 해보세요.",
         href: "/calculator/real-estate/dsr",
+        status: "ACTIVE"
+    },
+    {
+        title: "🏢 신DTI 계산기",
+        description: "다주택자 한도 규제 및 보수적 한도 산정 기준을 적용한 정밀 한도 시뮬레이션.",
+        href: "/calculator/real-estate/new-dti",
+        status: "ACTIVE"
+    },
+    {
+        title: "📉 DTI 계산기",
+        description: "소득 대비 부채 상환 능력을 정밀하게 계산하고 추가 대출 여력을 확인하세요.",
+        href: "/calculator/real-estate/dti",
         status: "ACTIVE"
     },
 ];
@@ -30,10 +42,10 @@ export default function RealEstateHubPage() {
         <main className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
 
-            <NavBar title="부동산 계산기" description="DSR, LTV, 대출 한도 계산기 - JIKO" />
+            <NavBar title="부동산 계산기" description="DSR, DTI, 신DTI, 대출 한도 계산기 - JIKO" />
 
             <div className="flex-grow px-4 py-6">
-                <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">🏢 부동산 투자 계획 계산기 모음</h1>
+                <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">🏢 부동산 계획 계산기 모음</h1>
                 <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">성공적인 내 집 마련을 위한 대출 한도 및 세금을 미리 확인해보세요.</p>
 
                 <div className="grid gap-4 w-full max-w-3xl mx-auto md:grid-cols-2">

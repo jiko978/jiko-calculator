@@ -193,7 +193,7 @@ export default function UnemploymentBenefit() {
         await navigator.clipboard.writeText(text);
     };
 
-    const quickAmounts = [100000, 500000, 1000000, 5000000];
+    const quickAmounts = [100000, 300000, 500000, 1000000, 3000000, 5000000, 10000000];
 
     return (
         <div className="max-w-3xl mx-auto px-4 py-8">
@@ -309,7 +309,7 @@ export default function UnemploymentBenefit() {
                                         />
                                         <span className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-300 font-bold text-lg" aria-hidden="true">₩</span>
                                     </div>
-                                    <div className="flex flex-wrap gap-2 justify-end">
+                                    <div className="flex flex-wrap gap-2 mt-3">
                                         <button onClick={() => resetAmount(0)} className="px-3 py-1.5 bg-rose-50 dark:bg-rose-900/10 border border-rose-100 dark:border-rose-900/20 rounded-xl text-[11px] font-black text-rose-500 hover:bg-rose-100 transition-all outline-none">C</button>
                                         {quickAmounts.map((val) => (
                                             <button

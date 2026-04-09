@@ -54,5 +54,10 @@ export const COMMON_BREADCRUMBS = {
     D_DAY: { name: "디데이 계산기", item: "/calculator/life/d-day" },
     DATE: { name: "날짜 계산기", item: "/calculator/life/date" },
     DISCHARGE_DAY: { name: "전역일 계산기", item: "/calculator/life/discharge-day" },
+
+    REAL_ESTATE_HOME: { name: "부동산 계산기", item: "/calculator/real-estate" },
+    DSR: { name: "DSR 계산기", item: "/calculator/real-estate/dsr" },
+    NEW_DTI: { name: "신DTI 계산기", item: "/calculator/real-estate/new-dti" },
+    DTI: { name: "DTI 계산기", item: "/calculator/real-estate/dti" },
 };
 

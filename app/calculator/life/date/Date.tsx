@@ -128,7 +128,7 @@ const DateCalculator = () => {
 
     const handleCopy = async () => {
         if (!resultData) return;
-        const text = `[📅 날짜 계산기 결과]\n시작일 : ${resultData.startStr}\n종료일 : ${resultData.endStr}\n결과 : ${resultData.mainResult}\n\n📌 JIKO 날짜 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/life/date`;
+        const text = `[📅 날짜 계산 결과]\n시작일 : ${resultData.startStr}\n종료일 : ${resultData.endStr}\n결과 : ${resultData.mainResult}\n\n📌 JIKO 날짜 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/life/date`;
         await navigator.clipboard.writeText(text);
     };
 

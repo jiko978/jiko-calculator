@@ -163,7 +163,7 @@ export default function Calorie() {
 
     const handleCopy = async () => {
         if (result) {
-            const text = `[🏃‍♂️ 칼로리 계산기 결과]\n\n소모 : ${result.burned.toLocaleString()}kcal\n섭취 : ${result.intake.toLocaleString()}kcal\n순 밸런스 : ${result.balance > 0 ? '+' : ''}${result.balance.toLocaleString()}kcal\n\n📌JIKO 칼로리 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/calorie`;
+            const text = `[🏃‍♂️ 칼로리 계산 결과]\n\n소모 : ${result.burned.toLocaleString()}kcal\n섭취 : ${result.intake.toLocaleString()}kcal\n순 밸런스 : ${result.balance > 0 ? '+' : ''}${result.balance.toLocaleString()}kcal\n\n📌JIKO 칼로리 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/calorie`;
             await navigator.clipboard.writeText(text);
         }
     };
