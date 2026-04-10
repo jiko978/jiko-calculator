@@ -29,6 +29,12 @@ const realEstateCalculators = [
         href: "/calculator/real-estate/dti",
         status: "ACTIVE"
     },
+    {
+        title: "🏠 LTV 계산기",
+        description: "주택 담보 가치 대비 대출 가능한 한도를 규제 지역별로 확인하세요.",
+        href: "/calculator/real-estate/ltv",
+        status: "ACTIVE"
+    },
 ];
 
 export default function RealEstateHubPage() {

@@ -59,5 +59,6 @@ export const COMMON_BREADCRUMBS = {
     DSR: { name: "DSR 계산기", item: "/calculator/real-estate/dsr" },
     NEW_DTI: { name: "신DTI 계산기", item: "/calculator/real-estate/new-dti" },
     DTI: { name: "DTI 계산기", item: "/calculator/real-estate/dti" },
+    LTV: { name: "LTV 계산기", item: "/calculator/real-estate/ltv" },
 };
 

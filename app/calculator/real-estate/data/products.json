@@ -68,5 +68,26 @@
         "slug": "기타담보대출DSR",
         "keywords": ["기타담보DSR", "특수담보"],
         "category": "DSR"
+    },
+    {
+        "id": "ltv-mortgage",
+        "name": "주택담보대출LTV",
+        "slug": "주택담보대출LTV",
+        "keywords": ["주담대LTV", "LTV한도", "담보인정비율"],
+        "category": "LTV"
+    },
+    {
+        "id": "ltv-first-home",
+        "name": "생애최초LTV",
+        "slug": "생애최초LTV",
+        "keywords": ["생애최초한도", "생애최초특례", "80퍼센트LTV"],
+        "category": "LTV"
+    },
+    {
+        "id": "ltv-stabilization",
+        "name": "생활안정자금LTV",
+        "slug": "생활안정자금LTV",
+        "keywords": ["생활안정자금한도", "1주택자LTV", "주택담보대출규제"],
+        "category": "LTV"
     }
 ]

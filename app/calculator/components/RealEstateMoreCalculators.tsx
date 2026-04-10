@@ -10,6 +10,7 @@ const RealEstateMoreCalculators = () => {
         { name: "DSR 계산기", href: "/calculator/real-estate/dsr", emoji: "📊", description: "부채상환비율 및 한도 시나리오 분석" },
         { name: "신DTI 계산기", href: "/calculator/real-estate/new-dti", emoji: "🏢", description: "다주택자 한도 규제 및 보수적 한도 시뮬레이션" },
         { name: "DTI 계산기", href: "/calculator/real-estate/dti", emoji: "📉", description: "소득 대비 부채 상환 능력 정밀 계산" },
+        { name: "LTV 계산기", href: "/calculator/real-estate/ltv", emoji: "🏠", description: "담보인정비율 및 지역별 대출 한도 조회" },
     ];
 
     const filteredCalculators = calculators.filter(calc => pathname !== calc.href && !pathname.startsWith(`${calc.href}/`));

@@ -7,11 +7,11 @@ import NavBar from '@/app/calculator/components/NavBar';
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from '@/app/utils/seo';
 
 export const metadata: Metadata = {
-    title: '연차 계산기 | 2025 발생일수 및 미사용 연차수당 계산 - JIKO 계산기',
+    title: '연차 계산기 | 연차 발생일수 및 미사용 연차수당 계산 - JIKO 계산기',
     description: '입사일 및 회계기준별(1월 1일) 예상 연차 발생일수를 정확하게 계산하고, 미사용 시 지급받을 수 있는 세전 연차수당을 월 통상임금 기준으로 시뮬레이션 해보세요.',
     keywords: ['연차 계산기', '연차수당 계산기', '월차 계산기', '연차발생일수', '회계기준 연차', '미사용연차수당', 'JIKO 계산기'],
     openGraph: {
-        title: '연차 계산기 | 2025 발생일수 및 미사용 연차수당 계산 - JIKO 계산기',
+        title: '연차 계산기 | 연차 발생일수 및 미사용 연차수당 계산 - JIKO 계산기',
         description: '입사일 및 회계기준별(1월 1일) 예상 연차 발생일수를 정확하게 계산하고, 미사용 시 지급받을 수 있는 세전 연차수당을 시뮬레이션 해보세요.',
         type: 'website',
         url: 'https://jiko.kr/calculator/job/annual',
@@ -88,7 +88,7 @@ export default function AnnualLeavePage() {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
             />
             
-            <NavBar title="연차 계산기" description="2025 발생일수 및 미사용 연차수당 계산" position="top" />
+            <NavBar title="연차 계산기" description="연차 발생일수 및 미사용 연차수당 계산" position="top" />
             <Annual />
 
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">

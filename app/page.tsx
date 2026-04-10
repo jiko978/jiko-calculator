@@ -107,6 +107,7 @@ const services: Service[] = [
             { label: "📊 DSR 계산기", href: "/calculator/real-estate/dsr" },
             { label: "🏢 신DTI 계산기", href: "/calculator/real-estate/new-dti" },
             { label: "📉 DTI 계산기", href: "/calculator/real-estate/dti" },
+            { label: "🏠 LTV 계산기", href: "/calculator/real-estate/ltv" },
         ]
     }
 ];

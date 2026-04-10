@@ -14,6 +14,7 @@ const NewDtiCalculator = () => {
         { label: "DSR 계산기", href: "/calculator/real-estate/dsr" },
         { label: "신DTI 계산기", href: "/calculator/real-estate/new-dti" },
         { label: "DTI 계산기", href: "/calculator/real-estate/dti" },
+        { label: "LTV 계산기", href: "/calculator/real-estate/ltv" },
     ];
 
     // 입력 상태
@@ -134,7 +135,7 @@ const NewDtiCalculator = () => {
 
     const handleCopy = async () => {
         if (!resultData) return;
-        const text = `[🏢 신DTI 계산 결과]\n신DTI 스코어 : ${resultData.newDtiScore}%\n보유 주담대 원리금 합산 분석\n최대 추가 대출 가능액 : ${formatNumber(resultData.maxAdditionalLoan)}원\n\n📌 JIKO 부동산 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/real-estate/new-dti`;
+        const text = `[🏢 신DTI 계산 결과]\n신DTI 스코어 : ${resultData.newDtiScore}%\n보유 주담대 원리금 합산 분석\n최대 추가 대출 가능액 : ${formatNumber(resultData.maxAdditionalLoan)}원\n\n📌 JIKO 신DTI 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/real-estate/new-dti`;
         await navigator.clipboard.writeText(text);
     };
 

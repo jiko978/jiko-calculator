@@ -52,6 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: "/calculator/real-estate/dsr",  priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/real-estate/new-dti",  priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/real-estate/dti",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/real-estate/ltv",  priority: 0.8, changeFrequency: "monthly" as const },
 
         // ── 정책(5) ──
         { url: "/policy/about", priority: 0.5, changeFrequency: "monthly" as const },

@@ -41,20 +41,26 @@ export default function DtiPage() {
             <NavBar title="DTI 계산기" description="소득 대비 적정 부채 상환 능력 확인" position="top" />
             <DtiCalculator />
 
-            <main className="max-w-3xl mx-auto px-4 pb-16 space-y-4 mt-4">
-                <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                    <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+            <div className="max-w-3xl mx-auto px-4 pb-20">
+                <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 animate-fade-slide-up">
+                    <h2 className="text-xl font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2">
                         <span className="text-2xl">📊</span> DTI 계산 상식 가이드
-                    </h1>
+                    </h2>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
                         <strong>DTI(Debt to Income)</strong>는 총부채상환비율로, 차주의 연간 소득에서 부채 상환액이 차지하는 비중을 말합니다. 주택담보대출의 경우 원리금 전체를 합산하고, 신용대출 등 기타 대출은 <strong>이자 상환액</strong>만 합산하는 것이 특징입니다.
                     </p>
-                </section>
+                </div>
 
-                <FAQ faqList={faqList} />
+                <div className="mt-4">
+                    <FAQ faqList={faqList} />
+                </div>
+
                 <RealEstateMoreCalculators />
-                <InstallBanner />
-            </main>
+
+                <div className="mt-4">
+                    <InstallBanner />
+                </div>
+            </div>
         </div>
     );
 }
