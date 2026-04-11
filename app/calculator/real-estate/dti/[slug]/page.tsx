@@ -15,10 +15,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const slug = (await params).slug;
     const product = products.find(p => p.slug === decodeURIComponent(slug));
 
-    if (!product) return { title: "DTI 계산기 | JIKO" };
+    if (!product) return { title: "DTI 계산기 | 총부채상환비율 대출 한도 계산 - JIKO 계산기" };
 
     return {
-        title: `${product.name} 한도 계산기 | DTI 정밀 분석 - JIKO`,
+        title: `${product.name} DTI 계산기 | 총부채상환비율 대출 한도 계산 - JIKO 계산기`,
         description: `${product.name}의 DTI 비율과 추가 대출 가능액을 실시간으로 계산하세요. 소득 대비 부채 상환 여력을 정밀하게 분석해드립니다.`,
         keywords: [product.name, ...product.keywords, "DTI계산기", "부동산대출"]
     };
@@ -64,7 +64,7 @@ export default async function DtiProductPage({ params }: Props) {
         <main>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
             
-            <NavBar title={`${product.name} DTI 분석`} description="상품별 맞춤형 DTI 결과 리포트 - JIKO" />
+            <NavBar title={`${product.name} DTI 분석`} description="DTI 계산기 | 총부채상환비율 대출 한도 계산 - JIKO 계산기" />
 
             <DtiCalculator />
 

@@ -15,10 +15,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const slug = (await params).slug;
     const product = products.find(p => p.slug === decodeURIComponent(slug));
 
-    if (!product) return { title: "신DTI 계산기 | JIKO" };
+    if (!product) return { title: "신DTI 계산기 | 다주택자 대출 규제 및 주담대 원리금 합산 계산 - JIKO 계산기" };
 
     return {
-        title: `${product.name} 한도 분석 | 신DTI 다주택자 규제 반영 - JIKO`,
+        title: `${product.name} 신DTI 계산기 | 다주택자 대출 규제 및 주담대 원리금 합산 계산 - JIKO 계산기`,
         description: `${product.name} 이용 시 적용되는 신DTI 한도를 정밀하게 계산하세요. 다주택자 부채 합산 방식을 완벽하게 반영하여 리포트를 제공합니다.`,
         keywords: [product.name, ...product.keywords, "신DTI계산기", "다주택자대출규제"]
     };
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export async function generateStaticParams() {
     return products
-        .filter(p => p.category === "NEWDTI")
+        .filter(p => p.category === "NEW-DTI")
         .map((p) => ({
             slug: encodeURIComponent(p.slug),
         }));
@@ -64,7 +64,7 @@ export default async function NewDtiProductPage({ params }: Props) {
         <main>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
             
-            <NavBar title={`${product.name} 리포트`} description="강화된 부채 상환 심사 결과 - JIKO" />
+            <NavBar title={`${product.name} 리포트`} description="다주택자를 위한 강화된 신DTI 규제 완벽 대응! 기존 주택담보대출의 원리금까지 모두 합산하여 실질적인 대출 한도를 정밀하게 분석해드립니다." />
 
             <NewDtiCalculator />
 

@@ -13,6 +13,12 @@ export const metadata: Metadata = {
     description: "내 연소득에 맞는 대출 한도는? 주택담보대출의 원리금과 기존 대출의 이자를 합산하여 DTI를 정밀하게 계산하고 추가 대출 여력을 확인하세요.",
     keywords: ["DTI계산기", "총부채상환비율", "부동산대출한도", "주담대DTI", "JIKO계산기"],
     alternates: { canonical: `${BASE_URL}/calculator/real-estate/dti` },
+    openGraph: {
+        title: "DTI 계산기 | 총부채상환비율 대출 한도 계산 - JIKO 계산기",
+        description: "내 연소득에 맞는 대출 한도는? 주택담보대출의 원리금과 기존 대출의 이자를 합산하여 DTI를 정밀하게 계산하고 추가 대출 여력을 확인하세요.",
+        url: `${BASE_URL}/calculator/real-estate/dti`,
+        images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "DTI 계산기" }],
+    },
 };
 
 const faqList = [
@@ -26,19 +32,56 @@ const faqList = [
     }
 ];
 
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "DTI 계산기",
+    description: metadata.description as string,
+    url: `${BASE_URL}/calculator/real-estate/dti`,
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
+};
+
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqList.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: q.answer
+        }
+    }))
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "DTI 계산기",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/real-estate/dti`,
+    "description": metadata.description as string
+};
+
 export default function DtiPage() {
     const breadcrumbLd = generateBreadcrumbJsonLd([
         COMMON_BREADCRUMBS.HOME,
         COMMON_BREADCRUMBS.CALC_HOME,
         COMMON_BREADCRUMBS.REAL_ESTATE_HOME,
-        { name: "DTI 계산기", item: `${BASE_URL}/calculator/real-estate/dti` }
+        COMMON_BREADCRUMBS.DTI
     ]);
 
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="DTI 계산기" description="소득 대비 적정 부채 상환 능력 확인" position="top" />
+            <NavBar title="DTI 계산기" description="내 연소득에 맞는 대출 한도는? 주택담보대출의 원리금과 기존 대출의 이자를 합산하여 DTI를 정밀하게 계산하고 추가 대출 여력을 확인하세요." position="top" />
             <DtiCalculator />
 
             <div className="max-w-3xl mx-auto px-4 pb-20">

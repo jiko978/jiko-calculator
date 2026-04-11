@@ -29,13 +29,13 @@ export const viewport = {
 export const metadata: Metadata = {
     metadataBase: new URL(BASE_URL),
     title: {
-        default: "JIKO calculator",
-        template: "%s | JIKO calculator",
+        default: "JIKO 계산기 | 다양한 계산기를 제공하는 JIKO 계산기 입니다.",
+        template: "%s | JIKO 계산기",
     },
-    description: "주식, 금융, 직장, 건강, 생활, 세금, 부동산 등 다양한 계산기를 한 곳에서 사용하세요.",
-    keywords: ["계산기", "JIKO 계산기", "주식 계산기", "금융 계산기", "직장 계산기", "건강 계산기", "생활 계산기", "세금 계산기", "부동산 계산기"],
-    authors: [{ name: "JIKO calculator" }],
-    creator: "JIKO calculator",
+    description: "금융, 직장, 생활, 건강, 세금, 주식, 부동산 등 다양한 계산기를 한 곳에서 사용하세요.",
+    keywords: ["계산기", "JIKO 계산기", "금융 계산기", "직장 계산기", "생활 계산기", "건강 계산기","세금 계산기", "주식 계산기", "부동산 계산기"],
+    authors: [{ name: "JIKO 계산기" }],
+    creator: "JIKO 계산기",
 
     // ── Open Graph (카카오/페이스북/링크 미리보기) ──
     openGraph: {
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
         url: BASE_URL,
         siteName: "JIKO calculator",
         title: "JIKO calculator",
-        description: "주식, 금융, 직장, 건강, 생활, 세금, 부동산 등 다양한 계산기를 한 곳에서 사용하세요.",
+        description: "금융, 직장, 생활, 건강, 세금, 주식, 부동산 등 다양한 계산기를 한 곳에서 사용하세요.",
         images: [
             {
                 url: "/calculator/jiko-calculator-icon2.png",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary_large_image",
         title: "JIKO calculator",
-        description: "주식, 금융, 직장, 건강, 생활, 세금, 부동산 등 다양한 계산기를 한 곳에서 사용하세요.",
+        description: "금융, 직장, 생활, 건강, 세금, 주식, 부동산 등 다양한 계산기를 한 곳에서 사용하세요.",
         images: ["/calculator/jiko-calculator-icon2.png"],
     },
 

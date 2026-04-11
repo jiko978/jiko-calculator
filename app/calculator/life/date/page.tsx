@@ -14,8 +14,8 @@ export const metadata: Metadata = {
     keywords: ["날짜 계산기", "날짜 수 계산", "디데이 계산", "주수 계산", "개월수 계산", "기념일 계산", "JIKO 계산기"],
     alternates: { canonical: `${BASE_URL}/calculator/life/date` },
     openGraph: {
-        title: "날짜 계산기 | 날짜 일수 계산 및 기념일 타임라인",
-        description: "두 날짜 사이의 정확한 기간을 계산하고 기념일 타임라인을 확인하세요. JIKO 날짜 계산기.",
+        title: "날짜 계산기 | 날짜 일수 계산 · 주수 · 개월수 계산 - JIKO 계산기",
+        description: "두 날짜 사이의 정확한 기간을 계산하고, 특정 시점까지의 일수나 주수를 한눈에 확인하세요. 100일, 1주년 등 기념일 타임라인도 함께 확인하실 수 있습니다.",
         url: `${BASE_URL}/calculator/life/date`,
         images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "날짜 계산기" }],
     },
@@ -36,6 +36,40 @@ const faqList = [
     }
 ];
 
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "날짜 계산기",
+    description: metadata.description as string,
+    url: `${BASE_URL}/calculator/life/date`,
+    applicationCategory: "UtilityApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
+};
+
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqList.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: q.answer
+        }
+    }))
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "날짜 계산기",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/life/date`,
+    "description": metadata.description as string
+};
+
 export default function DatePage() {
     const breadcrumbLd = generateBreadcrumbJsonLd([
         COMMON_BREADCRUMBS.HOME,
@@ -44,22 +78,14 @@ export default function DatePage() {
         { name: "날짜 계산기", item: `${BASE_URL}/calculator/life/date` }
     ]);
 
-    const softwareLd = {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        name: "JIKO 날짜 계산기",
-        description: "두 날짜 사이의 간격 및 특정 시점 전후 날짜 정밀 계산 서비스",
-        url: `${BASE_URL}/calculator/life/date`,
-        applicationCategory: "UtilityApplication",
-        operatingSystem: "Web",
-    };
-
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="날짜 계산기" description="두 날짜 사이의 정확한 기간 확인" position="top" />
+            <NavBar title="날짜 계산기" description="두 날짜 사이의 정확한 기간을 계산하고, 특정 시점까지의 일수나 주수를 한눈에 확인하세요. 100일, 1주년 등 기념일 타임라인도 함께 확인하실 수 있습니다." position="top" />
             <DateCalculator />
 
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-4 mt-4">

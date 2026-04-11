@@ -10,26 +10,56 @@ import FAQ from "@/app/calculator/components/FAQ";
 const BASE_URL = "https://jiko.kr";
 
 export const metadata: Metadata = {
-    title: "실수령액 계산기 · 세후 연봉 월급 계산기 | 희망 실수령액 기준 세전 금액 찾기 - JIKO 계산기",
-    description: "원하는 한 달 실수령액을 받기 위해 계약해야 할 연봉이나 월급(세전)을 알려드립니다. 2025 최신 세율을 반영한 정밀 계산.",
+    title: "실수령액 계산기 | 세후 연봉 월급 계산 및 희망 실수령액 기준 세전 금액 계산 - JIKO 계산기",
+    description: "원하는 한 달 실수령액을 받기 위해 계약해야 할 연봉이나 월급(세전)을 알려드립니다.",
     keywords: ["실수령액 계산기", "세후 연봉 계산기", "세후 월급 계산기", "실수령액 350만원 연봉", "희망 실수령액 계산", "JIKO 계산기"],
     alternates: { canonical: `${BASE_URL}/calculator/job/net-pay` },
     openGraph: {
-        title: "실수령액 계산기 | 희망하는 세후 금액으로 연봉 찾기",
-        description: "통장에 딱 이만큼 찍히려면 연봉은 얼마여야 할까? 실수령액 기준으로 세전 급여를 역으로 확인하세요.",
+        title: "실수령액 계산기 | 세후 연봉 월급 계산 및 희망 실수령액 기준 세전 금액 계산 - JIKO 계산기",
+        description: "원하는 한 달 실수령액을 받기 위해 계약해야 할 연봉이나 월급(세전)을 알려드립니다.",
         url: `${BASE_URL}/calculator/job/net-pay`,
         images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "실수령액 계산기" }],
     },
 };
 
+const faqList = [
+    { question: "실수령액 계산기는 어떤 때 사용하나요?", answer: "주로 이직 협상이나 연봉 계약 시, 본인이 실제로 통장에 받기를 원하는 월 '실수령액'을 기준으로 거꾸로 계약 연봉(세전)을 파악하고 싶을 때 유용합니다." },
+    { question: "연봉/월급 계산기와 무엇이 다른가요?", answer: "연봉 계산기는 '세전 오퍼 금액을 넣고 세후를 확인'하는 용도이며, 실수령액 계산기는 '내가 원하는 세후 금액을 넣고 세전 오퍼 금액을 확인'하는 용도입니다." },
+    { question: "계산 결과가 얼마나 정확한가요?", answer: "2025년 최신 4대보험 요율과 간이세액표를 바탕으로 반복 연산(Iteration) 로직을 적용하여 1원 단위까지 정밀하게 추정합니다. 단, 개별적인 비과세 항목이나 공제에 따라 실제와는 다소 차이가 날 수 있습니다." }
+];
+
 const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "실수령액 계산기",
-    description: "한 달에 실제로 받고 싶은 금액을 입력하면, 그에 필요한 세전 연봉과 월급을 도출해드립니다.",
+    description: metadata.description as string,
     url: `${BASE_URL}/calculator/job/net-pay`,
-    applicationCategory: "BusinessApplication",
+    applicationCategory: "FinanceApplication",
     operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
+};
+
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqList.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: q.answer
+        }
+    }))
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "실수령액 계산기",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/job/net-pay`,
+    "description": metadata.description as string
 };
 
 export default function Page() {
@@ -40,18 +70,14 @@ export default function Page() {
         COMMON_BREADCRUMBS.NET_PAY
     ]);
 
-    const faqList = [
-        { question: "실수령액 계산기는 어떤 때 사용하나요?", answer: "주로 이직 협상이나 연봉 계약 시, 본인이 실제로 통장에 받기를 원하는 월 '실수령액'을 기준으로 거꾸로 계약 연봉(세전)을 파악하고 싶을 때 유용합니다." },
-        { question: "연봉/월급 계산기와 무엇이 다른가요?", answer: "연봉 계산기는 '세전 오퍼 금액을 넣고 세후를 확인'하는 용도이며, 실수령액 계산기는 '내가 원하는 세후 금액을 넣고 세전 오퍼 금액을 확인'하는 용도입니다." },
-        { question: "계산 결과가 얼마나 정확한가요?", answer: "2025년 최신 4대보험 요율과 간이세액표를 바탕으로 반복 연산(Iteration) 로직을 적용하여 1원 단위까지 정밀하게 추정합니다. 단, 개별적인 비과세 항목이나 공제에 따라 실제와는 다소 차이가 날 수 있습니다." }
-    ];
-
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="실수령액 계산기" description="원하는 수령액에 필요한 세전 급여 확인" position="top" />
+            <NavBar title="실수령액 계산기" description="원하는 한 달 실수령액을 받기 위해 계약해야 할 연봉이나 월급(세전)을 알려드립니다." position="top" />
             <NetPay />
 
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">

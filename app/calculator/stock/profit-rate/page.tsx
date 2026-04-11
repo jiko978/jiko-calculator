@@ -5,7 +5,7 @@
 import type { Metadata } from "next";
 import ProfitRatePage from "./ProfitRate";
 import NavBar from "@/app/calculator/components/NavBar";
-import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../utils/seo";
+import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 import StockMoreCalculators from "@/app/calculator/components/StockMoreCalculators";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
 import FAQ from "@/app/calculator/components/FAQ";

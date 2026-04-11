@@ -10,43 +10,55 @@ import FAQ from "@/app/calculator/components/FAQ";
 const BASE_URL = "https://jiko.kr";
 
 export const metadata: Metadata = {
-    title: "칼로리 계산기 · 운동 칼로리 소모 계산기 · 다이어트 식단 | JIKO 계산기",
+    title: "칼로리 계산기 | 운동 및 식단 칼로리 계산기 - JIKO 계산기",
     description: "내 몸에 딱 맞는 하루 권장 칼로리를 활동량과 엮어서 계산해드립니다. 다이어트와 건강 관리를 칼로리 계산으로 시작하세요.",
     keywords: ["칼로리 계산기", "운동 칼로리 소모 계산기", "다이어트 식단 계산기", "다이어트", "JIKO 계산기"],
     alternates: { canonical: `${BASE_URL}/calculator/health/calorie` },
     openGraph: {
-        title: "칼로리 계산기 | 하루 권장 섭취 칼로리 계산",
-        description: "나는 하루에 얼마나 먹어야 할까? 적정 섭취 칼로리 알아보기",
+        title: "칼로리 계산기 | 운동 및 식단 칼로리 계산기 - JIKO 계산기",
+        description: "내 몸에 딱 맞는 하루 권장 칼로리를 활동량과 엮어서 계산해드립니다. 다이어트와 건강 관리를 칼로리 계산으로 시작하세요.",
         url: `${BASE_URL}/calculator/health/calorie`,
         images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "칼로리 계산기" }],
     },
 };
 
+const faqList = [
+    { question: "권장 칼로리(TDEE)가 중요한 이유가 뭔가요?", answer: "기초대사량이 몸을 가만히 둘 때 쓰는 에너지라면, 유지 칼로리(TDEE)는 걷고, 직장생활하고, 운동하는 모든 활동대사량을 합친 총 소모 에너지입니다. 이보다 덜 먹으면 살이 빠지고, 더 먹으면 살이 찌게 됩니다." },
+    { question: "다이어트를 하려면 얼마나 줄여야 하나요?", answer: "하루 권장 에너지에서 300 ~ 500 kcal 정도를 줄이는 것이 몸에 무리가 가지 않으면서 근손실을 최소화하는 정석적인 방법입니다. 너무 급격한 단식은 피해주세요." }
+];
+
 const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "칼로리 계산기",
-    description: "내 몸에 딱 맞는 하루 권장 칼로리와 다이어트 칼로리를 활동량 기준으로 계산해드립니다.",
+    description: metadata.description as string,
     url: `${BASE_URL}/calculator/health/calorie`,
     applicationCategory: "HealthApplication",
     operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
 };
 
 const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-        {
-            "@type": "Question",
-            name: "하루 권장 칼로리(TDEE)는 어떻게 계산되나요?",
-            acceptedAnswer: { "@type": "Answer", text: "기초대사량에 자신의 평소 활동량에 해당하는 배수를 곱하여 산출됩니다." }
-        },
-        {
-            "@type": "Question",
-            name: "다이어트를 하려면 칼로리를 얼마나 줄여야 하나요?",
-            acceptedAnswer: { "@type": "Answer", text: "본인의 하루 유지 칼로리를 기준으로 보통 300~500kcal를 덜 섭취해야 건강한 다이어트가 가능합니다." }
+    mainEntity: faqList.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: q.answer
         }
-    ]
+    }))
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "칼로리 계산기",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/health/calorie`,
+    "description": metadata.description as string
 };
 
 export default function Page() {
@@ -57,18 +69,14 @@ export default function Page() {
         COMMON_BREADCRUMBS.CALORIE
     ]);
 
-    const faqList = [
-        { question: "권장 칼로리(TDEE)가 중요한 이유가 뭔가요?", answer: "기초대사량이 몸을 가만히 둘 때 쓰는 에너지라면, 유지 칼로리(TDEE)는 걷고, 직장생활하고, 운동하는 모든 활동대사량을 합친 총 소모 에너지입니다. 이보다 덜 먹으면 살이 빠지고, 더 먹으면 살이 찌게 됩니다." },
-        { question: "다이어트를 하려면 얼마나 줄여야 하나요?", answer: "하루 권장 에너지에서 300 ~ 500 kcal 정도를 줄이는 것이 몸에 무리가 가지 않으면서 근손실을 최소화하는 정석적인 방법입니다. 너무 급격한 단식은 피해주세요." }
-    ];
-
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="칼로리 계산기" description="하루 권장 식사 칼로리 및 목적별 섭취량 파악" position="top" />
+            <NavBar title="칼로리 계산기" description="내 몸에 딱 맞는 하루 권장 칼로리를 활동량과 엮어서 계산해드립니다. 다이어트와 건강 관리를 칼로리 계산으로 시작하세요." position="top" />
             <Calorie />
 
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">

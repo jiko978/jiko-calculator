@@ -41,33 +41,41 @@ const faqData = [
     }
 ];
 
-export default function AnnualLeavePage() {
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "연차/연차수당 계산기",
-        "description": "입사일 및 회계기준별(1월 1일) 예상 연차 발생일수를 체계적으로 계산하고 세전 미사용 연차수당을 알아봅니다.",
-        "applicationCategory": "FinanceApplication",
-        "url": "https://jiko.kr/calculator/job/annual",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "KRW"
-        }
-    };
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "연차 계산기",
+    description: metadata.description as string,
+    url: "https://jiko.kr/calculator/job/annual",
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
+};
 
-    const faqJsonLd = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": faqData.map(faq => ({
-            "@type": "Question",
-            "name": faq.question,
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": faq.answer
-            }
-        }))
-    };
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqData.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: q.answer
+        }
+    }))
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "연차 계산기",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "url": "https://jiko.kr/calculator/job/annual",
+    "description": metadata.description as string
+};
+
+export default function AnnualLeavePage() {
 
     const breadcrumbLd = generateBreadcrumbJsonLd([
         COMMON_BREADCRUMBS.HOME,
@@ -79,16 +87,11 @@ export default function AnnualLeavePage() {
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-            />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
             
-            <NavBar title="연차 계산기" description="연차 발생일수 및 미사용 연차수당 계산" position="top" />
+            <NavBar title="연차 계산기" description="입사일 및 회계기준별(1월 1일) 예상 연차 발생일수를 정확하게 계산하고, 미사용 시 지급받을 수 있는 세전 연차수당을 월 통상임금 기준으로 시뮬레이션 해보세요." position="top" />
             <Annual />
 
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">

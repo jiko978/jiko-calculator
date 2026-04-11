@@ -10,43 +10,55 @@ import FAQ from "@/app/calculator/components/FAQ";
 const BASE_URL = "https://jiko.kr";
 
 export const metadata: Metadata = {
-    title: "비만도 계산기 · BMI 계산기 · 체지방률 | 아시아 태평양 기준 시각화 - JIKO 계산기",
+    title: "비만도 계산기 | 나의 체질량지수(BMI) 및 비만도 측정 - JIKO 계산기",
     description: "키와 체중을 입력하여 나의 체질량지수(BMI)와 비만도를 정확하게 측정해보세요.",
     keywords: ["비만도 계산기", "BMI 계산기", "체지방률", "체질량지수", "다이어트", "JIKO 계산기"],
     alternates: { canonical: `${BASE_URL}/calculator/health/bmi` },
     openGraph: {
-        title: "비만도 계산기 | 나의 체질량지수 및 비만도 측정 - JIKO 계산기",
-        description: "나의 체질량지수(BMI)와 비만도를 쉽게 측정하고 관리하세요.",
+        title: "비만도 계산기 | 나의 체질량지수(BMI) 및 비만도 측정 - JIKO 계산기",
+        description: "키와 체중을 입력하여 나의 체질량지수(BMI)와 비만도를 정확하게 측정해보세요.",
         url: `${BASE_URL}/calculator/health/bmi`,
         images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "비만도 계산기" }],
     },
 };
 
+const faqList = [
+    { question: "BMI란 무엇인가요?", answer: "체질량지수(Body Mass Index)의 약자로, 체중(kg)을 키의 제곱(㎡)으로 나눈 값입니다. 비만도를 판정하는 객관적인 기준이 됩니다." },
+    { question: "정상 BMI 범위는 어떻게 되나요?", answer: "WHO 아시아 태평양 기준에 따르면 18.5 ~ 22.9 가 정상 범위에 속합니다. 23 이상은 과체중, 25 이상은 비만으로 분류됩니다." }
+];
+
 const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "비만도 계산기",
-    description: "키와 체중을 입력하여 나의 체질량지수(BMI)와 비만도를 정확하게 측정해보세요.",
+    description: metadata.description as string,
     url: `${BASE_URL}/calculator/health/bmi`,
     applicationCategory: "HealthApplication",
     operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
 };
 
 const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-        {
-            "@type": "Question",
-            name: "BMI란 무엇인가요?",
-            acceptedAnswer: { "@type": "Answer", text: "체질량지수(Body Mass Index)의 약자로, 체중(kg)을 키의 제곱(㎡)으로 나눈 값입니다. 비만도를 판정하는 객관적인 지표로 사용됩니다." }
-        },
-        {
-            "@type": "Question",
-            name: "정상 BMI 범위는 어떻게 되나요?",
-            acceptedAnswer: { "@type": "Answer", text: "WHO 아시아 태평양 기준에 따르면 18.5 ~ 22.9 가 정상 범위에 속합니다." }
+    mainEntity: faqList.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: q.answer
         }
-    ]
+    }))
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "비만도 계산기",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/health/bmi`,
+    "description": metadata.description as string
 };
 
 export default function Page() {
@@ -57,18 +69,14 @@ export default function Page() {
         COMMON_BREADCRUMBS.BMI
     ]);
 
-    const faqList = [
-        { question: "BMI란 무엇인가요?", answer: "체질량지수(Body Mass Index)의 약자로, 체중(kg)을 키의 제곱(㎡)으로 나눈 값입니다. 비만도를 판정하는 객관적인 기준이 됩니다." },
-        { question: "정상 BMI 범위는 어떻게 되나요?", answer: "WHO 아시아 태평양 기준에 따르면 18.5 ~ 22.9 가 정상 범위에 속합니다. 23 이상은 과체중, 25 이상은 비만으로 분류됩니다." }
-    ];
-
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="비만도 계산기" description="나의 체질량지수 측정" position="top" />
+            <NavBar title="비만도 계산기" description="키와 체중을 입력하여 나의 체질량지수(BMI)와 비만도를 정확하게 측정해보세요." position="top" />
             <Bmi />
 
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">

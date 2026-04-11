@@ -32,7 +32,7 @@
         "name": "주택담보대출신DTI",
         "slug": "주택담보대출신DTI",
         "keywords": ["신DTI계산기", "다주택자DTI", "강화된DTI"],
-        "category": "NEWDTI"
+        "category": "NEW-DTI"
     },
     {
         "id": "dsr-car",

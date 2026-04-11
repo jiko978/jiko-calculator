@@ -37,6 +37,40 @@ const faqList = [
     }
 ];
 
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "적금 이자 계산기",
+    description: metadata.description as string,
+    url: `${BASE_URL}/calculator/finance/savings`,
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
+};
+
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqList.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: q.answer
+        }
+    }))
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "적금 이자 계산기",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/finance/savings`,
+    "description": metadata.description as string
+};
+
 export default function SavingsPage() {
     const breadcrumbLd = generateBreadcrumbJsonLd([
         COMMON_BREADCRUMBS.HOME,
@@ -44,22 +78,14 @@ export default function SavingsPage() {
         COMMON_BREADCRUMBS.FINANCE_HOME,
         COMMON_BREADCRUMBS.SAVINGS
     ]);
-
-    const softwareLd = {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "적금 이자 계산기",
-        "operatingSystem": "Any",
-        "applicationCategory": "FinanceApplication",
-        "offers": { "@type": "Offer", "price": "0" }
-    };
-
     return (
         <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="적금 이자 계산기" description="매월 일정액을 저축하는 적금의 만기 수령액을 정확하게 계산하세요. 단리/복리와 과세 유형에 따른 세후 이자 확인이 가능합니다." />
+            <NavBar title="적금 이자 계산기" description="매월 일정액을 저축하는 정기적금의 만기 수령액을 정확하게 계산하세요. 단리/복리와 과세 유형에 따른 세후 이자 확인이 가능합니다." />
 
             <Savings />
 

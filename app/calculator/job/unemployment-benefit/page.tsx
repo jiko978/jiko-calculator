@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import UnemploymentBenefit from "./UnemploymentBenefit";
-import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../utils/seo";
+import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 import NavBar from "@/app/calculator/components/NavBar";
 import JobMoreCalculators from "@/app/calculator/components/JobMoreCalculators";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
@@ -9,13 +9,13 @@ import FAQ from "@/app/calculator/components/FAQ";
 const BASE_URL = "https://jiko.kr";
 
 export const metadata: Metadata = {
-    title: "실업급여 계산기 | 2025 최신 고용보험법 기준 - JIKO 계산기",
-    description: "2025년 최신 실업급여 지급액과 기간을 계산하세요. 피보험 단위기간 180일 확인부터 1일 최대 66,000원까지, 내 조건에 맞는 실업급여를 정밀하게 산출합니다.",
+    title: "실업급여 계산기 | 최신 고용보험법 기준을 실업급여 지급액과 기간 계산 - JIKO 계산기",
+    description: "최신 실업급여 지급액과 기간을 계산하세요. 피보험 단위기간 180일 확인부터 1일 최대 66,000원까지, 내 조건에 맞는 실업급여를 정밀하게 산출합니다.",
     keywords: ["실업급여 계산기", "2025 실업급여", "실업급여 하한액", "실업급여 상한액", "실업급여 신청방법", "고용보험 실업급여", "JIKO 계산기"],
     alternates: { canonical: `${BASE_URL}/calculator/job/unemployment-benefit` },
     openGraph: {
-        title: "실업급여 계산기 | 2025 최신 고용보험법 기준",
-        description: "내가 받을 수 있는 실업급여는 얼마일까요? 지급액과 기간을 정확하게 확인하세요.",
+        title: "실업급여 계산기 | 최신 고용보험법 기준을 실업급여 지급액과 기간 계산 - JIKO 계산기",
+        description: "최신 실업급여 지급액과 기간을 계산하세요. 피보험 단위기간 180일 확인부터 1일 최대 66,000원까지, 내 조건에 맞는 실업급여를 정밀하게 산출합니다.",
         url: `${BASE_URL}/calculator/job/unemployment-benefit`,
         images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "실업급여 계산기" }],
     },
@@ -40,18 +40,56 @@ const unemploymentFaqs = [
     }
 ];
 
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "실업급여 계산기",
+    description: metadata.description as string,
+    url: `${BASE_URL}/calculator/job/unemployment-benefit`,
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
+};
+
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: unemploymentFaqs.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: q.answer
+        }
+    }))
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "실업급여 계산기",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/job/unemployment-benefit`,
+    "description": metadata.description as string
+};
+
 export default function UnemploymentBenefitPage() {
     const breadcrumbLd = generateBreadcrumbJsonLd([
         COMMON_BREADCRUMBS.HOME,
         COMMON_BREADCRUMBS.CALC_HOME,
         COMMON_BREADCRUMBS.JOB_HOME,
-        { name: "실업급여 계산기", item: "https://jiko.kr/calculator/job/unemployment-benefit" }
+        COMMON_BREADCRUMBS.UNEMPLOYMENT_BENEFIT
     ]);
 
     return (
         <main className="bg-gray-50 dark:bg-gray-900 min-h-screen pb-12">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
-            <NavBar title="실업급여 계산기" description="2025년 최신 고용보험 기준 실업급여 계산 도구" />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+            
+            <NavBar title="실업급여 계산기" description="최신 실업급여 지급액과 기간을 계산하세요. 피보험 단위기간 180일 확인부터 1일 최대 66,000원까지, 내 조건에 맞는 실업급여를 정밀하게 산출합니다." />
 
             <UnemploymentBenefit />
 

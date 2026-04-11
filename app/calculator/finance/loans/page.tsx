@@ -37,6 +37,40 @@ const faqList = [
     }
 ];
 
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "대출 이자 계산기",
+    description: metadata.description as string,
+    url: `${BASE_URL}/calculator/finance/loans`,
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
+};
+
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqList.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: q.answer
+        }
+    }))
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "대출 이자 계산기",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/finance/loans`,
+    "description": metadata.description as string
+};
+
 export default function LoansPage() {
     const breadcrumbLd = generateBreadcrumbJsonLd([
         COMMON_BREADCRUMBS.HOME,
@@ -44,20 +78,12 @@ export default function LoansPage() {
         COMMON_BREADCRUMBS.FINANCE_HOME,
         COMMON_BREADCRUMBS.LOANS
     ]);
-
-    const softwareLd = {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "대출 이자 계산기",
-        "operatingSystem": "Any",
-        "applicationCategory": "FinanceApplication",
-        "offers": { "@type": "Offer", "price": "0" }
-    };
-
     return (
         <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
             <NavBar title="대출 이자 계산기" description="대출 금액, 이자율, 상환 방식을 선택하여 월 상환액과 총 대출 이자를 정확하게 계산하세요. 거치 기간 설정을 지원합니다." />
 

@@ -9,13 +9,13 @@ import FAQ from "@/app/calculator/components/FAQ";
 const BASE_URL = "https://jiko.kr";
 
 export const metadata: Metadata = {
-    title: "전역일 계산기 | 군대 전역일 · 복무율 · 진급일 확인 - JIKO 계산기",
+    title: "전역일 계산기 | 군대 전역일 · 복무율 · 진급일 계산 - JIKO 계산기",
     description: "입대일과 복무구분(육군, 해군, 공군 등)을 선택하여 정확한 전역일과 현재 복무율을 확인하세요. 이병부터 병장까지의 진급일 타임라인도 함께 제공합니다.",
     keywords: ["전역일 계산기", "군대 전역일", "복무율 계산", "진급일 계산", "육군 전역일", "공군 전역일", "해군 전역일", "JIKO 계산기"],
     alternates: { canonical: `${BASE_URL}/calculator/life/discharge-day` },
     openGraph: {
-        title: "전역일 계산기 | 군대 전역일 및 실시간 복무율 확인",
-        description: "정확한 전역일과 실시간 복무율, 진급 마일스톤을 확인하세요. JIKO 전역일 계산기.",
+        title: "전역일 계산기 | 군대 전역일 · 복무율 · 진급일 계산 - JIKO 계산기",
+        description: "입대일과 복무구분(육군, 해군, 공군 등)을 선택하여 정확한 전역일과 현재 복무율을 확인하세요. 이병부터 병장까지의 진급일 타임라인도 함께 제공합니다.",
         url: `${BASE_URL}/calculator/life/discharge-day`,
         images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "전역일 계산기" }],
     },
@@ -36,6 +36,40 @@ const faqList = [
     }
 ];
 
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "전역일 계산기",
+    description: metadata.description as string,
+    url: `${BASE_URL}/calculator/life/discharge-day`,
+    applicationCategory: "UtilityApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
+};
+
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqList.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: q.answer
+        }
+    }))
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "전역일 계산기",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/life/discharge-day`,
+    "description": metadata.description as string
+};
+
 export default function DischargeDayPage() {
     const breadcrumbLd = generateBreadcrumbJsonLd([
         COMMON_BREADCRUMBS.HOME,
@@ -44,22 +78,14 @@ export default function DischargeDayPage() {
         { name: "전역일 계산기", item: `${BASE_URL}/calculator/life/discharge-day` }
     ]);
 
-    const softwareLd = {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        name: "JIKO 전역일 계산기",
-        description: "정확한 군별 전역일 및 실시간 복무 진행률, 진급일 정밀 산출 서비스",
-        url: `${BASE_URL}/calculator/life/discharge-day`,
-        applicationCategory: "UtilityApplication",
-        operatingSystem: "Web",
-    };
-
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="전역일 계산기" description="정확한 전역일과 복무 진행률 확인" position="top" />
+            <NavBar title="전역일 계산기" description="입대일과 복무구분(육군, 해군, 공군 등)을 선택하여 정확한 전역일과 현재 복무율을 확인하세요. 이병부터 병장까지의 진급일 타임라인도 함께 제공합니다." position="top" />
             <DischargeDayCalculator />
 
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-4 mt-4">

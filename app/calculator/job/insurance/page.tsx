@@ -9,16 +9,69 @@ import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 const BASE_URL = "https://jiko.kr";
 
 export const metadata: Metadata = {
-    title: "4대보험 계산기 | 2026 최신 근로자·사업주 보험료 계산 - JIKO 계산기",
+    title: "4대보험 계산기 | 최신 근로자·사업주 4대(국민연금, 건강보험, 장기요양, 고용보험) 보험료 계산 - JIKO 계산기",
     description: "내 연봉/월급에서 빠져나가는 4대보험! 근로자와 회사가 각각 얼마씩 내는지 정확한 비율과 금액을 차트로 직관적으로 확인하세요.",
     keywords: ["4대보험 계산기", "국민연금 상한액", "건강보험료 계산", "고용보험료", "산재보험 요율", "사업주 부담금", "실수령액 차이", "4대보험 징수 비율"],
     alternates: { canonical: `${BASE_URL}/calculator/job/insurance` },
     openGraph: {
-        title: "4대보험 계산기 | 2026 최신 근로자·사업주 보험료 계산",
-        description: "회사가 내 대신 내주는 4대보험은 얼마일까요? 정확한 비율과 공제액을 확인하세요.",
+        title: "4대보험 계산기 | 최신 근로자·사업주 4대(국민연금, 건강보험, 장기요양, 고용보험) 보험료 계산 - JIKO 계산기",
+        description: "내 연봉/월급에서 빠져나가는 4대보험! 근로자와 회사가 각각 얼마씩 내는지 정확한 비율과 금액을 차트로 직관적으로 확인하세요.",
         url: `${BASE_URL}/calculator/job/insurance`,
         images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "4대보험 계산기" }],
     },
+};
+
+const faqList = [
+    {
+        question: "과세대상액(비과세 제외)이란 무엇인가요?",
+        answer: "4대보험과 소득세 산정의 기준이 되는 금액입니다. 기본급에서 비과세 대상인 식대(월 최대 20만 원), 자가운전보조금, 보육수당 등을 뺀 순수 과세 금액을 의미합니다. 즉, 비과세액이 높을수록 4대보험 부과 기준 금액이 낮아져 납부액도 줄어들게 됩니다."
+    },
+    {
+        question: "산재보험은 왜 제 월급에서 안 빠지나요?",
+        answer: "산업재해보상보험은 근로자의 업무상 재해를 구제하기 위한 사업주(회사)의 의무 가입 보험입니다. 따라서 근로자 급여에서는 단 1원도 공제되지 않으며, 발생되는 보험료는 기업(사업주)이 100% 전액 부담합니다."
+    },
+    {
+        question: "월급이 계속 오르는데 국민연금 공제액이 똑같이 나옵니다. 왜 그런가요?",
+        answer: "국민연금에는 납부 기준의 하한액과 상한액(상한선 기준소득월액 약 617만 원 수준)이 존재합니다. 4.5%를 징수하더라도 최대로 걷을 수 있는 상한선이 법으로 정해져 있으므로, 월 급여액이 이 한도를 초과하면 계속 급여가 치솟아도 더 이상 연금 공제액이 오르지 않습니다."
+    },
+    {
+        question: "회사 근로자 숫자에 따라 4대보험료가 다른가요?",
+        answer: "근로자(나)가 내는 금액은 기업 규모와 무관하게 동일합니다. 하지만 회사(사업주)가 부담해야 하는 영역 중 '고용보험 - 고용안정 및 직업능력개발사업' 항목의 요율은 회사의 직원 수가 150명 미만인지 150명 이상인지 등에 따라 0.25%부터 0.85%까지 단계별로 차등 부과됩니다."
+    }
+];
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "4대보험 계산기",
+    description: metadata.description as string,
+    url: `${BASE_URL}/calculator/job/insurance`,
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
+};
+
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqList.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: q.answer
+        }
+    }))
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "4대보험 계산기",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/job/insurance`,
+    "description": metadata.description as string
 };
 
 export default function InsurancePage() {
@@ -26,70 +79,17 @@ export default function InsurancePage() {
         COMMON_BREADCRUMBS.HOME,
         COMMON_BREADCRUMBS.CALC_HOME,
         COMMON_BREADCRUMBS.JOB_HOME,
-        { name: "4대보험 계산기", item: "/calculator/job/insurance" }
+        COMMON_BREADCRUMBS.INSURANCE
     ]);
-
-    const softwareLd = {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        name: "JIKO 4대보험 분담금 계산기",
-        url: "https://jiko.kr/calculator/job/insurance",
-        applicationCategory: "FinanceApplication",
-        description: "2026년 최신 요율 기반으로, 근로자와 사업주가 각각 내는 국민연금, 건강보험, 고용보험, 산재보험을 정확히 계산하고 시각화합니다.",
-        operatingSystem: "Web"
-    };
-
-    const faqLd = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: [
-            {
-                "@type": "Question",
-                name: "과세대상액(비과세 제외)이란 무엇인가요?",
-                acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "4대보험과 소득세 산정의 기준이 되는 금액입니다. 기본급에서 비과세 대상인 식대(월 최대 20만 원), 자가운전보조금, 보육수당 등을 뺀 순수 과세 금액을 의미합니다. 즉, 비과세액이 높을수록 4대보험 부과 기준 금액이 낮아져 납부액도 줄어들게 됩니다."
-                }
-            },
-            {
-                "@type": "Question",
-                name: "산재보험은 왜 제 월급에서 안 빠지나요?",
-                acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "산업재해보상보험은 근로자의 업무상 재해를 구제하기 위한 사업주(회사)의 의무 가입 보험입니다. 따라서 근로자 급여에서는 단 1원도 공제되지 않으며, 발생되는 보험료는 기업(사업주)이 100% 전액 부담합니다."
-                }
-            },
-            {
-                "@type": "Question",
-                name: "월급이 계속 오르는데 국민연금 공제액이 똑같이 나옵니다. 왜 그런가요?",
-                acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "국민연금에는 납부 기준의 하한액과 상한액(상한선 기준소득월액 약 617만 원 수준)이 존재합니다. 4.5%를 징수하더라도 최대로 걷을 수 있는 상한선이 법으로 정해져 있으므로, 월 급여액이 이 한도를 초과하면 계속 급여가 치솟아도 더 이상 연금 공제액이 오르지 않습니다."
-                }
-            },
-            {
-                "@type": "Question",
-                name: "회사 근로자 숫자에 따라 4대보험료가 다른가요?",
-                acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "근로자(나)가 내는 금액은 기업 규모와 무관하게 동일합니다. 하지만 회사(사업주)가 부담해야 하는 영역 중 '고용보험 - 고용안정 및 직업능력개발사업' 항목의 요율은 회사의 직원 수가 150명 미만인지 150명 이상인지 등에 따라 0.25%부터 0.85%까지 단계별로 차등 부과됩니다."
-                }
-            }
-        ]
-    };
-
-    const faqList = faqLd.mainEntity.map((item) => ({
-        question: item.name,
-        answer: item.acceptedAnswer.text
-    }));
 
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="4대보험 계산기" description="4대보험 예상금액 및 비율 계산" position="top" />
+            <NavBar title="4대보험 계산기" description="내 연봉/월급에서 빠져나가는 4대보험! 근로자와 회사가 각각 얼마씩 내는지 정확한 비율과 금액을 차트로 직관적으로 확인하세요." position="top" />
             <Insurance />
 
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">

@@ -5,9 +5,55 @@ import InstallBanner from "@/app/calculator/components/InstallBanner";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../utils/seo";
 
 export const metadata: Metadata = {
-    title: "주식 계산기 | 주식 물타기, 수익률, 배당금, 수수료 계산기 - JIKO 계산기",
-    description: "주식 물타기, 수익률, 배당금, 수수료 계산까지 투자에 필요한 모든 계산기를 한곳에서 이용하세요.",
-    keywords: ["주식 계산기", "주식 물타기 계산기", "주식 수익률 계산기", "주식 배당금 계산기", "주식 수수료 계산기"],
+    title: "주식 계산기 | 주식 물타기, 수익률, 수수료, 배당금 계산기 - JIKO 계산기",
+    description: "주식 물타기, 수익률, 수수료, 배당금 계산까지 투자에 필요한 모든 계산기를 한곳에서 이용하세요.",
+    keywords: ["주식 계산기", "주식 물타기 계산기", "주식 수익률 계산기", "주식 수수료 계산기", "주식 배당금 계산기"],
+};
+
+const BASE_URL = "https://jiko.kr";
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "JIKO 주식 계산기 모음",
+    description: metadata.description as string,
+    url: `${BASE_URL}/calculator/stock`,
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
+};
+
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+        {
+            "@type": "Question",
+            name: "주식 물타기 계산 시 최대 몇 회까지 입력 가능한가요?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "JIKO 주식 물타기 계산기는 최대 10회까지 추가 매수 기록을 입력할 수 있어, 장기적인 분할 매수 상황에서도 정확한 평균 단가를 산출해 드립니다."
+            }
+        },
+        {
+            "@type": "Question",
+            name: "해외 주식 수수료 및 세금도 계산되나요?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "네, 주식 수수료 계산기를 통해 국내뿐만 아니라 해외 주식 거래 시 발생하는 매매 수수료와 양도소득세(22%) 등을 간편하게 시뮬레이션할 수 있습니다."
+            }
+        }
+    ]
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "주식 계산기",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/stock`,
+    "description": metadata.description as string
 };
 
 const stockCalculators = [
@@ -43,6 +89,9 @@ export default function StockHubPage() {
     return (
         <main className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
             <NavBar title="주식 계산기" description="주식 물타기, 수익률, 배당금, 수수료 계산기 - JIKO 계산기" />
 

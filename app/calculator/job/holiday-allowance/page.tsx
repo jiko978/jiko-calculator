@@ -9,43 +9,56 @@ import FAQ from "@/app/calculator/components/FAQ";
 const BASE_URL = "https://jiko.kr";
 
 export const metadata: Metadata = {
-    title: "주휴수당 계산기 | 2026 최신 근로기준법 적용 - JIKO 계산기",
+    title: "주휴수당 계산기 | 최신 근로기준법 적용 주급, 월급 계산 - JIKO 계산기",
     description: "시급과 주간근로시간만 간편히 입력해 주휴수당 발생 여부와 정확한 수령액(주급, 월급)을 계산해보세요.",
     keywords: ["주휴수당 계산기", "주휴수당 계산법", "주급 계산기", "알바 월급 계산기", "최저임금", "주휴수당 조건"],
     alternates: { canonical: `${BASE_URL}/calculator/job/holiday-allowance` },
     openGraph: {
-        title: "주휴수당 계산기 | 2026 최신 근로기준법",
-        description: "나는 주휴수당을 받을 수 있을까? 시급과 근로시간으로 정확한 나의 급여를 확인하세요.",
+        title: "주휴수당 계산기 | 최신 근로기준법 적용 주급, 월급 계산 - JIKO 계산기",
+        description: "시급과 주간근로시간만 간편히 입력해 주휴수당 발생 여부와 정확한 수령액(주급, 월급)을 계산해보세요.",
         url: `${BASE_URL}/calculator/job/holiday-allowance`,
         images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "주휴수당 계산기" }],
     },
 };
 
+const faqList = [
+    { question: "주휴수당 지급 기준 안내", answer: "주 15시간 이상 근무해야 하며, 근로계약서에 정한 소정 근로일에 1주간 모두 개근해야 주휴수당이 발생합니다. 정규직, 파트타임 등 근로형태와 무관하게 요건 충족 시 모든 근로자에게 적용됩니다." },
+    { question: "주휴수당 계산 방법은 어떻게 되나요?", answer: "1주 소정근로시간이 40시간 미만인 경우 '(1주 근로시간 / 40) × 8시간 × 시급'으로 계산합니다. 단, 주 40시간 이상 근무하더라도 주휴시간은 최대 8시간까지만 인정됩니다." },
+    { question: "미지급 시 어떻게 대처하나요?", answer: "주휴수당 미지급은 엄연한 임금체불에 해당합니다. 고용노동부 고객상담센터(1350)에 문의하거나 관할 고용노동청에 진정서를 제출하여 권리를 보장받으실 수 있습니다." }
+];
+
 const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "주휴수당 계산기",
-    description: "2026년 최신 근로기준법을 적용하여 주휴수당의 발생 여부 확인 및 정확한 주급, 월급환산 금액을 산출합니다.",
+    description: metadata.description as string,
     url: `${BASE_URL}/calculator/job/holiday-allowance`,
-    applicationCategory: "BusinessApplication",
+    applicationCategory: "FinanceApplication",
     operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
 };
 
 const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-        {
-            "@type": "Question",
-            name: "주휴수당 지급 기준 안내",
-            acceptedAnswer: { "@type": "Answer", text: "주 15시간 이상 근무해야 하며, 근로계약서에 정한 소정 근로일에 1주간 모두 개근해야 합니다. 정규직, 계약직, 아르바이트 형태와 무관하게 모두 적용됩니다." }
-        },
-        {
-            "@type": "Question",
-            name: "주휴수당 계산 방법은 어떻게 되나요?",
-            acceptedAnswer: { "@type": "Answer", text: "주 40시간 미만 근무 시 (1주 총 근로시간 / 40) × 8시간 × 시급입니다. 40시간 이상인 경우 최대 8시간까지만 인정되어 항상 8 × 시급으로 산정됩니다." }
+    mainEntity: faqList.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: q.answer
         }
-    ]
+    }))
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "주휴수당 계산기",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/job/holiday-allowance`,
+    "description": metadata.description as string
 };
 
 export default function Page() {
@@ -56,19 +69,14 @@ export default function Page() {
         COMMON_BREADCRUMBS.HOLIDAY_ALLOWANCE
     ]);
 
-    const faqList = [
-        { question: "주휴수당 지급 기준 안내", answer: "주 15시간 이상 근무해야 하며, 근로계약서에 정한 소정 근로일에 1주간 모두 개근해야 주휴수당이 발생합니다. 정규직, 파트타임 등 근로형태와 무관하게 요건 충족 시 모든 근로자에게 적용됩니다." },
-        { question: "주휴수당 계산 방법은 어떻게 되나요?", answer: "1주 소정근로시간이 40시간 미만인 경우 '(1주 근로시간 / 40) × 8시간 × 시급'으로 계산합니다. 단, 주 40시간 이상 근무하더라도 주휴시간은 최대 8시간까지만 인정됩니다." },
-        { question: "미지급 시 어떻게 대처하나요?", answer: "주휴수당 미지급은 엄연한 임금체불에 해당합니다. 고용노동부 고객상담센터(1350)에 문의하거나 관할 고용노동청에 진정서를 제출하여 권리를 보장받으실 수 있습니다." }
-    ];
-
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="주휴수당 계산기" description="정확한 주급과 주휴수당 발생 여부 확인" position="top" />
+            <NavBar title="주휴수당 계산기" description="시급과 주간근로시간만 간편히 입력해 주휴수당 발생 여부와 정확한 수령액(주급, 월급)을 계산해보세요." position="top" />
             <HolidayAllowance />
 
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">

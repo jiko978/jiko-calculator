@@ -5,9 +5,55 @@ import InstallBanner from "@/app/calculator/components/InstallBanner";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../utils/seo";
 
 export const metadata: Metadata = {
-    title: "생활 계산기 | 나이, 디데이, 날짜, 전역일 계산기 모음 - JIKO 계산기",
+    title: "생활 계산기 | 나이, 날짜, 디데이, 전역일 계산기 모음 - JIKO 계산기",
     description: "내 정확한 만 나이는? 중요한 기념일까지 며칠 남았을까? 나이 계산부터 디데이, 날짜 수 계산, 군대 전역일 확인까지 일상에 꼭 필요한 생활 계산기를 만나보세요.",
-    keywords: ["생활 계산기", "나이 계산기", "만 나이 계산기", "디데이 계산기", "날짜 계산기", "전역일 계산기", "군대 계산기", "JIKO 계산기"],
+    keywords: ["생활 계산기", "나이 계산기", "만 나이 계산기", "날짜 계산기", "디데이 계산기", "전역일 계산기"],
+};
+
+const BASE_URL = "https://jiko.kr";
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "JIKO 생활 계산기 모음",
+    description: metadata.description as string,
+    url: `${BASE_URL}/calculator/life`,
+    applicationCategory: "UtilityApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
+};
+
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+        {
+            "@type": "Question",
+            name: "만 나이 통일법이 적용되어 있나요?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "네, JIKO 나이 계산기는 최신 만 나이 통일법 기준을 적용하여 투표권, 운전면허 등 법적 나이 기준을 정확하게 안내해 드립니다."
+            }
+        },
+        {
+            "@type": "Question",
+            name: "날짜 계산 시 초일(첫날)을 포함하나요?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "상황에 따라 다릅니다. 기념일 등 '오늘부터 1일'인 경우는 포함하고, 일반적인 기간 계산은 제외하는 등 사용자가 선택할 수 있도록 옵션을 제공합니다."
+            }
+        }
+    ]
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "생활 계산기",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/life`,
+    "description": metadata.description as string
 };
 
 const lifeCalculators = [
@@ -43,8 +89,11 @@ export default function LifeHubPage() {
     return (
         <main className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="생활 계산기" description="일상의 숫자를 명확하게 | 나이, 디데이, 날짜, 전역일 계산기 - JIKO 계산기" />
+            <NavBar title="생활 계산기" description="나이, 날짜, 디데이, 전역일 계산기 모음 - JIKO 계산기" />
 
             <div className="flex-grow px-4 py-6">
                 <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">🏠 생활 편의 계산기 모음</h1>

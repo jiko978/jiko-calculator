@@ -5,9 +5,55 @@ import InstallBanner from "@/app/calculator/components/InstallBanner";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 
 export const metadata: Metadata = {
-    title: "부동산 계산기 | DSR, DTI, 신DTI, LTV 등 부동산 대출 및 세금 계산기 - JIKO",
+    title: "부동산 계산기 | DSR, 신DTI, DTI, LTV 계산기 - JIKO 계산기",
     description: "내 집 마련의 시작! DSR 대출 한도 계산부터 DTI, 신DTI, 중도상환수수료까지 부동산 투자와 대출에 필요한 모든 계산기를 JIKO에서 만나보세요.",
-    keywords: ["부동산계산기", "DSR계산기", "DTI계산기", "신DTI계산기", "LTV계산기", "대출한도"]
+    keywords: ["부동산계산기", "DSR계산기", "신DTI계산기", "DTI계산기", "LTV계산기"]
+};
+
+const BASE_URL = "https://jiko.kr";
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "JIKO 부동산 계산기 모음",
+    description: metadata.description as string,
+    url: `${BASE_URL}/calculator/real-estate`,
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
+};
+
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+        {
+            "@type": "Question",
+            name: "최신 부동산 대출 규제가 반영되어 있나요?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "네, JIKO 부동산 계산기는 2단계 스트레스 DSR 및 지역별 LTV 등 최신 금융당국의 규제 가이드라인을 실시간으로 반영하여 정확한 한도를 산출합니다."
+            }
+        },
+        {
+            "@type": "Question",
+            name: "스트레스 DSR에 따른 한도 변화를 확인할 수 있나요?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "네, 가산 금리가 적용되는 단계별 스트레스 DSR 시뮬레이션을 통해 나의 실제 대출 가능 금액이 어떻게 변하는지 직관적으로 확인하실 수 있습니다."
+            }
+        }
+    ]
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "부동산 계산기",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/real-estate`,
+    "description": metadata.description as string
 };
 
 const realEstateCalculators = [
@@ -47,12 +93,15 @@ export default function RealEstateHubPage() {
     return (
         <main className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="부동산 계산기" description="DSR, DTI, 신DTI, 대출 한도 계산기 - JIKO" />
+            <NavBar title="부동산 계산기" description="DSR, 신DTI, DTI, LTV 계산기 - JIKO 계산기" />
 
             <div className="flex-grow px-4 py-6">
                 <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">🏢 부동산 계획 계산기 모음</h1>
-                <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">성공적인 내 집 마련을 위한 대출 한도 및 세금을 미리 확인해보세요.</p>
+                <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">DSR, 신DTI, DTI, LTV 계산기를 통해 부동산 계획을 미리 확인해보세요.</p>
 
                 <div className="grid gap-4 w-full max-w-3xl mx-auto md:grid-cols-2">
                     {realEstateCalculators.map((calc) => (

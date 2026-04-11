@@ -5,7 +5,7 @@
 import type { Metadata } from "next";
 import AvgPriceCalculator from "./AvgPrice";
 import NavBar from "@/app/calculator/components/NavBar";
-import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../utils/seo";
+import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 import StockMoreCalculators from "@/app/calculator/components/StockMoreCalculators";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
 import FAQ from "@/app/calculator/components/FAQ";
@@ -14,14 +14,12 @@ const BASE_URL = "https://jiko.kr";
 
 export const metadata: Metadata = {
     title: "주식 물타기 계산기 | 주식 투자 평균단가 목표 달성 계산기 - JIKO 계산기",
-    description:
-        "주식 물타기 시 평균 매입 단가를 최대 10회에 걸쳐 간편하게 계산해드립니다.",
+    description: "주식 물타기 시 평균 매입 단가를 최대 10회에 걸쳐 간편하게 계산해드립니다.",
     keywords: ["주식 물타기 계산기", "주식 물타기", "주식 불타기", "주식 평균단가"],
     alternates: { canonical: `${BASE_URL}/calculator/stock/avg-price` },
     openGraph: {
         title: "주식 물타기 계산기 | 주식 물타기, 불타기, 평균단가 계산기 - JIKO 계산기",
-        description:
-            "주식 물타기 시 평균 매입 단가를 최대 10회에 걸쳐 간편하게 계산해드립니다.",
+        description: "주식 물타기 시 평균 매입 단가를 최대 10회에 걸쳐 간편하게 계산해드립니다.",
         url: `${BASE_URL}/calculator/stock/avg-price`,
         images: [
             {
@@ -34,8 +32,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         title: "주식 물타기 계산기 | 주식 투자 평균단가 목표 달성 계산기 - JIKO 계산기",
-        description:
-            "주식 물타기 시 평균 매입 단가를 최대 10회에 걸쳐 간편하게 계산해드립니다.",
+        description: "주식 물타기 시 평균 매입 단가를 최대 10회에 걸쳐 간편하게 계산해드립니다.",
     },
 };
 
@@ -43,8 +40,7 @@ const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "주식 물타기 계산기",
-    description:
-        "주식 물타기 시 평균 매입 단가를 최대 10회에 걸쳐 간편하게 계산해드립니다.",
+    description: "주식 물타기 시 평균 매입 단가를 최대 10회에 걸쳐 간편하게 계산해드립니다.",
     url: `${BASE_URL}/calculator/stock/avg-price`,
     applicationCategory: "FinanceApplication",
     operatingSystem: "Web",

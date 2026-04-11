@@ -5,6 +5,52 @@ import SiteQR from "./components/SiteQR";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../utils/seo";
 import Image from "next/image"
 
+const BASE_URL = "https://jiko.kr";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "JIKO 계산기",
+  description: "금융, 직장, 생활, 건강, 주식, 부동산 등 일상에 필요한 모든 계산기를 한곳에서 제공하는 서비스입니다.",
+  url: `${BASE_URL}/calculator`,
+  applicationCategory: "UtilityApplication",
+  operatingSystem: "Web",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+  inLanguage: "ko",
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "JIKO 계산기는 무료인가요?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "네, JIKO의 모든 계산기 서비스는 별도의 가입이나 비용 결제 없이 누구나 무료로 이용하실 수 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "계산 결과의 정확도는 어떤가요?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "JIKO는 각 분야별 최신 법정 이율, 소득세법, 병역 기준 등을 실시간으로 반영하여 가장 정확한 결과값을 제공하기 위해 노력합니다. 다만, 모든 결과는 참고용이며 최종 결정은 전문가와 상의하시길 권장합니다."
+      }
+    }
+  ]
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "name": "JIKO 계산기",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "url": `${BASE_URL}/calculator`,
+  "description": "금융, 직장, 생활, 건강, 주식, 부동산 계산기 모음"
+};
+
 const mainCalculators = [
   { title: "💵 금융 계산기(3)", description: "대출 이자, 예금 이자, 적금 이자 계산기", href: "/calculator/finance" },
   { title: "💼 직장 계산기(7)", description: "연봉/월급, 실수령액, 퇴직금, 실업급여, 4대보험, 주휴수당, 연차 계산기", href: "/calculator/job" },
@@ -26,6 +72,18 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
 
       <div className="flex-grow px-4 py-6 w-full max-w-3xl mx-auto">

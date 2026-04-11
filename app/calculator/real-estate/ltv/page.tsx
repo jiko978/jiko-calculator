@@ -9,20 +9,16 @@ import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 const BASE_URL = "https://jiko.kr";
 
 export const metadata: Metadata = {
-    title: "LTV 계산기 | 주택담보대출 지역별 한도 및 규제 정밀 분석 - JIKO",
-    description: "2025 최신 담보인정비율(LTV) 규제 완벽 반영! 규제 지역, 생애최초 혜택, 방공제 금액까지 포함하여 내 집 마련 실제 대출 가능액을 정밀하게 계산해 보세요.",
+    title: "LTV 계산기 | 주택담보대출 지역별 한도 및 규제 정밀 계산 - JIKO 계산기",
+    description: "최신 담보인정비율(LTV) 규제 완벽 반영! 규제 지역, 생애최초 혜택, 방공제 금액까지 포함하여 내 집 마련 실제 대출 가능액을 정밀하게 계산해 보세요.",
     keywords: ["LTV계산기", "담보인정비율", "주택담보대출한도", "생애최초LTV", "방공제계산", "부동산대출규제"],
     alternates: { canonical: `${BASE_URL}/calculator/real-estate/ltv` },
-};
-
-const LTV_SCHEMA = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "JIKO LTV 계산기",
-    "operatingSystem": "iOS, Android, Windows, macOS",
-    "applicationCategory": "FinanceApplication",
-    "offers": { "@type": "Offer", "price": "0" },
-    "description": "지역별/조건별 LTV 및 방공제 금액을 반영한 주택담보대출 정밀 한도 계산기"
+    openGraph: {
+        title: "LTV 계산기 | 주택담보대출 지역별 한도 및 규제 정밀 계산 - JIKO 계산기",
+        description: "최신 담보인정비율(LTV) 규제 완벽 반영! 규제 지역, 생애최초 혜택, 방공제 금액까지 포함하여 내 집 마련 실제 대출 가능액을 정밀하게 계산해 보세요.",
+        url: `${BASE_URL}/calculator/real-estate/ltv`,
+        images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "LTV 계산기" }],
+    },
 };
 
 const faqData = [
@@ -40,6 +36,40 @@ const faqData = [
     }
 ];
 
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "LTV 계산기",
+    description: metadata.description as string,
+    url: `${BASE_URL}/calculator/real-estate/ltv`,
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
+};
+
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqData.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: q.answer
+        }
+    }))
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "LTV 계산기",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/real-estate/ltv`,
+    "description": metadata.description as string
+};
+
 export default function LtvPage() {
     const breadcrumbLd = generateBreadcrumbJsonLd([
         COMMON_BREADCRUMBS.HOME,
@@ -51,9 +81,11 @@ export default function LtvPage() {
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(LTV_SCHEMA) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="🏠 LTV 계산기" description="지역별 규제 및 생애최초 한도 리포트 - JIKO" />
+            <NavBar title="LTV 계산기" description="최신 담보인정비율(LTV) 규제 완벽 반영! 규제 지역, 생애최초 혜택, 방공제 금액까지 포함하여 내 집 마련 실제 대출 가능액을 정밀하게 계산해 보세요." />
 
             <LtvCalculator />
 

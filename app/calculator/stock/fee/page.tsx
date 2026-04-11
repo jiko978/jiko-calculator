@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Fee from "./Fee";
 import NavBar from "@/app/calculator/components/NavBar";
-import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../utils/seo";
+import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 import StockMoreCalculators from "@/app/calculator/components/StockMoreCalculators";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
 import FAQ from "@/app/calculator/components/FAQ";
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     alternates: { canonical: `${BASE_URL}/calculator/stock/fee` },
     openGraph: {
         title: "주식 수수료 계산기 | 국내/해외 주식 수수료 및 세금 계산기 - JIKO 계산기",
-        description: "수수료와 세금을 떼고 남는 진짜 내 수익은 얼마일까? 수수료 포함 손익을 완벽 반영!",
+        description: "국내 코스피, 코스닥 증권사 수수료부터 해외 주식 양도소득세까지 정확하게 계산해 보세요. 수수료를 포함한 세후 순수익과 손해 보지 않는 최소 익절가를 즉시 확인하실 수 있습니다.",
         url: `${BASE_URL}/calculator/stock/fee`,
         images: [
             {
@@ -115,7 +115,7 @@ export default function Page() {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
             />
 
-            <NavBar title="주식 수수료 계산기" description="국내 코스피, 코스닥 증권사 수수료부터 해외 주식 양도소득세까지 정확하게 계산해 보세요." position="top" />
+            <NavBar title="주식 수수료 계산기" description="국내 코스피, 코스닥 증권사 수수료부터 해외 주식 양도소득세까지 정확하게 계산해 보세요. 수수료를 포함한 세후 순수익과 손해 보지 않는 최소 익절가를 즉시 확인하실 수 있습니다." position="top" />
             <Fee />
 
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-8">

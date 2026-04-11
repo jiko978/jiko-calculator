@@ -5,9 +5,55 @@ import InstallBanner from "@/app/calculator/components/InstallBanner";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../utils/seo";
 
 export const metadata: Metadata = {
-    title: "직장 계산기 | 연봉, 연차, 퇴직금, 실업급여 계산기 모음 - JIKO 계산기",
+    title: "직장 계산기 | 연봉/월급, 실수령액, 퇴직금, 실업급여, 4대보험, 주휴수당, 연차 계산기 모음 - JIKO 계산기",
     description: "내 연봉/실수령액은 얼마일까? 내 휴가는 며칠일까? 연차, 퇴직금과 실업급여 등 직장 생활에 꼭 필요한 계산기를 2025년 최신 기준으로 이용하세요.",
-    keywords: ["직장 계산기", "연봉 계산기", "월급 계산기", "실수령액 계산기", "연차 계산기", "연차수당 계산기", "퇴직금 계산기", "실업급여 계산기", "세금 계산기", "JIKO 계산기"],
+    keywords: ["직장 계산기", "연봉 계산기", "월급 계산기", "실수령액 계산기", "퇴직금 계산기", "실업급여 계산기", "4대보험 계산기", "주휴수당 계산기", "연차 계산기", "연차수당 계산기"],
+};
+
+const BASE_URL = "https://jiko.kr";
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "JIKO 직장 계산기 모음",
+    description: metadata.description as string,
+    url: `${BASE_URL}/calculator/job`,
+    applicationCategory: "UtilityApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
+};
+
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+        {
+            "@type": "Question",
+            name: "2025년 최신 세율이 반영되어 있나요?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "네, JIKO 직장 계산기는 매년 바뀌는 국민연금, 건강보험 등 4대보험 요율과 소득세법 개정안을 즉시 업데이트하여 정확한 결과를 제공합니다."
+            }
+        },
+        {
+            "@type": "Question",
+            name: "실수령액을 기준으로 연봉을 역산할 수 있나요?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "네, 실수령액 계산기를 통해 내가 받고 싶은 월 실수령액을 입력하면 그에 필요한 세전 연봉과 월급을 즉시 확인하실 수 있습니다."
+            }
+        }
+    ]
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "직장 계산기",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/job`,
+    "description": metadata.description as string
 };
 
 const jobCalculators = [
@@ -58,8 +104,11 @@ export default function JobHubPage() {
     return (
         <main className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="직장 계산기" description="직장 계산기 | 연봉, 실수령액, 퇴직금, 실업급여 계산기 - JIKO 계산기" />
+            <NavBar title="직장 계산기" description="연봉/월급, 실수령액, 퇴직금, 실업급여, 4대보험, 주휴수당, 연차 계산기 모음 - JIKO 계산기" />
 
             <div className="flex-grow px-4 py-6">
                 <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">💼 직장 생활 계산기 모음</h1>

@@ -15,11 +15,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const slug = (await params).slug;
     const product = products.find(p => p.slug === decodeURIComponent(slug));
 
-    if (!product) return { title: "DSR 계산기 | JIKO" };
+    if (!product) return { title: "DSR 계산기 | 총부채원리금상환비율 및 스트레스 DSR 한도 계산 - JIKO 계산기" };
 
     return {
-        title: `${product.name} DSR 한도 계산기 | 스트레스 DSR 완벽 반영 - JIKO`,
-        description: `2025 최신 규제 반영! ${product.name}의 DSR 및 스트레스 DSR 단계별 한도, 추가 대출 가능액을 정밀하게 계산해 보세요.`,
+        title: `${product.name} DSR 계산기 | 총부채원리금상환비율 및 스트레스 DSR 한도 계산 - JIKO 계산기`,
+        description: `최신 규제 반영! ${product.name}의 DSR 및 스트레스 DSR 단계별 한도, 추가 대출 가능액을 정밀하게 계산해 보세요.`,
         keywords: [product.name, ...product.keywords, "DSR계산기", "부동산대출규제"]
     };
 }
@@ -66,7 +66,7 @@ export default async function DsrProductPage({ params }: Props) {
         <main>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
             
-            <NavBar title={`${product.name} 한도 분석`} description="2025 최신 규제 기반 DSR 결과 레포트 - JIKO" />
+            <NavBar title={`${product.name} 한도 분석`} description="최신 규제 반영! 연소득 대비 대출 원리금 상환액 비율(DSR)과 스트레스 DSR 단계별 한도, 추가 대출 가능액을 정밀하게 계산해 보세요." />
 
             <DsrCalculator />
 

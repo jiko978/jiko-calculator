@@ -10,43 +10,55 @@ import FAQ from "@/app/calculator/components/FAQ";
 const BASE_URL = "https://jiko.kr";
 
 export const metadata: Metadata = {
-    title: "기초대사량 계산기 · BMR 계산기 · 일일 권장 칼로리 | 평균 BMR 비교 - JIKO 계산기",
+    title: "기초대사량 계산기 | 기초대사량(BMR) 및 일일 권장 칼로리 측정 - JIKO 계산기",
     description: "생명 유지에 필요한 최소한의 에너지, 기초대사량(BMR)을 계산하여 하루 권장 칼로리를 알아보세요.",
     keywords: ["기초대사량 계산기", "BMR 계산기", "일일 권장 칼로리 계산기", "다이어트", "기초대사량", "JIKO 계산기"],
     alternates: { canonical: `${BASE_URL}/calculator/health/bmr` },
     openGraph: {
-        title: "기초대사량(BMR) 계산기 | 나의 하루 숨만 쉬어도 소모되는 칼로리",
-        description: "나는 아무것도 안 해도 하루에 몇 칼로리를 소모할까요? 기초대사량을 계산해보세요.",
+        title: "기초대사량 계산기 | 기초대사량(BMR) 및 일일 권장 칼로리 측정 - JIKO 계산기",
+        description: "생명 유지에 필요한 최소한의 에너지, 기초대사량(BMR)을 계산하여 하루 권장 칼로리를 알아보세요.",
         url: `${BASE_URL}/calculator/health/bmr`,
         images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "기초대사량 계산기" }],
     },
 };
 
+const faqList = [
+    { question: "기초대사량(BMR)이 무엇인가요?", answer: "기초대사량은 우리 몸이 휴식 상태에서도 체온 유지, 심장 박동 등 생명 유지를 위해 소모하는 최소한의 에너지(kcal)입니다. 아무것도 안 해도 기본적으로 빠지는 칼로리를 뜻합니다." },
+    { question: "어떤 공식을 쓰나요?", answer: "본 계산기는 현대인에게 가장 정확도가 높다고 알려진 미플린-세인트 주어(Mifflin-St Jeor) 공식을 사용하여 계산됩니다." }
+];
+
 const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "기초대사량(BMR) 계산기",
-    description: "나의 성별, 나이, 키, 체중을 입력하여 하루 기초대사량을 계산합니다.",
+    name: "기초대사량 계산기",
+    description: metadata.description as string,
     url: `${BASE_URL}/calculator/health/bmr`,
     applicationCategory: "HealthApplication",
     operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
 };
 
 const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-        {
-            "@type": "Question",
-            name: "기초대사량(BMR)이 무엇인가요?",
-            acceptedAnswer: { "@type": "Answer", text: "숨을 쉬거나 심장이 뛰는 등 생명 활동을 유지하기 위해 최소한으로 필요한 에너지를 기초대사량이라고 합니다." }
-        },
-        {
-            "@type": "Question",
-            name: "기초대사량을 알면 왜 좋은가요?",
-            acceptedAnswer: { "@type": "Answer", text: "다이어트 시 본인의 기초대사량을 알면 기준이 되는 최저 칼로리 섭취량을 알 수 있어 요요현상을 방지하고 체중 관리에 도움이 됩니다." }
+    mainEntity: faqList.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: q.answer
         }
-    ]
+    }))
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "기초대사량 계산기",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/health/bmr`,
+    "description": metadata.description as string
 };
 
 export default function Page() {
@@ -57,18 +69,14 @@ export default function Page() {
         COMMON_BREADCRUMBS.BMR
     ]);
 
-    const faqList = [
-        { question: "기초대사량(BMR)이 무엇인가요?", answer: "기초대사량은 우리 몸이 휴식 상태에서도 체온 유지, 심장 박동 등 생명 유지를 위해 소모하는 최소한의 에너지(kcal)입니다. 아무것도 안 해도 기본적으로 빠지는 칼로리를 뜻합니다." },
-        { question: "어떤 공식을 쓰나요?", answer: "본 계산기는 현대인에게 가장 정확도가 높다고 알려진 미플린-세인트 주어(Mifflin-St Jeor) 공식을 사용하여 계산됩니다." }
-    ];
-
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="기초대사량(BMR) 계산기" description="하루 필수 에너지 소모량 파악" position="top" />
+            <NavBar title="기초대사량 계산기" description="생명 유지에 필요한 최소한의 에너지, 기초대사량(BMR)을 계산하여 하루 권장 칼로리를 알아보세요." position="top" />
             <Bmr />
 
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">

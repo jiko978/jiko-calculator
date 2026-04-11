@@ -5,9 +5,55 @@ import InstallBanner from "@/app/calculator/components/InstallBanner";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../utils/seo";
 
 export const metadata: Metadata = {
-    title: "건강 계산기 | 비만도, 기초대사량, 칼로리, 배란일, 임신주수 계산기 - JIKO 계산기",
+    title: "건강 계산기 | 비만도, 배란일, 기초대사량, 임신주수, 칼로리 계산기 - JIKO 계산기",
     description: "나의 비만도(BMI), 기초대사량(BMR), 권장 칼로리는 물론 배란일과 임신주수까지 건강 관리에 필요한 계산기를 한곳에서 이용하세요.",
-    keywords: ["건강 계산기", "BMI 계산기", "기초대사량 계산기", "칼로리 계산기", "배란일 계산기", "임신주수 계산기"],
+    keywords: ["건강 계산기", "비만도 계산기", "배란일 계산기", "기초대사량 계산기", "임신주수 계산기", "칼로리 계산기", "BMI 계산기", "BMR 계산기", ],
+};
+
+const BASE_URL = "https://jiko.kr";
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "JIKO 건강 계산기 모음",
+    description: metadata.description as string,
+    url: `${BASE_URL}/calculator/health`,
+    applicationCategory: "HealthApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
+};
+
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+        {
+            "@type": "Question",
+            name: "건강 계산기의 결과는 정확한가요?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "JIKO 건강 계산기는 WHO(세계보건기구) 및 Mifflin-St Jeor 등 검증된 의학 공식을 기반으로 설계되었습니다. 다만, 참고용 자료이므로 전문가의 상담을 대체할 수는 없습니다."
+            }
+        },
+        {
+            "@type": "Question",
+            name: "입력한 건강 데이터가 서버에 저장되나요?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "아니요, JIKO는 사용자의 민감한 건강 정보를 서버에 저장하지 않으며 모든 계산은 사용자의 브라우저 내에서만 안전하게 처리됩니다."
+            }
+        }
+    ]
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "건강 계산기",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/health`,
+    "description": metadata.description as string
 };
 
 const healthCalculators = [
@@ -48,8 +94,11 @@ export default function HealthHubPage() {
     return (
         <main className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="건강 계산기" description="건강 계산기 | 비만도, 기초대사량, 칼로리, 배란일, 임신주수 계산기 - JIKO 계산기" />
+            <NavBar title="건강 계산기" description="비만도, 배란일, 기초대사량, 임신주수, 칼로리 계산기 - JIKO 계산기" />
 
             <div className="flex-grow px-4 py-6">
                 <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">💪 건강 생활 계산기 모음</h1>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Dividend from "./Dividend";
 import NavBar from "@/app/calculator/components/NavBar";
-import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../../utils/seo";
+import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 import StockMoreCalculators from "@/app/calculator/components/StockMoreCalculators";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
 import FAQ from "@/app/calculator/components/FAQ";
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     alternates: { canonical: `${BASE_URL}/calculator/stock/dividend` },
     openGraph: {
         title: "주식 배당금 계산기 | 배당 수익률, 수익금 목표 달성 계산기 - JIKO 계산기",
-        description: "나의 주식 배당금, 생활비로 환산하면 얼마일까?",
+        description: "주식 배당금과 배당 수익률을 정확하게 계산해 보세요. 내가 받은 배당금이 생활비로 얼마나 충당되는지, 목표 배당금을 위해 얼마가 더 필요한지 한눈에 보여드립니다.",
         url: `${BASE_URL}/calculator/stock/dividend`,
         images: [
             {
@@ -75,7 +75,7 @@ const schema = {
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Web",
     "url": `${BASE_URL}/calculator/stock/dividend`,
-    "description": "주식 배당금과 배당 수익률을 정확하게 계산해 보세요."
+    "description": "주식 배당금과 배당 수익률을 정확하게 계산해 보세요. 내가 받은 배당금이 생활비로 얼마나 충당되는지, 목표 배당금을 위해 얼마가 더 필요한지 한눈에 보여드립니다."
 };
 
 export default function Page() {
@@ -116,7 +116,7 @@ export default function Page() {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
             />
 
-            <NavBar title="주식 배당금 계산기" description="주식 배당금과 배당 수익률을 정확하게 계산해 보세요." position="top" />
+            <NavBar title="주식 배당금 계산기" description="주식 배당금과 배당 수익률을 정확하게 계산해 보세요. 내가 받은 배당금이 생활비로 얼마나 충당되는지, 목표 배당금을 위해 얼마가 더 필요한지 한눈에 보여드립니다." position="top" />
 
             <Dividend />
 

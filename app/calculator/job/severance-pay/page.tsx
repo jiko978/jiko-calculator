@@ -10,26 +10,57 @@ import FAQ from "@/app/calculator/components/FAQ";
 const BASE_URL = "https://jiko.kr";
 
 export const metadata: Metadata = {
-    title: "퇴직금 계산기 | 2025 최신 세금 및 세후 실수령액 계산 - JIKO 계산기",
-    description: "내 퇴직금은 얼마일까? 2025년 최신 퇴직금 산정 기준과 상여금, 연차수당을 반영한 정확한 세전/세후 퇴직금을 계산해드립니다.",
+    title: "퇴직금 계산기 | 근속 연수와 평균임금을 반영하여 퇴직 실수령액 계산 - JIKO 계산기",
+    description: "최신 산정 기준을 반영하여 근속 연수와 평균임금을 기반으로 정확한 퇴직금 및 세금을 계산해드립니다.",
     keywords: ["퇴직금 계산기", "예상 퇴직금", "퇴직금 계산 방법", "퇴직금 세금 계산", "퇴직소득세 계산", "평균임금 계산", "JIKO 계산기"],
     alternates: { canonical: `${BASE_URL}/calculator/job/severance-pay` },
     openGraph: {
-        title: "퇴직금 계산기 | 2025년 최신 퇴직금 산정 기준 반영",
-        description: "입사일과 퇴사일만 넣으면 끝! 상여금과 연차수당까지 포함한 정밀한 퇴직금과 세금을 확인하세요.",
+        title: "퇴직금 계산기 | 근속 연수와 평균임금을 반영하여 퇴직 실수령액 계산 - JIKO 계산기",
+        description: "최신 산정 기준을 반영하여 근속 연수와 평균임금을 기반으로 정확한 퇴직금 및 세금을 계산해드립니다.",
         url: `${BASE_URL}/calculator/job/severance-pay`,
         images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "퇴직금 계산기" }],
     },
 };
 
+const faqList = [
+    { question: "퇴직금 지급 대상은 어떻게 되나요?", answer: "1주당 소정근로시간이 15시간 이상이고, 계속 근로기간이 1년 이상이면 지급 대상입니다. 1년 미만 근로 시 법정 퇴직금은 발생하지 않습니다." },
+    { question: "퇴직금 산정 기준인 '평균임금'은 무엇인가요?", answer: "퇴직 전 3개월 동안 지급된 임금의 총액을 해당 기간의 총 일수로 나룬 금액입니다. 여기에는 상여금의 1/4과 연차수당의 1/4도 포함됩니다." },
+    { question: "퇴직금은 언제까지 지급되어야 하나요?", answer: "근로기준법에 따라 퇴사일로부터 14일 이내에 지급되어야 합니다. 특별한 사정이 있는 경우 합의에 의해 연장할 수 있습니다." },
+    { question: "퇴직금은 반드시 IRP 계좌로 받아야 하나요?", answer: "2022년 4월부터 퇴직연금 가입 여부와 관계없이 모든 퇴직금은 원칙적으로 개인형퇴직연금(IRP) 계좌로 이전하여 지급해야 합니다. 단, 만 55세 이후 퇴직하거나 금액이 300만원 이하인 경우 등은 예외가 있습니다." }
+];
+
 const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "퇴직금 계산기",
-    description: "2025년 최신 산정 기준을 반영하여 근속 연수와 평균임금을 기반으로 정확한 퇴직금 및 세금을 계산해드립니다.",
+    description: metadata.description as string,
     url: `${BASE_URL}/calculator/job/severance-pay`,
-    applicationCategory: "BusinessApplication",
+    applicationCategory: "FinanceApplication",
     operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
+};
+
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqList.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: q.answer
+        }
+    }))
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "퇴직금 계산기",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/job/severance-pay`,
+    "description": metadata.description as string
 };
 
 export default function Page() {
@@ -40,19 +71,14 @@ export default function Page() {
         COMMON_BREADCRUMBS.SEVERANCE_PAY
     ]);
 
-    const faqList = [
-        { question: "퇴직금 지급 대상은 어떻게 되나요?", answer: "1주당 소정근로시간이 15시간 이상이고, 계속 근로기간이 1년 이상이면 지급 대상입니다. 1년 미만 근로 시 법정 퇴직금은 발생하지 않습니다." },
-        { question: "퇴직금 산정 기준인 '평균임금'은 무엇인가요?", answer: "퇴직 전 3개월 동안 지급된 임금의 총액을 해당 기간의 총 일수로 나룬 금액입니다. 여기에는 상여금의 1/4과 연차수당의 1/4도 포함됩니다." },
-        { question: "퇴직금은 언제까지 지급되어야 하나요?", answer: "근로기준법에 따라 퇴사일로부터 14일 이내에 지급되어야 합니다. 특별한 사정이 있는 경우 합의에 의해 연장할 수 있습니다." },
-        { question: "퇴직금은 반드시 IRP 계좌로 받아야 하나요?", answer: "2022년 4월부터 퇴직연금 가입 여부와 관계없이 모든 퇴직금은 원칙적으로 개인형퇴직연금(IRP) 계좌로 이전하여 지급해야 합니다. 단, 만 55세 이후 퇴직하거나 금액이 300만원 이하인 경우 등은 예외가 있습니다." }
-    ];
-
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="퇴직금 계산기" description="예상 퇴직금 및 세금/실수령액 계산" position="top" />
+            <NavBar title="퇴직금 계산기" description="최신 산정 기준을 반영하여 근속 연수와 평균임금을 기반으로 정확한 퇴직금 및 세금을 계산해드립니다." position="top" />
             <SeverancePay />
 
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">

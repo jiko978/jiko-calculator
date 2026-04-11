@@ -15,12 +15,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const product = products.find((p) => p.slug === slug && p.category === "LTV");
 
     if (!product) {
-        return { title: "LTV 계산기 - JIKO" };
+        return { title: "LTV 계산기 | 주택담보대출 지역별 한도 및 규제 정밀 계산 - JIKO 계산기" };
     }
 
     return {
-        title: `${product.name} 한도 계산 | 2025 최신 규제 반영 - JIKO`,
-        description: `${product.name} 한도 및 실제 입금액을 계산해 보세요. 지역별 LTV와 방공제 금액을 자동으로 차산하여 정밀한 결과를 제공합니다.`,
+        title: `${product.name} LTV 계산기 | 주택담보대출 지역별 한도 및 규제 정밀 계산 - JIKO 계산기`,
+        description: `${product.name} 최신 담보인정비율(LTV) 규제 완벽 반영! 규제 지역, 생애최초 혜택, 방공제 금액까지 포함하여 내 집 마련 실제 대출 가능액을 정밀하게 계산해 보세요.`,
         keywords: product.keywords,
         alternates: { canonical: `https://jiko.kr/calculator/real-estate/ltv/${params.slug}` },
     };
@@ -50,7 +50,7 @@ export default function LtvProductPage({ params }: Props) {
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
 
-            <NavBar title={`${product.name}`} description="상품별 정밀 한도 및 방공제 리포트 - JIKO" />
+            <NavBar title={`${product.name}`} description="최신 담보인정비율(LTV) 규제 완벽 반영! 규제 지역, 생애최초 혜택, 방공제 금액까지 포함하여 내 집 마련 실제 대출 가능액을 정밀하게 계산해 보세요." />
 
             <LtvCalculator />
 

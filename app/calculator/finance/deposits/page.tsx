@@ -37,6 +37,40 @@ const faqList = [
     }
 ];
 
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "예금 이자 계산기",
+    description: metadata.description as string,
+    url: `${BASE_URL}/calculator/finance/deposits`,
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
+};
+
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqList.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: q.answer
+        }
+    }))
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "예금 이자 계산기",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/finance/deposits`,
+    "description": metadata.description as string
+};
+
 export default function DepositsPage() {
     const breadcrumbLd = generateBreadcrumbJsonLd([
         COMMON_BREADCRUMBS.HOME,
@@ -44,22 +78,14 @@ export default function DepositsPage() {
         COMMON_BREADCRUMBS.FINANCE_HOME,
         COMMON_BREADCRUMBS.DEPOSITS
     ]);
-
-    const softwareLd = {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "예금 이자 계산기",
-        "operatingSystem": "Any",
-        "applicationCategory": "FinanceApplication",
-        "offers": { "@type": "Offer", "price": "0" }
-    };
-
     return (
         <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="예금 이자 계산기" description="정확한 예금 이자 계산으로 목돈 굴리기 계획을 세워보세요." />
+            <NavBar title="예금 이자 계산기" description="정기예금의 원금, 기간, 이율을 입력하여 세전/세후 이자와 만기 수령액을 정확하게 계산하세요. 단리 및 월복리, 과세 유형별 계산을 지원합니다." />
 
             <Deposits />
 

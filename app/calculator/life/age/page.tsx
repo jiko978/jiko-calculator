@@ -9,13 +9,13 @@ import FAQ from "@/app/calculator/components/FAQ";
 const BASE_URL = "https://jiko.kr";
 
 export const metadata: Metadata = {
-    title: "나이 계산기 | 만 나이 · 연 나이 · 띠 · 법적 권리 확인 - JIKO 계산기",
+    title: "나이 계산기 | 만 나이 · 연 나이 · 세는 나이 · 띠 · 법적 권리 확인 - JIKO 계산기",
     description: "출생 연월일을 입력하여 현재 나의 만 나이, 연 나이, 세는 나이와 띠를 확인하세요. 각 나이별 법적 권리와 의무 변화를 한눈에 보여드립니다.",
     keywords: ["나이 계산기", "만 나이", "연 나이", "한국 나이", "띠 계산기", "성인 나이", "JIKO 계산기"],
     alternates: { canonical: `${BASE_URL}/calculator/life/age` },
     openGraph: {
-        title: "나이 계산기 | 나의 정확한 만 나이와 법적 권리 확인",
-        description: "나는 지금 무엇을 할 수 있는 나이일까요? 정확한 만 나이와 사회적 마일스톤을 확인하세요.",
+        title: "나이 계산기 | 만 나이 · 연 나이 · 세는 나이 · 띠 · 법적 권리 확인 - JIKO 계산기",
+        description: "출생 연월일을 입력하여 현재 나의 만 나이, 연 나이, 세는 나이와 띠를 확인하세요. 각 나이별 법적 권리와 의무 변화를 한눈에 보여드립니다.",
         url: `${BASE_URL}/calculator/life/age`,
         images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "나이 계산기" }],
     },
@@ -36,30 +36,56 @@ const faqList = [
     }
 ];
 
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "나이 계산기",
+    description: metadata.description as string,
+    url: `${BASE_URL}/calculator/life/age`,
+    applicationCategory: "UtilityApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
+};
+
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqList.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: q.answer
+        }
+    }))
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "나이 계산기",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/life/age`,
+    "description": metadata.description as string
+};
+
 export default function AgePage() {
     const breadcrumbLd = generateBreadcrumbJsonLd([
         COMMON_BREADCRUMBS.HOME,
         COMMON_BREADCRUMBS.CALC_HOME,
         COMMON_BREADCRUMBS.LIFE_HOME,
-        { name: "나이 계산기", item: `${BASE_URL}/calculator/life/age` }
+        COMMON_BREADCRUMBS.AGE
     ]);
-
-    const softwareLd = {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        name: "JIKO 나이 계산기",
-        description: "만 나이, 연 나이, 띠 및 생애 주기별 법적 권리 안내 서비스",
-        url: `${BASE_URL}/calculator/life/age`,
-        applicationCategory: "UtilityApplication",
-        operatingSystem: "Web",
-    };
 
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="나이 계산기" description="정확한 만 나이와 법적 권리를 확인하세요." position="top" />
+            <NavBar title="나이 계산기" description="출생 연월일을 입력하여 현재 나의 만 나이, 연 나이, 세는 나이와 띠를 확인하세요. 각 나이별 법적 권리와 의무 변화를 한눈에 보여드립니다." position="top" />
             <Age />
 
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-4 mt-4">

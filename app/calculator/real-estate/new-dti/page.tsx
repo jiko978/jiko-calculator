@@ -9,10 +9,16 @@ import FAQ from "@/app/calculator/components/FAQ";
 const BASE_URL = "https://jiko.kr";
 
 export const metadata: Metadata = {
-    title: "신DTI 계산기 | 다주택자 대출 규제 및 주담대 원리금 합산 분석 - JIKO",
+    title: "신DTI 계산기 | 다주택자 대출 규제 및 주담대 원리금 합산 계산 - JIKO 계산기",
     description: "다주택자를 위한 강화된 신DTI 규제 완벽 대응! 기존 주택담보대출의 원리금까지 모두 합산하여 실질적인 대출 한도를 정밀하게 분석해드립니다.",
     keywords: ["신DTI계산기", "다주택자대출", "강화된DTI", "주담대한도", "신총부채상환비율", "부동산규제"],
     alternates: { canonical: `${BASE_URL}/calculator/real-estate/new-dti` },
+    openGraph: {
+        title: "신DTI 계산기 | 다주택자 대출 규제 및 주담대 원리금 합산 계산 - JIKO 계산기",
+        description: "다주택자를 위한 강화된 신DTI 규제 완벽 대응! 기존 주택담보대출의 원리금까지 모두 합산하여 실질적인 대출 한도를 정밀하게 분석해드립니다.",
+        url: `${BASE_URL}/calculator/real-estate/new-dti`,
+        images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "신DTI 계산기" }],
+    },
 };
 
 const faqList = [
@@ -26,19 +32,56 @@ const faqList = [
     }
 ];
 
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "신DTI 계산기",
+    description: metadata.description as string,
+    url: `${BASE_URL}/calculator/real-estate/new-dti`,
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
+};
+
+const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqList.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: q.answer
+        }
+    }))
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "신DTI 계산기",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/real-estate/new-dti`,
+    "description": metadata.description as string
+};
+
 export default function NewDtiPage() {
     const breadcrumbLd = generateBreadcrumbJsonLd([
         COMMON_BREADCRUMBS.HOME,
         COMMON_BREADCRUMBS.CALC_HOME,
         COMMON_BREADCRUMBS.REAL_ESTATE_HOME,
-        { name: "신DTI 계산기", item: `${BASE_URL}/calculator/real-estate/new-dti` }
+        COMMON_BREADCRUMBS.NEW_DTI
     ]);
 
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="신DTI 계산기" description="강화된 다주택자 부채 심사 기준 반영" position="top" />
+            <NavBar title="신DTI 계산기" description="다주택자를 위한 강화된 신DTI 규제 완벽 대응! 기존 주택담보대출의 원리금까지 모두 합산하여 실질적인 대출 한도를 정밀하게 분석해드립니다." position="top" />
             <NewDtiCalculator />
 
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-4 mt-4">

@@ -10,43 +10,55 @@ import FAQ from "@/app/calculator/components/FAQ";
 const BASE_URL = "https://jiko.kr";
 
 export const metadata: Metadata = {
-    title: "배란일 계산기 · 임신 가임기 계산기 | 다음 생리 예정일 예측 - JIKO 계산기",
+    title: "배란일 계산기 | 임신 가능성이 높은 가임기 및 배란일 예측 - JIKO 계산기",
     description: "마지막 생리 시작일과 평균 주기를 통하여 다음 생리 예정일, 임신 가능성이 높은 가임기 및 배란일 캘린더를 간단히 계산해드립니다.",
     keywords: ["배란일 계산기", "가임기 계산기", "생리달력", "임신 가임기", "생리주기 계산", "다음 생리일", "JIKO 계산기"],
     alternates: { canonical: `${BASE_URL}/calculator/health/ovulation` },
     openGraph: {
-        title: "배란일 및 가임기 계산기",
-        description: "마지막 생리 주기 정보를 통해 예측되는 가임기, 생리일을 캘린더로 직관적으로 확인하세요.",
+        title: "배란일 계산기 | 임신 가능성이 높은 가임기 및 배란일 예측 - JIKO 계산기",
+        description: "마지막 생리 시작일과 평균 주기를 통하여 다음 생리 예정일, 임신 가능성이 높은 가임기 및 배란일 캘린더를 간단히 계산해드립니다.",
         url: `${BASE_URL}/calculator/health/ovulation`,
         images: [{ url: `${BASE_URL}/calculator/jiko-calculator-icon2.png`, width: 1200, height: 630, alt: "배란일 생리주기 계산기" }],
     },
 };
 
+const faqList = [
+    { question: "배란일은 어떤 기준으로 떨어지나요?", answer: "개인의 생리 주기와 무관하게 황체기는 보통 14일로 고정되어 있습니다. 따라서 다음 생리 예정일을 구한 뒤 14일 전으로 역산하는 것이 배란일 계산의 원리입니다." },
+    { question: "가임기는 며칠인가요?", answer: "배란 전 정자의 생존기간(약 3~5일)과 배란 후 난자의 생존기간(약 1~2일)을 더하여 넉넉히 배란일 전 5일, 후 2일을 모두 임신 가임기 확률이 높은 안전하지 않은 구간으로 설정합니다." }
+];
+
 const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "배란일 및 생리주기 계산기",
-    description: "생리 시작일과 주기를 통하여 가임기 및 배란 예정일을 산출합니다.",
+    name: "배란일 계산기",
+    description: metadata.description as string,
     url: `${BASE_URL}/calculator/health/ovulation`,
     applicationCategory: "HealthApplication",
     operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+    inLanguage: "ko",
 };
 
 const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-        {
-            "@type": "Question",
-            name: "배란일은 어떻게 계산되나요?",
-            acceptedAnswer: { "@type": "Answer", text: "다음 생리 예정일로부터 14일 전을 배란 예정일로 계산합니다." }
-        },
-        {
-            "@type": "Question",
-            name: "이 결과만으로 피임을 해도 되나요?",
-            acceptedAnswer: { "@type": "Answer", text: "스트레스, 컨디션에 따라 주기는 변동될 수 있습니다. 단순 알고리즘에 기반한 계산기이므로 완벽한 의학적 피임이나 진단을 대체할 수 없습니다. 항상 이중 피임을 권장합니다." }
+    mainEntity: faqList.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: q.answer
         }
-    ]
+    }))
+};
+
+const schema = {
+    "@context": "https://schema.org",
+    "name": "배란일 계산기",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "url": `${BASE_URL}/calculator/health/ovulation`,
+    "description": metadata.description as string
 };
 
 export default function Page() {
@@ -57,18 +69,14 @@ export default function Page() {
         COMMON_BREADCRUMBS.OVULATION
     ]);
 
-    const faqList = [
-        { question: "배란일은 어떤 기준으로 떨어지나요?", answer: "개인의 생리 주기와 무관하게 황체기는 보통 14일로 고정되어 있습니다. 따라서 다음 생리 예정일을 구한 뒤 14일 전으로 역산하는 것이 배란일 계산의 원리입니다." },
-        { question: "가임기는 며칠인가요?", answer: "배란 전 정자의 생존기간(약 3~5일)과 배란 후 난자의 생존기간(약 1~2일)을 더하여 넉넉히 배란일 전 5일, 후 2일을 모두 임신 가임기 확률이 높은 안전하지 않은 구간으로 설정합니다." }
-    ];
-
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="배란일 계산기" description="다음 생리일 및 가임기 주기를 확인하세요" position="top" />
+            <NavBar title="배란일 계산기" description="마지막 생리 시작일과 평균 주기를 통하여 다음 생리 예정일, 임신 가능성이 높은 가임기 및 배란일 캘린더를 간단히 계산해드립니다." position="top" />
             <Ovulation />
 
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">
