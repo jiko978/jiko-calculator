@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba892596-243c-4883-bf52-ac23e2e1bf54" name="변경" comment="jiko 107 commit">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="ba892596-243c-4883-bf52-ac23e2e1bf54" name="변경" comment="jiko 107 commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -113,7 +110,7 @@
       <workItem from="1775106299093" duration="11999000" />
       <workItem from="1775275746139" duration="51889000" />
       <workItem from="1775862999395" duration="3936000" />
-      <workItem from="1775889328259" duration="19782000" />
+      <workItem from="1775889328259" duration="20229000" />
     </task>
     <task id="LOCAL-00014" summary="jiko 60 commit">
       <option name="closed" value="true" />
