@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba892596-243c-4883-bf52-ac23e2e1bf54" name="변경" comment="jiko 86 commit">
+    <list default="true" id="ba892596-243c-4883-bf52-ac23e2e1bf54" name="변경" comment="jiko 107 commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/components/JobMoreCalculators.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/components/JobMoreCalculators.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/job/net-pay/NetPay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/job/net-pay/NetPay.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/job/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/job/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/job/salary/Salary.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/job/salary/Salary.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/job/severance-pay/SeverancePay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/job/severance-pay/SeverancePay.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/job/unemployment-benefit/UnemploymentBenefit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/job/unemployment-benefit/UnemploymentBenefit.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/calculator/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/stock/dividend/Dividend.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/stock/dividend/Dividend.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/stock/fee/StockFee.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/stock/fee/StockFee.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/stock/profit-rate/ProfitRate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/stock/profit-rate/ProfitRate.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/sitemap.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/sitemap.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/docs/calculator/JIKO-calculator-설계서.md" beforeDir="false" afterPath="$PROJECT_DIR$/public/docs/calculator/JIKO-calculator-설계서.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/seo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/seo.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,110 +108,13 @@
       <workItem from="1774104943447" duration="18111000" />
       <workItem from="1774315426047" duration="37553000" />
       <workItem from="1774597534267" duration="10778000" />
-    </task>
-    <task id="LOCAL-00001" summary="jiko 44 commit">
-      <option name="closed" value="true" />
-      <created>1773639541989</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1773639541989</updated>
-    </task>
-    <task id="LOCAL-00002" summary="jiko 45 commit">
-      <option name="closed" value="true" />
-      <created>1773711447547</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1773711447547</updated>
-    </task>
-    <task id="LOCAL-00003" summary="jiko 46 commit">
-      <option name="closed" value="true" />
-      <created>1773713880130</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1773713880130</updated>
-    </task>
-    <task id="LOCAL-00004" summary="jiko 49 commit">
-      <option name="closed" value="true" />
-      <created>1773730186085</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1773730186085</updated>
-    </task>
-    <task id="LOCAL-00005" summary="jiko 49 commit">
-      <option name="closed" value="true" />
-      <created>1773730226700</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1773730226700</updated>
-    </task>
-    <task id="LOCAL-00006" summary="jiko 52 commit">
-      <option name="closed" value="true" />
-      <created>1773736653097</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1773736653097</updated>
-    </task>
-    <task id="LOCAL-00007" summary="jiko 53 commit">
-      <option name="closed" value="true" />
-      <created>1773738399043</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1773738399043</updated>
-    </task>
-    <task id="LOCAL-00008" summary="jiko 55 commit">
-      <option name="closed" value="true" />
-      <created>1773799847193</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1773799847193</updated>
-    </task>
-    <task id="LOCAL-00009" summary="jiko 56 commit">
-      <option name="closed" value="true" />
-      <created>1773803441033</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1773803441033</updated>
-    </task>
-    <task id="LOCAL-00010" summary="jiko 57 commit">
-      <option name="closed" value="true" />
-      <created>1773909807169</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1773909807169</updated>
-    </task>
-    <task id="LOCAL-00011" summary="jiko 58 commit">
-      <option name="closed" value="true" />
-      <created>1773914109624</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1773914109624</updated>
-    </task>
-    <task id="LOCAL-00012" summary="jiko 59 commit">
-      <option name="closed" value="true" />
-      <created>1773920158127</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1773920158127</updated>
-    </task>
-    <task id="LOCAL-00013" summary="jiko 59 commit">
-      <option name="closed" value="true" />
-      <created>1773920289325</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1773920289325</updated>
+      <workItem from="1774743363714" duration="9332000" />
+      <workItem from="1774836226643" duration="4024000" />
+      <workItem from="1774841373269" duration="22031000" />
+      <workItem from="1775106299093" duration="11999000" />
+      <workItem from="1775275746139" duration="51889000" />
+      <workItem from="1775862999395" duration="3936000" />
+      <workItem from="1775889328259" duration="15368000" />
     </task>
     <task id="LOCAL-00014" summary="jiko 60 commit">
       <option name="closed" value="true" />
@@ -447,7 +340,175 @@
       <option name="project" value="LOCAL" />
       <updated>1774655599237</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="jiko 88 commit">
+      <option name="closed" value="true" />
+      <created>1774681497864</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1774681497864</updated>
+    </task>
+    <task id="LOCAL-00043" summary="jiko 89 commit">
+      <option name="closed" value="true" />
+      <created>1774682975961</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1774682975961</updated>
+    </task>
+    <task id="LOCAL-00044" summary="jiko 90 commit">
+      <option name="closed" value="true" />
+      <created>1774710096108</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1774710096108</updated>
+    </task>
+    <task id="LOCAL-00045" summary="jiko 91 commit">
+      <option name="closed" value="true" />
+      <created>1774766919195</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1774766919195</updated>
+    </task>
+    <task id="LOCAL-00046" summary="jiko 92 commit">
+      <option name="closed" value="true" />
+      <created>1774774835412</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1774774835412</updated>
+    </task>
+    <task id="LOCAL-00047" summary="jiko 93 commit">
+      <option name="closed" value="true" />
+      <created>1774856031413</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1774856031413</updated>
+    </task>
+    <task id="LOCAL-00048" summary="jiko 94 commit">
+      <option name="closed" value="true" />
+      <created>1774944023933</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1774944023933</updated>
+    </task>
+    <task id="LOCAL-00049" summary="jiko 95 commit">
+      <option name="closed" value="true" />
+      <created>1774944287308</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1774944287308</updated>
+    </task>
+    <task id="LOCAL-00050" summary="jiko 96 commit">
+      <option name="closed" value="true" />
+      <created>1775014280631</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1775014280632</updated>
+    </task>
+    <task id="LOCAL-00051" summary="jiko 97 commit">
+      <option name="closed" value="true" />
+      <created>1775205684743</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1775205684743</updated>
+    </task>
+    <task id="LOCAL-00052" summary="jiko 98 commit">
+      <option name="closed" value="true" />
+      <created>1775206485708</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1775206485708</updated>
+    </task>
+    <task id="LOCAL-00053" summary="jiko 99 commit">
+      <option name="closed" value="true" />
+      <created>1775208810372</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1775208810372</updated>
+    </task>
+    <task id="LOCAL-00054" summary="jiko 100 commit">
+      <option name="closed" value="true" />
+      <created>1775276755947</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1775276755947</updated>
+    </task>
+    <task id="LOCAL-00055" summary="jiko 101 commit">
+      <option name="closed" value="true" />
+      <created>1775314992807</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1775314992807</updated>
+    </task>
+    <task id="LOCAL-00056" summary="jiko 102 commit">
+      <option name="closed" value="true" />
+      <created>1775319617590</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1775319617590</updated>
+    </task>
+    <task id="LOCAL-00057" summary="jiko 103 commit">
+      <option name="closed" value="true" />
+      <created>1775373437622</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1775373437622</updated>
+    </task>
+    <task id="LOCAL-00058" summary="jiko 104 commit">
+      <option name="closed" value="true" />
+      <created>1775525230625</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1775525230625</updated>
+    </task>
+    <task id="LOCAL-00059" summary="jiko 105 commit">
+      <option name="closed" value="true" />
+      <created>1775710327088</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1775710327088</updated>
+    </task>
+    <task id="LOCAL-00060" summary="jiko 105 commit">
+      <option name="closed" value="true" />
+      <created>1775813409076</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1775813409076</updated>
+    </task>
+    <task id="LOCAL-00061" summary="jiko 106 commit">
+      <option name="closed" value="true" />
+      <created>1775898066874</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1775898066874</updated>
+    </task>
+    <task id="LOCAL-00062" summary="jiko 107 commit">
+      <option name="closed" value="true" />
+      <created>1776238400139</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1776238400139</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -465,32 +526,32 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="jiko 62 commit" />
-    <MESSAGE value="jiko 63 commit" />
-    <MESSAGE value="jiko 64 commit" />
-    <MESSAGE value="jiko 65 commit" />
-    <MESSAGE value="jiko 66 commit" />
-    <MESSAGE value="jiko 67 commit" />
-    <MESSAGE value="jiko 68 commit" />
-    <MESSAGE value="jiko 69 commit" />
-    <MESSAGE value="jiko 70 commit" />
-    <MESSAGE value="jiko 71 commit" />
-    <MESSAGE value="jiko 72 commit" />
-    <MESSAGE value="jiko 73 commit" />
-    <MESSAGE value="jiko 74 commit" />
-    <MESSAGE value="jiko 75 commit" />
-    <MESSAGE value="jiko 76 commit" />
-    <MESSAGE value="jiko 77 commit" />
-    <MESSAGE value="jiko 78 commit" />
-    <MESSAGE value="jiko 79 commit" />
-    <MESSAGE value="jiko 80 commit" />
-    <MESSAGE value="jiko 81 commit" />
     <MESSAGE value="jiko 82 commit" />
     <MESSAGE value="jiko 83 commit" />
     <MESSAGE value="jiko 84 commit" />
     <MESSAGE value="jiko 85 commit" />
     <MESSAGE value="jiko 86 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="jiko 86 commit" />
+    <MESSAGE value="jiko 88 commit" />
+    <MESSAGE value="jiko 89 commit" />
+    <MESSAGE value="jiko 90 commit" />
+    <MESSAGE value="jiko 91 commit" />
+    <MESSAGE value="jiko 92 commit" />
+    <MESSAGE value="jiko 93 commit" />
+    <MESSAGE value="jiko 94 commit" />
+    <MESSAGE value="jiko 95 commit" />
+    <MESSAGE value="jiko 96 commit" />
+    <MESSAGE value="jiko 97 commit" />
+    <MESSAGE value="jiko 98 commit" />
+    <MESSAGE value="jiko 99 commit" />
+    <MESSAGE value="jiko 100 commit" />
+    <MESSAGE value="jiko 101 commit" />
+    <MESSAGE value="jiko 102 commit" />
+    <MESSAGE value="jiko 103 commit" />
+    <MESSAGE value="jiko 104 commit" />
+    <MESSAGE value="jiko 105 commit" />
+    <MESSAGE value="jiko 106 commit" />
+    <MESSAGE value="jiko 107 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="jiko 107 commit" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

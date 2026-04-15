@@ -40,6 +40,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: "/calculator/health/ovulation", priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/health/pregnancy", priority: 0.8, changeFrequency: "monthly" as const },
 
+        // ── 세금(7) ──
+        { url: "/calculator/tax",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/tax/vat",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/tax/capital-gains",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/tax/acquisition",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/tax/car",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/tax/property",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/tax/comprehensive",  priority: 0.8, changeFrequency: "monthly" as const },
+
         // ── 주식(5) ──
         { url: "/calculator/stock",  priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/stock/avg-price",  priority: 0.8, changeFrequency: "monthly" as const },

@@ -67,8 +67,8 @@ export const COMMON_BREADCRUMBS = {
     VAT: { name: "부가세 계산기", item: "/calculator/tax/vat" },
     CAPITAL_GAINS: { name: "양도소득세 계산기", item: "/calculator/tax/capital-gains" },
     ACQUISITION: { name: "취득세 계산기", item: "/calculator/tax/acquisition" },
+    CAR_TAX: { name: "자동차세 계산기", item: "/calculator/tax/car" },
     PROPERTY_TAX: { name: "재산세 계산기", item: "/calculator/tax/property" },
     COMPREHENSIVE_TAX: { name: "종합부동산세 계산기", item: "/calculator/tax/comprehensive" },
-    CAR_TAX: { name: "자동차세 계산기", item: "/calculator/tax/car" },
 };
 

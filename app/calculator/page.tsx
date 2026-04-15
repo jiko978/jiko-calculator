@@ -56,7 +56,7 @@ const mainCalculators = [
   { title: "💼 직장 계산기(7)", description: "연봉/월급, 실수령액, 퇴직금, 실업급여, 4대보험, 주휴수당, 연차 계산기", href: "/calculator/job" },
   { title: "🏠 생활 계산기(4)", description: "나이, 날짜, 디데이, 전역일 계산기", href: "/calculator/life" },
   { title: "💪 건강 계산기(5)", description: "비만도, 배란일, 기초대사량, 임신주수 , 칼로리 계산기", href: "/calculator/health" },
-  { title: "🧾 세금 계산기(6)", description: "부가세, 양도소득세, 취득세, 재산세, 종부세, 자동차세 계산기", href: "/calculator/tax" },
+  { title: "🧾 세금 계산기(6)", description: "부가세, 양도소득세, 취득세, 자동차세, 재산세, 종부세 계산기", href: "/calculator/tax" },
   { title: "📈 주식 계산기(4)", description: "주식 물타기, 수익률, 수수료, 배당금 계산기", href: "/calculator/stock" },
   { title: "🏢 부동산 계산기(4)", description: "DSR, 신DTI, DTI, LTV 계산기", href: "/calculator/real-estate" }
 ];
