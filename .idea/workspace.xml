@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba892596-243c-4883-bf52-ac23e2e1bf54" name="변경" comment="jiko 107 commit">
-      <change afterPath="$PROJECT_DIR$/app/ads.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +63,7 @@
       <recent name="C:\Users\kji\jiko-project\app\calculator" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\kji\jiko-project\public" />
       <recent name="C:\Users\kji\jiko-project\public\calculator" />
       <recent name="C:\Users\kji\jiko-project\app\calculator" />
     </key>
@@ -112,7 +113,7 @@
       <workItem from="1775106299093" duration="11999000" />
       <workItem from="1775275746139" duration="51889000" />
       <workItem from="1775862999395" duration="3936000" />
-      <workItem from="1775889328259" duration="18080000" />
+      <workItem from="1775889328259" duration="19782000" />
     </task>
     <task id="LOCAL-00014" summary="jiko 60 commit">
       <option name="closed" value="true" />
