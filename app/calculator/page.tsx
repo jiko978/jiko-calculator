@@ -11,7 +11,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "JIKO 계산기",
-  description: "금융, 직장, 생활, 건강, 주식, 부동산 등 일상에 필요한 모든 계산기를 한곳에서 제공하는 서비스입니다.",
+  description: "금융, 직장, 생활, 건강, 세금, 주식, 부동산 등 일상에 필요한 모든 계산기를 한곳에서 제공하는 서비스입니다.",
   url: `${BASE_URL}/calculator`,
   applicationCategory: "UtilityApplication",
   operatingSystem: "Web",
@@ -48,7 +48,7 @@ const schema = {
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Web",
   "url": `${BASE_URL}/calculator`,
-  "description": "금융, 직장, 생활, 건강, 주식, 부동산 계산기 모음"
+  "description": "금융, 직장, 생활, 건강, 세금, 주식, 부동산 계산기 모음"
 };
 
 const mainCalculators = [
@@ -56,7 +56,7 @@ const mainCalculators = [
   { title: "💼 직장 계산기(7)", description: "연봉/월급, 실수령액, 퇴직금, 실업급여, 4대보험, 주휴수당, 연차 계산기", href: "/calculator/job" },
   { title: "🏠 생활 계산기(4)", description: "나이, 날짜, 디데이, 전역일 계산기", href: "/calculator/life" },
   { title: "💪 건강 계산기(5)", description: "비만도, 배란일, 기초대사량, 임신주수 , 칼로리 계산기", href: "/calculator/health" },
-  { title: "🧾 세금 계산기(0)", description: "준비 중입니다.", href: "/calculator/tax" },
+  { title: "🧾 세금 계산기(6)", description: "부가세, 양도소득세, 취득세, 재산세, 종부세, 자동차세 계산기", href: "/calculator/tax" },
   { title: "📈 주식 계산기(4)", description: "주식 물타기, 수익률, 수수료, 배당금 계산기", href: "/calculator/stock" },
   { title: "🏢 부동산 계산기(4)", description: "DSR, 신DTI, DTI, LTV 계산기", href: "/calculator/real-estate" }
 ];
@@ -91,11 +91,11 @@ export default function Home() {
         <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">
           <Link href="/calculator" className="hover:text-red-500 flex items-center justify-center gap-1">
             <Image
-                src="/icons/icon-512x512.png"
-                alt="JIKO 계산기 로고"
-                width={30}
-                height={30}
-                className="mr-3 items-center"
+              src="/icons/icon-512x512.png"
+              alt="JIKO 계산기 로고"
+              width={30}
+              height={30}
+              className="mr-3 items-center"
             />
             JIKO 계산기
           </Link>

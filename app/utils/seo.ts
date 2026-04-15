@@ -33,8 +33,8 @@ export const COMMON_BREADCRUMBS = {
     SALARY: { name: "연봉/월급 계산기", item: "/calculator/job/salary" },
     NET_PAY: { name: "실수령액 계산기", item: "/calculator/job/net-pay" },
     SEVERANCE_PAY: { name: "퇴직금 계산기", item: "/calculator/job/severance-pay" },
-    UNEMPLOYMENT_BENEFIT:{ name: "실업급여 계산기", item: "/calculator/job/unemployment-benefit" },
-    INSURANCE:{ name: "4대보험 계산기", item: "/calculator/job/insurance" },
+    UNEMPLOYMENT_BENEFIT: { name: "실업급여 계산기", item: "/calculator/job/unemployment-benefit" },
+    INSURANCE: { name: "4대보험 계산기", item: "/calculator/job/insurance" },
     HOLIDAY_ALLOWANCE: { name: "주휴수당 계산기", item: "/calculator/job/holiday-allowance" },
     ANNUAL: { name: "연차 계산기", item: "/calculator/job/annual" },
 
@@ -62,5 +62,13 @@ export const COMMON_BREADCRUMBS = {
     NEW_DTI: { name: "신DTI 계산기", item: "/calculator/real-estate/new-dti" },
     DTI: { name: "DTI 계산기", item: "/calculator/real-estate/dti" },
     LTV: { name: "LTV 계산기", item: "/calculator/real-estate/ltv" },
+
+    TAX_HOME: { name: "세금 계산기", item: "/calculator/tax" },
+    VAT: { name: "부가세 계산기", item: "/calculator/tax/vat" },
+    CAPITAL_GAINS: { name: "양도소득세 계산기", item: "/calculator/tax/capital-gains" },
+    ACQUISITION: { name: "취득세 계산기", item: "/calculator/tax/acquisition" },
+    PROPERTY_TAX: { name: "재산세 계산기", item: "/calculator/tax/property" },
+    COMPREHENSIVE_TAX: { name: "종합부동산세 계산기", item: "/calculator/tax/comprehensive" },
+    CAR_TAX: { name: "자동차세 계산기", item: "/calculator/tax/car" },
 };
 

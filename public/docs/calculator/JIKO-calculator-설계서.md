@@ -145,14 +145,15 @@ Tool Site.
 
 
 세금(tax)
-ㄴ [1차]부가세 : MoneyNest 참고 
-ㄴ [1차]양도세 : MoneyNest 참고 
-ㄴ [1차]취득세 : 국세청 위텍스, 국토교통부 참고
-ㄴ [1차]자동차세 : MoneyNest 참고 
-ㄴ [1차]보유세
+ㄴ [1차]부가세(vat) : MoneyNest 참고 
+ㄴ [1차]양도세(capital-gains) : MoneyNest 참고 
+ㄴ [1차]취득세(acquisition) : 국세청 위텍스, 국토교통부 참고
+ㄴ [1차]자동차세(car) : MoneyNest 참고 
+ㄴ [1차]재산세(property)
+ㄴ [1차]종합부동산세(comprehensive)
 
-ㄴ [미정]종부세
-
+ㄴ [2차]증여세(gift)
+ㄴ [2차]상속세(inheritance)
 
 주식(stock)
 ㄴ [1차]주식 평균단가(avg-price) : 물타기/불타기 평균 단가 계산

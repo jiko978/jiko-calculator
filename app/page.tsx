@@ -83,7 +83,12 @@ const services: Service[] = [
         bgColor: "bg-gray-50 dark:bg-gray-800/50",
         borderColor: "border-gray-200 dark:border-gray-700",
         links: [
-            { label: "서비스 준비 중", href: "#", disabled: true }
+            { label: "🧾 부가세 계산기", href: "/calculator/tax/vat" },
+            { label: "🏠 양도소득세 계산기", href: "/calculator/tax/capital-gains" },
+            { label: "🔑 취득세 계산기", href: "/calculator/tax/acquisition" },
+            { label: "🚗 자동차세 계산기", href: "/calculator/tax/car" },
+            { label: "📄 재산세 계산기", href: "/calculator/tax/property" },
+            { label: "🏛️ 종부세 계산기", href: "/calculator/tax/comprehensive" }
         ]
     },
     {
