@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import SiteQR from "./components/SiteQR";
+import ShareSheet from "./components/ShareSheet";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../utils/seo";
 import Image from "next/image"
 
@@ -62,6 +64,8 @@ const mainCalculators = [
 ];
 
 export default function Home() {
+  const [showShare, setShowShare] = useState(false);
+
   const breadcrumbLd = generateBreadcrumbJsonLd([
     COMMON_BREADCRUMBS.HOME,
     COMMON_BREADCRUMBS.CALC_HOME
@@ -86,20 +90,37 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
 
-      <div className="flex-grow px-4 py-6 w-full max-w-3xl mx-auto">
+      <div className="flex-grow px-4 py-6 w-full max-w-3xl mx-auto relative">
         {/* 상단 타이틀 섹션 */}
-        <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">
-          <Link href="/calculator" className="hover:text-red-500 flex items-center justify-center gap-1">
-            <Image
-              src="/icons/icon-512x512.png"
-              alt="JIKO 계산기 로고"
-              width={30}
-              height={30}
-              className="mr-3 items-center"
-            />
-            JIKO 계산기
-          </Link>
-        </h1>
+        <div className="relative mb-2">
+          <h1 className="text-3xl font-bold text-center text-gray-800 dark:text-gray-100">
+            <Link href="/calculator" className="hover:text-red-500 flex items-center justify-center gap-1">
+              <Image
+                src="/icons/icon-512x512.png"
+                alt="JIKO 계산기 로고"
+                width={30}
+                height={30}
+                className="mr-3 items-center"
+              />
+              JIKO 계산기
+            </Link>
+          </h1>
+          {/* 공유 버튼 */}
+          <button
+            onClick={() => setShowShare(true)}
+            aria-label="공유"
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md active:scale-95 transition-all text-gray-500 hover:text-blue-600"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-5 h-5"
+              fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+            </svg>
+          </button>
+        </div>
         <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">
           일상에 필요한 금융, 직장, 생활, 건강, 세금, 주식, 부동산 계산기를 한 곳에서 만나보세요.
         </p>
@@ -155,6 +176,15 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {showShare && (
+        <ShareSheet
+          url={typeof window !== "undefined" ? window.location.href : ""}
+          title="JIKO 계산기 모음"
+          description="금융, 직장, 생활, 건강, 세금, 주식, 부동산 등 일상에 필요한 모든 계산기를 한곳에서 확인하세요!"
+          onClose={() => setShowShare(false)}
+        />
+      )}
     </main>
   );
 }
