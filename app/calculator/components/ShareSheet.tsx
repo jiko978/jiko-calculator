@@ -38,9 +38,9 @@ export default function ShareSheet({ url, title, description, onClose }: ShareSh
         // 썸네일 이미지 경로 — 로컬 테스트 시에도 이미지를 보여주기 위해 실제 서버 주소 사용
         const thumbnailUrl = `https://jiko.kr/calculator/jiko-calculator-icon2.png`;
 
-        // 로컬 주소인 경우 jiko.kr/calculator로 강제 치환 (상단 이미지/텍스트/버튼 링크 통일)
+        // 로컬 주소인 경우 jiko.kr로 강제 치환 (상단 이미지/텍스트/버튼 링크 통일)
         const shareUrl = url.includes("localhost") 
-            ? url.replace(/http:\/\/localhost:\d+/, "https://jiko.kr/calculator")
+            ? url.replace(/http:\/\/localhost:\d+/, "https://jiko.kr")
             : url;
 
         try {
