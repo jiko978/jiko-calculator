@@ -108,13 +108,13 @@ export default function RealEstateHubPage() {
                         <Link
                             key={calc.href}
                             href={calc.status === "ACTIVE" ? calc.href : "#"}
-                            className={`group block p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 transition-all duration-300 ${calc.status === "ACTIVE" ? "hover:shadow-xl hover:-translate-y-1" : "opacity-60 cursor-not-allowed filter grayscale"}`}
+                            className={`group block p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 transition-all duration-300 ${calc.status === "ACTIVE" ? "hover:shadow-xl hover:-translate-y-1" : "opacity-60 cursor-not-allowed filter grayscale"}`}
                         >
                             <div className="h-full flex flex-col">
                                 <h3 className={`text-lg font-bold mb-2 transition-colors ${calc.status === "ACTIVE" ? "text-gray-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400" : "text-gray-400"}`}>
                                     {calc.title}
                                 </h3>
-                                <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-4 flex-grow">
+                                <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-2 flex-grow">
                                     {calc.description}
                                 </p>
                             </div>

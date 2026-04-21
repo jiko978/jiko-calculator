@@ -104,13 +104,13 @@ export default function LifeHubPage() {
                         <Link
                             key={calc.href}
                             href={calc.href}
-                            className="group block p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                            className="group block p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                         >
                             <div className="h-full flex flex-col">
                                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                                     {calc.title}
                                 </h3>
-                                <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-4 flex-grow">
+                                <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-2 flex-grow">
                                     {calc.description}
                                 </p>
                             </div>
@@ -121,7 +121,7 @@ export default function LifeHubPage() {
                 <section className="mt-4 max-w-3xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-48 h-48 bg-purple-500/5 rounded-full -mr-24 -mt-24 blur-2xl"></div>
                     <div className="relative">
-                        <h2 className="text-xl font-black text-gray-900 dark:text-white mb-5">JIKO 생활 계산기 안내</h2>
+                        <h2 className="text-xl font-black text-gray-900 dark:text-white mb-5">JIKO 생활 계산기만의 특징</h2>
                         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <li className="flex gap-3">
                                 <div className="w-10 h-10 rounded-xl bg-purple-50 dark:bg-purple-900/30 flex items-center justify-center shrink-0 text-xl">🎂</div>
