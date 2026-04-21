@@ -5,6 +5,7 @@ import { ANIMATION } from "@/app/config/animationConfig";
 import CalculatorActions from "@/app/calculator/components/CalculatorActions";
 import CalculatorButtons from "@/app/calculator/components/CalculatorButtons";
 import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
+import { numberToKorean } from "@/app/utils/financeUtils";
 
 interface LoansProps {
     productName?: string;
@@ -205,7 +206,14 @@ const Loans = ({ productName }: LoansProps) => {
 
                 <div className="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700/50 space-y-6">
                     <div className="space-y-3">
-                        <label htmlFor="loan-amount" className={`block text-sm font-bold transition-colors ${errors.has("loanAmount") ? "text-red-500" : "text-gray-700 dark:text-gray-200"}`}>대출 금액</label>
+                        <div className="flex justify-between items-end">
+                            <label htmlFor="loan-amount" className={`block text-sm font-bold transition-colors ${errors.has("loanAmount") ? "text-red-500" : "text-gray-700 dark:text-gray-200"}`}>대출 금액</label>
+                            {loanAmount && (
+                                <span className="text-xs font-medium text-amber-600 dark:text-amber-400 animate-fade-in">
+                                    {numberToKorean(loanAmount)} 원
+                                </span>
+                            )}
+                        </div>
                         <div className="relative">
                             <input
                                 id="loan-amount"
@@ -221,14 +229,23 @@ const Loans = ({ productName }: LoansProps) => {
                             <span aria-hidden="true" className={`absolute right-5 top-1/2 -translate-y-1/2 font-bold ${errors.has("loanAmount") ? "text-red-500" : "text-gray-500 dark:text-gray-400"}`}>원</span>
                         </div>
 
-                        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                        <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
+                            <button 
+                                onClick={() => {
+                                    setLoanAmount("");
+                                    setCalculated(false);
+                                }} 
+                                className="px-3 py-2 text-xs font-black bg-rose-50 dark:bg-rose-900/20 text-rose-500 border border-rose-100 dark:border-rose-800 rounded-xl hover:bg-rose-100 transition-all active:scale-95"
+                            >
+                                C
+                            </button>
                             {[100, 1000, 5000, 10000, 50000, 100000].map(v => (
                                 <button
                                     key={v}
                                     onClick={() => addAmount(v * 10000)}
                                     className="py-2 text-xs font-semibold bg-gray-100 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 rounded-xl transition-all active:scale-95"
                                 >
-                                    +{v >= 10000 ? `${v / 10000}억원` : v >= 1000 ? `${v / 1000}천만원` : `${v}만원`}
+                                    +{v >= 10000 ? `${v / 10000}억` : v >= 1000 ? `${v / 1000}천만` : `${v}만`}
                                 </button>
                             ))}
                         </div>
@@ -362,7 +379,7 @@ const Loans = ({ productName }: LoansProps) => {
                 </div>
 
                 {calculated && (
-                    <div className={`mt-8 space-y-6 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
+                    <div ref={resultRef} className={`mt-8 space-y-6 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
                         <div className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700/50 text-center relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-amber-400 to-orange-500"></div>
 

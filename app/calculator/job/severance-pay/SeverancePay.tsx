@@ -197,7 +197,7 @@ export default function SeverancePay() {
 
                     {/* 급여액 입력 */}
                     <div>
-                        <label htmlFor="severance-amount" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">평균 {calcType === 'YEARLY' ? '연봉' : '월급'} (원)</label>
+                        <label htmlFor="severance-amount" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">평균 {calcType === 'YEARLY' ? '연봉' : '월급'}</label>
                         <div className="relative mb-3">
                             <input
                                 id="severance-amount"

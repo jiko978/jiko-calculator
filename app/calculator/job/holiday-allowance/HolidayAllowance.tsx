@@ -155,7 +155,7 @@ export default function HolidayAllowance() {
                     
                     {/* 시급 입력 */}
                     <div>
-                        <label htmlFor="hourly-wage" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">시급 (원)</label>
+                        <label htmlFor="hourly-wage" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">시급</label>
                         <div className="relative group">
                             <input
                                 id="hourly-wage"

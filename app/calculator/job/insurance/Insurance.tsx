@@ -198,7 +198,7 @@ https://jiko.kr/calculator/job/insurance`;
 
                     <div>
                         <label htmlFor="total-salary" className="text-sm font-semibold text-gray-700 dark:text-gray-300 block mb-2">
-                            총 {salaryType === "YEARLY" ? "연봉액" : "월급액"} (원)
+                            총 {salaryType === "YEARLY" ? "연봉액" : "월급액"}
                         </label>
                         <div className="relative">
                             <input

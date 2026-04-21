@@ -97,7 +97,7 @@ export default function StockHubPage() {
 
             <div className="flex-grow px-4 py-6">
                 <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">📈 주식 투자 계산기 모음</h1>
-                <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">주식 물타기(평단가), 수익률, 배당금, 수수료 계산기를 통해 투자 결과를 간편하고 빠르게 확인하세요.</p>
+                <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">주식 물타기(평단가), 수익률, 수수료, 배당금 계산기를 통해 투자 결과를 간편하고 빠르게 확인하세요.</p>
 
                 <div className="grid gap-4 w-full max-w-3xl mx-auto md:grid-cols-2">
                     {stockCalculators.map((calc) => (

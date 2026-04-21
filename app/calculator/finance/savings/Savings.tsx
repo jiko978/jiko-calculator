@@ -5,6 +5,7 @@ import { ANIMATION } from "@/app/config/animationConfig";
 import CalculatorActions from "@/app/calculator/components/CalculatorActions";
 import CalculatorButtons from "@/app/calculator/components/CalculatorButtons";
 import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
+import { numberToKorean } from "@/app/utils/financeUtils";
 
 interface SavingsProps {
     productName?: string;
@@ -175,7 +176,14 @@ const Savings = ({ productName }: SavingsProps) => {
 
                 <div className="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700/50 space-y-6">
                     <div className="space-y-3">
-                        <label htmlFor="savings-amount" className={`block text-sm font-bold transition-colors ${errors.has("monthlyAmount") ? "text-red-500" : "text-gray-700 dark:text-gray-200"}`}>매월 납입액</label>
+                        <div className="flex justify-between items-end">
+                            <label htmlFor="savings-amount" className={`block text-sm font-bold transition-colors ${errors.has("monthlyAmount") ? "text-red-500" : "text-gray-700 dark:text-gray-200"}`}>매월 납입액</label>
+                            {monthlyAmount && (
+                                <span className="text-xs font-medium text-green-600 dark:text-green-400 animate-fade-in">
+                                    {numberToKorean(monthlyAmount)} 원
+                                </span>
+                            )}
+                        </div>
                         <div className="relative">
                             <input
                                 id="savings-amount"
@@ -190,14 +198,23 @@ const Savings = ({ productName }: SavingsProps) => {
                             />
                             <span aria-hidden="true" className={`absolute right-5 top-1/2 -translate-y-1/2 font-bold ${errors.has("monthlyAmount") ? "text-red-500" : "text-gray-500 dark:text-gray-400"}`}>원</span>
                         </div>
-                        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                        <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
+                            <button 
+                                onClick={() => {
+                                    setMonthlyAmount("");
+                                    setCalculated(false);
+                                }} 
+                                className="px-3 py-2 text-xs font-black bg-rose-50 dark:bg-rose-900/20 text-rose-500 border border-rose-100 dark:border-rose-800 rounded-xl hover:bg-rose-100 transition-all active:scale-95"
+                            >
+                                C
+                            </button>
                             {[5, 10, 50, 100, 1000, 10000].map(v => (
                                 <button
                                     key={v}
                                     onClick={() => addAmount(v * 10000)}
                                     className="py-2 text-xs font-semibold bg-gray-100 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 rounded-xl transition-all active:scale-95"
                                 >
-                                    +{v >= 10000 ? `${v / 10000}억원` : v >= 1000 ? `${v / 1000}천만원` : `${v}만원`}
+                                    +{v >= 10000 ? `${v / 10000}억` : v >= 1000 ? `${v / 1000}천만` : `${v}만`}
                                 </button>
                             ))}
                         </div>
@@ -330,7 +347,7 @@ const Savings = ({ productName }: SavingsProps) => {
                 </div>
 
                 {calculated && (
-                    <div className={`mt-8 space-y-6 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
+                    <div ref={resultRef} className={`mt-8 space-y-6 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
                         <div className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700/50 text-center relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-green-400 to-teal-500"></div>
 

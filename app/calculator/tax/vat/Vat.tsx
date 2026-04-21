@@ -183,7 +183,7 @@ export default function Vat() {
           <div className="space-y-6">
             <div>
               <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                {taxType === 'SIMPLIFIED' ? '합계금액(공급대가)' : calcDirection === 'FORWARD' ? '공급가액(세전)' : '합계금액(세후)'} (원)
+                {taxType === 'SIMPLIFIED' ? '합계금액(공급대가)' : calcDirection === 'FORWARD' ? '공급가액(세전)' : '합계금액(세후)'}
               </label>
               <div className="relative">
                 <input

@@ -102,7 +102,7 @@ export default function HealthHubPage() {
 
             <div className="flex-grow px-4 py-6">
                 <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">💪 건강 생활 계산기 모음</h1>
-                <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">비만도(BMI), 기초대사량(BMR), 칼로리, 배란일, 임신주기 계산기를 통해 나의 현재 건강 상태를 확인하세요.</p>
+                <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">비만도(BMI), 배란일, 기초대사량(BMR), 임신주기, 칼로리 계산기를 통해 나의 현재 건강 상태를 확인하세요.</p>
 
                 <div className="grid gap-4 w-full max-w-3xl mx-auto md:grid-cols-2">
                     {healthCalculators.map((calc) => (

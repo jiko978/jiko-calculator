@@ -224,7 +224,7 @@ export default function Salary() {
                     <div className="space-y-6">
                         <div>
                             <label htmlFor="salary-amount" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                                세전 {calcType === 'YEARLY' ? '연봉' : '월급'} (원)
+                                세전 {calcType === 'YEARLY' ? '연봉' : '월급'}
                             </label>
                             <div className="relative">
                                 <input
@@ -263,7 +263,7 @@ export default function Salary() {
                         )}
 
                         <div>
-                            <label htmlFor="tax-free-amount" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">비과세액 (원)</label>
+                            <label htmlFor="tax-free-amount" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">비과세액</label>
                             <input
                                 id="tax-free-amount"
                                 type="text"

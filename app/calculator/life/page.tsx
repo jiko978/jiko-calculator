@@ -97,7 +97,7 @@ export default function LifeHubPage() {
 
             <div className="flex-grow px-4 py-6">
                 <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">🏠 생활 편의 계산기 모음</h1>
-                <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">나이, 디데이, 날짜, 전역일 계산기를 통해 일상 속 궁금한 날짜들을 간편하게 확인하세요.</p>
+                <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">나이, 날짜, 디데이, 전역일 계산기를 통해 일상 속 궁금한 날짜들을 간편하게 확인하세요.</p>
 
                 <div className="grid gap-4 w-full max-w-3xl mx-auto md:grid-cols-2">
                     {lifeCalculators.map((calc) => (

@@ -168,7 +168,7 @@ export default function NetPay() {
 
                     <div className="space-y-6">
                         <div>
-                            <label htmlFor="target-net-pay" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">세후 {calcType === "YEARLY" ? "연봉" : "월급"} (원)</label>
+                            <label htmlFor="target-net-pay" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">세후 {calcType === "YEARLY" ? "연봉" : "월급"}</label>
                             <div className="relative">
                                 <input
                                     id="target-net-pay"
@@ -205,7 +205,7 @@ export default function NetPay() {
                         )}
 
                         <div>
-                            <label htmlFor="tax-free-amount" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">비과세액 (원)</label>
+                            <label htmlFor="tax-free-amount" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">비과세액</label>
                             <input
                                 id="tax-free-amount"
                                 type="text"

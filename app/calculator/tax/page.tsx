@@ -108,7 +108,7 @@ export default function TaxHubPage() {
 
             <div className="flex-grow px-4 py-6">
                 <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">🧾 세금 절세 계산기 모음</h1>
-                <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">부가세, 양도소득세, 취득세, 재산세, 종합부동산세, 자동차세를 쉽고 빠르게 계산해보세요.</p>
+                <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">부가세, 양도소득세, 취득세, 자동차세, 재산세, 종부동세를 쉽고 빠르게 계산해보세요.</p>
 
                 <div className="grid gap-4 w-full max-w-3xl mx-auto md:grid-cols-2">
                     {taxCalculators.map((calc) => (

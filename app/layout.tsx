@@ -52,7 +52,7 @@ export const metadata: Metadata = {
         url: BASE_URL,
         siteName: "JIKO Platform",
         title: "JIKO Platform",
-        description: "JIKO Platform",
+        description: "금융, 직장, 생활, 건강, 세금, 주식, 부동산 계산기 - JIKO 계산기",
         images: [
             {
                 url: "/calculator/jiko-calculator-icon2.png",

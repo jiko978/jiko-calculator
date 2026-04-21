@@ -42,7 +42,7 @@ export default function Header() {
     ];
 
     return (
-        <header className="w-full bg-blue-600 text-white shadow-sm transition-colors">
+        <header className="w-full bg-blue-600 text-white shadow-sm transition-colors sticky top-0 z-50">
             <div className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
 
                 {/* 로고 */}
