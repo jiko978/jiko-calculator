@@ -79,7 +79,7 @@ const jobCalculators = [
     },
     {
         title: "🛡️ 4대보험 계산기",
-        description: "국민연금, 건강보험, 고용보험, 산재보험 중 나와 회사가 각각 부담하는 금액의 비율을 시각화하여 계산해드립니다.",
+        description: "국민연금, 건강보험, 고용보험, 산재보험 중 나와 회사가 부담하는 금액을 시각화하여 계산해드립니다.",
         href: "/calculator/job/insurance",
     },
     {
@@ -125,15 +125,9 @@ export default function JobHubPage() {
                                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                                     {calc.title}
                                 </h3>
-                                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4 flex-grow">
+                                <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-4 flex-grow">
                                     {calc.description}
                                 </p>
-                                <div className="flex items-center text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                                    지금 바로 계산하기
-                                    <svg className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                    </svg>
-                                </div>
                             </div>
                         </Link>
                     ))}

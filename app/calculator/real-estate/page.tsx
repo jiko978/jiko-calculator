@@ -114,19 +114,9 @@ export default function RealEstateHubPage() {
                                 <h3 className={`text-lg font-bold mb-2 transition-colors ${calc.status === "ACTIVE" ? "text-gray-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400" : "text-gray-400"}`}>
                                     {calc.title}
                                 </h3>
-                                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4 flex-grow">
+                                <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-4 flex-grow">
                                     {calc.description}
                                 </p>
-                                {calc.status === "ACTIVE" ? (
-                                    <div className="flex items-center text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                                        지금 바로 계산하기
-                                        <svg className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                        </svg>
-                                    </div>
-                                ) : (
-                                    <div className="text-[10px] uppercase font-black text-gray-300 tracking-widest">준비 중입니다</div>
-                                )}
                             </div>
                         </Link>
                     ))}
