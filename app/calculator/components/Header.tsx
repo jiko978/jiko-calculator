@@ -1,16 +1,21 @@
-﻿"use client";
+"use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image"
 
 export default function Header() {
 
-    const [isDark, setIsDark] = useState(() => {
-        if (typeof window === "undefined") return false;
-        return localStorage.getItem("theme") === "dark";
-    });
-
+    const [isDark, setIsDark] = useState(false);
+    const [mounted, setMounted] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+        const theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+            setIsDark(true);
+        }
+    }, []);
 
     useEffect(() => {
         if (isDark) {
@@ -69,7 +74,7 @@ export default function Header() {
                         onClick={toggleDark}
                         className="px-3 py-1 rounded-full text-sm font-medium bg-white/20 hover:bg-white/30 transition"
                     >
-                        {isDark ? "☀️ 라이트" : "🌙 다크"}
+                        {mounted ? (isDark ? "☀️ 라이트" : "🌙 다크") : "🌙 다크"}
                     </button>
 
                     {/* 햄버거 버튼 (모바일만 표시) */}

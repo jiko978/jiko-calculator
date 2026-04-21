@@ -3,12 +3,17 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function Header() {
-    const [isDark, setIsDark] = useState(() => {
-        if (typeof window === "undefined") return false;
-        return localStorage.getItem("theme") === "dark";
-    });
-
+    const [isDark, setIsDark] = useState(false);
+    const [mounted, setMounted] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+        const theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+            setIsDark(true);
+        }
+    }, []);
 
     useEffect(() => {
         if (isDark) {
@@ -53,7 +58,7 @@ export default function Header() {
                         onClick={toggleDark}
                         className="ml-4 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/20 hover:bg-white/30 transition"
                     >
-                        {isDark ? "☀️ 라이트" : "🌙 다크"}
+                        {mounted ? (isDark ? "☀️ 라이트" : "🌙 다크") : "🌙 다크"}
                     </button>
                 </nav>
 
@@ -63,7 +68,7 @@ export default function Header() {
                         onClick={toggleDark}
                         className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/20 hover:bg-white/30 transition"
                     >
-                        {isDark ? "☀️" : "🌙"}
+                        {mounted ? (isDark ? "☀️" : "🌙") : "🌙"}
                     </button>
                     <button
                         className="text-2xl p-1"

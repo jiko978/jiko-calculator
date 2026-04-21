@@ -15,8 +15,8 @@ interface NavBarProps {
 export default function NavBar({ title, shareTitle, description, shareDescription, position = "top" }: NavBarProps) {
     const router = useRouter();
 
-    const [scrolled,   setScrolled]   = useState(false);
-    const [showShare,  setShowShare]  = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const [showShare, setShowShare] = useState(false);
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 10);
@@ -30,17 +30,15 @@ export default function NavBar({ title, shareTitle, description, shareDescriptio
     return (
         <>
             <header
-                className={`${
-                    isStatic
+                className={`${isStatic
                         ? "w-full z-10 bg-transparent border-t border-gray-200/50 dark:border-gray-700/50 mt-8"
-                        : isBottom 
+                        : isBottom
                             ? "fixed bottom-0 left-0 right-0 z-[100] bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-700/50 shadow-[0_-4px_12px_rgba(0,0,0,0.05)]"
-                            : `sticky top-0 z-[100] transition-all duration-300 ${
-                                scrolled
-                                    ? "bg-white/70 dark:bg-gray-900/70 backdrop-blur-md shadow-sm border-b border-gray-200/50 dark:border-gray-700/50"
-                                    : "bg-transparent"
+                            : `sticky top-0 z-[100] transition-all duration-300 ${scrolled
+                                ? "bg-white/70 dark:bg-gray-900/70 backdrop-blur-md shadow-sm border-b border-gray-200/50 dark:border-gray-700/50"
+                                : "bg-transparent"
                             }`
-                }`}
+                    }`}
             >
                 <div className="max-w-3xl mx-auto px-4 h-14 flex items-center justify-between">
 
@@ -63,22 +61,21 @@ export default function NavBar({ title, shareTitle, description, shareDescriptio
 
                     {/* 현재 페이지 타이틀 (스크롤 후 페이드인) */}
                     <span
-                        className={`text-sm font-semibold text-gray-800 dark:text-gray-100 absolute left-1/2 -translate-x-1/2 transition-opacity duration-300 pointer-events-none ${
-                            (scrolled || isBottom || isStatic) ? "opacity-100" : "opacity-0"
-                        }`}
+                        className={`text-sm font-semibold text-gray-800 dark:text-gray-100 absolute left-1/2 -translate-x-1/2 transition-opacity duration-300 pointer-events-none ${(scrolled || isBottom || isStatic) ? "opacity-100" : "opacity-0"
+                            }`}
                     >
-            {title}
-          </span>
+                        {title}
+                    </span>
 
                     {/* 공유 아이콘 */}
                     <button
                         onClick={() => setShowShare(true)}
                         aria-label="공유"
-                        className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-90 transition-all duration-150"
+                        className="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md active:scale-95 transition-all text-gray-500 hover:text-blue-600"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="w-5 h-5 text-gray-700 dark:text-gray-300"
+                            className="w-5 h-5"
                             fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" strokeWidth={2}
                         >

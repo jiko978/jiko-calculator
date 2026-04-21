@@ -7,8 +7,8 @@ import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "./utils/seo";
 import Image from "next/image"
 
 export const metadata: Metadata = {
-    title: "JIKO Platform - 금융/직장/생활/건강/세금/부동산 JIKO 계산기",
-    description: "금융, 직장, 생활, 건강, 세금, 부동산 계산기를 제공하는 JIKO Platform 입니다.",
+    title: "JIKO Platform - 금융/직장/생활/건강/세금/주식/부동산 JIKO 계산기",
+    description: "금융, 직장, 생활, 건강, 세금, 주식, 부동산 계산기를 제공하는 JIKO Platform 입니다.",
 };
 
 type ServiceLink = {

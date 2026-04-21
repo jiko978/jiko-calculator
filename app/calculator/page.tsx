@@ -54,13 +54,13 @@ const schema = {
 };
 
 const mainCalculators = [
-  { title: "💵 금융 계산기(3)", description: "대출 이자, 예금 이자, 적금 이자 계산기", href: "/calculator/finance" },
-  { title: "💼 직장 계산기(7)", description: "연봉/월급, 실수령액, 퇴직금, 실업급여, 4대보험, 주휴수당, 연차 계산기", href: "/calculator/job" },
-  { title: "🏠 생활 계산기(4)", description: "나이, 날짜, 디데이, 전역일 계산기", href: "/calculator/life" },
-  { title: "💪 건강 계산기(5)", description: "비만도, 배란일, 기초대사량, 임신주수 , 칼로리 계산기", href: "/calculator/health" },
-  { title: "🧾 세금 계산기(6)", description: "부가세, 양도소득세, 취득세, 자동차세, 재산세, 종부세 계산기", href: "/calculator/tax" },
-  { title: "📈 주식 계산기(4)", description: "주식 물타기, 수익률, 수수료, 배당금 계산기", href: "/calculator/stock" },
-  { title: "🏢 부동산 계산기(4)", description: "DSR, 신DTI, DTI, LTV 계산기", href: "/calculator/real-estate" }
+  { title: "💵 금융 계산기", description: "대출 이자, 예금 이자, 적금 이자 계산기", href: "/calculator/finance" },
+  { title: "💼 직장 계산기", description: "연봉/월급, 실수령액, 퇴직금, 실업급여, 4대보험, 주휴수당, 연차 계산기", href: "/calculator/job" },
+  { title: "🏠 생활 계산기", description: "나이, 날짜, 디데이, 전역일 계산기", href: "/calculator/life" },
+  { title: "💪 건강 계산기", description: "비만도, 배란일, 기초대사량, 임신주수 , 칼로리 계산기", href: "/calculator/health" },
+  { title: "🧾 세금 계산기", description: "부가세, 양도소득세, 취득세, 자동차세, 재산세, 종부세 계산기", href: "/calculator/tax" },
+  { title: "📈 주식 계산기", description: "주식 물타기, 수익률, 수수료, 배당금 계산기", href: "/calculator/stock" },
+  { title: "🏢 부동산 계산기", description: "DSR, 신DTI, DTI, LTV 계산기", href: "/calculator/real-estate" }
 ];
 
 export default function Home() {
@@ -126,29 +126,48 @@ export default function Home() {
         </p>
 
         {/* 메뉴 그리드 */}
-        <div className="grid gap-4 w-full md:grid-cols-2">
-          {mainCalculators.map((calc) => (
-            <Link
-              key={calc.href}
-              href={calc.href}
-              className="group block p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-            >
-              <div className="h-full flex flex-col">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 transition-colors">
-                  {calc.title}
-                </h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4 flex-grow">
-                  {calc.description || "새로운 계산기를 준비 중입니다."}
-                </p>
-                <div className="flex items-center text-xs font-black uppercase tracking-wider text-blue-600">
-                  지금 바로 계산하기
-                  <svg className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
+        <div className="grid grid-cols-2 gap-3 w-full md:gap-4">
+          {mainCalculators.map((calc) => {
+            // 설명글에서 하위 메뉴 추출 (최대 3개 표시)
+            const subMenus = calc.description.replace(" 계산기", "").split(", ");
+            const displayMenus = subMenus.slice(0, 3);
+            const moreCount = subMenus.length - 3;
+
+            return (
+              <Link
+                key={calc.href}
+                href={calc.href}
+                className="group block p-4 md:p-5 bg-white dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              >
+                <div className="flex items-center justify-center gap-3 md:gap-5 h-full">
+                  {/* 좌측: 이모지 + 카테고리명 */}
+                  <div className="flex flex-col items-center shrink-0 min-w-[65px] md:min-w-[85px]">
+                    <span className="text-3xl md:text-4xl mb-1.5 drop-shadow-sm">{calc.title.split(" ")[0]}</span>
+                    <h3 className="text-[13px] md:text-[15px] font-black text-gray-900 dark:text-white transition-colors group-hover:text-blue-600 truncate">
+                      {calc.title.split(" ")[1]}
+                    </h3>
+                  </div>
+
+                  {/* 구분선 */}
+                  <div className="w-px h-10 md:h-12 bg-gray-100 dark:bg-gray-700 shrink-0" />
+
+                  {/* 우측: 주력 메뉴 3개 */}
+                  <div className="min-w-0">
+                    <ul className="text-[10px] md:text-[12px] text-gray-500 dark:text-gray-400 font-medium leading-tight space-y-1">
+                      {displayMenus.map((menu) => (
+                        <li key={menu} className="truncate whitespace-nowrap">· {menu}</li>
+                      ))}
+                      {moreCount > 0 && (
+                        <li className="text-blue-600 dark:text-blue-400 font-bold opacity-90 mt-1">
+                          외 {moreCount}개
+                        </li>
+                      )}
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
 
         {/* 보강된 설명 섹션 (하위 메뉴와 통일감 있는 하단 카드 스타일) */}
