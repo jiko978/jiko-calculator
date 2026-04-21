@@ -137,13 +137,13 @@ export default function Home() {
               <Link
                 key={calc.href}
                 href={calc.href}
-                className="group block p-4 md:p-5 bg-white dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                className="group block p-3 md:p-5 bg-white dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="flex items-center justify-center gap-3 md:gap-5 h-full">
-                  {/* 좌측: 이모지 + 카테고리명 */}
-                  <div className="flex flex-col items-center shrink-0 min-w-[65px] md:min-w-[85px]">
-                    <span className="text-3xl md:text-4xl mb-1.5 drop-shadow-sm">{calc.title.split(" ")[0]}</span>
-                    <h3 className="text-[13px] md:text-[15px] font-black text-gray-900 dark:text-white transition-colors group-hover:text-blue-600 truncate">
+                <div className="flex items-center justify-start md:justify-center gap-2 md:gap-4 h-full pl-0.5 md:pl-0">
+                  {/* 좌측: 이모지 + 카테고리명 (너비 축소 및 공간 양보) */}
+                  <div className="flex flex-col items-center shrink-0 min-w-[50px] md:min-w-[150px]">
+                    <span className="text-3xl md:text-4xl mb-1 drop-shadow-sm">{calc.title.split(" ")[0]}</span>
+                    <h3 className="text-[10px] md:text-[13px] font-black text-gray-900 dark:text-white transition-colors group-hover:text-blue-600 truncate">
                       {calc.title.split(" ")[1]}
                     </h3>
                   </div>
@@ -151,14 +151,14 @@ export default function Home() {
                   {/* 구분선 */}
                   <div className="w-px h-10 md:h-12 bg-gray-100 dark:bg-gray-700 shrink-0" />
 
-                  {/* 우측: 주력 메뉴 3개 */}
-                  <div className="min-w-0">
-                    <ul className="text-[10px] md:text-[12px] text-gray-500 dark:text-gray-400 font-medium leading-tight space-y-1">
+                  {/* 우측: 주력 메뉴 3개 (가로 공간 최대 확보) */}
+                  <div className="flex-grow min-w-0">
+                    <ul className="text-[9px] md:text-[11px] text-gray-500 dark:text-gray-400 font-medium leading-tight space-y-0.5 md:space-y-1">
                       {displayMenus.map((menu) => (
                         <li key={menu} className="truncate whitespace-nowrap">· {menu}</li>
                       ))}
                       {moreCount > 0 && (
-                        <li className="text-blue-600 dark:text-blue-400 font-bold opacity-90 mt-1">
+                        <li className="text-blue-600 dark:text-blue-400 font-bold opacity-90 mt-0.5">
                           외 {moreCount}개
                         </li>
                       )}
