@@ -7,8 +7,11 @@ export function useCalculatorScroll(dependency: any) {
         if (dependency) {
             // 결과 영역으로 부드럽게 스크롤
             setTimeout(() => {
-                resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-            }, 100);
+                if (resultRef.current) {
+                    const y = resultRef.current.getBoundingClientRect().top + window.scrollY - 125;
+                    window.scrollTo({ top: y, behavior: "smooth" });
+                }
+            }, 300);
         }
     }, [dependency]);
 

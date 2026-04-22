@@ -7,7 +7,7 @@ import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "../../utils/seo";
 export const metadata: Metadata = {
     title: "건강 계산기 | 비만도, 배란일, 기초대사량, 임신주수, 칼로리 계산기 - JIKO 계산기",
     description: "나의 비만도(BMI), 기초대사량(BMR), 권장 칼로리는 물론 배란일과 임신주수까지 건강 관리에 필요한 계산기를 한곳에서 이용하세요.",
-    keywords: ["건강 계산기", "비만도 계산기", "배란일 계산기", "기초대사량 계산기", "임신주수 계산기", "칼로리 계산기", "BMI 계산기", "BMR 계산기", ],
+    keywords: ["건강 계산기", "비만도 계산기", "배란일 계산기", "기초대사량 계산기", "임신주수 계산기", "칼로리 계산기", "BMI 계산기", "BMR 계산기",],
 };
 
 const BASE_URL = "https://jiko.kr";
@@ -92,7 +92,7 @@ export default function HealthHubPage() {
     ]);
 
     return (
-        <main className="bg-gray-50 dark:bg-gray-900 min-h-screen">
+        <main className="bg-gray-50 dark:bg-gray-900 min-h-[80vh]">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
@@ -104,20 +104,18 @@ export default function HealthHubPage() {
                 <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">💪 건강 생활 계산기 모음</h1>
                 <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">비만도(BMI), 배란일, 기초대사량(BMR), 임신주기, 칼로리 계산기를 통해 나의 현재 건강 상태를 확인하세요.</p>
 
-                <div className="grid gap-4 w-full max-w-3xl mx-auto md:grid-cols-2">
+                <div className="grid grid-cols-2 gap-4 w-full max-w-3xl mx-auto">
                     {healthCalculators.map((calc) => (
                         <Link
                             key={calc.href}
                             href={calc.href}
-                            className="group block p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                            className="group block p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                         >
-                            <div className="h-full flex flex-col">
-                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            <div className="h-full flex flex-col items-center justify-center text-center">
+                                <h3 className="text-sm md:text-base font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors break-keep">
                                     {calc.title}
                                 </h3>
-                                <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-2 flex-grow">
-                                    {calc.description}
-                                </p>
+                                <p className="sr-only">{calc.description}</p>
                             </div>
                         </Link>
                     ))}

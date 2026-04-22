@@ -93,11 +93,6 @@ export default function HolidayAllowance() {
             monthlyRegularPay,
             totalMonthlyPay
         });
-
-        // 결과 영역으로 부드럽게 스크롤
-        setTimeout(() => {
-            resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 100);
     };
 
     const handleReset = () => {

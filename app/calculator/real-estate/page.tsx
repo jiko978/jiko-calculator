@@ -91,7 +91,7 @@ export default function RealEstateHubPage() {
     ]);
 
     return (
-        <main className="bg-gray-50 dark:bg-gray-900 min-h-screen">
+        <main className="bg-gray-50 dark:bg-gray-900 min-h-[80vh]">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
@@ -103,20 +103,18 @@ export default function RealEstateHubPage() {
                 <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">🏢 부동산 계획 계산기 모음</h1>
                 <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">DSR, 신DTI, DTI, LTV 계산기를 통해 부동산 계획을 미리 확인해보세요.</p>
 
-                <div className="grid gap-4 w-full max-w-3xl mx-auto md:grid-cols-2">
+                <div className="grid grid-cols-2 gap-4 w-full max-w-3xl mx-auto">
                     {realEstateCalculators.map((calc) => (
                         <Link
                             key={calc.href}
                             href={calc.status === "ACTIVE" ? calc.href : "#"}
-                            className={`group block p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 transition-all duration-300 ${calc.status === "ACTIVE" ? "hover:shadow-xl hover:-translate-y-1" : "opacity-60 cursor-not-allowed filter grayscale"}`}
+                            className={`group block p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300 ${calc.status === "ACTIVE" ? "hover:shadow-lg hover:-translate-y-1" : "opacity-60 cursor-not-allowed filter grayscale"}`}
                         >
-                            <div className="h-full flex flex-col">
-                                <h3 className={`text-lg font-bold mb-2 transition-colors ${calc.status === "ACTIVE" ? "text-gray-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400" : "text-gray-400"}`}>
+                            <div className="h-full flex flex-col items-center justify-center text-center">
+                                <h3 className={`text-sm md:text-base font-bold transition-colors break-keep ${calc.status === "ACTIVE" ? "text-gray-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400" : "text-gray-400"}`}>
                                     {calc.title}
                                 </h3>
-                                <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-2 flex-grow">
-                                    {calc.description}
-                                </p>
+                                <p className="sr-only">{calc.description}</p>
                             </div>
                         </Link>
                     ))}

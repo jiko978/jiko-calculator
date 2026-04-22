@@ -87,7 +87,7 @@ export default function LifeHubPage() {
     ]);
 
     return (
-        <main className="bg-gray-50 dark:bg-gray-900 min-h-screen">
+        <main className="bg-gray-50 dark:bg-gray-900 min-h-[80vh]">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
@@ -99,20 +99,18 @@ export default function LifeHubPage() {
                 <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">🏠 생활 편의 계산기 모음</h1>
                 <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">나이, 날짜, 디데이, 전역일 계산기를 통해 일상 속 궁금한 날짜들을 간편하게 확인하세요.</p>
 
-                <div className="grid gap-4 w-full max-w-3xl mx-auto md:grid-cols-2">
+                <div className="grid grid-cols-2 gap-4 w-full max-w-3xl mx-auto">
                     {lifeCalculators.map((calc) => (
                         <Link
                             key={calc.href}
                             href={calc.href}
-                            className="group block p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                            className="group block p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                         >
-                            <div className="h-full flex flex-col">
-                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            <div className="h-full flex flex-col items-center justify-center text-center">
+                                <h3 className="text-sm md:text-base font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors break-keep">
                                     {calc.title}
                                 </h3>
-                                <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-2 flex-grow">
-                                    {calc.description}
-                                </p>
+                                <p className="sr-only">{calc.description}</p>
                             </div>
                         </Link>
                     ))}
