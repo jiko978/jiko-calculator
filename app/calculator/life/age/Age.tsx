@@ -208,7 +208,7 @@ const Age = () => {
                                 id="birth-year"
                                 type="text"
                                 inputMode="numeric"
-                                placeholder="연도(4자)"
+                                placeholder="연도(4자리)"
                                 value={birthYear}
                                 onChange={(e) => {
                                     const val = e.target.value.replace(/[^0-9]/g, "").slice(0, 4);
@@ -216,7 +216,7 @@ const Age = () => {
                                     setCalculated(false);
                                     if (val.length === 4) setErrors((prev: Set<string>) => { const n = new Set(prev); n.delete("birthYear"); return n; });
                                 }}
-                                className={`h-14 px-4 text-center font-bold bg-gray-50 dark:bg-gray-900/50 border-2 rounded-2xl outline-none transition-all ${errors.has("birthYear") ? "border-red-500 ring-4 ring-red-500/10" : "border-gray-100 dark:border-gray-700 focus:border-blue-500 ring-blue-500/10 focus:ring-4"
+                                className={`h-14 px-4 text-center placeholder:text-xs font-bold bg-gray-50 dark:bg-gray-900/50 border-2 rounded-2xl outline-none transition-all ${errors.has("birthYear") ? "border-red-500 ring-4 ring-red-500/10" : "border-gray-100 dark:border-gray-700 focus:border-blue-500 ring-blue-500/10 focus:ring-4"
                                     }`}
                             />
                             <div className="relative group">

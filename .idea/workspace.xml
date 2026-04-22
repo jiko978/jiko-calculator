@@ -3,16 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ba892596-243c-4883-bf52-ac23e2e1bf54" name="변경" comment="jiko 107 commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/finance/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/finance/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/health/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/health/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/hooks/useCalculatorScroll.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/hooks/useCalculatorScroll.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/job/holiday-allowance/HolidayAllowance.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/job/holiday-allowance/HolidayAllowance.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/job/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/job/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/life/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/life/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/real-estate/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/real-estate/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/stock/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/stock/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/tax/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/tax/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/docs/calculator/JIKO-calculator-설계서.md" beforeDir="false" afterPath="$PROJECT_DIR$/public/docs/calculator/JIKO-calculator-설계서.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/life/age/Age.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/life/age/Age.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +116,7 @@
       <workItem from="1775889328259" duration="21061000" />
       <workItem from="1776252785800" duration="4349000" />
       <workItem from="1776389605923" duration="7207000" />
-      <workItem from="1776748756569" duration="11474000" />
+      <workItem from="1776748756569" duration="14658000" />
     </task>
     <task id="LOCAL-00014" summary="jiko 60 commit">
       <option name="closed" value="true" />

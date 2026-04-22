@@ -112,7 +112,7 @@ export default function HealthHubPage() {
                             className="group block h-24 p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                         >
                             <div className="h-full flex items-center justify-center text-center">
-                                <h3 className="text-sm md:text-base font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors break-keep px-2">
+                                <h3 className="text-base md:text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors break-keep px-2">
                                     {calc.title}
                                 </h3>
                                 <p className="sr-only">{calc.description}</p>

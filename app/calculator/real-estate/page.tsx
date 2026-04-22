@@ -111,7 +111,7 @@ export default function RealEstateHubPage() {
                             className={`group block h-24 p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300 ${calc.status === "ACTIVE" ? "hover:shadow-lg hover:-translate-y-1" : "opacity-60 cursor-not-allowed filter grayscale"}`}
                         >
                             <div className="h-full flex items-center justify-center text-center">
-                                <h3 className={`text-sm md:text-base font-bold transition-colors break-keep px-2 ${calc.status === "ACTIVE" ? "text-gray-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400" : "text-gray-400"}`}>
+                                <h3 className={`text-base md:text-xl font-bold transition-colors break-keep px-2 ${calc.status === "ACTIVE" ? "text-gray-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400" : "text-gray-400"}`}>
                                     {calc.title}
                                 </h3>
                                 <p className="sr-only">{calc.description}</p>
