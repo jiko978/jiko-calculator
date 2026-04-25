@@ -75,7 +75,7 @@ export default function GradePage() {
         COMMON_BREADCRUMBS.HOME,
         COMMON_BREADCRUMBS.CALC_HOME,
         COMMON_BREADCRUMBS.LIFE_HOME,
-        { name: "학점 계산기", item: `${BASE_URL}/calculator/life/grade` }
+        COMMON_BREADCRUMBS.GRADE
     ]);
 
     return (

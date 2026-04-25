@@ -43,7 +43,7 @@ export const COMMON_BREADCRUMBS = {
     DATE: { name: "날짜 계산기", item: "/calculator/life/date" },
     D_DAY: { name: "디데이 계산기", item: "/calculator/life/d-day" },
     DISCHARGE_DAY: { name: "전역일 계산기", item: "/calculator/life/discharge-day" },
-    DISCHARGE_DAY: { name: "학점 계산기", item: "/calculator/life/grade" },
+    GRADE: { name: "학점 계산기", item: "/calculator/life/grade" },
 
     HEALTH_HOME: { name: "건강 계산기", item: "/calculator/health" },
     BMI: { name: "비만도 계산기", item: "/calculator/health/bmi" },

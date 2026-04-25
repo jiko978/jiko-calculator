@@ -75,7 +75,7 @@ export default function DischargeDayPage() {
         COMMON_BREADCRUMBS.HOME,
         COMMON_BREADCRUMBS.CALC_HOME,
         COMMON_BREADCRUMBS.LIFE_HOME,
-        { name: "전역일 계산기", item: `${BASE_URL}/calculator/life/discharge-day` }
+        COMMON_BREADCRUMBS.DISCHARGE_DAY
     ]);
 
     return (

@@ -75,7 +75,7 @@ export default function DatePage() {
         COMMON_BREADCRUMBS.HOME,
         COMMON_BREADCRUMBS.CALC_HOME,
         COMMON_BREADCRUMBS.LIFE_HOME,
-        { name: "날짜 계산기", item: `${BASE_URL}/calculator/life/date` }
+        COMMON_BREADCRUMBS.DATE
     ]);
 
     return (
