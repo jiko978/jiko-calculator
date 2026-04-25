@@ -186,7 +186,7 @@ export default function Home() {
                                         {service.description}
                                     </p>
                                     <div className="mt-5 space-y-2 text-sm text-gray-700 dark:text-gray-200">
-                                        {service.links.slice(0, 4).map((link) => (
+                                        {service.links.slice(0, 8).map((link) => (
                                             <Link key={link.href} href={link.href}
                                                   className="block rounded-xl bg-white/80 dark:bg-white/5 px-3 py-2 hover:bg-white dark:hover:bg-gray-800 transition">
                                                 {link.label}
