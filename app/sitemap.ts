@@ -25,12 +25,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: "/calculator/job/holiday-allowance",  priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/job/annual",  priority: 0.8, changeFrequency: "monthly" as const },
 
-        // ── 생활(5) ──
+        // ── 생활(6) ──
         { url: "/calculator/life",  priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/life/age",  priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/life/date",  priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/life/d-day",  priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/life/discharge-day",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/life/grade",  priority: 0.8, changeFrequency: "monthly" as const },
 
         // ── 건강(6) ──
         { url: "/calculator/health",  priority: 0.8, changeFrequency: "monthly" as const },
