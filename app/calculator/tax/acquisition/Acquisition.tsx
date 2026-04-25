@@ -157,10 +157,15 @@ export default function Acquisition() {
     }, 100);
   };
 
+  const generateShareText = () => {
+    if (!result) {
+      return `📌 JIKO 취득세 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/tax/acquisition`;
+    }
+    return `[📑 취득세 계산 결과]\n\n취득유형: ${acquisitionType}\n물건종류: ${assetType}\n취득가액: ${formatNumber(result.price)}원\n\n취득세: ${formatNumber(result.finalAcqTax)}원\n지방교육세: ${formatNumber(result.finalEduTax)}원\n농어촌특별세: ${formatNumber(result.finalFarmTax)}원\n\n총 예상납부액: ${formatNumber(result.totalTax)}원\n\n📌 JIKO 취득세 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/tax/acquisition`;
+  };
+
   const handleCopy = async () => {
-    if (!result) return;
-    const text = `[📑 취득세 계산 결과]\n\n취득가액 : ${formatNumber(result.price)}원\n\n취득세 : ${formatNumber(result.finalAcqTax)}원\n지방교육세 : ${formatNumber(result.finalEduTax)}원\n농어촌특별세 : ${formatNumber(result.finalFarmTax)}원\n\n총 예상납부액 : ${formatNumber(result.totalTax)}원\n\n📌JIKO 취득세 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/tax/acquisition`;
-    await navigator.clipboard.writeText(text);
+    await navigator.clipboard.writeText(generateShareText());
   };
 
   return (
@@ -354,8 +359,8 @@ export default function Acquisition() {
 
           <CalculatorActions
             onCopy={handleCopy}
-            shareTitle="[📑 취득세 계산 결과]"
-            shareDescription={`기준가액 : ${formatNumber(result.price)}원\n총세액 : ${formatNumber(result.totalTax)}원`}
+            shareTitle=""
+            shareDescription={generateShareText()}
           />
         </div>
       )}

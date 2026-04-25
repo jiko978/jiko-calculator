@@ -132,9 +132,9 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
         }, 100);
     };
 
-    const handleCopy = async () => {
-        if (!result) return;
-        const text = [
+    const generateShareText = () => {
+        if (!result) return "";
+        return [
             `[💸 주식 배당금 계산 결과]`,
             `매수가 : ${buyPrice}원`,
             `현재가 : ${currentPrice}원`,
@@ -146,7 +146,11 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
             `나의 실제 배당률 : ${result.yieldOnCost}%`,
             `\n📌JIKO 주식 배당금 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/stock/dividend`
         ].join("\n");
-        await navigator.clipboard.writeText(text);
+    };
+
+    const handleCopy = async () => {
+        const text = generateShareText();
+        if (text) await navigator.clipboard.writeText(text);
     };
 
     // 생활 밀착형 비유 데이터
@@ -356,8 +360,8 @@ export default function Dividend({ stockName, initialCode }: DividendProps) {
 
                         <CalculatorActions
                             onCopy={handleCopy}
-                            shareTitle="[💸 주식 배당금 계산 결과]"
-                            shareDescription={`세후 월평균 배당금 : ${Math.floor(result.monthlyTaxPost).toLocaleString()}원\n세후 연간 배당금 : ${Math.floor(result.yearlyTaxPost).toLocaleString()}원`}
+                            shareTitle=""
+                            shareDescription={generateShareText()}
                         />
                     </div>
                 )}

@@ -135,11 +135,15 @@ export default function Pregnancy() {
         }, 100);
     };
 
-    const handleCopy = async () => {
-        if (resultDueDate) {
-            const text = `[👶️ 임신주수 계산 결과]\n\n출산 예정일 : ${resultDueDate}\n현재 임신기간 : ${resultCurrentWeeks}주 ${resultCurrentDays}일차 (${resultTrimester})\n진행률 : ${resultProgress.toFixed(1)}%\n\n📌JIKO 임신주수 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/pregnancy`;
-            await navigator.clipboard.writeText(text);
+    const generateShareText = () => {
+        if (!resultDueDate) {
+            return `📌 JIKO 임신주수 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/pregnancy`;
         }
+        return `[👶️ 임신주수 계산 결과]\n\n마지막 월경일: ${lastPeriod}\n출산 예정일: ${resultDueDate}\n현재 임신기간: ${resultCurrentWeeks}주 ${resultCurrentDays}일차 (${resultTrimester})\n진행률: ${resultProgress.toFixed(1)}%\n\n📌 JIKO 임신주수 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/pregnancy`;
+    };
+
+    const handleCopy = async () => {
+        await navigator.clipboard.writeText(generateShareText());
     };
 
     return (
@@ -332,8 +336,8 @@ export default function Pregnancy() {
 
                             <CalculatorActions
                                 onCopy={handleCopy}
-                                shareTitle="[👶 임신주수 계산 결과]"
-                                shareDescription={`출산 예정일 : ${resultDueDate}, 현재 임신기간 : ${resultCurrentWeeks}주 ${resultCurrentDays}일차`}
+                                shareTitle=""
+                                shareDescription={generateShareText()}
                             />
                         </div>
                     )}

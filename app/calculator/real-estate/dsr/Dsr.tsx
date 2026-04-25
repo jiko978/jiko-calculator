@@ -150,10 +150,14 @@ const DsrCalculator = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
+    const generateShareText = () => {
+        if (!resultData) return "";
+        return `[📊 DSR 계산 결과]\nDSR 스코어 : ${resultData.dsrScore}%\n연소득 : ${formatNumber(Number(salary))}원\n최대 추가 대출 한도 : ${formatNumber(resultData.maxAdditionalLoan)}원\n\n📌 JIKO DSR 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/real-estate/dsr`;
+    };
+
     const handleCopy = async () => {
-        if (!resultData) return;
-        const text = `[📊 DSR 계산 결과]\nDSR 스코어 : ${resultData.dsrScore}%\n연소득 : ${formatNumber(Number(salary))}원\n최대 추가 대출 한도 : ${formatNumber(resultData.maxAdditionalLoan)}원\n\n📌 JIKO DSR 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/real-estate/dsr`;
-        await navigator.clipboard.writeText(text);
+        const text = generateShareText();
+        if (text) await navigator.clipboard.writeText(text);
     };
 
     const getGaugeColor = (score: number) => {
@@ -461,8 +465,8 @@ const DsrCalculator = () => {
 
                             <CalculatorActions
                                 onCopy={handleCopy}
-                                shareTitle={`[📊 DSR 계산 결과] 내 위험도는 ${getStatusText(Number(resultData.dsrScore)).label}입니다.`}
-                                shareDescription={`총 부채 상환율 ${resultData.dsrScore}%! `}
+                                shareTitle=""
+                                shareDescription={generateShareText()}
                             />
                         </div>
                     </div>

@@ -152,10 +152,15 @@ export default function Property() {
     setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 100);
   };
 
+  const generateShareText = () => {
+    if (!result) {
+      return `📌 JIKO 재산세 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/tax/property`;
+    }
+    return `[📋 재산세 계산 결과]\n\n물건종류: ${assetType}\n보유지분: ${sharePercent}%\n공시가: ${formatNumber(result.shareVal)}원\n과세 표준액: ${formatNumber(result.myShareTaxBase)}원\n\n재산세(본세): ${formatNumber(result.myPropertyTax)}원\n지방교육세: ${formatNumber(result.myEduTax)}원\n${hasUrbanTax ? `도시지역분: ${formatNumber(result.myUrbanTax)}원\n` : ''}\n총 부과세액: ${formatNumber(result.myTotalTax)}원\n\n📌 JIKO 재산세 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/tax/property`;
+  };
+
   const handleCopy = async () => {
-    if (!result) return;
-    const text = `[📋 재산세 계산 결과]\n\n보유지분 ${sharePercent}% 기준\n대상 공시가 : ${formatNumber(result.shareVal)}원\n과세 표준액 : ${formatNumber(result.myShareTaxBase)}원\n\n재산세(본세) : ${formatNumber(result.myPropertyTax)}원\n지방교육세 : ${formatNumber(result.myEduTax)}원\n${hasUrbanTax ? `도시지역분 : ${formatNumber(result.myUrbanTax)}원\n` : ''}\n총 부과세액 : ${formatNumber(result.myTotalTax)}원\n\n📌JIKO 재산세 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/tax/property`;
-    await navigator.clipboard.writeText(text);
+    await navigator.clipboard.writeText(generateShareText());
   };
 
   return (
@@ -324,8 +329,8 @@ export default function Property() {
 
             <CalculatorActions
               onCopy={handleCopy}
-              shareTitle="[📋 재산세 계산 결과]"
-              shareDescription={`산출 부과세액 : ${formatNumber(result.myTotalTax)}원`}
+              shareTitle=""
+              shareDescription={generateShareText()}
             />
           </div>
         )}

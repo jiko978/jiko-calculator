@@ -206,10 +206,16 @@ export default function Annual() {
         });
     };
 
+    const generateShareText = () => {
+        if (!result) {
+            return `📌 JIKO 연차 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/annual`;
+        }
+        return `[🏖️ 연차 & 연차수당 계산 결과]\n\n총 근속 : ${result.serviceYears}년 ${result.serviceMonths}개월 ${result.serviceDays}일\n발생 연차 누계 : ${result.totalGenerated}일\n소진 연차 : ${result.usedLeave}일\n잔여 연차 : ${result.remainingLeave}일${result.estimatedAllowance > 0 ? `\n\n💰 예상 미사용 연차수당(세전) : ${formatComma(result.estimatedAllowance)}원` : ''}\n\n📌 JIKO 연차 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/annual`;
+    };
+
     const copyResultToClipboard = async () => {
         if (!result) return;
-        const text = `[🏖️ 연차 & 연차수당 계산 결과]\n\n총 근속 : ${result.serviceYears}년 ${result.serviceMonths}개월 ${result.serviceDays}일\n발생 연차 누계 : ${result.totalGenerated}일\n소진 연차 : ${result.usedLeave}일\n잔여 연차 : ${result.remainingLeave}일\n${result.estimatedAllowance > 0 ? `\n💰 예상 미사용 연차수당(세전) : ${formatComma(result.estimatedAllowance)}원` : ''}`;
-        await navigator.clipboard.writeText(text);
+        await navigator.clipboard.writeText(generateShareText());
     };
 
     return (
@@ -431,8 +437,8 @@ export default function Annual() {
 
                             <CalculatorActions
                                 onCopy={copyResultToClipboard}
-                                shareTitle="[🏖️ 연차 & 연차수당 계산 결과]"
-                                shareDescription={`총 연차 : ${result.totalGenerated}일\n소진 연차 : ${result.usedLeave}일, 잔여 연차 : ${result.remainingLeave}일`}
+                                shareTitle=""
+                                shareDescription={generateShareText()}
                             />
                         </div>
                     )}

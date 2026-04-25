@@ -75,11 +75,15 @@ export default function Bmi() {
         }, 100);
     };
 
-    const handleCopy = async () => {
-        if (resultBmi !== null) {
-            const text = `[⚖️ 비만도(BMI) 계산 결과]\n\n내 비만도(BMI)는 ${resultBmi.toFixed(1)} (${resultCategory}) 입니다.\n\n📌JIKO 비만도 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/bmi`;
-            await navigator.clipboard.writeText(text);
+    const generateShareText = () => {
+        if (resultBmi === null) {
+            return `📌 JIKO BMI 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/bmi`;
         }
+        return `[⚖️ BMI 계산 결과]\n\n나이: ${age}세\n키: ${height}cm\n몸무게: ${weight}kg\nBMI: ${resultBmi.toFixed(1)} (${resultCategory})${waist ? `\n허리둘레: ${waist}cm` : ''}\n\n📌 JIKO BMI 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/bmi`;
+    };
+
+    const handleCopy = async () => {
+        await navigator.clipboard.writeText(generateShareText());
     };
 
     return (
@@ -208,8 +212,8 @@ export default function Bmi() {
 
                             <CalculatorActions
                                 onCopy={handleCopy}
-                                shareTitle="[⚖️ 비만도(BMI) 계산 결과]"
-                                shareDescription={`내 비만도(BMI)는 ${resultBmi.toFixed(1)} (${resultCategory}) 입니다.`}
+                                shareTitle=""
+                                shareDescription={generateShareText()}
                             />
                         </div>
                     )}

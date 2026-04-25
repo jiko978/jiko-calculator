@@ -110,10 +110,13 @@ const DischargeDayCalculator = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
+    const generateShareText = () => {
+        return `[🪖 전역일 계산 결과]\n입대일 : ${resultData.startDate}\n전역일 : ${resultData.dischargeDate}\n복무율 : ${resultData.progress}%\n남은일수 : ${resultData.remainingDays}일\n\n📌 JIKO 전역일 계산기에서 확인하기 : \nhttps://jiko.kr/calculator/life/discharge-day`;
+    };
+
     const handleCopy = async () => {
         if (!resultData) return;
-        const text = `[🪖 전역일 계산 결과]\n입대일 : ${resultData.startDate}\n전역일 : ${resultData.dischargeDate}\n복무율 : ${resultData.progress}%\n남은일수 : ${resultData.remainingDays}일\n\n📌 JIKO 전역일 계산기에서 확인하기 : \nhttps://jiko.kr/calculator/life/discharge-day`;
-        await navigator.clipboard.writeText(text);
+        await navigator.clipboard.writeText(generateShareText());
     };
 
     return (
@@ -216,8 +219,8 @@ const DischargeDayCalculator = () => {
                             </div>
                             <CalculatorActions
                                 onCopy={handleCopy}
-                                shareTitle={`[🪖 전역일 계산 결과] ${resultData.dischargeDate} 전역!`}
-                                shareDescription={`현재 복무율은 ${resultData.progress}% 입니다.`}
+                                shareTitle=""
+                                shareDescription={generateShareText()}
                             />
                         </div>
                     </div>

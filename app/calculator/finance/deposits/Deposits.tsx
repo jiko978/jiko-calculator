@@ -164,8 +164,8 @@ const Deposits = ({ productName }: DepositsProps) => {
     const postTaxInterest = Math.floor(preTaxInterest - taxAmount);
     const totalMaturity = principal + postTaxInterest;
 
-    const handleCopy = async () => {
-        const text = [
+    const generateShareText = () => {
+        return [
             `[🏦 예금 이자 계산 결과]`,
             `예치금액 : ${amount}원`,
             `예금기간 : ${term}${termUnit === "month" ? "개월" : "년"}`,
@@ -178,7 +178,10 @@ const Deposits = ({ productName }: DepositsProps) => {
             `\n📌JIKO 예금 이자 계산기에서 확인하기 :`,
             `https://jiko.kr/calculator/finance/deposits`
         ].join("\n");
-        await navigator.clipboard.writeText(text);
+    };
+
+    const handleCopy = async () => {
+        await navigator.clipboard.writeText(generateShareText());
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };
@@ -406,8 +409,8 @@ const Deposits = ({ productName }: DepositsProps) => {
 
                             <CalculatorActions
                                 onCopy={handleCopy}
-                                shareTitle="[🏦 예금 이자 계산 결과]"
-                                shareDescription={`예치금액 : ${amount}원\n세후이자 : ${postTaxInterest.toLocaleString()}원`}
+                                shareTitle=""
+                                shareDescription={generateShareText()}
                             />
                         </div>
 

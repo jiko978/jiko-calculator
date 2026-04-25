@@ -170,10 +170,15 @@ export default function Car() {
     }, 100);
   };
 
+  const generateShareText = () => {
+    if (!result) {
+      return `📌 JIKO 자동차세 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/tax/car`;
+    }
+    return `[🚗 자동차세 계산 결과]\n\n차량 종류: ${engineType} ${carType}\n등록연도: ${regYear}년\n납부 조건: ${result.isYearlyPaid ? '연납 (일시납)' : '정기분 분할'}\n\n자동차세(경감후): ${formatNumber(result.discountedBaseTax)}원\n지방교육세: ${formatNumber(result.eduTax)}원\n${result.yearlyDiscount > 0 ? `연납 공제액: -${formatNumber(result.yearlyDiscount)}원\n` : ''}\n총 납부세금: ${formatNumber(result.finalTax)}원\n\n📌 JIKO 자동차세 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/tax/car`;
+  };
+
   const handleCopy = async () => {
-    if (!result) return;
-    const text = `[🚗 자동차세 계산 결과]\n\n차량 종류 : ${engineType} ${carType}\n납부 조건 : ${result.isYearlyPaid ? '연납 (일시납)' : '정기분 분할'}\n\n자동차세(경감후) : ${formatNumber(result.discountedBaseTax)}원\n지방교육세 : ${formatNumber(result.eduTax)}원\n${result.yearlyDiscount > 0 ? `연납 공제액 : -${formatNumber(result.yearlyDiscount)}원\n` : ''}\n총 납부세금 : ${formatNumber(result.finalTax)}원\n\n📌JIKO 자동차세 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/tax/car`;
-    await navigator.clipboard.writeText(text);
+    await navigator.clipboard.writeText(generateShareText());
   };
 
   return (
@@ -357,8 +362,8 @@ export default function Car() {
 
           <CalculatorActions
             onCopy={handleCopy}
-            shareTitle="[🚗 자동차세 계산 결과]"
-            shareDescription={`기준연도 : ${regYear}년\n총세액 : ${formatNumber(result.finalTax)}원`}
+            shareTitle=""
+            shareDescription={generateShareText()}
           />
         </div>
       )}

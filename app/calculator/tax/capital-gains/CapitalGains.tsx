@@ -207,10 +207,15 @@ export default function CapitalGains() {
     }, 100);
   };
 
+  const generateShareText = () => {
+    if (!result) {
+      return `📌 JIKO 양도소득세 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/tax/capital-gains`;
+    }
+    return `[🏠 양도소득세 계산 결과]\n\n취득가액: ${formatNumber(parseInt(acquisitionPrice))}원\n양도가액: ${formatNumber(parseInt(transferPrice))}원\n필요경비: ${formatNumber(parseInt(expenses || '0'))}원\n보유기간: ${holdingPeriod}\n거주기간: ${residencePeriod}\n주택수: ${houseCount}\n\n양도차익: ${formatNumber(result.capitalGains)}원\n장기보유특별공제: -${formatNumber(result.longTermDeduction)}원\n과세표준: ${formatNumber(result.taxBase)}원\n세율: ${result.taxRate.toFixed(1)}%\n\n양도소득세: ${formatNumber(result.calculatedTax)}원\n지방소득세: ${formatNumber(result.localTax)}원\n총 납부세액: ${formatNumber(result.totalTax)}원\n\n📌 JIKO 양도소득세 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/tax/capital-gains`;
+  };
+
   const handleCopy = async () => {
-    if (!result) return;
-    const text = `[🏠 양도소득세 계산 결과]\n\n양도가액 : ${formatNumber(parseInt(transferPrice))}원\n취득가액 : ${formatNumber(parseInt(acquisitionPrice))}원\n양도차익 : ${formatNumber(result.capitalGains)}원\n\n최종 양도소득세 : ${formatNumber(result.calculatedTax)}원\n최종 지방소득세 : ${formatNumber(result.localTax)}원\n총 납부예상세액 : ${formatNumber(result.totalTax)}원\n\n📌JIKO 양도소득세 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/tax/capital-gains`;
-    await navigator.clipboard.writeText(text);
+    await navigator.clipboard.writeText(generateShareText());
   };
 
   const AmountInput = ({ label, value, setter, fieldId, placeholder }: any) => (
@@ -444,8 +449,8 @@ export default function CapitalGains() {
 
           <CalculatorActions
             onCopy={handleCopy}
-            shareTitle="[🏠 양도소득세 계산 결과]"
-            shareDescription={`양도가액 : ${formatNumber(parseInt(transferPrice))}원\n총 납부세액 : ${formatNumber(result.totalTax)}원`}
+            shareTitle=""
+            shareDescription={generateShareText()}
           />
         </div>
       )}

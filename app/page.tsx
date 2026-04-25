@@ -62,6 +62,7 @@ const services: Service[] = [
             { label: "📅 날짜 계산기", href: "/calculator/life/date" },
             { label: "🕯️ 디데이 계산기", href: "/calculator/life/d-day" },
             { label: "🪖 전역일 계산기", href: "/calculator/life/discharge-day" },
+            { label: "🎓 학점 계산기", href: "/calculator/life/grade" },
         ]
     },
     {

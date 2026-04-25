@@ -161,11 +161,15 @@ export default function Calorie() {
         }, 100);
     };
 
-    const handleCopy = async () => {
-        if (result) {
-            const text = `[🏃‍♂️ 칼로리 계산 결과]\n\n소모 : ${result.burned.toLocaleString()}kcal\n섭취 : ${result.intake.toLocaleString()}kcal\n순 밸런스 : ${result.balance > 0 ? '+' : ''}${result.balance.toLocaleString()}kcal\n\n📌JIKO 칼로리 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/calorie`;
-            await navigator.clipboard.writeText(text);
+    const generateShareText = () => {
+        if (!result) {
+            return `📌 JIKO 칼로리 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/calorie`;
         }
+        return `[🏃‍♂️ 칼로리 계산 결과]\n\n체중: ${weight}kg\n운동시간: ${exerciseTime}분\n소모 칼로리: ${result.burned.toLocaleString()}kcal\n섭취 칼로리: ${result.intake.toLocaleString()}kcal\n순 밸런스: ${result.balance > 0 ? '+' : ''}${result.balance.toLocaleString()}kcal\n\n📌 JIKO 칼로리 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/calorie`;
+    };
+
+    const handleCopy = async () => {
+        await navigator.clipboard.writeText(generateShareText());
     };
 
     const extraTimeNeeded = useMemo(() => {
@@ -363,8 +367,8 @@ export default function Calorie() {
 
                             <CalculatorActions
                                 onCopy={handleCopy}
-                                shareTitle="[🏃‍♂️ 칼로리 계산 결과]"
-                                shareDescription={`소모 : ${result.burned.toLocaleString()}kcal\n섭취 : ${result.intake.toLocaleString()}kcal`}
+                                shareTitle=""
+                                shareDescription={generateShareText()}
                             />
                         </div>
                     )}

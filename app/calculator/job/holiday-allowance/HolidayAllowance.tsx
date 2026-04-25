@@ -108,13 +108,15 @@ export default function HolidayAllowance() {
         }, 100);
     };
 
-    const handleCopy = async () => {
-        if (!result) return;
-        
+    const generateShareText = () => {
+        if (!result) {
+            return `📌 JIKO 주휴수당 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/holiday-allowance`;
+        }
+
         let text = `[🏖️ 주휴수당 계산 결과]\n\n`;
         text += `책정 시급 : ${formatNumber(parseInt(hourlyWage))}원\n`;
         text += `1주 근무 : ${workHours}시간\n\n`;
-        
+
         if (!result.isEligible) {
             text += `🚨 주 15시간 미만으로 주휴수당 발생 대상이 아닙니다.\n`;
             text += `👉 예상 주급(총액) : ${formatNumber(result.totalWeeklyPay)}원`;
@@ -124,14 +126,19 @@ export default function HolidayAllowance() {
             text += `• 주간 근로수당 : ${formatNumber(result.regularPay)}원\n`;
             text += `• 주휴수당 : ${formatNumber(result.holidayAllowance)}원\n`;
             text += `▶ 주급(총액) : ${formatNumber(result.totalWeeklyPay)}원\n\n`;
-            
             text += `[월급 기준]\n`;
             text += `• 월간 근로수당 : ${formatNumber(result.monthlyRegularPay)}원\n`;
             text += `• 월간 주휴수당 : ${formatNumber(result.monthlyHolidayAllowance)}원\n`;
             text += `▶ 월급(총액) : ${formatNumber(result.totalMonthlyPay)}원`;
+            text += `\n\n📌 JIKO 주휴수당 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/holiday-allowance`
         }
 
-        await navigator.clipboard.writeText(text);
+        return text;
+    };
+
+    const handleCopy = async () => {
+        if (!result) return;
+        await navigator.clipboard.writeText(generateShareText());
     };
 
     return (
@@ -300,8 +307,8 @@ export default function HolidayAllowance() {
                     {/* Standard Action Buttons (CalculatorActions) */}
                     <CalculatorActions
                         onCopy={handleCopy}
-                        shareTitle="[🏖️ 주휴수당 계산 결과]"
-                        shareDescription={`시급 : ${formatNumber(parseInt(hourlyWage))}원/${workHours}시간 근무\n주급(총액) : ${formatNumber(result.totalWeeklyPay)}원`}
+                        shareTitle=""
+                        shareDescription={generateShareText()}
                     />
                 </div>
             )}

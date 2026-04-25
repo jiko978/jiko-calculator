@@ -10,7 +10,8 @@ export default function LifeMoreCalculators() {
         { name: "나이 계산기", href: "/calculator/life/age", emoji: "🎂", description: "만 나이, 연 나이, 띠 정보 및 생애 마일스톤" },
         { name: "날짜 계산기", href: "/calculator/life/date", emoji: "📅", description: "두 날짜 사이의 정확한 기간 및 일수 계산" },
         { name: "디데이 계산기", href: "/calculator/life/d-day", emoji: "🕯️", description: "목표일까지 남은 날짜 및 기념일 확인" },
-        { name: "전역일 계산기", href: "/calculator/life/discharge-day", emoji: "🪖️", description: "군별 전역일 계산 및 실시간 복무율 확인" }
+        { name: "전역일 계산기", href: "/calculator/life/discharge-day", emoji: "🪖️", description: "군별 전역일 계산 및 실시간 복무율 확인" },
+        { name: "학점 계산기", href: "/calculator/life/grade", emoji: "🎓", description: "총 평점, 전공 평점 및 학점 계산 및 변환" }
     ];
 
     // 현재 페이지는 정확히 일치할 때 제외
@@ -21,7 +22,7 @@ export default function LifeMoreCalculators() {
     return (
         <section className="max-w-3xl mx-auto w-full bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700/50 mt-4 overflow-hidden relative">
             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full -mr-16 -mt-16 blur-3xl"></div>
-            
+
             <h2 className="text-xl font-black text-gray-900 dark:text-gray-100 mb-6 flex items-center gap-2">
                 <span className="w-2 h-6 bg-blue-600 rounded-full"></span>
                 다른 생활 계산기도 확인해보세요!

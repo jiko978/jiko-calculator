@@ -187,10 +187,16 @@ export default function UnemploymentBenefit() {
         }, 100);
     };
 
+    const generateShareText = () => {
+        if (!result) {
+            return `📌 JIKO 실업급여 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/unemployment-benefit`;
+        }
+        return `[📋 실업급여 계산 결과]\n\n예상 수급일수 : ${result.benefitDays}일\n1일 수령액 : ${formatNumber(result.dailyBenefit)}원\n총 예상 수급액 : ${formatNumber(result.totalBenefit)}원\n\n📌JIKO 실업급여 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/unemployment-benefit`;
+    };
+
     const handleCopy = async () => {
         if (!result) return;
-        const text = `[📋 실업급여 계산 결과]\n\n예상 수급일수 : ${result.benefitDays}일\n1일 수령액 : ${formatNumber(result.dailyBenefit)}원\n총 예상 수급액 : ${formatNumber(result.totalBenefit)}원\n\n📌JIKO 실업급여 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/unemployment-benefit`;
-        await navigator.clipboard.writeText(text);
+        await navigator.clipboard.writeText(generateShareText());
     };
 
     const quickAmounts = [100000, 300000, 500000, 1000000, 3000000, 5000000, 10000000];
@@ -433,8 +439,8 @@ export default function UnemploymentBenefit() {
 
                     <CalculatorActions
                         onCopy={handleCopy}
-                        shareTitle="[📋 실업급여 계산 결과]"
-                        shareDescription={`예상 수급일수 : ${result.benefitDays}일\n총 ${formatNumber(result.totalBenefit)}원`}
+                        shareTitle=""
+                        shareDescription={generateShareText()}
                     />
                 </div>
             )}

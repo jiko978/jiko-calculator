@@ -162,18 +162,26 @@ const Age = () => {
     const diffTime = Math.abs(viewDate.getTime() - birthDateObj.getTime());
     const daysLived = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-    const handleCopy = async () => {
-        const text = [
+    const generateShareText = () => {
+        const month = String(bM).padStart(2, "0");
+        const day = String(bD).padStart(2, "0");
+        return [
             `[🎂 나이 계산 결과]`,
-            `출생일 : ${bY}-${bM}-${bD} (${viewZodiac.name}띠)`,
-            `기준일 : ${vY}년 ${sexagenaryYear}년 기준`,
+            `출생일 : ${bY}-${month}-${day} (${viewZodiac.name}띠)`,
+            `기준일 : ${vY}년 ${sexagenaryYear}`,
             `만 나이 : ${intlAge}세${ageTerm ? ` ${ageTerm}` : ""}`,
             `연 나이 : ${yearAge}세`,
+            `세는 나이 : ${koreanAge}세`,
             `첫 투표 가능 : ${firstElectionYear}년`,
-            `\n📌JIKO 나이 계산기에서 확인하기 :`,
+            ``,
+            `📌 JIKO 나이 계산기에서 확인하기 :`,
             `https://jiko.kr/calculator/life/age`
         ].join("\n");
-        await navigator.clipboard.writeText(text);
+    };
+
+    const handleCopy = async () => {
+        if (!calculated) return;
+        await navigator.clipboard.writeText(generateShareText());
     };
 
     const scrollZodiacIntoView = (name: string) => {
@@ -208,7 +216,7 @@ const Age = () => {
                                 id="birth-year"
                                 type="text"
                                 inputMode="numeric"
-                                placeholder="연도(4자리)"
+                                placeholder="연도"
                                 value={birthYear}
                                 onChange={(e) => {
                                     const val = e.target.value.replace(/[^0-9]/g, "").slice(0, 4);
@@ -216,7 +224,7 @@ const Age = () => {
                                     setCalculated(false);
                                     if (val.length === 4) setErrors((prev: Set<string>) => { const n = new Set(prev); n.delete("birthYear"); return n; });
                                 }}
-                                className={`h-14 px-4 text-center placeholder:text-xs font-bold bg-gray-50 dark:bg-gray-900/50 border-2 rounded-2xl outline-none transition-all ${errors.has("birthYear") ? "border-red-500 ring-4 ring-red-500/10" : "border-gray-100 dark:border-gray-700 focus:border-blue-500 ring-blue-500/10 focus:ring-4"
+                                className={`h-14 px-4 text-center font-bold bg-gray-50 dark:bg-gray-900/50 border-2 rounded-2xl outline-none transition-all ${errors.has("birthYear") ? "border-red-500 ring-4 ring-red-500/10" : "border-gray-100 dark:border-gray-700 focus:border-blue-500 ring-blue-500/10 focus:ring-4"
                                     }`}
                             />
                             <div className="relative group">
@@ -367,8 +375,8 @@ const Age = () => {
 
                             <CalculatorActions
                                 onCopy={handleCopy}
-                                shareTitle={`[🎂 나이 계산 결과] ${intlAge}세 ${ageTerm || ""}`}
-                                shareDescription={`${bY}년생은 만 ${intlAge}세 (${viewZodiac.name}띠) 입니다.`}
+                                shareTitle=""
+                                shareDescription={generateShareText()}
                             />
                         </div>
 

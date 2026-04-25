@@ -108,10 +108,15 @@ export default function Vat() {
     }, 100);
   };
 
+  const generateShareText = () => {
+    if (!result) {
+      return `📌 JIKO 부가세 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/tax/vat`;
+    }
+    return `[📊 부가세 계산 결과]\n\n과세유형: ${taxType === 'GENERAL' ? '일반과세자' : '간이과세자'}\n기준 금액: ${formatNumber(parseInt(amount))}원\n\n공급가액: ${formatNumber(result.supplyAmount)}원\n부가세: ${formatNumber(result.vatAmount)}원\n합계금액: ${formatNumber(result.totalAmount)}원\n\n📌 JIKO 부가세 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/tax/vat`;
+  };
+
   const handleCopy = async () => {
-    if (!result) return;
-    const text = `[📊 부가세 계산 결과]\n\n구분 : ${taxType === 'GENERAL' ? '일반과세자' : '간이과세자'}\n기준 금액 : ${formatNumber(parseInt(amount))}원\n\n공급가액 : ${formatNumber(result.supplyAmount)}원\n부가세 : ${formatNumber(result.vatAmount)}원\n합계금액: ${formatNumber(result.totalAmount)}원\n\n📌JIKO 부가세 계산기에서 확인하기 :\nhttps://jiko.co.kr/calculator/tax/vat`;
-    await navigator.clipboard.writeText(text);
+    await navigator.clipboard.writeText(generateShareText());
   };
 
   return (
@@ -262,8 +267,8 @@ export default function Vat() {
 
           <CalculatorActions
             onCopy={handleCopy}
-            shareTitle="[📊 부가세 계산 결과]"
-            shareDescription={`공급가액 : ${formatNumber(result.supplyAmount)}원\n부가세 : ${formatNumber(result.vatAmount)}원\n합계 : ${formatNumber(result.totalAmount)}원`}
+            shareTitle=""
+            shareDescription={generateShareText()}
           />
         </div>
       )}

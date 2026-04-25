@@ -170,8 +170,8 @@ const Loans = ({ productName }: LoansProps) => {
 
     const totalRepayment = principal + totalInterest;
 
-    const handleCopy = async () => {
-        const text = [
+    const generateShareText = () => {
+        return [
             `[📊 대출 이자 계산 결과]`,
             `대출금액 : ${loanAmount}원`,
             `대출기간 : ${loanTerm}${termUnit === "year" ? "년" : "개월"}`,
@@ -184,7 +184,10 @@ const Loans = ({ productName }: LoansProps) => {
             `\n📌JIKO 대출 계산기에서 확인하기 :`,
             `https://jiko.kr/calculator/finance/loans`
         ].join("\n");
-        await navigator.clipboard.writeText(text);
+    };
+
+    const handleCopy = async () => {
+        await navigator.clipboard.writeText(generateShareText());
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };
@@ -402,8 +405,8 @@ const Loans = ({ productName }: LoansProps) => {
 
                             <CalculatorActions
                                 onCopy={handleCopy}
-                                shareTitle="[📊 대출 이자 계산 결과]"
-                                shareDescription={`총 대출금액 : ${loanAmount}원\n총 대출이자 : ${totalInterest.toLocaleString()}원`}
+                                shareTitle=""
+                                shareDescription={generateShareText()}
                             />
                         </div>
 

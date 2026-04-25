@@ -114,10 +114,16 @@ export default function SeverancePay() {
         }, 100);
     };
 
+    const generateShareText = () => {
+        if (!result) {
+            return `📌 JIKO 퇴직금 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/severance-pay`;
+        }
+        return `[💼 퇴직금 계산 결과]\n\n총 재직일 : ${result.totalDays}일\n세전 퇴직금 : ${formatNumber(result.preTax)}원\n세후 예상 실수령액 : ${formatNumber(result.postTax)}원\n\n📌JIKO 퇴직금 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/severance-pay`;
+    };
+
     const handleCopy = async () => {
         if (!result) return;
-        const text = `[💼 퇴직금 계산 결과]\n\n총 재직일 : ${result.totalDays}일\n세전 퇴직금 : ${formatNumber(result.preTax)}원\n세후 예상 실수령액 : ${formatNumber(result.postTax)}원\n\n📌JIKO 퇴직금 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/severance-pay`;
-        await navigator.clipboard.writeText(text);
+        await navigator.clipboard.writeText(generateShareText());
     };
 
     const addAmount = (val: number) => {
@@ -317,8 +323,8 @@ export default function SeverancePay() {
 
                     <CalculatorActions
                         onCopy={handleCopy}
-                        shareTitle="[💼 퇴직금 계산 결과]"
-                        shareDescription={`총 재직일 : ${result.totalDays}일\n세후 예상 실수령액 : ${formatNumber(result.postTax)}원`}
+                        shareTitle=""
+                        shareDescription={generateShareText()}
                     />
                 </div>
             )}

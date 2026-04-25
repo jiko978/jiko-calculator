@@ -126,10 +126,13 @@ const DateCalculator = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
+    const generateShareText = () => {
+        return `[📅 날짜 계산 결과]\n시작일 : ${resultData.startStr}\n종료일 : ${resultData.endStr}\n결과 : ${resultData.mainResult}\n\n📌 JIKO 날짜 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/life/date`;
+    };
+
     const handleCopy = async () => {
         if (!resultData) return;
-        const text = `[📅 날짜 계산 결과]\n시작일 : ${resultData.startStr}\n종료일 : ${resultData.endStr}\n결과 : ${resultData.mainResult}\n\n📌 JIKO 날짜 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/life/date`;
-        await navigator.clipboard.writeText(text);
+        await navigator.clipboard.writeText(generateShareText());
     };
 
     return (
@@ -242,8 +245,8 @@ const DateCalculator = () => {
 
                             <CalculatorActions
                                 onCopy={handleCopy}
-                                shareTitle={`[📅 날짜 계산 결과] ${resultData.mainResult}`}
-                                shareDescription={`${resultData.startStr}부터 ${resultData.endStr}까지의 계산 결과입니다.`}
+                                shareTitle=""
+                                shareDescription={generateShareText()}
                             />
                         </div>
                     </div>

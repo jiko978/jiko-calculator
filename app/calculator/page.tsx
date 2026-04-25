@@ -56,7 +56,7 @@ const schema = {
 const mainCalculators = [
   { title: "💵 금융 계산기", description: "대출 이자, 예금 이자, 적금 이자 계산기", href: "/calculator/finance" },
   { title: "💼 직장 계산기", description: "연봉/월급, 실수령액, 퇴직금, 실업급여, 4대보험, 주휴수당, 연차 계산기", href: "/calculator/job" },
-  { title: "🏠 생활 계산기", description: "나이, 날짜, 디데이, 전역일 계산기", href: "/calculator/life" },
+  { title: "🏠 생활 계산기", description: "나이, 날짜, 디데이, 전역일, 학점 계산기", href: "/calculator/life" },
   { title: "💪 건강 계산기", description: "비만도, 배란일, 기초대사량, 임신주수 , 칼로리 계산기", href: "/calculator/health" },
   { title: "🧾 세금 계산기", description: "부가세, 양도소득세, 취득세, 자동차세, 재산세, 종부세 계산기", href: "/calculator/tax" },
   { title: "📈 주식 계산기", description: "주식 물타기, 수익률, 수수료, 배당금 계산기", href: "/calculator/stock" },
@@ -199,7 +199,7 @@ export default function Home() {
       {showShare && (
         <ShareSheet
           url={typeof window !== "undefined" ? window.location.href : ""}
-          title="JIKO 계산기 모음"
+          title="JIKO 계산기"
           description="금융, 직장, 생활, 건강, 세금, 주식, 부동산 등 일상에 필요한 모든 계산기를 한곳에서 확인하세요!"
           onClose={() => setShowShare(false)}
         />

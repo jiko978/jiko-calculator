@@ -3,7 +3,43 @@
   <component name="ChangeListManager">
     <list default="true" id="ba892596-243c-4883-bf52-ac23e2e1bf54" name="변경" comment="jiko 107 commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/components/LifeMoreCalculators.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/components/LifeMoreCalculators.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/finance/deposits/Deposits.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/finance/deposits/Deposits.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/finance/loans/Loans.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/finance/loans/Loans.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/finance/savings/Savings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/finance/savings/Savings.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/health/bmi/Bmi.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/health/bmi/Bmi.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/health/bmr/Bmr.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/health/bmr/Bmr.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/health/calorie/Calorie.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/health/calorie/Calorie.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/health/ovulation/Ovulation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/health/ovulation/Ovulation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/health/pregnancy/Pregnancy.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/health/pregnancy/Pregnancy.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/job/annual/Annual.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/job/annual/Annual.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/job/holiday-allowance/HolidayAllowance.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/job/holiday-allowance/HolidayAllowance.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/job/insurance/Insurance.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/job/insurance/Insurance.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/job/net-pay/NetPay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/job/net-pay/NetPay.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/job/salary/Salary.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/job/salary/Salary.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/job/severance-pay/SeverancePay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/job/severance-pay/SeverancePay.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/job/unemployment-benefit/UnemploymentBenefit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/job/unemployment-benefit/UnemploymentBenefit.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/calculator/life/age/Age.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/life/age/Age.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/life/d-day/DDay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/life/d-day/DDay.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/life/date/Date.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/life/date/Date.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/life/discharge-day/DischargeDay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/life/discharge-day/DischargeDay.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/life/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/life/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/real-estate/dsr/Dsr.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/real-estate/dsr/Dsr.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/real-estate/dti/Dti.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/real-estate/dti/Dti.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/real-estate/ltv/Ltv.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/real-estate/ltv/Ltv.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/real-estate/new-dti/NewDti.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/real-estate/new-dti/NewDti.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/stock/dividend/Dividend.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/stock/dividend/Dividend.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/stock/fee/Fee.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/stock/fee/Fee.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/stock/profit-rate/ProfitRate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/stock/profit-rate/ProfitRate.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/tax/acquisition/Acquisition.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/tax/acquisition/Acquisition.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/tax/capital-gains/CapitalGains.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/tax/capital-gains/CapitalGains.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/tax/car/Car.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/tax/car/Car.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/tax/comprehensive/Comprehensive.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/tax/comprehensive/Comprehensive.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/tax/property/Property.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/tax/property/Property.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/tax/vat/Vat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/tax/vat/Vat.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/docs/calculator/JIKO-calculator-설계서.md" beforeDir="false" afterPath="$PROJECT_DIR$/public/docs/calculator/JIKO-calculator-설계서.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,6 +153,7 @@
       <workItem from="1776252785800" duration="4349000" />
       <workItem from="1776389605923" duration="7207000" />
       <workItem from="1776748756569" duration="14658000" />
+      <workItem from="1776855180560" duration="16941000" />
     </task>
     <task id="LOCAL-00014" summary="jiko 60 commit">
       <option name="closed" value="true" />

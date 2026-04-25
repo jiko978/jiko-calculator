@@ -77,6 +77,11 @@ const lifeCalculators = [
         description: "입대일만 입력하면 군별 복무 기간을 반영하여 전역일과 실시간 복무율, 진급일을 알려드립니다.",
         href: "/calculator/life/discharge-day",
     },
+    {
+        title: "🎓 학점 계산기",
+        description: "대학교 학점을 간편하게 계산하고 환산 점수까지 변환해서 알려드립니다.",
+        href: "/calculator/life/grade",
+    },
 ];
 
 export default function LifeHubPage() {

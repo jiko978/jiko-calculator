@@ -127,10 +127,17 @@ const DDayCalculator = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
+    const generateShareText = () => {
+        if (!resultData) {
+            return `📌 JIKO 디데이 계산기에서 확인하기 : \nhttps://jiko.kr/calculator/life/d-day`;
+        }
+
+        return `[🕯️ 디데이 계산 결과]\n기준일 : ${resultData.baseDate}\n목표일 : ${resultData.mainResultSubText} ${resultData.mainResultText}\n\n📌 JIKO 디데이 계산기에서 확인하기 : \nhttps://jiko.kr/calculator/life/d-day`;
+    };
+
     const handleCopy = async () => {
         if (!resultData) return;
-        const text = `[🕯️ 디데이 계산 결과]\n기준일 : ${resultData.baseDate}\n목표일 : ${resultData.mainResultSubText} ${resultData.mainResultText}\n\n📌 JIKO 디데이 계산기에서 확인하기 : \nhttps://jiko.kr/calculator/life/d-day`;
-        await navigator.clipboard.writeText(text);
+        await navigator.clipboard.writeText(generateShareText());
     };
 
     return (
@@ -247,8 +254,8 @@ const DDayCalculator = () => {
                             </div>
                             <CalculatorActions
                                 onCopy={handleCopy}
-                                shareTitle={`[🕯️ 디데이 계산 결과] ${resultData.baseDate} 기준 ${resultData.mainResultSubText}는 ${resultData.mainResultText} 입니다.`}
-                                shareDescription={`목표일 ${resultData.mainResultText}!`}
+                                shareTitle=""
+                                shareDescription={generateShareText()}
                             />
                         </div>
                     </div>

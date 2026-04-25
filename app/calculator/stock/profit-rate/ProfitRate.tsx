@@ -86,9 +86,9 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
         }, 100);
     };
 
-    const handleCopyResult = async () => {
-        if (!result) return;
-        const text = [
+    const generateShareText = () => {
+        if (!result) return "";
+        return [
             `[💰 주식 수익률 계산 결과]`,
             `매수가 : ${buyPrice}원`,
             `현재가 : ${currentPrice}원`,
@@ -99,7 +99,11 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
             `수익률 : ${Number(result.rate) >= 0 ? "+" : ""}${result.rate} %`,
             `\n📌JIKO 주식 수익률 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/stock/profit-rate`
         ].join("\n");
-        await navigator.clipboard.writeText(text);
+    };
+
+    const handleCopyResult = async () => {
+        const text = generateShareText();
+        if (text) await navigator.clipboard.writeText(text);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };
@@ -271,8 +275,8 @@ export default function ProfitRate({ stockName, initialCode }: ProfitRateProps) 
                         </div>
                         <CalculatorActions
                             onCopy={handleCopyResult}
-                            shareTitle="[💰 주식 수익률 계산 결과]"
-                            shareDescription={`수익금 : ${result.profit >= 0 ? "+" : ""}${result.profit.toLocaleString()} 원\n수익률 : ${Number(result.rate) >= 0 ? "+" : ""}${result.rate} %`}
+                            shareTitle=""
+                            shareDescription={generateShareText()}
                         />
                     </div>
                 )}

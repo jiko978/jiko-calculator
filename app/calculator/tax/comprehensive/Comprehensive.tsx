@@ -162,10 +162,15 @@ export default function Comprehensive() {
     setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 100);
   };
 
+  const generateShareText = () => {
+    if (!result) {
+      return `📌 JIKO 종합부동산세 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/tax/comprehensive`;
+    }
+    return `[🏛️ 종합부동산세 계산 결과]\n\n주택유형: ${isFirstHome ? '1주택' : '다주택/일반'}\n보유지분: ${result.sp}%\n공시가: ${formatNumber(result.mySharePrice)}원\n기본 공제액: ${formatNumber(result.deduction)}원\n과세 표준액: ${formatNumber(result.taxBase)}원\n\n종부세 산출(중복차감): ${formatNumber(result.netTax)}원\n${result.specialDiscount > 0 ? `노후/보유 특별공제(-${result.totalDiscountRate}%): -${formatNumber(result.specialDiscount)}원\n` : ''}최종 종부세: ${formatNumber(result.finalCompTax)}원\n농어촌특별세: ${formatNumber(result.farmTax)}원\n총 고지세액: ${formatNumber(result.totalTax)}원\n\n📌 JIKO 종합부동산세 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/tax/comprehensive`;
+  };
+
   const handleCopy = async () => {
-    if (!result) return;
-    const text = `[🏛️ 종합부동산세 계산 결과]\n\n보유지분 ${result.sp}% 기준 공시가 : ${formatNumber(result.mySharePrice)}원\n기본 공제액 : ${formatNumber(result.deduction)}원\n과세 표준액 : ${formatNumber(result.taxBase)}원\n\n종부세 산출(중복차감) : ${formatNumber(result.netTax)}원\n${result.specialDiscount > 0 ? `노후/보유 특별공제(-${result.totalDiscountRate}%) : -${formatNumber(result.specialDiscount)}원\n` : ''}최종 종부세 : ${formatNumber(result.finalCompTax)}원\n농어촌특별세 : ${formatNumber(result.farmTax)}원\n총 고지세액 : ${formatNumber(result.totalTax)}원\n\n📌JIKO 종합부동산세 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/tax/comprehensive`;
-    await navigator.clipboard.writeText(text);
+    await navigator.clipboard.writeText(generateShareText());
   };
 
   return (
@@ -366,8 +371,8 @@ export default function Comprehensive() {
 
             <CalculatorActions
               onCopy={handleCopy}
-              shareTitle="[🏛️ 종합부동산세 계산 결과]"
-              shareDescription={`공시가 : ${formatNumber(result.mySharePrice)}원\n총세액 : ${formatNumber(result.totalTax)}원`}
+              shareTitle=""
+              shareDescription={generateShareText()}
             />
           </div>
         )}

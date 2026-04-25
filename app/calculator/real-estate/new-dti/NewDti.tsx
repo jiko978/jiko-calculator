@@ -133,10 +133,14 @@ const NewDtiCalculator = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
+    const generateShareText = () => {
+        if (!resultData) return "";
+        return `[🏢 신DTI 계산 결과]\n신DTI 스코어 : ${resultData.newDtiScore}%\n보유 주담대 원리금 합산 분석\n최대 추가 대출 가능액 : ${formatNumber(resultData.maxAdditionalLoan)}원\n\n📌 JIKO 신DTI 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/real-estate/new-dti`;
+    };
+
     const handleCopy = async () => {
-        if (!resultData) return;
-        const text = `[🏢 신DTI 계산 결과]\n신DTI 스코어 : ${resultData.newDtiScore}%\n보유 주담대 원리금 합산 분석\n최대 추가 대출 가능액 : ${formatNumber(resultData.maxAdditionalLoan)}원\n\n📌 JIKO 신DTI 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/real-estate/new-dti`;
-        await navigator.clipboard.writeText(text);
+        const text = generateShareText();
+        if (text) await navigator.clipboard.writeText(text);
     };
 
     const getGaugeColor = (score: number) => {
@@ -377,8 +381,8 @@ const NewDtiCalculator = () => {
 
                             <CalculatorActions
                                 onCopy={handleCopy}
-                                shareTitle={`[🏢 신DTI 계산 결과] 내 규제위험도는 ${getStatusText(Number(resultData.newDtiScore)).label}입니다.`}
-                                shareDescription={`보유 주담대 원리금 합산 ${resultData.newDtiScore}%!`}
+                                shareTitle=""
+                                shareDescription={generateShareText()}
                             />
                         </div>
                     </div>

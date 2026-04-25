@@ -170,10 +170,16 @@ export default function Salary() {
         }, 100);
     };
 
+    const generateShareText = () => {
+        if (!result) {
+            return `📌 JIKO 연봉/월급 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/salary`;
+        }
+        return `[💸 연봉/월급 계산 결과]\n\n기준 : ${calcType === "YEARLY" ? "연봉" : "월급"} ${formatNumber(parseInt(amount))}원\n예상 실수령액(월) : ${formatNumber(result.netPay)}원\n공제액 합계 : ${formatNumber(result.deductions.total)}원\n(국민연금 : ${formatNumber(result.deductions.pension)}원 등)\n\n📌JIKO 연봉/월급 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/salary`;
+    };
+
     const handleCopy = async () => {
         if (!result) return;
-        const text = `[💸 연봉/월급 계산 결과]\n\n기준 : ${calcType === "YEARLY" ? "연봉" : "월급"} ${formatNumber(parseInt(amount))}원\n예상 실수령액(월) : ${formatNumber(result.netPay)}원\n공제액 합계 : ${formatNumber(result.deductions.total)}원\n(국민연금 : ${formatNumber(result.deductions.pension)}원 등)\n\n📌JIKO 연봉/월급 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/salary`;
-        await navigator.clipboard.writeText(text);
+        await navigator.clipboard.writeText(generateShareText());
     };
 
     return (
@@ -398,8 +404,8 @@ export default function Salary() {
 
                     <CalculatorActions
                         onCopy={handleCopy}
-                        shareTitle="[💸 연봉/월급 계산 결과]"
-                        shareDescription={`월 실수령액(세전) : ${formatNumber(parseInt(result.monthlyGross))}원\n월 실수령액(세후) : ${formatNumber(result.netPay)}원`}
+                        shareTitle=""
+                        shareDescription={generateShareText()}
                     />
                 </div>
             )}

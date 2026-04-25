@@ -114,10 +114,14 @@ const LtvCalculator = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
+    const generateShareText = () => {
+        if (!resultData) return "";
+        return `[🏠 LTV 계산 결과]\n주택 시세 : ${formatNumber(Number(housePrice))}원\n최종 예상 한도 : ${formatNumber(resultData.calcLimit)}원 (LTV ${resultData.ltvRatio * 100}%)\n\n📌 JIKO LTV 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/real-estate/ltv`;
+    };
+
     const handleCopy = async () => {
-        if (!resultData) return;
-        const text = `[🏠 LTV 계산 결과]\n주택 시세 : ${formatNumber(Number(housePrice))}원\n최종 예상 한도 : ${formatNumber(resultData.calcLimit)}원 (LTV ${resultData.ltvRatio * 100}%)\n\n📌 JIKO LTV 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/real-estate/ltv`;
-        await navigator.clipboard.writeText(text);
+        const text = generateShareText();
+        if (text) await navigator.clipboard.writeText(text);
     };
 
     const amountButtons = [1000000, 5000000, 10000000, 50000000, 100000000, 500000000];
@@ -266,8 +270,8 @@ const LtvCalculator = () => {
 
                             <CalculatorActions
                                 onCopy={handleCopy}
-                                shareTitle="[🏠 LTV 계산 결과]"
-                                shareDescription={`${formatNumber(resultData.calcLimit)}원 대출 가능 확률이 높습니다.`}
+                                shareTitle=""
+                                shareDescription={generateShareText()}
                             />
                         </div>
                     </div>

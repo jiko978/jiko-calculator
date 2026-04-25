@@ -144,31 +144,16 @@ export default function Insurance() {
         }, 100);
     };
 
+    const generateShareText = () => {
+        if (!result) {
+            return `📌 JIKO 4대보험 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/insurance`;
+        }
+        return `[🛡️ 4대보험 계산 결과]\n\n급여 기준 : ${salaryType === "YEARLY" ? "연봉" : "월급"}\n월 산출액 (상세 기준액) : ${formatComma(result.taxBase.toString())} 원\n\n[🙋 근로자 (개인 부담분)]\n국민연금 : ${formatComma(result.employee.pension.toString())} 원\n건강보험 : ${formatComma(result.employee.health.toString())} 원\n장기요양 : ${formatComma(result.employee.longTerm.toString())} 원\n고용보험 : ${formatComma(result.employee.employment.toString())} 원\n합계: 월 ${formatComma(result.employee.sum.toString())} 원 개인 납부\n\n[🏢 사업주 (회사 부담분)]\n국민연금 : ${formatComma(result.employer.pension.toString())} 원\n건강보험 : ${formatComma(result.employer.health.toString())} 원\n장기요양 : ${formatComma(result.employer.longTerm.toString())} 원\n고용보험 : ${formatComma(result.employer.employment.toString())} 원\n산재보험 : ${formatComma(result.employer.sanjae.toString())} 원\n합계: 월 ${formatComma(result.employer.sum.toString())} 원 회사 납부\n\n📌 JIKO 4대보험 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/insurance`;
+    };
+
     const copyResultToClipboard = async () => {
         if (!result) return;
-        const textToCopy = `[🛡️ 4대보험 계산 결과]\n
-급여 기준 : ${salaryType === "YEARLY" ? "연봉" : "월급"}
-월 산출액 (상세 기준액) : ${formatComma(result.taxBase.toString())} 원
-
-[🙋 근로자 (개인 부담분)]
-국민연금 : ${formatComma(result.employee.pension.toString())} 원
-건강보험 : ${formatComma(result.employee.health.toString())} 원
-장기요양 : ${formatComma(result.employee.longTerm.toString())} 원
-고용보험 : ${formatComma(result.employee.employment.toString())} 원
-합계: 월 ${formatComma(result.employee.sum.toString())} 원 개인 납부
-
-[🏢 사업주 (회사 부담분)]
-국민연금 : ${formatComma(result.employer.pension.toString())} 원
-건강보험 : ${formatComma(result.employer.health.toString())} 원
-장기요양 : ${formatComma(result.employer.longTerm.toString())} 원
-고용보험 : ${formatComma(result.employer.employment.toString())} 원
-산재보험 : ${formatComma(result.employer.sanjae.toString())} 원
-합계: 월 ${formatComma(result.employer.sum.toString())} 원 회사 납부
-
-📌JIKO 4대보험 계산기에서 확인하기 :
-https://jiko.kr/calculator/job/insurance`;
-
-        await navigator.clipboard.writeText(textToCopy);
+        await navigator.clipboard.writeText(generateShareText());
     };
 
     return (
@@ -424,8 +409,8 @@ https://jiko.kr/calculator/job/insurance`;
                     {/* 결과 복사 & 공유 */}
                     <CalculatorActions
                         onCopy={copyResultToClipboard}
-                        shareTitle="[🛡️ 4대보험 계산 결과]"
-                        shareDescription={`급여 기준 : ${salaryType === "YEARLY" ? "연봉" : "월급"}\n근로자 부담금 : 월 ${formatComma(result.employee.sum.toString())}원`}
+                        shareTitle=""
+                        shareDescription={generateShareText()}
                     />
 
                 </div>

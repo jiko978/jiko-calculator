@@ -158,9 +158,9 @@ export default function Fee({ stockName, initialCode }: StockFeeProps) {
         }, 100);
     };
 
-    const handleCopy = async () => {
-        if (!result) return;
-        const text = [
+    const generateShareText = () => {
+        if (!result) return "";
+        return [
             `[💳️ ️주식 매매 수수료 계산 결과]`,
             `시장구분 : ${market.label}`,
             `매수가 : ${buyPrice}원`,
@@ -172,7 +172,11 @@ export default function Fee({ stockName, initialCode }: StockFeeProps) {
             `최소 익절가 : ${result.minSellPrice.toLocaleString()}원`,
             `\n📌JIKO 주식 수수료 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/stock/fee`
         ].join("\n");
-        await navigator.clipboard.writeText(text);
+    };
+
+    const handleCopy = async () => {
+        const text = generateShareText();
+        if (text) await navigator.clipboard.writeText(text);
     };
 
     return (
@@ -363,8 +367,8 @@ export default function Fee({ stockName, initialCode }: StockFeeProps) {
 
                         <CalculatorActions
                             onCopy={handleCopy}
-                            shareTitle="[💳 주식 매매 수수료 계산 결과]"
-                            shareDescription={`세후 순이익 : ${result.netProfit >= 0 ? "+" : ""}${result.netProfit.toLocaleString()}원\n최종 수익률 : ${result.profitRate}%`}
+                            shareTitle=""
+                            shareDescription={generateShareText()}
                         />
                     </div>
                 )}

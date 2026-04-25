@@ -127,10 +127,14 @@ const DtiCalculator = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
+    const generateShareText = () => {
+        if (!resultData) return "";
+        return `[📉 DTI 계산 결과]\nDTI 스코어 : ${resultData.dtiScore}%\n연소득 : ${formatNumber(Number(salary))}원\n최대 추가 대출 가능액 : ${formatNumber(resultData.maxAdditionalLoan)}원\n\n📌 JIKO DTI 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/real-estate/dti`;
+    };
+
     const handleCopy = async () => {
-        if (!resultData) return;
-        const text = `[📉 DTI 계산 결과]\nDTI 스코어 : ${resultData.dtiScore}%\n연소득 : ${formatNumber(Number(salary))}원\n최대 추가 대출 가능액 : ${formatNumber(resultData.maxAdditionalLoan)}원\n\n📌 JIKO DTI 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/real-estate/dti`;
-        await navigator.clipboard.writeText(text);
+        const text = generateShareText();
+        if (text) await navigator.clipboard.writeText(text);
     };
 
     const getGaugeColor = (score: number) => {
@@ -345,8 +349,8 @@ const DtiCalculator = () => {
 
                             <CalculatorActions
                                 onCopy={handleCopy}
-                                shareTitle={`[📉 DTI 계산 결과] 내 위험도는 ${getStatusText(Number(resultData.dtiScore)).label}입니다.`}
-                                shareDescription={`총 부채 상환율 ${resultData.dtiScore}%!`}
+                                shareTitle=""
+                                shareDescription={generateShareText()}
                             />
                         </div>
                     </div>

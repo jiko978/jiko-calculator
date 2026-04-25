@@ -119,10 +119,16 @@ export default function NetPay() {
         }, 100);
     };
 
+    const generateShareText = () => {
+        if (!result) {
+            return `📌 JIKO 실수령액 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/net-pay`;
+        }
+        return `[💰 실수령액 계산 결과]\n\n월 실수령액(세후) : ${formatNumber(result.goal)}원\n계약 연봉 추정치 : ${formatNumber(result.yearlyGross)}원\n월 실수령액(세전) : ${formatNumber(result.monthlyGross)}원\n\n📌JIKO 실수령액 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/net-pay`;
+    };
+
     const handleCopy = async () => {
         if (!result) return;
-        const text = `[💰 실수령액 계산 결과]\n\n월 실수령액(세후) : ${formatNumber(result.goal)}원\n계약 연봉 추정치 : ${formatNumber(result.yearlyGross)}원\n월 실수령액(세전) : ${formatNumber(result.monthlyGross)}원\n\n📌JIKO 실수령액 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/job/net-pay`;
-        await navigator.clipboard.writeText(text);
+        await navigator.clipboard.writeText(generateShareText());
     };
 
     const addAmount = (addValue: number) => {
@@ -283,8 +289,8 @@ export default function NetPay() {
 
                     <CalculatorActions
                         onCopy={handleCopy}
-                        shareTitle="[💰 실수령액 계산 결과]"
-                        shareDescription={`월 실수령액(세후) : ${formatNumber(result.goal)}원\n월 실수령액(세전) : ${formatNumber(result.monthlyGross)}원`}
+                        shareTitle=""
+                        shareDescription={generateShareText()}
                     />
                 </div>
             )}

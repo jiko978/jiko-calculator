@@ -139,8 +139,8 @@ const Savings = ({ productName }: SavingsProps) => {
     const postTaxInterest = Math.floor(preTaxInterest - taxAmount);
     const totalMaturity = totalPrincipal + postTaxInterest;
 
-    const handleCopy = async () => {
-        const text = [
+    const generateShareText = () => {
+        return [
             `[💰 적금 이자 계산 결과]`,
             `월 납입액 : ${monthlyAmount}원`,
             `총 납입액 : ${totalPrincipal.toLocaleString()}원`,
@@ -154,7 +154,10 @@ const Savings = ({ productName }: SavingsProps) => {
             `\n📌JIKO 적금 이자 계산기에서 확인하기 :`,
             `https://jiko.kr/calculator/finance/savings`
         ].join("\n");
-        await navigator.clipboard.writeText(text);
+    };
+
+    const handleCopy = async () => {
+        await navigator.clipboard.writeText(generateShareText());
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };
@@ -381,8 +384,8 @@ const Savings = ({ productName }: SavingsProps) => {
 
                             <CalculatorActions
                                 onCopy={handleCopy}
-                                shareTitle="[💰 적금 이자 계산 결과]"
-                                shareDescription={`총 납입액 : ${totalPrincipal.toLocaleString()}원\n세후이자 : ${postTaxInterest.toLocaleString()}원`}
+                                shareTitle=""
+                                shareDescription={generateShareText()}
                             />
                         </div>
 

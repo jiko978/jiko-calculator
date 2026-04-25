@@ -67,11 +67,15 @@ export default function Bmr() {
         }, 100);
     };
 
-    const handleCopy = async () => {
-        if (resultBmr !== null) {
-            const text = `[🔥 기초대사량(BMR) 계산 결과]\n\n내 기초대사량(BMR)은 ${resultBmr.toLocaleString()} kcal 입니다.\n\n📌JIKO 기초대사량 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/bmr`;
-            await navigator.clipboard.writeText(text);
+    const generateShareText = () => {
+        if (resultBmr === null) {
+            return `📌 JIKO 기초대사량 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/bmr`;
         }
+        return `[🔥 기초대사량(BMR) 계산 결과]\n\n성별: ${gender === "M" ? "남성" : "여성"}\n나이: ${age}세\n키: ${height}cm\n몸무게: ${weight}kg\n기초대사량: ${resultBmr.toLocaleString()} kcal\n\n📌 JIKO 기초대사량 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/bmr`;
+    };
+
+    const handleCopy = async () => {
+        await navigator.clipboard.writeText(generateShareText());
     };
 
     return (
@@ -193,8 +197,8 @@ export default function Bmr() {
 
                             <CalculatorActions
                                 onCopy={handleCopy}
-                                shareTitle="[🔥 기초대사량(BMR) 계산 결과]"
-                                shareDescription={`내 기초대사량은 ${resultBmr.toLocaleString()} kcal 입니다.`}
+                                shareTitle=""
+                                shareDescription={generateShareText()}
                             />
                         </div>
                     )}

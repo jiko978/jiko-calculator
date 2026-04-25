@@ -83,11 +83,15 @@ export default function Ovulation() {
         }, 100);
     };
 
-    const handleCopy = async () => {
-        if (resultNextPeriod) {
-            const text = `[📅️ 배란일 계산 결과]\n\n다음 생리 예정일 : ${resultNextPeriod}\n배란 예정일 : ${resultOvulation}\n가임기 : ${resultFertileWindow}\n\n📌JIKO 배란일 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/ovulation`;
-            await navigator.clipboard.writeText(text);
+    const generateShareText = () => {
+        if (!resultNextPeriod) {
+            return `📌 JIKO 배란일 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/ovulation`;
         }
+        return `[📅️ 배란일 계산 결과]\n\n마지막 생리일: ${lastPeriodDate}\n생리 주기: ${cycleLength}일\n다음 생리 예정일: ${resultNextPeriod}\n배란 예정일: ${resultOvulation}\n가임기: ${resultFertileWindow}\n\n📌 JIKO 배란일 계산기에서 확인하기 :\nhttps://jiko.kr/calculator/health/ovulation`;
+    };
+
+    const handleCopy = async () => {
+        await navigator.clipboard.writeText(generateShareText());
     };
 
     return (
@@ -188,8 +192,8 @@ export default function Ovulation() {
 
                             <CalculatorActions
                                 onCopy={handleCopy}
-                                shareTitle="[📅 배란일 계산 결과]"
-                                shareDescription={`예상 배란일 : ${resultOvulation}, 다음 생리 예정일 : ${resultNextPeriod}`}
+                                shareTitle=""
+                                shareDescription={generateShareText()}
                             />
                         </div>
                     )}
