@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba892596-243c-4883-bf52-ac23e2e1bf54" name="변경" comment="jiko 107 commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/finance/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/finance/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/health/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/health/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/job/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/job/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/life/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/life/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/calculator/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/real-estate/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/real-estate/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/stock/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/stock/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/tax/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/tax/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/sitemap.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/sitemap.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/seo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/seo.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +37,10 @@
     &quot;accountId&quot;: &quot;32d3d709-0f1d-4bea-b876-f1283333a199&quot;
   }
 }</component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -120,6 +130,7 @@
       <workItem from="1776389605923" duration="7207000" />
       <workItem from="1776748756569" duration="14658000" />
       <workItem from="1776855180560" duration="24458000" />
+      <workItem from="1777158561746" duration="7032000" />
     </task>
     <task id="LOCAL-00014" summary="jiko 60 commit">
       <option name="closed" value="true" />

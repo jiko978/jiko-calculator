@@ -101,7 +101,7 @@ export default function HealthHubPage() {
             <NavBar title="건강 계산기" description="비만도, 배란일, 기초대사량, 임신주수, 칼로리 계산기 - JIKO 계산기" />
 
             <div className="flex-grow px-4 py-6">
-                <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">💪 건강 생활 계산기 모음</h1>
+                <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">💪 건강 계산기 모음</h1>
                 <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">비만도(BMI), 배란일, 기초대사량(BMR), 임신주기, 칼로리 계산기를 통해 나의 현재 건강 상태를 확인하세요.</p>
 
                 <div className="grid grid-cols-2 gap-4 w-full max-w-3xl mx-auto">
@@ -124,7 +124,10 @@ export default function HealthHubPage() {
                 <section className="mt-4 max-w-3xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-48 h-48 bg-rose-500/5 rounded-full -mr-24 -mt-24 blur-2xl"></div>
                     <div className="relative">
-                        <h2 className="text-xl font-black text-gray-900 dark:text-white mb-5">JIKO 건강 계산기만의 특징</h2>
+                        <h2 className="text-xl font-black text-gray-900 dark:text-white mb-5 flex items-center gap-2">
+                            <span className="w-2 h-6 bg-indigo-600 rounded-full"></span>
+                            JIKO 건강 계산기만의 특징
+                        </h2>
                         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <li className="flex gap-3">
                                 <div className="w-10 h-10 rounded-xl bg-rose-50 dark:bg-rose-900/30 flex items-center justify-center shrink-0 text-xl">🧘</div>
@@ -156,6 +159,110 @@ export default function HealthHubPage() {
                             </li>
                         </ul>
                     </div>
+                </section>
+
+                <section className="mt-8 max-w-3xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700">
+                    <h2 className="text-xl font-black text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                        <span className="w-2 h-6 bg-indigo-600 rounded-full"></span>
+                        건강 계산기 소개
+                    </h2>
+                    <div className="space-y-4 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                        <p>• 건강 계산기는 비만도, 배란일, 기초대사량, 임신주수, 칼로리처럼 건강 관리에 필요한 주요 정보를 쉽게 확인할 수 있는 페이지입니다. 체형 관리부터 임신 관련 일정 확인까지 폭넓게 활용할 수 있도록 구성되어 있습니다.</p>
+                        <p>• 비만도 계산기로 현재 체형 상태를 간단히 파악할 수 있고, 기초대사량과 칼로리 계산기를 통해 하루 에너지 소비와 섭취량을 관리할 수 있습니다. 배란일과 임신주수 계산기는 임신 계획이나 산부인과 관련 일정 확인에 도움이 됩니다.</p>
+                        <p>• 건강 계산기는 다이어트, 체중 관리, 건강 습관 형성에 관심 있는 사람에게 실용적인 정보를 제공합니다. 복잡한 의학 지식 없이도 기본적인 건강 지표를 쉽게 확인할 수 있어 일상적인 건강 관리에 유용합니다.</p>
+                    </div>
+                </section>
+
+                <section className="mt-8 max-w-3xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700">
+                    <h2 className="text-xl font-black text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                        <span className="w-2 h-6 bg-indigo-600 rounded-full"></span>
+                        이런 경우 사용하세요
+                    </h2>
+                    <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-300">
+                        <li className="flex gap-3">
+                            <span className="text-blue-600 dark:text-blue-400 shrink-0">✓</span>
+                            <span>체중 감량이나 증량을 목표로 할 때</span>
+                        </li>
+                        <li className="flex gap-3">
+                            <span className="text-blue-600 dark:text-blue-400 shrink-0">✓</span>
+                            <span>현재 비만도 상태를 정확하게 알고 싶을 때</span>
+                        </li>
+                        <li className="flex gap-3">
+                            <span className="text-blue-600 dark:text-blue-400 shrink-0">✓</span>
+                            <span>기초대사량과 하루 섭취 권장 칼로리를 계산하고 싶을 때</span>
+                        </li>
+                        <li className="flex gap-3">
+                            <span className="text-blue-600 dark:text-blue-400 shrink-0">✓</span>
+                            <span>임신을 계획 중이거나 임신 초기 단계에 있을 때</span>
+                        </li>
+                        <li className="flex gap-3">
+                            <span className="text-blue-600 dark:text-blue-400 shrink-0">✓</span>
+                            <span>정확한 배란일과 가임기를 확인하고 싶을 때</span>
+                        </li>
+                        <li className="flex gap-3">
+                            <span className="text-blue-600 dark:text-blue-400 shrink-0">✓</span>
+                            <span>건강한 식단 관리를 위해 칼로리를 계산하고 싶을 때</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <section className="mt-8 max-w-3xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700">
+                    <h2 className="text-xl font-black text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                        <span className="w-2 h-6 bg-indigo-600 rounded-full"></span>
+                        자주 묻는 질문
+                    </h2>
+                    <div className="space-y-4 text-sm">
+                        <div>
+                            <p className="font-semibold text-gray-900 dark:text-white mb-2">Q. 비만도(BMI) 기준이 무엇인가요?</p>
+                            <p className="text-gray-600 dark:text-gray-300">A. 세계보건기구(WHO) 기준에 따라 체질량지수(BMI) 18.5 미만은 저체중, 18.5~22.9는 정상, 23~24.9는 과체중, 25 이상은 비만으로 분류합니다.</p>
+                        </div>
+                        <div>
+                            <p className="font-semibold text-gray-900 dark:text-white mb-2">Q. 기초대사량은 왜 중요한가요?</p>
+                            <p className="text-gray-600 dark:text-gray-300">A. 기초대사량은 생명 유지에 필요한 최소한의 에너지양으로, 이를 파악해야 적절한 칼로리 섭취 계획을 세울 수 있습니다.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="mt-8 max-w-3xl mx-auto bg-blue-50 dark:bg-blue-900/20 p-6 rounded-2xl border border-blue-200 dark:border-blue-800">
+                    <h2 className="text-xl font-black text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                        <span className="text-xl">⚠️</span>
+                        유의사항
+                    </h2>
+                    <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">계산 결과는 입력한 정보를 기준으로 한 예상 값이며 실제 건강 상태와 차이가 있을 수 있습니다. 정확한 진단과 치료는 전문 의료인의 상담을 받으시기 바랍니다.</p>
+                </section>
+
+                <section className="mt-8 max-w-3xl mx-auto text-center">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">지금 바로 JIKO 건강 계산기를 이용해보세요!</h2>
+                    <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                        <Link href="/calculator/health/bmi" className="inline-flex items-center justify-center rounded-lg bg-rose-500 px-4 py-3 text-xs sm:text-sm font-bold text-white hover:bg-rose-600 transition">
+                            ⚖️ 비만도 계산하기 →
+                        </Link>
+                        <Link href="/calculator/health/ovulation" className="inline-flex items-center justify-center rounded-lg bg-rose-500 px-4 py-3 text-xs sm:text-sm font-bold text-white hover:bg-rose-600 transition">
+                            📅 배란일 계산하기 →
+                        </Link>
+                        <Link href="/calculator/health/bmr" className="inline-flex items-center justify-center rounded-lg bg-rose-500 px-4 py-3 text-xs sm:text-sm font-bold text-white hover:bg-rose-600 transition">
+                            🔥 기초대사량 계산하기 →
+                        </Link>
+                        <Link href="/calculator/health/pregnancy" className="inline-flex items-center justify-center rounded-lg bg-rose-500 px-4 py-3 text-xs sm:text-sm font-bold text-white hover:bg-rose-600 transition">
+                            👶 임신주수 계산하기 →
+                        </Link>
+                        <Link href="/calculator/health/calorie" className="inline-flex items-center justify-center rounded-lg bg-rose-500 px-4 py-3 text-xs sm:text-sm font-bold text-white hover:bg-rose-600 transition">
+                            🏃‍♂️ 칼로리 계산하기 →
+                        </Link>
+                    </div>
+                </section>
+
+                <section className="mt-8 max-w-3xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700">
+                    <h2 className="text-xl font-black text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                        <span className="w-2 h-6 bg-indigo-600 rounded-full"></span>
+                        더 많은 계산기가 필요하신가요?
+                    </h2>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                        금융, 직장, 생활, 건강, 세금, 주식, 부동산 등 7가지 카테고리에서 찾고 있는 계산기를 모두 만나보세요. JIKO는 일상에서 필요한 모든 계산을 한곳에서 제공하는 계산 플랫폼입니다.
+                    </p>
+                    <Link href="/calculator" className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-sm font-bold text-white hover:bg-blue-700 transition">
+                        🧮 전체 계산기 보기
+                    </Link>
                 </section>
                 <InstallBanner />
             </div>

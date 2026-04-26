@@ -100,7 +100,7 @@ export default function RealEstateHubPage() {
             <NavBar title="부동산 계산기" description="DSR, 신DTI, DTI, LTV 계산기 - JIKO 계산기" />
 
             <div className="flex-grow px-4 py-6">
-                <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">🏢 부동산 계획 계산기 모음</h1>
+                <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">🏢 부동산 계산기 모음</h1>
                 <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">DSR, 신DTI, DTI, LTV 계산기를 통해 부동산 계획을 미리 확인해보세요.</p>
 
                 <div className="grid grid-cols-2 gap-4 w-full max-w-3xl mx-auto">
@@ -123,7 +123,10 @@ export default function RealEstateHubPage() {
                 <section className="mt-4 max-w-3xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/5 rounded-full -mr-24 -mt-24 blur-2xl"></div>
                     <div className="relative">
-                        <h2 className="text-xl font-black text-gray-900 dark:text-white mb-5">JIKO 부동산 계산기만의 특징</h2>
+                        <h2 className="text-xl font-black text-gray-900 dark:text-white mb-5 flex items-center gap-2">
+                            <span className="w-2 h-6 bg-indigo-600 rounded-full"></span>
+                            JIKO 부동산 계산기만의 특징
+                        </h2>
                         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <li className="flex gap-3">
                                 <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center shrink-0 text-xl">🏛️</div>
@@ -156,9 +159,113 @@ export default function RealEstateHubPage() {
                         </ul>
                     </div>
                 </section>
-                <div className="mt-4">
-                    <InstallBanner />
-                </div>
+
+                <section className="mt-8 max-w-3xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700">
+                    <h2 className="text-xl font-black text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                        <span className="w-2 h-6 bg-indigo-600 rounded-full"></span>
+                        부동산 계산기 소개
+                    </h2>
+                    <div className="space-y-4 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                        <p>• 부동산 계산기는 내 집 마련이나 부동산 투자를 계획하는 분들을 위한 종합 계산 도구입니다. DSR(총부채원리금상환비율), 신DTI(신용부채비율), DTI(부채비율), LTV(주택담보인정비율) 등 복잡한 대출 규제를 쉽게 이해하고 계산할 수 있습니다.</p>
+                        <p>• 최신 금융 규제를 실시간으로 반영하여 정확한 대출 한도를 산출해 드립니다. 지역별, 소득별, 자산별로 다른 대출 조건을 고려한 맞춤형 분석이 가능합니다.</p>
+                        <p>• 부동산 전문가들의 자문을 통해 설계된 로직으로 더 정확하고 신뢰할 수 있는 계산 결과를 제공합니다.</p>
+                    </div>
+                </section>
+
+                <section className="mt-8 max-w-3xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700">
+                    <h2 className="text-xl font-black text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                        <span className="w-2 h-6 bg-indigo-600 rounded-full"></span>
+                        이런 경우 사용하세요
+                    </h2>
+                    <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-300">
+                        <li className="flex gap-3">
+                            <span className="text-blue-600 dark:text-blue-400 shrink-0">✓</span>
+                            <span>주택 구입 시 대출 가능한 최대 금액을 확인하고 싶을 때</span>
+                        </li>
+                        <li className="flex gap-3">
+                            <span className="text-blue-600 dark:text-blue-400 shrink-0">✓</span>
+                            <span>DSR 규제에 따른 실제 대출 한도를 계산하고 싶을 때</span>
+                        </li>
+                        <li className="flex gap-3">
+                            <span className="text-blue-600 dark:text-blue-400 shrink-0">✓</span>
+                            <span>다주택자 규제(신DTI)를 적용한 대출 가능 금액을 확인하고 싶을 때</span>
+                        </li>
+                        <li className="flex gap-3">
+                            <span className="text-blue-600 dark:text-blue-400 shrink-0">✓</span>
+                            <span>주택 담보 가치 대비 대출 비율(LTV)을 계산하고 싶을 때</span>
+                        </li>
+                        <li className="flex gap-3">
+                            <span className="text-blue-600 dark:text-blue-400 shrink-0">✓</span>
+                            <span>부동산 투자 수익률을 분석하고 싶을 때</span>
+                        </li>
+                        <li className="flex gap-3">
+                            <span className="text-blue-600 dark:text-blue-400 shrink-0">✓</span>
+                            <span>대출 상환 능력을 미리 점검하고 싶을 때</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <section className="mt-8 max-w-3xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700">
+                    <h2 className="text-xl font-black text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                        <span className="w-2 h-6 bg-indigo-600 rounded-full"></span>
+                        자주 묻는 질문
+                    </h2>
+                    <div className="space-y-4 text-sm">
+                        <div>
+                            <p className="font-semibold text-gray-900 dark:text-white mb-2">Q. 최신 부동산 대출 규제가 반영되어 있나요?</p>
+                            <p className="text-gray-600 dark:text-gray-300">A. 네, JIKO 부동산 계산기는 2단계 스트레스 DSR 및 지역별 LTV 등 최신 금융당국의 규제 가이드라인을 실시간으로 반영하여 정확한 한도를 산출합니다.</p>
+                        </div>
+                        <div>
+                            <p className="font-semibold text-gray-900 dark:text-white mb-2">Q. 스트레스 DSR에 따른 한도 변화를 확인할 수 있나요?</p>
+                            <p className="text-gray-600 dark:text-gray-300">A. 네, 가산 금리가 적용되는 단계별 스트레스 DSR 시뮬레이션을 통해 나의 실제 대출 가능 금액이 어떻게 변하는지 직관적으로 확인하실 수 있습니다.</p>
+                        </div>
+                        <div>
+                            <p className="font-semibold text-gray-900 dark:text-white mb-2">Q. 다주택자 규제는 어떻게 적용되나요?</p>
+                            <p className="text-gray-600 dark:text-gray-300">A. 신DTI 계산기에서 주택 수, 지역, 소득 등을 입력하시면 다주택자에 적용되는 보수적 한도 산정 기준을 자동으로 반영하여 계산해 드립니다.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="mt-8 max-w-3xl mx-auto bg-blue-50 dark:bg-blue-900/20 p-6 rounded-2xl border border-blue-200 dark:border-blue-800">
+                    <h2 className="text-xl font-black text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                        <span className="text-xl">⚠️</span>
+                        유의사항
+                    </h2>
+                    <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">계산 결과는 입력한 정보를 기준으로 한 예상 값이며 실제 대출 승인 결과와 차이가 있을 수 있습니다. 대출 상품별로 적용되는 조건이 다를 수 있으니 은행 상담을 통해 정확한 한도를 확인하시기 바랍니다.</p>
+                </section>
+
+                <section className="mt-8 max-w-3xl mx-auto text-center">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">지금 바로 JIKO 부동산 계산기를 이용해보세요!</h2>
+                    <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-3">
+                        <Link href="/calculator/real-estate/dsr" className="inline-flex items-center justify-center rounded-lg bg-orange-500 px-4 py-3 text-xs sm:text-sm font-bold text-white hover:bg-orange-600 transition">
+                            📊 DSR 계산하기 →
+                        </Link>
+                        <Link href="/calculator/real-estate/new-dti" className="inline-flex items-center justify-center rounded-lg bg-orange-500 px-4 py-3 text-xs sm:text-sm font-bold text-white hover:bg-orange-600 transition">
+                            🏢 신DTI 계산하기 →
+                        </Link>
+                        <Link href="/calculator/real-estate/dti" className="inline-flex items-center justify-center rounded-lg bg-orange-500 px-4 py-3 text-xs sm:text-sm font-bold text-white hover:bg-orange-600 transition">
+                            📉 DTI 계산하기 →
+                        </Link>
+                        <Link href="/calculator/real-estate/ltv" className="inline-flex items-center justify-center rounded-lg bg-orange-500 px-4 py-3 text-xs sm:text-sm font-bold text-white hover:bg-orange-600 transition">
+                            🏠 LTV 계산하기 →
+                        </Link>
+                    </div>
+                </section>
+
+                <section className="mt-8 max-w-3xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700">
+                    <h2 className="text-xl font-black text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                        <span className="w-2 h-6 bg-indigo-600 rounded-full"></span>
+                        더 많은 계산기가 필요하신가요?
+                    </h2>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                        금융, 직장, 생활, 건강, 세금, 주식, 부동산 등 7가지 카테고리에서 찾고 있는 계산기를 모두 만나보세요. JIKO는 일상에서 필요한 모든 계산을 한곳에서 제공하는 계산 플랫폼입니다.
+                    </p>
+                    <Link href="/calculator" className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-sm font-bold text-white hover:bg-blue-700 transition">
+                        🧮 전체 계산기 보기
+                    </Link>
+                </section>
+
+                <InstallBanner />
             </div>
         </main>
     );

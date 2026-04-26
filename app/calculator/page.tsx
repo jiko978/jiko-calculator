@@ -192,9 +192,11 @@ export default function Home() {
             </button>
           </div>
           <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">
-            일상에 필요한 금융, 직장, 생활, 건강, 세금, 주식, 부동산 계산기를 한 곳에서 만나보세요.
+            일상 속 복잡한 숫자를 가장 빠르고 정확하게! 마주하는 모든 계산을 한곳에서 만나보세요.
           </p>
-
+          <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">
+            검색은 줄이고, 결과는 더 빠르게, 당신의 스마트한 일상을 위한 필수 도구 모음입니다.
+          </p>
           {/* ── CTA 배너 ── */}
           <div className="mb-5 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-4 flex items-center justify-between shadow-md">
             <div>

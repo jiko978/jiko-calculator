@@ -34,9 +34,9 @@ const services: Service[] = [
         bgColor: "bg-green-50 dark:bg-green-900/20",
         borderColor: "border-green-100 dark:border-green-800",
         links: [
-            { label: "📊 대출 이자 계산기", href: "/calculator/finance/loans" },
-            { label: "🏦 예금 이자 계산기", href: "/calculator/finance/deposits" },
-            { label: "💰 적금 이자 계산기", href: "/calculator/finance/savings" }
+            { label: "📊 대출 이자 계산기 →", href: "/calculator/finance/loans" },
+            { label: "🏦 예금 이자 계산기 →", href: "/calculator/finance/deposits" },
+            { label: "💰 적금 이자 계산기 →", href: "/calculator/finance/savings" }
         ]
     },
     {
@@ -46,13 +46,13 @@ const services: Service[] = [
         bgColor: "bg-purple-50 dark:bg-purple-900/20",
         borderColor: "border-purple-100 dark:border-purple-800",
         links: [
-            { label: "💸 연봉/월급 계산기", href: "/calculator/job/salary" },
-            { label: "💰 실수령액 계산기", href: "/calculator/job/net-pay" },
-            { label: "💼 퇴직금 계산기", href: "/calculator/job/severance-pay" },
-            { label: "📋 실업급여 계산기", href: "/calculator/job/unemployment-benefit" },
-            { label: "🛡️ 4대보험 계산기", href: "/calculator/job/insurance" },
-            { label: "💰️ 주휴휴당 계산기", href: "/calculator/job/holiday-allowance" },
-            { label: "🏖️ 연차 계산기", href: "/calculator/job/annual" }
+            { label: "💸 연봉/월급 계산기 →", href: "/calculator/job/salary" },
+            { label: "💰 실수령액 계산기 →", href: "/calculator/job/net-pay" },
+            { label: "💼 퇴직금 계산기 →", href: "/calculator/job/severance-pay" },
+            { label: "📋 실업급여 계산기 →", href: "/calculator/job/unemployment-benefit" },
+            { label: "🛡️ 4대보험 계산기 →", href: "/calculator/job/insurance" },
+            { label: "💰️ 주휴휴당 계산기 →", href: "/calculator/job/holiday-allowance" },
+            { label: "🏖️ 연차 계산기 →", href: "/calculator/job/annual" }
         ]
     },
     {
@@ -62,11 +62,11 @@ const services: Service[] = [
         bgColor: "bg-amber-50 dark:bg-amber-900/20",
         borderColor: "border-amber-100 dark:border-amber-800",
         links: [
-            { label: "🎂 나이 계산기", href: "/calculator/life/age" },
-            { label: "📅 날짜 계산기", href: "/calculator/life/date" },
-            { label: "🕯️ 디데이 계산기", href: "/calculator/life/d-day" },
-            { label: "🪖 전역일 계산기", href: "/calculator/life/discharge-day" },
-            { label: "🎓 학점 계산기", href: "/calculator/life/grade" },
+            { label: "🎂 나이 계산기 →", href: "/calculator/life/age" },
+            { label: "📅 날짜 계산기 →", href: "/calculator/life/date" },
+            { label: "🕯️ 디데이 계산기 →", href: "/calculator/life/d-day" },
+            { label: "🪖 전역일 계산기 →", href: "/calculator/life/discharge-day" },
+            { label: "🎓 학점 계산기 →", href: "/calculator/life/grade" },
         ]
     },
     {
@@ -76,11 +76,11 @@ const services: Service[] = [
         bgColor: "bg-rose-50 dark:bg-rose-900/20",
         borderColor: "border-rose-100 dark:border-rose-800",
         links: [
-            { label: "⚖️ 비만도 계산기", href: "/calculator/health/bmi" },
-            { label: "📅 배란일 계산기", href: "/calculator/health/ovulation" },
-            { label: "🔥 기초대사량 계산기", href: "/calculator/health/bmr" },
-            { label: "👶 임신주수 계산기", href: "/calculator/health/pregnancy" },
-            { label: "🏃‍♂️ 칼로리 계산기", href: "/calculator/health/calorie" },
+            { label: "⚖️ 비만도 계산기 →", href: "/calculator/health/bmi" },
+            { label: "📅 배란일 계산기 →", href: "/calculator/health/ovulation" },
+            { label: "🔥 기초대사량 계산기 →", href: "/calculator/health/bmr" },
+            { label: "👶 임신주수 계산기 →", href: "/calculator/health/pregnancy" },
+            { label: "🏃‍♂️ 칼로리 계산기 →", href: "/calculator/health/calorie" },
         ]
     },
     {
@@ -90,12 +90,12 @@ const services: Service[] = [
         bgColor: "bg-gray-50 dark:bg-gray-800/50",
         borderColor: "border-gray-200 dark:border-gray-700",
         links: [
-            { label: "🧾 부가세 계산기", href: "/calculator/tax/vat" },
-            { label: "🏠 양도소득세 계산기", href: "/calculator/tax/capital-gains" },
-            { label: "🔑 취득세 계산기", href: "/calculator/tax/acquisition" },
-            { label: "🚗 자동차세 계산기", href: "/calculator/tax/car" },
-            { label: "📄 재산세 계산기", href: "/calculator/tax/property" },
-            { label: "🏛️ 종부세 계산기", href: "/calculator/tax/comprehensive" }
+            { label: "🧾 부가세 계산기 →", href: "/calculator/tax/vat" },
+            { label: "🏠 양도소득세 계산기 →", href: "/calculator/tax/capital-gains" },
+            { label: "🔑 취득세 계산기 →", href: "/calculator/tax/acquisition" },
+            { label: "🚗 자동차세 계산기 →", href: "/calculator/tax/car" },
+            { label: "📄 재산세 계산기 →", href: "/calculator/tax/property" },
+            { label: "🏛️ 종부세 계산기 →", href: "/calculator/tax/comprehensive" }
         ]
     },
     {
@@ -105,10 +105,10 @@ const services: Service[] = [
         bgColor: "bg-blue-50 dark:bg-blue-900/20",
         borderColor: "border-blue-100 dark:border-blue-800",
         links: [
-            { label: "💧 주식 물타기 계산기", href: "/calculator/stock/avg-price" },
-            { label: "💰 주식 수익률 계산기", href: "/calculator/stock/profit-rate" },
-            { label: "💳️️ 주식 수수료 계산기", href: "/calculator/stock/fee" },
-            { label: "💸 주식 배당금 계산기", href: "/calculator/stock/dividend" },
+            { label: "💧 주식 물타기 계산기 →", href: "/calculator/stock/avg-price" },
+            { label: "💰 주식 수익률 계산기 →", href: "/calculator/stock/profit-rate" },
+            { label: "💳️️ 주식 수수료 계산기 →", href: "/calculator/stock/fee" },
+            { label: "💸 주식 배당금 계산기 →", href: "/calculator/stock/dividend" },
         ]
     },
     {
@@ -118,10 +118,10 @@ const services: Service[] = [
         bgColor: "bg-amber-50 dark:bg-amber-900/20",
         borderColor: "border-amber-100 dark:border-amber-800",
         links: [
-            { label: "📊 DSR 계산기", href: "/calculator/real-estate/dsr" },
-            { label: "🏢 신DTI 계산기", href: "/calculator/real-estate/new-dti" },
-            { label: "📉 DTI 계산기", href: "/calculator/real-estate/dti" },
-            { label: "🏠 LTV 계산기", href: "/calculator/real-estate/ltv" },
+            { label: "📊 DSR 계산기 →", href: "/calculator/real-estate/dsr" },
+            { label: "🏢 신DTI 계산기 →", href: "/calculator/real-estate/new-dti" },
+            { label: "📉 DTI 계산기 →", href: "/calculator/real-estate/dti" },
+            { label: "🏠 LTV 계산기 →", href: "/calculator/real-estate/ltv" },
         ]
     }
 ];
