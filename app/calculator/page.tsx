@@ -56,9 +56,9 @@ const schema = {
 const mainCalculators = [
   {
     title: "💵 금융 계산기",
-    description: "대출 이자, 예금 이자, 적금 이자 계산기",
+    description: "대출 이자, 예금 이자, 적금 이자, 중도상환수수료 계산기",
     href: "/calculator/finance",
-    intro: "대출 이자부터 예·적금 수익까지, 복잡한 금융 계산을 쉽고 빠르게 확인하세요. 금리 변동에 따른 월 상환액과 만기 수령액을 실시간으로 비교해 현명한 금융 결정을 도와드립니다.",
+    intro: "대출 이자부터 예·적금 수익, 중도상환수수료까지, 복잡한 금융 계산을 쉽고 빠르게 확인하세요. 금리 변동에 따른 월 상환액과 만기 수령액을 실시간으로 비교해 현명한 금융 결정을 도와드립니다.",
     badge: "내 돈의 흐름을 한눈에",
   },
   {
@@ -110,26 +110,43 @@ const benefits = [
     icon: "⚡",
     title: "입력 즉시 실시간 계산",
     desc: "버튼을 누를 필요 없이 값을 입력하는 순간 결과가 바뀝니다.",
+    bgColor: "bg-blue-50 dark:bg-blue-900/20",
+    borderColor: "border-blue-100 dark:border-blue-800",
   },
   {
     icon: "🎯",
     title: "최신 기준 반영",
     desc: "최신 세법·법정 이율·4대보험료율을 반영해 신뢰할 수 있는 결과를 제공합니다.",
+    bgColor: "bg-green-50 dark:bg-green-900/20",
+    borderColor: "border-green-100 dark:border-green-800",
   },
   {
     icon: "📱",
     title: "PC·모바일 최적화",
     desc: "어떤 기기에서도 동일하게 편리한 반응형 디자인으로 설계되었습니다.",
+    bgColor: "bg-purple-50 dark:bg-purple-900/20",
+    borderColor: "border-purple-100 dark:border-purple-800",
   },
   {
     icon: "🔒",
     title: "개인정보 걱정 없음",
     desc: "입력한 데이터는 서버에 저장되지 않습니다. 완전 익명으로 사용하세요.",
+    bgColor: "bg-amber-50 dark:bg-amber-900/20",
+    borderColor: "border-amber-100 dark:border-amber-800",
   },
   {
     icon: "🆓",
     title: "완전 무료 · 가입 불필요",
-    desc: "회원가입 없이 누구나 34개의 계산기를 무료로 이용할 수 있습니다.",
+    desc: "회원가입 없이 누구나 35개의 계산기를 무료로 이용할 수 있습니다.",
+    bgColor: "bg-red-50 dark:bg-red-900/20",
+    borderColor: "border-red-100 dark:border-red-800",
+  },
+  {
+    icon: "✨",
+    title: "심플하고 깨끗한 UI",
+    desc: "불필요한 요소를 배제하고 계산에만 집중할 수 있는 깔끔한 인터페이스를 제공합니다.",
+    bgColor: "bg-indigo-50 dark:bg-indigo-900/20",
+    borderColor: "border-indigo-100 dark:border-indigo-800",
   },
 ];
 
@@ -198,7 +215,7 @@ export default function Home() {
           <div className="mb-5 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-4 flex items-center justify-between shadow-md">
             <div>
               <p className="text-white font-black text-sm md:text-base leading-tight">어떤 계산이 필요하신가요?</p>
-              <p className="text-blue-100 text-xs mt-0.5">7가지 카테고리 · 34개 계산기가 무료로 제공됩니다. 지금 바로 계산해보세요. 복잡한 계산, JIKO가 대신합니다.</p>
+              <p className="text-blue-100 text-xs mt-0.5">7가지 카테고리 · 35개 계산기가 무료로 제공됩니다. 지금 바로 계산해보세요. 복잡한 계산, JIKO가 대신합니다.</p>
             </div>
             <span className="text-white text-2xl select-none">👇</span>
           </div>
@@ -313,23 +330,33 @@ export default function Home() {
                 </span>
                 <h2 className="mt-4 text-3xl font-black text-gray-900 dark:text-white leading-tight">왜 JIKO 계산기인가요?</h2>
                 <p className="mt-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                  일상 계산부터 투자·세금·건강·부동산까지, 34개의 계산기를 한 곳에 모았습니다. 복잡한 수치를 보기 쉽게 정리해 빠르게 비교하고 더 현명한 결정을 내릴 수 있습니다.
+                  금융·직장·생활·건강·세금·주식·부동산에서 필요한 모든 계산기 35개를 한 곳에 모았습니다. 복잡한 수치를 보기 쉽게 정리해 빠르게 비교하고 더 현명한 결정을 내릴 수 있습니다.
                 </p>
                 <div className="mt-6 space-y-4">
-                  <div className="rounded-2xl bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-700 p-4">
-                    <p className="text-sm font-bold text-gray-900 dark:text-white">빠르고 직관적인 계산 화면</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">입력 즉시 결과가 바뀌는 인터페이스로 시간 낭비 없이 바로 확인할 수 있습니다.</p>
+                  <div className="rounded-2xl bg-blue-50/50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-900/30 p-4 transition hover:shadow-md">
+                    <p className="text-sm font-bold text-blue-900 dark:text-blue-100 flex items-center gap-2">
+                      <span className="text-lg">⚡</span> 빠르고 직관적인 계산 화면
+                    </p>
+                    <p className="mt-1 text-xs text-blue-700/70 dark:text-blue-300/70 leading-relaxed pl-7">입력 즉시 결과가 바뀌는 인터페이스로 시간 낭비 없이 바로 확인할 수 있습니다.</p>
                   </div>
-                  <div className="rounded-2xl bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-700 p-4">
-                    <p className="text-sm font-bold text-gray-900 dark:text-white">정확한 기준과 최신 규정 반영</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">세법, 대출 규제, 건강 공식 등 최신 기준을 반영하여 신뢰할 수 있는 계산 결과를 제공합니다.</p>
+                  <div className="rounded-2xl bg-green-50/50 dark:bg-green-900/10 border border-green-100 dark:border-green-900/30 p-4 transition hover:shadow-md">
+                    <p className="text-sm font-bold text-green-900 dark:text-green-100 flex items-center gap-2">
+                      <span className="text-lg">🎯</span> 정확한 기준과 최신 규정 반영
+                    </p>
+                    <p className="mt-1 text-xs text-green-700/70 dark:text-green-300/70 leading-relaxed pl-7">세법, 대출 규제, 건강 공식 등 최신 기준을 반영하여 신뢰할 수 있는 계산 결과를 제공합니다.</p>
+                  </div>
+                  <div className="rounded-2xl bg-purple-50/50 dark:bg-purple-900/10 border border-purple-100 dark:border-purple-900/30 p-4 transition hover:shadow-md">
+                    <p className="text-sm font-bold text-purple-900 dark:text-purple-100 flex items-center gap-2">
+                      <span className="text-lg">📱</span> 모바일 최적화 및 PWA 지원
+                    </p>
+                    <p className="mt-1 text-xs text-purple-700/70 dark:text-purple-300/70 leading-relaxed pl-7">언제 어디서나 앱처럼 간편하게 설치하고, 모든 기기에서 최적화된 화면으로 이용할 수 있습니다.</p>
                   </div>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {benefits.map((b) => (
-                  <div key={b.title} className="rounded-3xl border border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-900 p-5 shadow-sm transition hover:shadow-md">
+                  <div key={b.title} className={`rounded-3xl border ${b.borderColor} ${b.bgColor} p-5 shadow-sm transition hover:shadow-md`}>
                     <div className="flex items-center gap-3 mb-3">
                       <span className="text-2xl">{b.icon}</span>
                       <p className="text-sm font-bold text-gray-900 dark:text-white">{b.title}</p>

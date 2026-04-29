@@ -223,7 +223,7 @@ const Deposits = ({ productName }: DepositsProps) => {
                                 value={amount}
                                 onChange={handleAmountChange}
                                 placeholder="0"
-                                className={`w-full h-16 px-5 pr-12 text-2xl font-bold bg-gray-50 dark:bg-gray-900/50 border-2 rounded-2xl transition-all outline-none text-right dark:text-white ${
+                                className={`w-full h-16 px-5 pr-12 text-2xl font-bold bg-gray-50 dark:bg-gray-900/50 border rounded-2xl transition-all outline-none text-right dark:text-white ${
                                     errors.has("amount") ? "border-red-500 focus:border-red-500 ring-4 ring-red-500/10" : "border-gray-300 dark:border-gray-600 focus:border-blue-500 ring-blue-500/10 focus:ring-4"
                                 }`}
                             />
@@ -264,7 +264,7 @@ const Deposits = ({ productName }: DepositsProps) => {
                                         value={term}
                                         onChange={handleTermChange}
                                         placeholder="0"
-                                        className={`w-full h-14 px-4 pr-12 text-xl font-bold bg-gray-50 dark:bg-gray-900/50 border-2 rounded-2xl transition-all outline-none text-right dark:text-white ${
+                                        className={`w-full h-14 px-4 pr-12 text-xl font-bold bg-gray-50 dark:bg-gray-900/50 border rounded-2xl transition-all outline-none text-right dark:text-white ${
                                             errors.has("term") ? "border-red-500 focus:border-red-500 ring-4 ring-red-500/10" : "border-gray-300 dark:border-gray-600 focus:border-blue-500 ring-blue-500/10 focus:ring-4"
                                         }`}
                                     />
@@ -311,7 +311,7 @@ const Deposits = ({ productName }: DepositsProps) => {
                                     value={rate}
                                     onChange={handleRateChange}
                                     placeholder="0.0"
-                                    className={`w-full h-14 px-4 pr-12 text-xl font-bold bg-gray-50 dark:bg-gray-900/50 border-2 rounded-2xl transition-all outline-none text-right dark:text-white ${
+                                    className={`w-full h-14 px-4 pr-12 text-xl font-bold bg-gray-50 dark:bg-gray-900/50  border rounded-2xl transition-all outline-none text-right dark:text-white ${
                                         errors.has("rate") ? "border-red-500 focus:border-red-500 ring-4 ring-red-500/10" : "border-gray-300 dark:border-gray-600 focus:border-blue-500 ring-blue-500/10 focus:ring-4"
                                     }`}
                                 />
@@ -355,18 +355,16 @@ const Deposits = ({ productName }: DepositsProps) => {
                     </div>
 
                     {/* 제어 버튼 */}
-                    <div className="space-y-3 pt-4">
+                    <div className="pt-6 space-y-4 border-t border-gray-100 dark:border-gray-700/50">
                         <CalculatorButtons 
                             onReset={handleReset} 
                             onCalculate={handleCalculate} 
                         />
                         {errorMessage && (
-                            <p className="text-center text-red-500 text-sm font-bold flex items-center justify-center gap-1 animate-pulse">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                </svg>
+                            <div className="bg-red-50 dark:bg-red-900/20 text-red-500 text-xs font-bold p-4 rounded-xl text-center border border-red-100 dark:border-red-800/30 animate-pulse flex items-center justify-center gap-2">
+                                <span>🚨</span>
                                 {errorMessage}
-                            </p>
+                            </div>
                         )}
                     </div>
                 </div>

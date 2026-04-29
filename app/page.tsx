@@ -36,7 +36,8 @@ const services: Service[] = [
         links: [
             { label: "📊 대출 이자 계산기 →", href: "/calculator/finance/loans" },
             { label: "🏦 예금 이자 계산기 →", href: "/calculator/finance/deposits" },
-            { label: "💰 적금 이자 계산기 →", href: "/calculator/finance/savings" }
+            { label: "💰 적금 이자 계산기 →", href: "/calculator/finance/savings" },
+            { label: "💸 중도상환수수료 계산기 →", href: "/calculator/finance/prepayment" },
         ]
     },
     {
