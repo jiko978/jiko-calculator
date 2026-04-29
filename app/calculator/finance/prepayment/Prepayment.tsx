@@ -262,7 +262,7 @@ export default function Prepayment() {
                                             setErrorMessage("");
                                         }}
                                         title={p.desc}
-                                        className="px-3 py-1.5 text-[11px] font-bold border border-gray-200 dark:border-gray-700 rounded-lg text-gray-500 hover:border-blue-500 hover:text-blue-500 transition-all"
+                                        className="px-3 py-1.5 text-[11px] font-bold border bg-blue-50 dark:bg-blue-900/20 border-gray-200 dark:border-gray-700 rounded-lg text-gray-500 hover:border-blue-500 hover:text-blue-500 transition-all"
                                     >
                                         {p.name}
                                     </button>
