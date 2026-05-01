@@ -6,6 +6,7 @@ import FAQ from "@/app/calculator/components/FAQ";
 import FinanceMoreCalculators from "@/app/calculator/components/FinanceMoreCalculators";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 import productsData from "../../data/products.json";
+import InstallBanner from "@/app/calculator/components/InstallBanner";
 
 interface Props {
     params: Promise<{ slug: string }>;
@@ -104,9 +105,9 @@ export default async function CompoundInterestSlugPage({ params }: Props) {
                             <span className="text-amber-500">⚖️</span> 복리 vs 단리, 차이점 비교
                         </h2>
                         <div className="text-sm text-gray-600 dark:text-gray-300 space-y-3">
-                            <p><strong>단리 (Simple Interest)</strong><br/>원금에 대해서만 이자가 붙는 방식입니다. 자산이 정비례 직선(Linear) 형태로 천천히 상승합니다.</p>
+                            <p><strong>단리 (Simple Interest)</strong><br />원금에 대해서만 이자가 붙는 방식입니다. 자산이 정비례 직선(Linear) 형태로 천천히 상승합니다.</p>
                             <div className="w-full h-px bg-gray-100 dark:bg-gray-700 my-2"></div>
-                            <p><strong>복리 (Compound Interest)</strong><br/>원금과 이자가 합쳐진 금액에 다시 이자가 붙습니다. 시간이 지날수록 자산이 눈덩이처럼 기하급수적(Exponential)으로 불어납니다. 장기 투자일수록 효과가 극대화됩니다.</p>
+                            <p><strong>복리 (Compound Interest)</strong><br />원금과 이자가 합쳐진 금액에 다시 이자가 붙습니다. 시간이 지날수록 자산이 눈덩이처럼 기하급수적(Exponential)으로 불어납니다. 장기 투자일수록 효과가 극대화됩니다.</p>
                         </div>
                     </section>
 
@@ -128,6 +129,7 @@ export default async function CompoundInterestSlugPage({ params }: Props) {
 
                 <FAQ faqList={faqList} />
                 <FinanceMoreCalculators />
+                <InstallBanner />
             </div>
         </main>
     );

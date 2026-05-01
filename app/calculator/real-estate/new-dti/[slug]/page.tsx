@@ -68,20 +68,40 @@ export default async function NewDtiProductPage({ params }: Props) {
 
             <NewDtiCalculator />
 
-            <div className="max-w-3xl mx-auto px-4 pb-20">
-                <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 mt-4 animate-fade-slide-up">
+            <div className="max-w-3xl mx-auto px-4 pb-20 space-y-4">
+                {/* [공통 카드세션] 1.6 메뉴 설명 */}
+                <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 mt-4 animate-fade-slide-up">
                     <h2 className="text-xl font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2 tracking-tight">
-                        <span className="w-2 h-6 bg-emerald-600 rounded-full"></span>
-                        {product.name} 규제 대응 가이드
+                        <span className="w-2 h-6 bg-blue-600 rounded-full"></span>
+                        {product.name} 신DTI 대응 가이드
                     </h2>
-                    <div className="p-5 bg-orange-50 dark:bg-orange-900/10 rounded-2xl border border-orange-100 dark:border-orange-900/30">
-                        <p className="text-sm font-black text-orange-800 dark:text-orange-200 mb-2 leading-relaxed tracking-tight group">
-                            🚀 다주택자를 위한 전략 제안
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
+                        <b>{product.name}</b> 이용 시 적용되는 강화된 신DTI 한도를 정밀하게 분석합니다. 
+                        다주택자에게 적용되는 부채 합산 방식을 완벽하게 반영하여, 대출 가능 여부와 최적의 상환 전략을 제안해 드립니다.
+                    </p>
+                </section>
+
+                {/* [공통 카드세션] 1.7 사용 방법 & 계산 예시 (2단 그리드) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 animate-fade-slide-up">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+                            <span className="text-orange-500">🚀</span> 대출 전략 제안
+                        </h2>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-bold">
+                            기존 대출의 원금까지 부채로 잡히는 신DTI 규제 하에서는 <b>상환 기간 설정</b>이 매우 중요합니다. 
+                            JIKO에서 다양한 시뮬레이션을 진행해 보세요.
                         </p>
-                        <p className="text-xs text-orange-600 dark:text-orange-400 leading-relaxed font-bold tracking-tight">
-                            기존 대출의 상환 기간을 늘리거나 전세 반환 자금 등을 활용하여 실제 신DTI 비율을 조정하는 시뮬레이션을 위 탭에서 진행해 보세요.
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 animate-fade-slide-up">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+                            <span className="text-red-500">⚖️</span> 규제 체크포인트
+                        </h2>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-bold">
+                            추가 주담대 신청 시 <b>만기 제한</b> 등 추가적인 규제가 발생할 수 있습니다. 
+                            본 리포트를 바탕으로 금융 전문가와 상의하시길 권장합니다.
                         </p>
-                    </div>
+                    </section>
                 </div>
 
                 <div className="mt-4">
@@ -90,9 +110,7 @@ export default async function NewDtiProductPage({ params }: Props) {
 
                 <RealEstateMoreCalculators />
                 
-                <div className="mt-4">
-                    <InstallBanner />
-                </div>
+                <InstallBanner />
             </div>
         </main>
     );

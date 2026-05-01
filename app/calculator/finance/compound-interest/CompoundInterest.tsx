@@ -137,7 +137,7 @@ export default function CompoundInterest() {
         const newErrors = new Set<string>();
 
         // Validation based on mode
-        if (mode !== "pmt" && mode !== "period" && !monthlyContribution) {
+        if (mode !== "pmt" && mode !== "period" && !principal && !monthlyContribution) {
             newErrors.add("monthlyContribution");
         }
         if (mode === "fv" || mode === "rate" || mode === "pmt") {

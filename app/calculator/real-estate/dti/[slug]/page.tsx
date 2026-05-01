@@ -68,20 +68,39 @@ export default async function DtiProductPage({ params }: Props) {
 
             <DtiCalculator />
 
-            <div className="max-w-3xl mx-auto px-4 pb-20">
-                <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 mt-4 animate-fade-slide-up">
+            <div className="max-w-3xl mx-auto px-4 pb-20 space-y-4">
+                {/* [공통 카드세션] 1.6 메뉴 설명 */}
+                <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 mt-4 animate-fade-slide-up">
                     <h2 className="text-xl font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2 tracking-tight">
                         <span className="w-2 h-6 bg-blue-600 rounded-full"></span>
-                        {product.name} 맞춤형 가이드
+                        {product.name} DTI 분석 가이드
                     </h2>
-                    <div className="p-5 bg-blue-50 dark:bg-blue-900/10 rounded-2xl border border-blue-100 dark:border-blue-900/30">
-                        <p className="text-sm font-black text-blue-800 dark:text-blue-200 mb-2 leading-relaxed tracking-tight group">
-                            💡 {product.name} 이용 시 주의사항
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
+                        선택하신 <b>{product.name}</b> 조건에 따른 DTI 비율과 추가 대출 가능액을 실시간으로 계산합니다. 
+                        소득 대비 부채 상환 여력을 정밀하게 분석하여 안정적인 재무 계획 수립을 도와드립니다.
+                    </p>
+                </section>
+
+                {/* [공통 카드세션] 1.7 사용 방법 & 계산 예시 (2단 그리드) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 animate-fade-slide-up">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+                            <span className="text-blue-500">💡</span> 소득 산정 기준
+                        </h2>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-bold">
+                            근로소득자는 세전 연봉, 사업자는 소득금액증명을 기준으로 합니다. 
+                            추정 소득 사용 시 실제 대출 한도와 차이가 날 수 있습니다.
                         </p>
-                        <p className="text-xs text-blue-600 dark:text-blue-400 leading-relaxed font-bold tracking-tight">
-                            {product.name}의 상환 방식(원리금균등 등)과 기간에 따라 DTI 결과가 크게 달라집니다. 본 계산기는 표준적인 상품 기준을 적용하였습니다.
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 animate-fade-slide-up">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+                            <span className="text-emerald-500">📊</span> 상환 방식 체크
+                        </h2>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-bold">
+                            원리금 균등 vs 원금 균등 등 선택하신 <b>상환 방식</b>에 따라 매달 갚는 금액이 달라지므로 신중한 선택이 필요합니다.
                         </p>
-                    </div>
+                    </section>
                 </div>
 
                 <div className="mt-4">
@@ -90,9 +109,7 @@ export default async function DtiProductPage({ params }: Props) {
 
                 <RealEstateMoreCalculators />
                 
-                <div className="mt-4">
-                    <InstallBanner />
-                </div>
+                <InstallBanner />
             </div>
         </main>
     );

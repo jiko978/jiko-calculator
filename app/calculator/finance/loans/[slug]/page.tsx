@@ -105,6 +105,7 @@ export default async function LoanSlugPage({ params }: Props) {
 
                 {/* 계산기 더 보기 */}
                 <FinanceMoreCalculators />
+                <InstallBanner />
             </div>
         </main>
     );

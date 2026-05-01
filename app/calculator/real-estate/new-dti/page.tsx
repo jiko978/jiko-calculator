@@ -84,20 +84,49 @@ export default function NewDtiPage() {
             <NavBar title="신DTI 계산기" description="다주택자를 위한 강화된 신DTI 규제 완벽 대응! 기존 주택담보대출의 원리금까지 모두 합산하여 실질적인 대출 한도를 정밀하게 분석해드립니다." position="top" />
             <NewDtiCalculator />
 
-            <main className="max-w-3xl mx-auto px-4 pb-16 space-y-4 mt-4">
-                <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                    <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                        <span className="text-2xl">🏢</span> 신DTI(New DTI) 가이드
-                    </h1>
+            <div className="max-w-3xl mx-auto px-4 pb-20 space-y-4">
+                {/* [공통 카드세션] 1.6 메뉴 설명 */}
+                <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 mt-4 animate-fade-slide-up">
+                    <h2 className="text-xl font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2 tracking-tight">
+                        <span className="w-2 h-6 bg-blue-600 rounded-full"></span>
+                        신DTI(New DTI) 가이드
+                    </h2>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
-                        <strong>신DTI</strong>는 차주의 상환 능력을 더욱 엄격히 평가하기 위해 도입된 제도로, 보유한 <strong>모든 주택담보대출의 원리금 상환액</strong>을 부채로 산정합니다. 다주택자가 추가 대출을 받을 때 '한도 절벽'을 겪게 되는 주요 원인이 됩니다.
+                        <b>신DTI</b>는 차주의 상환 능력을 더욱 엄격히 평가하기 위해 도입된 제도로, 보유한 <b>모든 주택담보대출의 원리금 상환액</b>을 부채로 산정합니다. 
+                        특히 다주택자가 추가 대출을 받을 때 대출 한도가 대폭 줄어드는 결과를 초래하므로, 정확한 원리금 합산 계산이 필수적입니다.
                     </p>
                 </section>
 
-                <FAQ faqList={faqList} />
+                {/* [공통 카드세션] 1.7 사용 방법 & 계산 예시 (2단 그리드) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 animate-fade-slide-up">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+                            <span className="text-blue-500">💡</span> 주요 적용 기준
+                        </h2>
+                        <ul className="text-xs text-gray-500 dark:text-gray-400 space-y-2 list-disc ml-5 font-bold leading-relaxed">
+                            <li>기존 주담대 : 원금 + 이자 모두 부채 산입</li>
+                            <li>신규 주담대 : 원금 + 이자 모두 부채 산입</li>
+                            <li>기타 대출 : 이자 상환액만 부채 산입</li>
+                        </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 animate-fade-slide-up">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+                            <span className="text-red-500">🚫</span> 다주택자 규제
+                        </h2>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-bold">
+                            두 번째 주택담보대출부터는 만기 제한(15년) 등이 적용되어 DTI 비율이 급격히 상승할 수 있습니다. 
+                            JIKO 계산기로 예상 한도를 미리 확인해 보세요.
+                        </p>
+                    </section>
+                </div>
+
+                <div className="mt-4">
+                    <FAQ faqList={faqList} />
+                </div>
                 <RealEstateMoreCalculators />
                 <InstallBanner />
-            </main>
+            </div>
         </div>
     );
 }

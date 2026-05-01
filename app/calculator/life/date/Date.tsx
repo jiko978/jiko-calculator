@@ -15,12 +15,13 @@ const DateCalculator = () => {
     const [endDate, setEndDate] = useState(today);
     const [calcType, setCalcType] = useState<CalcType>("DAYS");
 
+    const [scrollTrigger, setScrollTrigger] = useState(0);
+    const resultRef = useCalculatorScroll(scrollTrigger);
+
     const [calculated, setCalculated] = useState(false);
-    const [errorMessage, setErrorMessage] = useState<string>("");
+    const [errorMessage, setErrorMessage] = useState("");
     const [shakeField, setShakeField] = useState<string | null>(null);
     const [resultData, setResultData] = useState<any>(null);
-
-    const resultRef = useCalculatorScroll(calculated);
 
     const lifeTabs = [
         { label: "날짜 계산기", href: "/calculator/life/date" },
@@ -114,6 +115,7 @@ const DateCalculator = () => {
             typeLabel: calcType === "DDAY" ? "디데이" : "기간"
         });
         setCalculated(true);
+        setScrollTrigger(prev => prev + 1);
     };
 
     const handleReset = () => {
@@ -145,7 +147,7 @@ const DateCalculator = () => {
 
                 <CalculatorTabs tabs={lifeTabs} />
 
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700/50 space-y-8">
+                <div className="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700/50 space-y-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className={`space-y-4 ${shakeField === 'startDate' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}>
                             <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 ml-1">시작일 (기준일)</label>
@@ -222,7 +224,7 @@ const DateCalculator = () => {
 
                 {calculated && resultData && (
                     <div ref={resultRef} className={`mt-4 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
-                        <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden">
+                        <div className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-2xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600"></div>
                             <p className="text-sm font-bold text-blue-500 bg-blue-50 dark:bg-blue-900/30 px-4 py-1.5 rounded-full inline-block mb-4 tracking-tighter">
                                 {resultData.startStr} ~ {resultData.endStr}
@@ -253,7 +255,7 @@ const DateCalculator = () => {
                 )}
 
                 {/* 하단 상세 가이드 카드 (상시 노출) */}
-                <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 mt-4">
+                <div className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 mt-4">
                     <h3 className="text-lg font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2">
                         <span className="w-2 h-6 bg-blue-600 rounded-full"></span>
                         날짜 계산 상식 가이드

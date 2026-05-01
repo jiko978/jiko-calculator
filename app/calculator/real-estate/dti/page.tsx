@@ -84,14 +84,41 @@ export default function DtiPage() {
             <NavBar title="DTI 계산기" description="내 연소득에 맞는 대출 한도는? 주택담보대출의 원리금과 기존 대출의 이자를 합산하여 DTI를 정밀하게 계산하고 추가 대출 여력을 확인하세요." position="top" />
             <DtiCalculator />
 
-            <div className="max-w-3xl mx-auto px-4 pb-20">
-                <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 animate-fade-slide-up">
-                    <h2 className="text-xl font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                        <span className="text-2xl">📊</span> DTI 계산 상식 가이드
+            <div className="max-w-3xl mx-auto px-4 pb-20 space-y-4">
+                {/* [공통 카드세션] 1.6 메뉴 설명 */}
+                <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 mt-4 animate-fade-slide-up">
+                    <h2 className="text-xl font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2 tracking-tight">
+                        <span className="w-2 h-6 bg-blue-600 rounded-full"></span>
+                        DTI 계산 상식 가이드
                     </h2>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
-                        <strong>DTI(Debt to Income)</strong>는 총부채상환비율로, 차주의 연간 소득에서 부채 상환액이 차지하는 비중을 말합니다. 주택담보대출의 경우 원리금 전체를 합산하고, 신용대출 등 기타 대출은 <strong>이자 상환액</strong>만 합산하는 것이 특징입니다.
+                        <b>DTI(Debt to Income)</b>는 총부채상환비율로, 차주의 연간 소득에서 부채 상환액이 차지하는 비중을 말합니다. 
+                        주택담보대출의 경우 원리금 전체를 합산하고, 신용대출 등 기타 대출은 <b>이자 상환액</b>만 합산하는 것이 특징입니다. 
+                        내 연소득에 맞는 대출 한도를 정밀하게 계산하고 추가 대출 여력을 확인하세요.
                     </p>
+                </section>
+
+                {/* [공통 카드세션] 1.7 사용 방법 & 계산 예시 (2단 그리드) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 animate-fade-slide-up">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+                            <span className="text-blue-500">💡</span> DTI와 DSR 차이
+                        </h2>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-bold">
+                            DTI는 기존 대출의 <b>이자</b>만 부채로 보지만, DSR은 기존 대출의 <b>원금과 이자</b> 모두를 부채로 봅니다. 
+                            따라서 DSR이 DTI보다 더 엄격한 대출 규제 수단으로 활용됩니다.
+                        </p>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 animate-fade-slide-up">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+                            <span className="text-emerald-500">📊</span> 소득 증빙 팁
+                        </h2>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-bold">
+                            근로소득 외에도 신용카드 사용액, 건강보험료 납부액 등으로 환산 소득을 인정받을 수 있습니다. 
+                            정확한 산출을 위해 증빙 가능한 모든 소득 정보를 미리 준비하세요.
+                        </p>
+                    </section>
                 </div>
 
                 <div className="mt-4">

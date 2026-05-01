@@ -3,14 +3,25 @@
   <component name="ChangeListManager">
     <list default="true" id="ba892596-243c-4883-bf52-ac23e2e1bf54" name="변경" comment="jiko 107 commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/finance/data/products.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/finance/data/products.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/components/FinanceMoreCalculators.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/components/FinanceMoreCalculators.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/finance/compound-interest/CompoundInterest.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/finance/compound-interest/CompoundInterest.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/finance/compound-interest/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/finance/compound-interest/[slug]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/finance/deposits/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/finance/deposits/[slug]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/finance/loans/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/finance/loans/[slug]/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/calculator/finance/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/finance/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/calculator/finance/prepayment/Prepayment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/finance/prepayment/Prepayment.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/calculator/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/sitemap.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/sitemap.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/seo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/seo.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/docs/calculator/JIKO-calculator-텍스트컨텐츠.md" beforeDir="false" afterPath="$PROJECT_DIR$/public/docs/calculator/JIKO-calculator-텍스트컨텐츠.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/finance/prepayment/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/finance/prepayment/[slug]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/life/date/Date.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/life/date/Date.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/life/grade/GradeCalculator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/life/grade/GradeCalculator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/real-estate/dsr/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/real-estate/dsr/[slug]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/real-estate/dsr/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/real-estate/dsr/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/real-estate/dti/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/real-estate/dti/[slug]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/real-estate/dti/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/real-estate/dti/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/real-estate/ltv/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/real-estate/ltv/[slug]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/real-estate/ltv/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/real-estate/ltv/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/real-estate/new-dti/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/real-estate/new-dti/[slug]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calculator/real-estate/new-dti/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/calculator/real-estate/new-dti/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/docs/calculator/JIKO-calculator-화면설계서.md" beforeDir="false" afterPath="$PROJECT_DIR$/public/docs/calculator/JIKO-calculator-화면설계서.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +145,8 @@
       <workItem from="1777518005102" duration="20000" />
       <workItem from="1777518351901" duration="1176000" />
       <workItem from="1777525802924" duration="3272000" />
-      <workItem from="1777593162288" duration="8004000" />
+      <workItem from="1777593162288" duration="10708000" />
+      <workItem from="1777621533990" duration="1339000" />
     </task>
     <task id="LOCAL-00014" summary="jiko 60 commit">
       <option name="closed" value="true" />

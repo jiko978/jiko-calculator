@@ -93,7 +93,7 @@ export default function Prepayment() {
             setErrorMessage("필수 항목을 모두 입력해주세요.");
             return;
         }
-        
+
         setErrorMessage("");
         const numAmount = parseInt(amount.replace(/,/g, ''));
         const numRate = parseFloat(rate);
@@ -201,9 +201,8 @@ export default function Prepayment() {
                             placeholder="0"
                             value={amount}
                             onChange={handleAmountChange}
-                            className={`w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-4 text-xl font-bold transition-all text-right pr-12 focus:outline-none ${
-                                errors.has("amount") ? "border-red-500 ring-4 ring-red-500/10" : "border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 text-blue-600"
-                            }`}
+                            className={`w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-4 text-xl font-bold transition-all text-right pr-12 focus:outline-none ${errors.has("amount") ? "border-red-500 ring-4 ring-red-500/10" : "border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 text-blue-600"
+                                }`}
                         />
                         <span className="absolute right-4 top-1/2 -translate-y-1/2 font-bold text-gray-400">원</span>
                     </div>
@@ -245,9 +244,8 @@ export default function Prepayment() {
                                     setErrors(prev => { const next = new Set(prev); next.delete("rate"); return next; });
                                     setErrorMessage("");
                                 }}
-                                className={`w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-4 text-lg font-bold transition-all text-right pr-12 focus:outline-none ${
-                                    errors.has("rate") ? "border-red-500 ring-4 ring-red-500/10" : "border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 text-blue-600"
-                                }`}
+                                className={`w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-4 text-lg font-bold transition-all text-right pr-12 focus:outline-none ${errors.has("rate") ? "border-red-500 ring-4 ring-red-500/10" : "border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 text-blue-600"
+                                    }`}
                             />
                             <span className="absolute right-4 top-1/2 -translate-y-1/2 font-bold text-gray-400">%</span>
                         </div>
@@ -286,9 +284,8 @@ export default function Prepayment() {
                                     setErrors(prev => { const next = new Set(prev); next.delete("loanRate"); return next; });
                                     setErrorMessage("");
                                 }}
-                                className={`w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-4 text-lg font-bold transition-all text-right pr-12 focus:outline-none ${
-                                    errors.has("loanRate") ? "border-red-500 ring-4 ring-red-500/10" : "border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 text-blue-600"
-                                }`}
+                                className={`w-full bg-gray-50 dark:bg-gray-900 border rounded-xl px-4 py-4 text-lg font-bold transition-all text-right pr-12 focus:outline-none ${errors.has("loanRate") ? "border-red-500 ring-4 ring-red-500/10" : "border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 text-blue-600"
+                                    }`}
                             />
                             <span className="absolute right-4 top-1/2 -translate-y-1/2 font-bold text-gray-400">%</span>
                         </div>
@@ -349,7 +346,7 @@ export default function Prepayment() {
                             </div>
                         </div>
                         <div>
-                            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">수수료 면제 기간 (개월)</label>
+                            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">수수료 면제 기간</label>
                             <input type="number" value={exemptionPeriod} onChange={(e) => setExemptionPeriod(e.target.value)} placeholder="0" className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm text-blue-600 font-bold focus:outline-none focus:ring-2 focus:ring-blue-500 mb-3" />
                             <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
                                 {["0", "3", "6", "9", "12", "18", "24"].map(m => (

@@ -102,7 +102,7 @@ export default function FinanceHubPage() {
 
             <div className="flex-grow px-4 py-6">
                 <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">💵 금융 계산기 모음</h1>
-                <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">대출/예금/적금 이자 계산기를 통해 간편하게 금융 계획을 세워보세요.</p>
+                <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">대출/예금/적금 이자, 복리, 중도상환수수료 계산기를 통해 간편하게 금융 계획을 세워보세요.</p>
 
                 <div className="grid grid-cols-2 gap-4 w-full max-w-3xl mx-auto">
                     {financeCalculators.map((calc) => (

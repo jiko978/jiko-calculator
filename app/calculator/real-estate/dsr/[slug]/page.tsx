@@ -70,28 +70,41 @@ export default async function DsrProductPage({ params }: Props) {
 
             <DsrCalculator />
 
-            <div className="max-w-3xl mx-auto px-4 pb-20">
-                <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 mt-4 animate-fade-slide-up">
-                    <h2 className="text-xl font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2 tracking-tight group">
-                        <span className="w-2 h-6 bg-emerald-600 rounded-full"></span>
-                        {product.name} 핵심 가이드
+            <div className="max-w-3xl mx-auto px-4 pb-20 space-y-4">
+                {/* [공통 카드세션] 1.6 메뉴 설명 */}
+                <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 mt-4 animate-fade-slide-up">
+                    <h2 className="text-xl font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2 tracking-tight">
+                        <span className="w-2 h-6 bg-blue-600 rounded-full"></span>
+                        {product.name} DSR 분석 가이드
                     </h2>
-                    <div className="p-5 bg-emerald-50 dark:bg-emerald-900/10 rounded-2xl border border-emerald-100 dark:border-emerald-900/30">
-                        <p className="text-sm font-black text-emerald-800 dark:text-emerald-200 mb-2 leading-relaxed tracking-tight group">
-                            📌 JIKO에서 분석한 가이드
-                        </p>
-                        <p className="text-xs text-emerald-600 dark:text-emerald-400 leading-relaxed font-bold tracking-tight">
-                            {product.name}의 특성을 고려하여 가산 금리를 보수적으로 설정한 한도 데이터입니다. 실제 은행 대출 신청 전 나의 상환 능력을 미리 점검해 보세요.
-                        </p>
-                    </div>
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
+                        선택하신 <b>{product.name}</b> 조건에 최적화된 DSR 산출 환경입니다. 
+                        최신 금융 규제와 <b>스트레스 DSR</b> 가산 금리를 보수적으로 적용하여, 실제 대출 신청 시 발생할 수 있는 오차를 최소화한 정밀 분석 결과를 제공합니다.
+                    </p>
+                </section>
 
-                    <div className="mt-8 pt-8 border-t border-gray-50 dark:border-gray-700/50">
-                        <p className="text-base font-black text-gray-800 dark:text-gray-200 mb-2 leading-relaxed tracking-tight group">💡 DSR 부채산정 방식의 변화</p>
-                        <ul className="text-xs text-gray-500 dark:text-gray-400 space-y-2 list-disc ml-5 font-bold leading-relaxed">
-                            <li>주택담보대출: 최장 만기(30~40년)를 기준으로 원리금 균등 산정</li>
-                            <li>신용대출: 실제 만기 관계없이 5년 균등분할 상환으로 간주</li>
+                {/* [공통 카드세션] 1.7 사용 방법 & 계산 예시 (2단 그리드) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 animate-fade-slide-up">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+                            <span className="text-blue-500">💡</span> 부채 산정 원칙
+                        </h2>
+                        <ul className="text-xs text-gray-500 dark:text-gray-400 space-y-3 list-disc ml-5 font-bold leading-relaxed">
+                            <li>주담대: 최장 만기 기준 원리금 균등 산정</li>
+                            <li>신용대출: 5년 균등분할 상환 간주</li>
+                            <li>비주담대: 8년 균등분할 상환 간주</li>
                         </ul>
-                    </div>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 animate-fade-slide-up">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+                            <span className="text-emerald-500">📌</span> 핵심 체크포인트
+                        </h2>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-bold">
+                            {product.name} 특성에 따른 우대 조건이나 규제 예외 항목이 있을 수 있으니, 
+                            본 계산 결과를 바탕으로 반드시 해당 금융기관 상담을 받아보시기 바랍니다.
+                        </p>
+                    </section>
                 </div>
 
                 <div className="mt-4">
@@ -100,9 +113,7 @@ export default async function DsrProductPage({ params }: Props) {
 
                 <RealEstateMoreCalculators />
                 
-                <div className="mt-4">
-                    <InstallBanner />
-                </div>
+                <InstallBanner />
             </div>
         </main>
     );

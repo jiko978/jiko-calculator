@@ -262,8 +262,8 @@ export default function GradeCalculator() {
 
             {/* 학점 계산기 영역 */}
             {activeTab === "calc" && (
-                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-5 sm:p-6 mb-4">
-                    <div className="mb-6">
+                <div className="bg-white dark:bg-gray-800 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 p-5 sm:p-8 mb-6 transition-all duration-300">
+                    <div className="mb-8">
                         <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">
                             기준 평점 선택
                         </label>
@@ -355,8 +355,8 @@ export default function GradeCalculator() {
 
             {/* 학점 변환기 영역 */}
             {activeTab === "conv" && (
-                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-5 sm:p-6 mb-4">
-                    <div className="mb-6">
+                <div className="bg-white dark:bg-gray-800 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 p-5 sm:p-8 mb-6 transition-all duration-300">
+                    <div className="mb-8">
                         <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">
                             내 대학교 기준 평점
                         </label>
@@ -415,7 +415,7 @@ export default function GradeCalculator() {
             {/* 결과 영역 - 학점 계산기 */}
             {activeTab === "calc" && result && (
                 <div id="result-section" ref={resultRef} className="mt-8 animate-fade-slide-up">
-                    <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden">
+                    <div className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-2xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden">
                         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600"></div>
                         
                         <div className="bg-blue-600 rounded-2xl p-6 text-white shadow-xl shadow-blue-500/20 text-center mb-6 mt-2">
@@ -471,7 +471,7 @@ export default function GradeCalculator() {
             {/* 결과 영역 - 학점 변환기 */}
             {activeTab === "conv" && convResult && (
                 <div id="result-section" ref={resultRef} className="mt-8 animate-fade-slide-up">
-                    <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden">
+                    <div className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-2xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden">
                         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600"></div>
                         
                         <div className="grid grid-cols-2 gap-4 mt-2">
