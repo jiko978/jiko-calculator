@@ -187,7 +187,7 @@ export default function Prepayment() {
                 {/* 상환 금액 */}
                 <div>
                     <div className="flex justify-between items-end mb-3">
-                        <label className="block text-sm font-bold text-gray-700 dark:text-gray-300">상환 금액 (원)</label>
+                        <label className="block text-sm font-bold text-gray-700 dark:text-gray-300">상환 금액</label>
                         {amount && (
                             <span className="text-xs font-medium text-blue-600 dark:text-blue-400 animate-fade-in">
                                 {numberToKorean(amount)} 원
@@ -218,7 +218,7 @@ export default function Prepayment() {
                         >
                             C
                         </button>
-                        {[100, 1000, 5000, 10000, 50000, 100000].map((v) => (
+                        {[100, 500, 1000, 5000, 10000, 50000].map((v) => (
                             <button
                                 key={v}
                                 onClick={() => addAmount(v * 10000)}
@@ -233,7 +233,7 @@ export default function Prepayment() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* 수수료율 */}
                     <div>
-                        <label className={`block text-sm font-bold mb-3 transition-colors ${errors.has("rate") ? "text-red-500" : "text-gray-700 dark:text-gray-300"}`}>중도상환수수료율 (%)</label>
+                        <label className={`block text-sm font-bold mb-3 transition-colors ${errors.has("rate") ? "text-red-500" : "text-gray-700 dark:text-gray-300"}`}>중도상환수수료율</label>
                         <div className="relative">
                             <input
                                 type="number"
@@ -262,19 +262,19 @@ export default function Prepayment() {
                                             setErrorMessage("");
                                         }}
                                         title={p.desc}
-                                        className="px-3 py-1.5 text-[11px] font-bold border bg-blue-50 dark:bg-blue-900/20 border-gray-200 dark:border-gray-700 rounded-lg text-gray-500 hover:border-blue-500 hover:text-blue-500 transition-all"
+                                        className="px-3 py-1.5 text-[10px] font-bold border bg-blue-50 dark:bg-blue-900/20 border-gray-200 dark:border-gray-700 rounded-lg text-gray-500 hover:border-blue-500 hover:text-blue-500 transition-all"
                                     >
                                         {p.name}
                                     </button>
                                 ))}
                             </div>
-                            <p className="text-[10px] text-gray-400">* 시중은행은 보통 대출 후 3년까지 수수료를 부과하며, 이후에는 면제됩니다.</p>
+                            <p className="text-xs text-gray-400">✨ 시중은행은 보통 대출 후 3년까지 수수료를 부과하며, 이후에는 면제됩니다.</p>
                         </div>
                     </div>
 
                     {/* 대출 금리 */}
                     <div>
-                        <label className={`block text-sm font-bold mb-3 transition-colors ${errors.has("loanRate") ? "text-red-500" : "text-gray-700 dark:text-gray-300"}`}>대출 금리 (%) <span className="text-[10px] font-normal text-gray-400">(이자 절감액 계산용)</span></label>
+                        <label className={`block text-sm font-bold mb-3 transition-colors ${errors.has("loanRate") ? "text-red-500" : "text-gray-700 dark:text-gray-300"}`}>대출 금리</label>
                         <div className="relative">
                             <input
                                 type="number"
@@ -318,15 +318,15 @@ export default function Prepayment() {
                     <div className="space-y-4 pt-2">
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <div>
-                                <label className="block text-xs font-bold text-gray-400 mb-2">대출 실행일</label>
+                                <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">대출 실행일</label>
                                 <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-3 py-3 text-sm text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500" />
                             </div>
                             <div>
-                                <label className="block text-xs font-bold text-gray-400 mb-2">중도 상환일</label>
+                                <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">중도 상환일</label>
                                 <input type="date" value={prepayDate} onChange={(e) => setPrepayDate(e.target.value)} className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-3 py-3 text-sm text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500" />
                             </div>
                             <div>
-                                <label className="block text-xs font-bold text-gray-400 mb-2">대출 만기일</label>
+                                <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">대출 만기일</label>
                                 <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-3 py-3 text-sm text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500" />
                             </div>
                         </div>
@@ -335,7 +335,7 @@ export default function Prepayment() {
                     <div className="space-y-6 pt-2">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-xs font-bold text-gray-400 mb-2">전체 대출 기간 (개월)</label>
+                                <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">전체 대출 기간</label>
                                 <input type="number" value={loanTerm} onChange={(e) => setLoanTerm(e.target.value)} className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm text-blue-600 font-bold focus:outline-none focus:ring-2 focus:ring-blue-500" />
                                 <div className="flex gap-2 mt-2">
                                     {["6", "12", "24", "36"].map(m => (
@@ -344,12 +344,13 @@ export default function Prepayment() {
                                 </div>
                             </div>
                             <div>
-                                <label className="block text-xs font-bold text-gray-400 mb-2">남은 잔존 기간 (개월)</label>
+                                <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">남은 잔존 기간</label>
                                 <input type="number" value={remainingTerm} onChange={(e) => setRemainingTerm(e.target.value)} className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm text-blue-600 font-bold focus:outline-none focus:ring-2 focus:ring-blue-500" />
                             </div>
                         </div>
                         <div>
-                            <label className="block text-xs font-bold text-gray-400 mb-2">수수료 면제 기간 (개월)</label>
+                            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">수수료 면제 기간 (개월)</label>
+                            <input type="number" value={exemptionPeriod} onChange={(e) => setExemptionPeriod(e.target.value)} placeholder="0" className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-sm text-blue-600 font-bold focus:outline-none focus:ring-2 focus:ring-blue-500 mb-3" />
                             <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
                                 {["0", "3", "6", "9", "12", "18", "24"].map(m => (
                                     <button

@@ -5,9 +5,9 @@ import InstallBanner from "@/app/calculator/components/InstallBanner";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 
 export const metadata: Metadata = {
-    title: "금융 계산기 | 대출 이자, 예금 이자, 적금 이자, 중도상환수수료 계산기 - JIKO 계산기",
+    title: "금융 계산기 | 대출 이자, 예금 이자, 적금 이자, 복리, 중도상환수수료 계산기 - JIKO 계산기",
     description: "대출 이자, 예금 이자, 적금 이자, 중도상환수수료를 쉽게 계산할 수 있는 금융 계산기입니다. 이자와 상환 금액을 빠르게 확인하고 금융 계획을 세워보세요.",
-    keywords: ["금융 계산기", "대출 이자 계산기", "예금 이자 계산기", "적금 이자 계산기", "중도상환수수료 계산기"],
+    keywords: ["금융 계산기", "대출 이자 계산기", "예금 이자 계산기", "적금 이자 계산기", "복리 계산기", "중도상환수수료 계산기"],
 };
 
 const BASE_URL = "https://jiko.kr";
@@ -73,6 +73,11 @@ const financeCalculators = [
         href: "/calculator/finance/savings",
     },
     {
+        title: "📈 복리 계산기",
+        description: "적립식 투자의 미래가치, 필요기간, 목표수익률, 월 적립액을 4-in-1으로 계산합니다.",
+        href: "/calculator/finance/compound-interest",
+    },
+    {
         title: "💸 중도상환수수료 계산기",
         description: "대출금을 미리 갚을 때 발생하는 수수료를 계산하고 이자 절감액을 비교합니다.",
         href: "/calculator/finance/prepayment",
@@ -93,7 +98,7 @@ export default function FinanceHubPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="금융 계산기" description="대출 이자, 예금 이자, 적금 이자 계산기 - JIKO 계산기" />
+            <NavBar title="금융 계산기" description="대출 이자, 예금 이자, 적금 이자, 복리 계산기, 중도상환수수료 - JIKO 계산기" />
 
             <div className="flex-grow px-4 py-6">
                 <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">💵 금융 계산기 모음</h1>
@@ -233,6 +238,9 @@ export default function FinanceHubPage() {
                         </Link>
                         <Link href="/calculator/finance/savings" className="inline-flex items-center justify-center rounded-lg bg-emerald-500 px-4 py-3 text-xs sm:text-sm font-bold text-white hover:bg-emerald-600 transition">
                             💰 적금 이자 계산하기 →
+                        </Link>
+                        <Link href="/calculator/finance/compound-interest" className="inline-flex items-center justify-center rounded-lg bg-emerald-500 px-4 py-3 text-xs sm:text-sm font-bold text-white hover:bg-emerald-600 transition">
+                            📈 복리 계산하기 →
                         </Link>
                         <Link href="/calculator/finance/prepayment" className="inline-flex items-center justify-center rounded-lg bg-emerald-500 px-4 py-3 text-xs sm:text-sm font-bold text-white hover:bg-emerald-600 transition">
                             💸 중도상환수수료 계산하기 →

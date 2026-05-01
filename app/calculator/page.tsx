@@ -56,9 +56,9 @@ const schema = {
 const mainCalculators = [
   {
     title: "💵 금융 계산기",
-    description: "대출 이자, 예금 이자, 적금 이자, 중도상환수수료 계산기",
+    description: "대출 이자, 예금 이자, 적금 이자, 복리, 중도상환수수료 계산기",
     href: "/calculator/finance",
-    intro: "대출 이자부터 예·적금 수익, 중도상환수수료까지, 복잡한 금융 계산을 쉽고 빠르게 확인하세요. 금리 변동에 따른 월 상환액과 만기 수령액을 실시간으로 비교해 현명한 금융 결정을 도와드립니다.",
+    intro: "대출 이자부터 예·적금 수익, 복리, 중도상환수수료까지, 복잡한 금융 계산을 쉽고 빠르게 확인하세요. 금리 변동에 따른 월 상환액과 만기 수령액을 실시간으로 비교해 현명한 금융 결정을 도와드립니다.",
     badge: "내 돈의 흐름을 한눈에",
   },
   {
@@ -137,7 +137,7 @@ const benefits = [
   {
     icon: "🆓",
     title: "완전 무료 · 가입 불필요",
-    desc: "회원가입 없이 누구나 35개의 계산기를 무료로 이용할 수 있습니다.",
+    desc: "회원가입 없이 누구나 36개의 계산기를 무료로 이용할 수 있습니다.",
     bgColor: "bg-red-50 dark:bg-red-900/20",
     borderColor: "border-red-100 dark:border-red-800",
   },
@@ -215,7 +215,7 @@ export default function Home() {
           <div className="mb-5 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-4 flex items-center justify-between shadow-md">
             <div>
               <p className="text-white font-black text-sm md:text-base leading-tight">어떤 계산이 필요하신가요?</p>
-              <p className="text-blue-100 text-xs mt-0.5">7가지 카테고리 · 35개 계산기가 무료로 제공됩니다. 지금 바로 계산해보세요. 복잡한 계산, JIKO가 대신합니다.</p>
+              <p className="text-blue-100 text-xs mt-0.5">7가지 카테고리 · 36개 계산기가 무료로 제공됩니다. 지금 바로 계산해보세요. 복잡한 계산, JIKO가 대신합니다.</p>
             </div>
             <span className="text-white text-2xl select-none">👇</span>
           </div>
@@ -330,7 +330,7 @@ export default function Home() {
                 </span>
                 <h2 className="mt-4 text-3xl font-black text-gray-900 dark:text-white leading-tight">왜 JIKO 계산기인가요?</h2>
                 <p className="mt-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                  금융·직장·생활·건강·세금·주식·부동산에서 필요한 모든 계산기 35개를 한 곳에 모았습니다. 복잡한 수치를 보기 쉽게 정리해 빠르게 비교하고 더 현명한 결정을 내릴 수 있습니다.
+                  금융·직장·생활·건강·세금·주식·부동산에서 필요한 모든 계산기 36개를 한 곳에 모았습니다. 복잡한 수치를 보기 쉽게 정리해 빠르게 비교하고 더 현명한 결정을 내릴 수 있습니다.
                 </p>
                 <div className="mt-6 space-y-4">
                   <div className="rounded-2xl bg-blue-50/50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-900/30 p-4 transition hover:shadow-md">

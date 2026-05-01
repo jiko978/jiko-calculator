@@ -28,6 +28,7 @@ export const COMMON_BREADCRUMBS = {
     LOANS: { name: "대출 이자 계산기", item: "/calculator/finance/loans" },
     DEPOSITS: { name: "예금 이자 계산기", item: "/calculator/finance/deposits" },
     SAVINGS: { name: "적금 이자 계산기", item: "/calculator/finance/savings" },
+    COMPOUND_INTEREST: { name: "복리 계산기", item: "/calculator/finance/compound-interest" },
     PREPAYMENT: { name: "중도상환수수료 계산기", item: "/calculator/finance/prepayment" },
 
     JOB_HOME: { name: "직장 계산기", item: "/calculator/job" },
