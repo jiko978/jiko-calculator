@@ -6,6 +6,8 @@ import FAQ from "@/app/calculator/components/FAQ";
 import FinanceMoreCalculators from "@/app/calculator/components/FinanceMoreCalculators";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 import productsData from "../../data/products.json";
+import InstallBanner from "@/app/calculator/components/InstallBanner";
+
 
 interface Props {
     params: Promise<{ slug: string }>;
