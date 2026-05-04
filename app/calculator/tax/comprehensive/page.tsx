@@ -85,7 +85,7 @@ export default function ComprehensiveTaxPage() {
       <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6 mt-8">
         <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
           <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-            <span className="text-2xl">🏛️</span> 종부세 부과 구조 안내
+            <span className="text-2xl">🏛️</span> 종부세 계산기 가이드
           </h1>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm mb-4">
             <strong>과세표준 산정</strong> : 보유하신 주택(들)의 전국 합산 공시가격에서 기본 공제액(1주택자 12억, 다주택자 개인별 9억)을 차감하고, 거기에 공정시장가액비율(60%)을 곱하는 방식입니다. 만약 12억 주택을 가진 1주택자라면 초과분이 없으므로 0원입니다.
@@ -127,6 +127,33 @@ export default function ComprehensiveTaxPage() {
                 <p className="text-gray-400 mb-1">공시가격 13억 (부부 공동명의 5:5)</p>
                 <p className="font-bold text-gray-700 dark:text-gray-200">결과: 인별 자산가치가 6.5억씩 매핑. 개인별 기본공제선인 9억에 둘 다 미달하므로 양쪽 모두 종부세 0원 전액 면제.</p>
               </div>
+            </div>
+          </section>
+        </div>
+
+        {/* 3. 추가 카드 세션 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+            <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+              <span className="text-cyan-500">🏙️</span> 재산세와의 차이점
+            </h2>
+            <div className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+              <p>재산세는 부동산 소유자라면 누구나 내는 지방세이지만, 종부세는 다릅니다.</p>
+              <p className="bg-cyan-50 dark:bg-cyan-900/10 p-3 rounded-xl text-cyan-700 dark:text-cyan-300">
+                종합부동산세는 전국 부동산 <strong>공시가격 합계액이 일정 기준을 초과</strong>하는 사람만 내는 '국세'입니다.
+              </p>
+            </div>
+          </section>
+
+          <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+            <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+              <span className="text-teal-500">👥</span> 부부 공동명의 혜택
+            </h2>
+            <div className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+              <p>종부세는 인별로 과세되므로, 부부가 공동명의로 소유하면 공제액도 각각 적용됩니다.</p>
+              <p className="bg-teal-50 dark:bg-teal-900/10 p-3 rounded-xl text-teal-700 dark:text-teal-300">
+                단, 1주택 단독명의 고령자 세액공제가 더 유리한 경우가 있으므로 <strong>유불리 비교</strong>가 필수입니다.
+              </p>
             </div>
           </section>
         </div>

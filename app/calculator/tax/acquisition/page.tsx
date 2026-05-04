@@ -84,7 +84,7 @@ export default function AcquisitionTaxPage() {
       <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">
         <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
           <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-            <span className="text-2xl">📑</span> 취득세 부과 구조 안내
+            <span className="text-2xl">📑</span> 취득세 계산기 가이드
           </h1>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm mb-4">
             <strong>기본 체계</strong> : 취득세는 단순히 순수 &apos;취득세&apos;뿐만 아니라 그 금액의 10%에 해당하는 <strong>지방교육세</strong>, 그리고 전용면적 85㎡ (국민주택규모) 초과 시 부과되는 <strong>농어촌특별세(0.2%)</strong>의 3종 세금 합산액으로 구성됩니다.
@@ -127,6 +127,33 @@ export default function AcquisitionTaxPage() {
                 <p className="text-gray-400 mb-1">위 조건이되 생애최초 주택 매수라면?</p>
                 <p className="font-bold text-gray-700 dark:text-gray-200">결과: 산출된 취득세 600만원 - 200만원 전액 감면 = 실 납부 취득세 400만원 (교육세 연동 할인)</p>
               </div>
+            </div>
+          </section>
+        </div>
+
+        {/* 3. 추가 카드 세션 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+            <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+              <span className="text-orange-500">🏘️</span> 다주택자 중과세율
+            </h2>
+            <div className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+              <p>조정대상지역 내 주택 취득 시 다주택자는 취득세가 큰 폭으로 중과됩니다.</p>
+              <p className="bg-orange-50 dark:bg-orange-900/10 p-3 rounded-xl text-orange-700 dark:text-orange-300">
+                기본 1~3%의 취득세율이 상황에 따라 <strong>최대 12%</strong>까지 뛸 수 있으니 자금 계획에 유의하세요.
+              </p>
+            </div>
+          </section>
+
+          <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+            <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+              <span className="text-purple-500">👶</span> 생애최초 주택 취득 감면
+            </h2>
+            <div className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+              <p>생애 최초로 주택을 구입하는 경우 소득 수준에 관계없이 혜택이 주어집니다.</p>
+              <p className="bg-purple-50 dark:bg-purple-900/10 p-3 rounded-xl text-purple-700 dark:text-purple-300">
+                취득가액 12억 원 이하의 주택일 때, <strong>최대 200만 원 한도</strong> 내에서 전액 감면받을 수 있습니다.
+              </p>
             </div>
           </section>
         </div>

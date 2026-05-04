@@ -84,7 +84,7 @@ export default function Page() {
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                        <span className="text-2xl">💼</span> 퇴직금 계산기 및 산정 기준 안내
+                        <span className="text-2xl">💼</span> 퇴직금 계산기 가이드
                     </h1>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
                         내 퇴직금이 얼마인지 궁금하신가요? <strong>2025년 최신 퇴직금 산정 방식</strong>을 적용하여 근속 기간에 따른 정확한 세전 퇴직금과 세금, 그리고 최종 실수령액까지 한눈에 확인해 보세요.
@@ -118,6 +118,29 @@ export default function Page() {
                                 <p className="font-bold text-gray-700 dark:text-gray-200">예상 퇴직금: 약 5,400만원</p>
                             </div>
                         </div>
+                    </section>
+                </div>
+
+                {/* 1.8 추가 카드 세션 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 font-medium">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-purple-500">📌</span> 퇴직금 미지급 대처법
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc ml-5">
+                            <li>퇴사일로부터 14일 이내에 지급되지 않으면 관할 고용노동청에 진정이나 고소를 제기할 수 있습니다.</li>
+                            <li>지연 지급 시 연 20%의 지연 이자가 발생할 수 있으므로, 미지급 기간의 이자도 함께 청구하세요.</li>
+                        </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 font-medium">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-orange-500">🎯</span> IRP 계좌 활용법
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc ml-5">
+                            <li>퇴직금을 IRP 계좌로 받으면 퇴직소득세 납부가 이연되어 실질적으로 더 큰 금액을 굴릴 수 있습니다.</li>
+                            <li>IRP 계좌 해지 시 세금이 부과되므로 가급적 연금 형태로 수령하여 절세 효과(세율 30% 감면)를 누리는 것이 좋습니다.</li>
+                        </ul>
                     </section>
                 </div>
 

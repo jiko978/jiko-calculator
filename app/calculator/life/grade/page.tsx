@@ -127,6 +127,31 @@ export default function GradePage() {
                     </section>
                 </div>
 
+                {/* 1.8 추가 카드 세션 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-purple-500">📌</span> 재수강과 학점포기
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc ml-5 leading-relaxed">
+                            <li>재수강 시 이전 성적과 새로운 성적 중 높은 것이 반영되는 학교가 많습니다.</li>
+                            <li>학점포기 제도가 있는 경우, 낮은 성적의 과목을 삭제하여 전체 평점을 올릴 수 있습니다.</li>
+                            <li>단, 학교별 학칙에 따라 다르게 적용되므로 반드시 학사 공지를 확인하세요.</li>
+                        </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-orange-500">🎯</span> 졸업 요건 확인
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc ml-5 leading-relaxed">
+                            <li>전체 졸업 필요 학점뿐만 아니라 <strong>전공 필수/선택 이수 학점</strong>을 꼭 확인하세요.</li>
+                            <li>다전공(복수/부전공) 시 요구되는 학점 기준이 다를 수 있습니다.</li>
+                            <li>마지막 학기에 요건을 채우지 못해 졸업이 유예되는 일이 없도록 미리 점검하세요.</li>
+                        </ul>
+                    </section>
+                </div>
+
                 <FAQ faqList={faqList} />
                 <LifeMoreCalculators />
                 <InstallBanner />

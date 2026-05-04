@@ -94,17 +94,50 @@ export default function DsrPage() {
                 {/* [공통 카드세션] 1.6 메뉴 설명 */}
                 <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 mt-4 animate-fade-slide-up">
                     <h2 className="text-xl font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2 tracking-tight">
-                        <span className="w-2 h-6 bg-blue-600 rounded-full"></span>
-                        DSR 및 스트레스 DSR 개요
+                        📊 DSR 계산기 가이드
                     </h2>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
                         <b>DSR(Debt Service Ratio)</b>은 총부채원리금상환비율로, 차주의 연간 소득 대비 모든 가계대출의 원리금 상환액이 차지하는 비중을 말합니다. 
                         JIKO DSR 계산기는 최신 규제인 <b>스트레스 DSR</b>을 반영하여, 향후 금리 변동 리스크를 고려한 실제 대출 가능 한도를 정밀하게 산출해 드립니다.
                     </p>
+                    <p className="text-xs mt-3 text-red-500/80 dark:text-red-400/80 font-medium bg-red-50/50 dark:bg-red-900/10 p-2.5 rounded-lg border border-red-100/50 dark:border-red-900/20 inline-block text-left">
+                        ※ 본 계산기는 참고용이며 투자 판단의 책임은 사용자에게 있습니다.
+                    </p>
                 </section>
 
                 {/* [공통 카드세션] 1.7 사용 방법 & 계산 예시 (2단 그리드) */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 animate-fade-slide-up">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+                            <span className="text-blue-500">💡</span> 사용 방법
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc list-inside">
+                            <li>본인의 <strong>연소득</strong>을 정확히 기입합니다.</li>
+                            <li>신규로 받을 <strong>주택담보대출</strong> 금액, 금리, 만기를 입력합니다.</li>
+                            <li>스트레스 DSR 단계를 선택하면 가산금리가 자동 적용됩니다.</li>
+                            <li>기존에 보유 중인 대출(신용대출 등)이 있다면 원리금을 합산 입력합니다.</li>
+                        </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 animate-fade-slide-up">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+                            <span className="text-green-500">📊</span> 계산 예시
+                        </h2>
+                        <div className="text-sm text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-700/50 p-4 rounded-xl space-y-1 pointer-events-none">
+                            <p>연소득 : <strong>5,000만 원</strong></p>
+                            <p>연간 총 상환액(원금+이자) : <strong>2,000만 원</strong></p>
+                            <p className="border-t border-gray-200 dark:border-gray-600 pt-1 mt-1 text-red-500 font-bold">
+                                DSR : 40% (대출 가능 한도 소진)
+                            </p>
+                            <p className="text-blue-600 font-semibold text-xs leading-relaxed mt-2">
+                                * 기존 대출이 많다면 신규 주담대 한도가 크게 줄어듭니다.
+                            </p>
+                        </div>
+                    </section>
+                </div>
+
+                {/* [공통 카드세션] 1.8 추가 카드 세션 (2단 그리드) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 animate-fade-slide-up">
                         <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
                             <span className="text-blue-500">💡</span> DSR 부채산정 방식

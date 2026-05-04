@@ -83,7 +83,7 @@ export default function Page() {
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                        <span className="text-2xl">💰</span> 실수령액 계산기 및 희망 급여 안내
+                        <span className="text-2xl">💰</span> 실수령액 계산기 가이드
                     </h1>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
                         내가 매달 실제로 통장에 받고 싶은 금액(세후)을 입력해 보세요. 2025년 최신 세율을 바탕으로 세금을 포함한 <strong>최종 계약 연봉과 월 기본급(세전)</strong>을 찾아드립니다.
@@ -116,6 +116,29 @@ export default function Page() {
                                 <p className="font-bold text-gray-700 dark:text-gray-200">필요 연봉: 약 7,420만원</p>
                             </div>
                         </div>
+                    </section>
+                </div>
+
+                {/* 1.8 추가 카드 세션 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 font-medium">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-purple-500">📌</span> 누진세의 원리
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc ml-5">
+                            <li>연봉이 일정 구간을 넘어가면 그 초과분에 대해 더 높은 세율이 적용됩니다.</li>
+                            <li>따라서 연봉 5천만 원에서 6천만 원이 될 때 증가하는 실수령액과, 9천만 원에서 1억이 될 때 증가하는 실수령액의 폭은 다릅니다.</li>
+                        </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 font-medium">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-orange-500">🎯</span> 부양가족 공제 활용
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc ml-5">
+                            <li>연말정산뿐만 아니라 매월 월급을 받을 때도 부양가족 수에 따라 미리 떼는 원천징수 세금을 줄일 수 있습니다.</li>
+                            <li>부양가족(배우자, 자녀 등)이 있다면 연봉계약 시 해당 정보를 회사에 정확히 등록하세요.</li>
+                        </ul>
                     </section>
                 </div>
 

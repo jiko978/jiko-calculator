@@ -7,9 +7,9 @@ const FinanceMoreCalculators = () => {
     const pathname = usePathname();
 
     const calculators = [
-        { name: "예금 계산기", href: "/calculator/finance/deposits", emoji: "🏦", description: "만기 수령액 및 이자 계산" },
-        { name: "적금 계산기", href: "/calculator/finance/savings", emoji: "💰", description: "목돈 마련을 위한 적립 계산" },
-        { name: "대출 계산기", href: "/calculator/finance/loans", emoji: "📊", description: "이자 및 원리금 상환 계산" },
+        { name: "대출 이자 계산기", href: "/calculator/finance/loans", emoji: "📊", description: "이자 및 원리금 상환 계산" },
+        { name: "예금 이자 계산기", href: "/calculator/finance/deposits", emoji: "🏦", description: "만기 수령액 및 이자 계산" },
+        { name: "적금 이자 계산기", href: "/calculator/finance/savings", emoji: "💰", description: "목돈 마련을 위한 적립 계산" },
         { name: "복리 계산기", href: "/calculator/finance/compound-interest", emoji: "📈", description: "미래가치, 필요기간, 목표수익률, 월적립액 계산" },
         { name: "중도상환수수료 계산기", href: "/calculator/finance/prepayment", emoji: "💸", description: "대출 상환 비용 및 이자 절감액 비교" }
     ];

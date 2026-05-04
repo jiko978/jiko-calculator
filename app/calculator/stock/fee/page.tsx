@@ -65,6 +65,14 @@ const faqJsonLd = {
                 text: "해외 주식의 경우 연간 합산 수익 중 250만 원까지는 기본 공제 대상입니다.",
             },
         },
+        {
+            "@type": "Question",
+            name: "증권사별 수수료율은 어디서 확인하나요?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "이용 중인 증권사 앱의 '내 수수료율 확인' 혹은 '계좌 정보' 메뉴에서 확인 가능합니다. 이벤트 참여 여부에 따라 0.0036% ~ 0.015% 등 다양하게 적용될 수 있습니다.",
+            },
+        },
     ],
 };
 
@@ -93,6 +101,10 @@ export default function Page() {
         {
             question: "해외 주식 250만 원 공제는 어떻게 적용되나요?",
             answer: "연간 전체 실현 손익에서 250만 원까지는 기본 공제 대상이며, 이를 초과하는 수익에 대해 22%의 양도소득세가 부과됩니다."
+        },
+        {
+            question: "증권사별 수수료율은 어디서 확인하나요?",
+            answer: "이용 중인 증권사 앱의 '내 수수료율 확인' 혹은 '계좌 정보' 메뉴에서 확인 가능합니다. 이벤트 참여 여부에 따라 0.0036% ~ 0.015% 등 다양하게 적용될 수 있습니다."
         }
     ];
 
@@ -122,7 +134,7 @@ export default function Page() {
                 {/* [공통 카드세션] 1. 메뉴 설명 */}
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                        <span className="text-2xl">📊</span> 주식 수수료 계산기
+                        <span className="text-2xl">📊</span> 주식 수수료 계산기 가이드
                     </h2>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
                         국내 코스피/코스닥부터 해외 주식 거래 시 발생하는 모든 수수료와 세금을 계산해 드립니다. 
@@ -165,9 +177,6 @@ export default function Page() {
                     </section>
                 </div>
 
-                {/* [공통 카드세션] 4. FAQ */}
-                <FAQ faqList={faqList} />
-
                 {/* [개별 카드세션] 1. 수수료와 세금 투자 지식 섹션 */}
                 <section className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">
@@ -201,6 +210,9 @@ export default function Page() {
                         </div>
                     </div>
                 </section>
+
+                {/* [공통 카드세션] 4. FAQ */}
+                <FAQ faqList={faqList} />
 
                 {/* 주식 계산기 더 보기 */}
                 <StockMoreCalculators />

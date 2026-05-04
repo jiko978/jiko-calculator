@@ -89,15 +89,70 @@ export default function DatePage() {
             <DateCalculator />
 
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-4 mt-4">
+                {/* 1. 메뉴 설명 (계산기 가이드) */}
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                        <span className="text-2xl">📅</span> 날짜 계산 상식 가이드
+                        <span className="text-2xl">📅</span> 날짜 계산기 가이드
                     </h1>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
-                        날짜 계산 시 가장 흔히 혼동되는 부분이 <strong>'초일 산입(첫날 포함)'</strong> 여부입니다. 법제처나 민법 기준으로는 보통 첫날을 산입하지 않는 것이 원칙이지만, 우리의 일상적인 기념일(예: 100일)은 당일을 포함하여 셉니다. JIKO 날짜 계산기는 이러한 일상의 편의를 반영하여 설계되었습니다.
+                        JIKO 날짜 계산기는 두 날짜 사이의 정확한 일수, 주수, 개월수를 계산해주는 도구입니다. D-Day 계산뿐만 아니라 100일, 1주년 등 주요 기념일까지의 타임라인을 한눈에 확인할 수 있어 일정 관리에 매우 유용합니다.
                     </p>
                 </section>
 
+                {/* 2. 사용 방법 / 계산 예시 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-blue-500">📖</span> 사용 방법
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc list-inside">
+                            <li>계산할 <strong>기준일(시작일)</strong>을 선택합니다.</li>
+                            <li>목표하는 <strong>종료일</strong>을 선택하거나, <strong>계산할 일수</strong>를 직접 입력합니다.</li>
+                            <li>결과에서 <strong>일수, 주수, 개월수</strong>를 한눈에 확인합니다.</li>
+                        </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-amber-500">📝</span> 계산 예시
+                        </h2>
+                        <div className="text-sm text-gray-600 dark:text-gray-300 bg-amber-50 dark:bg-amber-900/20 p-4 rounded-xl space-y-2">
+                            <p className="font-bold text-amber-700 dark:text-amber-300">"오늘부터 100일 뒤는 언제일까?"</p>
+                            <ul className="list-disc list-inside space-y-1">
+                                <li><strong>기준일 :</strong> 오늘 날짜 선택</li>
+                                <li><strong>+100일 :</strong> 일수 직접 입력</li>
+                                <li className="font-bold text-blue-600 dark:text-blue-400">결과 : 100일 뒤의 정확한 날짜 표시</li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+
+                {/* 3. 계산 팁 */}
+                <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+                        <span className="text-blue-500">💡</span> 날짜 계산 팁
+                    </h2>
+                    <div className="space-y-4">
+                        <div className="p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl border border-gray-100 dark:border-gray-700/50">
+                            <p className="text-sm font-bold text-blue-600 dark:text-blue-400 mb-1">⚖️ 초일불산입 원칙이란?</p>
+                            <p className="text-[13px] text-gray-600 dark:text-gray-400 leading-relaxed">
+                                민법에 따르면 기간을 일, 주, 월, 연으로 정할 때 첫날(초일)은 산입하지 않는 것이 원칙입니다. 단, 나이 계산이나 특별한 약정이 있는 경우 첫날을 포함합니다.
+                            </p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl border border-gray-100 dark:border-gray-700/50">
+                                <p className="text-[13px] font-bold text-gray-700 dark:text-gray-200 mb-1">D-Day 계산</p>
+                                <p className="text-[12px] text-gray-500 dark:text-gray-400 leading-relaxed">목표일을 0으로 보고 하루 지날 때마다 더합니다. (예: 수능 D-100)</p>
+                            </div>
+                            <div className="p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl border border-gray-100 dark:border-gray-700/50">
+                                <p className="text-[13px] font-bold text-gray-700 dark:text-gray-200 mb-1">일수/주수 계산</p>
+                                <p className="text-[12px] text-gray-500 dark:text-gray-400 leading-relaxed">커플 기념일, 아기 생후 등은 시작일을 1일로 포함하는 방식이 표준입니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* 4. 추가 카드 세션 (기간 측정 / 타임라인 생성) */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                         <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
@@ -111,7 +166,7 @@ export default function DatePage() {
 
                     <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                         <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                            <span className="text-emerald-500">🗓️</span> 타임라인 생성
+                            <span className="text-purple-500">🗓️</span> 타임라인 생성
                         </h2>
                         <div className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
                             <p>기준일로부터 100일, 200일, 1주년 등 주요 기념일을 자동으로 보여줍니다.</p>

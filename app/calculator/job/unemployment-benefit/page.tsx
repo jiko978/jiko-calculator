@@ -94,69 +94,61 @@ export default function UnemploymentBenefitPage() {
             <UnemploymentBenefit />
 
             {/* Content Area for SEO */}
-            <div className="max-w-3xl mx-auto px-4 mt-2 space-y-12">
+            <div className="max-w-3xl mx-auto px-4 pb-16 space-y-4 pt-2">
 
-                {/* 6.1 실업급여 기본 안내 */}
-                <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-sm border border-gray-100 dark:border-gray-700">
-                    <h2 className="text-xl font-black text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-                        <span className="text-2xl">💡</span> 실업급여 계산기 안내
+                {/* 1.6 실업급여 기본 안내 */}
+                <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                        <span className="text-2xl">💡</span> 실업급여 계산기 가이드
                     </h2>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm mb-8">
+                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                         2025년 최신 고용보험 요율과 상/하한액 기준을 적용하여, 퇴사 후 내가 받을 수 있는 <strong>예상 실업급여액</strong>과 <strong>지급 기간</strong>을 빠르고 정확하게 계산해드립니다.
                     </p>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
-                        <section>
-                            <h3 className="text-lg font-black text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
-                                <span className="text-blue-500">✔</span> 사용 방법
-                            </h3>
-                            <ul className="text-xs text-gray-500 dark:text-gray-400 space-y-3 font-medium list-none px-1">
-                                <li className="flex items-start gap-2">
-                                    <span className="text-blue-500 mt-0.5">•</span>
-                                    <span>본인의 생년월일 8자리와 장애인 여부를 선택합니다.</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <span className="text-blue-500 mt-0.5">•</span>
-                                    <span>고용보험 가입 이력을 입력합니다. (최대 5개까지 합산 가능)</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <span className="text-blue-500 mt-0.5">•</span>
-                                    <span>퇴사 전 3개월간의 세전 월급을 입력합니다. (단위 버튼 활용)</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <span className="text-blue-500 mt-0.5">•</span>
-                                    <span>[계산하기]를 누르면 일액, 총액, 지급일수가 산출됩니다.</span>
-                                </li>
-                            </ul>
-                        </section>
-
-                        <section>
-                            <h3 className="text-lg font-black text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
-                                <span className="text-blue-500">⭐</span> 주요 특징
-                            </h3>
-                            <ul className="text-xs text-gray-500 dark:text-gray-400 space-y-3 font-medium list-none px-1">
-                                <li className="flex items-start gap-2">
-                                    <span className="text-blue-500 mt-0.5">•</span>
-                                    <span><strong>2025년 최신 기준</strong> 상한액(6.6만) / 하한액(6.4만) 반영</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <span className="text-blue-500 mt-0.5">•</span>
-                                    <span>퇴사 시점 <strong>만 나이</strong>와 가입 기간별 지급일수 자동 산출</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <span className="text-blue-500 mt-0.5">•</span>
-                                    <span>여러 회사를 옮긴 경우를 위한 <strong>가입 기간 합산</strong> 기능</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <span className="text-blue-500 mt-0.5">•</span>
-                                    <span>복잡한 단위기간(180일)을 고려한 <strong>수급 자격 진단</strong> 서비스</span>
-                                </li>
-                            </ul>
-                        </section>
-                    </div>
                 </section>
 
-                {/* 실업급여 수급 조건 5계명 */}
+                {/* 1.7 사용 방법 / 계산 예시 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-blue-500">📖</span> 사용 방법
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc list-inside">
+                            <li>본인의 <strong>생년월일</strong>과 <strong>장애인 여부</strong>를 선택합니다.</li>
+                            <li><strong>고용보험 가입 이력</strong>을 추가합니다. (최대 5개 합산 가능)</li>
+                            <li>퇴사 직전 <strong>3개월간의 세전 월급</strong>을 입력합니다.</li>
+                            <li><strong>[계산하기]</strong>를 누르면 일액, 총액, 지급일수를 확인합니다.</li>
+                        </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-amber-500">📝</span> 계산 예시
+                        </h2>
+                        <div className="text-sm text-gray-600 dark:text-gray-300 bg-amber-50 dark:bg-amber-900/20 p-4 rounded-xl space-y-2">
+                            <p className="font-bold text-amber-700 dark:text-amber-300">"만 35세, 5년 근무, 직전 3개월 월급 300만 원"</p>
+                            <ul className="list-disc list-inside space-y-1">
+                                <li><strong>1일 수급액 :</strong> 66,000원 (상한액 적용)</li>
+                                <li><strong>소정급여일수 :</strong> 210일 (5년 이상 ~ 10년 미만)</li>
+                                <li className="font-bold text-blue-600 dark:text-blue-400">총 수급액 : 약 13,860,000원</li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+
+                {/* 1.8 주요 특징 */}
+                <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                        <span className="text-emerald-500">⭐</span> 주요 특징
+                    </h2>
+                    <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc list-inside">
+                        <li><strong>2025년 최신 기준</strong> 상한액(6.6만) / 하한액 완벽 반영</li>
+                        <li>퇴사 시점 <strong>만 나이</strong>와 가입 기간별 지급일수 자동 산출</li>
+                        <li>여러 회사를 옮긴 경우를 위한 <strong>가입 기간 합산</strong> 기능</li>
+                        <li>복잡한 단위기간(180일)을 고려한 <strong>수급 자격 진단</strong></li>
+                    </ul>
+                </section>
+
+                {/* 실업급여 수급 조건 5계명 (원본 복원) */}
                 <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-sm border border-gray-100 dark:border-gray-700">
                     <h2 className="text-xl font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2">
                         📜 실업급여 수급 조건 및 대상
@@ -182,7 +174,7 @@ export default function UnemploymentBenefitPage() {
                     </div>
                 </section>
 
-                {/* 6.2 실업급여 받는 방법 */}
+                {/* 6.2 실업급여 받는 방법 (원본 복원) */}
                 <section>
                     <h2 className="text-xl font-black text-gray-900 dark:text-white mb-8 border-l-4 border-blue-500 pl-4">
                         🚶‍♂️ 실업급여 받는 방법 (7단계)

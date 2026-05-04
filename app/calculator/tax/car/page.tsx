@@ -84,7 +84,7 @@ export default function CarTaxPage() {
       <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">
         <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
           <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-            <span className="text-2xl">🚗</span> 자동차세 부과 기준
+            <span className="text-2xl">🚗</span> 자동차세 계산기 가이드
           </h1>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm mb-4">
             <strong>배기량 기준 (비영업용 승용차)</strong> : 1,000cc 이하(cc당 80원), 1,600cc 이하(cc당 140원), 1,600cc 초과(cc당 200원)의 누진세율이 적용되며, 이 본세에 30%의 대상 지방교육세가 더해져 부과됩니다.
@@ -127,6 +127,33 @@ export default function CarTaxPage() {
                 <p className="text-gray-400 mb-1">전기차 또는 수소차 구매</p>
                 <p className="font-bold text-gray-700 dark:text-gray-200">결과: 년식 무관 정액 10만(본세) + 3만(교육세) = 총세액 13만원 고정 적용.</p>
               </div>
+            </div>
+          </section>
+        </div>
+
+        {/* 3. 추가 카드 세션 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+            <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+              <span className="text-emerald-500">📅</span> 자동차세 연납 할인 혜택
+            </h2>
+            <div className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+              <p>매년 1월에 1년 치 자동차세를 일시 납부하면 세액 공제 혜택을 제공합니다.</p>
+              <p className="bg-emerald-50 dark:bg-emerald-900/10 p-3 rounded-xl text-emerald-700 dark:text-emerald-300">
+                3월, 6월, 9월에도 신청할 수 있지만, <strong>일찍 납부할수록 할인 폭</strong>이 가장 큽니다.
+              </p>
+            </div>
+          </section>
+
+          <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+            <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+              <span className="text-amber-500">🚗</span> 차령에 따른 경감률
+            </h2>
+            <div className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+              <p>승용차는 최초 등록일부터 3년 차가 되면 매년 5%씩 자동차세가 경감됩니다.</p>
+              <p className="bg-amber-50 dark:bg-amber-900/10 p-3 rounded-xl text-amber-700 dark:text-amber-300">
+                12년 차 이상이 되면 고정되어 <strong>최대 50%까지 할인된</strong> 세금만 납부하시면 됩니다.
+              </p>
             </div>
           </section>
         </div>

@@ -82,7 +82,7 @@ export default function Page() {
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                        <span className="text-2xl">💰</span> 주휴수당 핵심 정보 가이드
+                        <span className="text-2xl">💰</span> 주휴수당 계산기 가이드
                     </h1>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm mb-4">
                         근로기준법 제55조에 따라 사용자는 1주일에 평균 1회 이상의 유급휴일을 보장해야 합니다. 
@@ -124,6 +124,29 @@ export default function Page() {
                                 <p className="font-bold text-red-500 dark:text-red-400">조건 미달 (15시간 미만)<br/>주휴수당 발생 안함 (근로수당만 수령)</p>
                             </div>
                         </div>
+                    </section>
+                </div>
+
+                {/* 1.8 추가 카드 세션 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 font-medium">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-purple-500">📌</span> 쪼개기 알바 주의사항
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc ml-5">
+                            <li>일주일 근로시간이 15시간 미만인 경우(초단시간 근로자) 주휴수당 지급 대상에서 제외됩니다.</li>
+                            <li>이를 악용하여 주 14.5시간 등으로 쪼개서 계약하는 경우가 있으니 근로계약 시 반드시 소정근로시간을 확인하세요.</li>
+                        </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 font-medium">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-orange-500">🎯</span> 지각이나 조퇴 시에는?
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc ml-5">
+                            <li>'결근'이 아닌 지각이나 조퇴를 했더라도 '출근'을 했다면 개근으로 인정되어 주휴수당이 발생합니다.</li>
+                            <li>다만, 지각이나 조퇴로 인해 일하지 못한 시간만큼의 임금(시급)은 공제될 수 있습니다.</li>
+                        </ul>
                     </section>
                 </div>
 

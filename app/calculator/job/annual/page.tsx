@@ -97,11 +97,14 @@ export default function AnnualLeavePage() {
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                        <span className="text-2xl">🌴</span> 연차 계산기 및 산정 기준 안내
+                        <span className="text-2xl">🌴</span> 연차 계산기 가이드
                     </h1>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm mb-4">
                         내 연차는 도대체 몇 개일까? 헷갈리는 연차 발생 일수를 2025년 근로기준법 최신 기준에 맞춰 투명하게 계산해 드립니다. 입사일 기준과 회계연도 기준 모두를 지원하며, 남은 연차에 대해 회사가 지급해야 할 예상 미사용 연차수당(세전)까지 한 번에 시뮬레이션 할 수 있습니다. 지금 바로 똑똑하게 내 휴가 권리를 챙겨보세요!
                     </p>
+                    <div className="text-xs text-red-500/80 bg-red-50/50 dark:bg-red-900/20 dark:text-red-400 p-3 rounded-lg border border-red-100/50 dark:border-red-900/50 font-medium">
+                        ※ 본 자동 계산 결과는 근로기준법 기본 산식에 기반하지만, 기업별 취업규칙(특별휴가, 포괄임금제 등)에 따라 실지급액 등 세부 내용이 다를 수 있으므로 법적 증빙 효력이 없습니다.
+                    </div>
                 </section>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -110,10 +113,10 @@ export default function AnnualLeavePage() {
                             <span className="text-blue-500">💡</span> 사용 방법
                         </h2>
                         <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc list-inside">
-                            <li><strong>운영 기준 선택:</strong> 사규에 맞게 '입사일 기준' 또는 '회계연도(1월 1일)'를 선택합니다.</li>
-                            <li><strong>입사일 입력:</strong> 정확한 근무 시작일을 입력하세요.</li>
-                            <li><strong>사용 연차:</strong> 소비한 연차 일수를 누적 기입합니다.</li>
-                            <li><strong>월 통상임금:</strong> 정보를 입력하면 미사용 연차수당 예상 환산액이 표기됩니다.</li>
+                            <li><strong>운영 기준 선택 :</strong> 사규에 맞게 '입사일 기준' 또는 '회계연도(1월 1일)'를 선택합니다.</li>
+                            <li><strong>입사일 입력 :</strong> 정확한 근무 시작일을 입력하세요.</li>
+                            <li><strong>사용 연차 :</strong> 소비한 연차 일수를 누적 기입합니다.</li>
+                            <li><strong>월 통상임금 :</strong> 정보를 입력하면 미사용 연차수당 예상 환산액이 표기됩니다.</li>
                         </ul>
                     </section>
 
@@ -134,10 +137,27 @@ export default function AnnualLeavePage() {
                     </section>
                 </div>
 
-                <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-xl text-left border border-red-100 dark:border-red-900/10">
-                    <span className="text-red-500 text-xs leading-relaxed block">
-                        ※ 본 자동 계산 결과는 근로기준법 기본 산식에 기반하지만, 기업별 취업규칙(특별휴가, 포괄임금제 등)에 따라 실지급액 등 세부 내용이 다를 수 있으므로 법적 증빙 효력이 없습니다.
-                    </span>
+                {/* 1.8 추가 카드 세션 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 font-medium">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-purple-500">📌</span> 연차 사용 촉진 제도
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc ml-5">
+                            <li>회사가 적법한 절차(서면 통보 등)를 통해 근로자에게 연차 사용을 촉구했음에도 근로자가 사용하지 않은 경우, 미사용 연차수당 지급 의무가 면제됩니다.</li>
+                            <li>사내 공지를 통해 연차 촉진 기간이 다가오는지 확인하고 미리 휴가 계획을 세우세요.</li>
+                        </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 font-medium">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-orange-500">🎯</span> 통상임금 기준 주의사항
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc ml-5">
+                            <li>연차수당은 '평균임금'이 아닌 '통상임금'을 기준으로 계산됩니다.</li>
+                            <li>기본급 외에 정기적, 일률적으로 지급되는 수당(직책수당, 식대 등)은 통상임금에 포함되지만, 변동성 인센티브는 제외될 수 있습니다.</li>
+                        </ul>
+                    </section>
                 </div>
 
                 <FAQ faqList={faqData} />

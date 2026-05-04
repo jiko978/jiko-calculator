@@ -89,15 +89,63 @@ export default function DischargeDayPage() {
             <DischargeDayCalculator />
 
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-4 mt-4">
+                {/* 1. 메뉴 설명 (계산기 가이드) */}
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                        <span className="text-2xl">🎖️</span> 군 복무 및 전역 상식
+                        <span className="text-2xl">🎖️</span> 전역일 계산기 가이드
                     </h1>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
-                        대한민국 군인의 <strong>전역일</strong>은 복무 중인 군(육군, 해군, 공군, 해병대 등)과 복무 제도(사회복무요원 등)에 따라 다르게 산정됩니다. JIKO 전역일 계산기는 실시간 복무율뿐만 아니라 이병에서 병장까지의 계급별 진급 예정일을 타임라인으로 보여주어 군 생활 설계에 도움을 줍니다.
+                        JIKO 전역일 계산기는 육군, 해군, 공군, 해병대 등 각 군별 복무 기간에 맞춰 전역일과 실시간 복무율을 정확하게 산출합니다. 이병부터 병장까지의 계급별 진급 예정일도 타임라인으로 보여주어 계획적인 군 생활을 돕습니다.
                     </p>
                 </section>
 
+                {/* 2. 사용 방법 / 계산 예시 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-blue-500">📖</span> 사용 방법
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc list-inside">
+                            <li>본인의 <strong>군별(육군, 해군, 공군 등)</strong>을 선택합니다.</li>
+                            <li>정확한 <strong>입대일</strong>을 달력에서 지정합니다.</li>
+                            <li>[계산하기]를 누르면 <strong>전역일, 복무율, 진급일</strong>이 산출됩니다.</li>
+                        </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-amber-500">📝</span> 계산 예시
+                        </h2>
+                        <div className="text-sm text-gray-600 dark:text-gray-300 bg-amber-50 dark:bg-amber-900/20 p-4 rounded-xl space-y-2">
+                            <p className="font-bold text-amber-700 dark:text-amber-300">"육군으로 오늘 입대한다면 언제 전역할까?"</p>
+                            <ul className="list-disc list-inside space-y-1">
+                                <li><strong>군별 :</strong> 육군 (18개월)</li>
+                                <li><strong>입대일 :</strong> 오늘 날짜</li>
+                                <li className="font-bold text-blue-600 dark:text-blue-400">결과 : 18개월 후 전역일 및 타임라인 표시</li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+
+                {/* 3. 계산 팁 */}
+                <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700">
+                    <h3 className="text-lg font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                        <span className="w-2 h-6 bg-blue-600 rounded-full"></span>
+                        전역일 계산 팁
+                    </h3>
+                    <div className="space-y-4">
+                        <div className="p-5 bg-gray-50 dark:bg-gray-900/50 rounded-2xl border border-gray-100 dark:border-gray-700/50">
+                            <p className="text-sm font-black text-gray-800 dark:text-gray-200 mb-1.5 leading-relaxed">💡 전역일 계산 기준</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-medium">군별 복무 기간에 따라 '입대일 시점 + N개월 - 1일'을 전역일로 봅니다.</p>
+                        </div>
+                        <div className="p-5 bg-gray-50 dark:bg-gray-900/50 rounded-2xl border border-gray-100 dark:border-gray-700/50">
+                            <p className="text-sm font-black text-gray-800 dark:text-gray-200 mb-1.5 leading-relaxed">🗓️ 진급일 예측</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-medium">부대 상황에 따라 다를 수 있으며 시점 파악을 위한 참고용 데이터입니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* 4. 추가 카드 세션 (실시간 복무율 / 진급 마일스톤) */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                         <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">

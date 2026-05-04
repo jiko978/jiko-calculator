@@ -83,13 +83,13 @@ export default function VatPage() {
       <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">
         <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
           <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-            <span className="text-2xl">📊</span> 부가세 계산기 및 역산 안내
+            <span className="text-2xl">📊</span> 부가세 계산기 가이드
           </h1>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm mb-4">
-            <strong>순산 (공급가액 → 합계금액)</strong>: 물건의 실제 가격(공급가액)을 기준으로 소비자에게 받을 전체 금액을 계산할 때 사용합니다. 공급가액의 10%를 부가세로 더합니다.
+            <strong>순산 (공급가액 → 합계금액)</strong> : 물건의 실제 가격(공급가액)을 기준으로 소비자에게 받을 전체 금액을 계산할 때 사용합니다. 공급가액의 10%를 부가세로 더합니다.
           </p>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
-            <strong>역산 (합계금액 → 공급가액)</strong>: 이미 정해진 최종 결제액(합계금액)에서 세금과 순수 물건 값을 분리해야 할 때 사용합니다. 세금계산서 발행 시 매우 유용합니다.
+            <strong>역산 (합계금액 → 공급가액)</strong> : 이미 정해진 최종 결제액(합계금액)에서 세금과 순수 물건 값을 분리해야 할 때 사용합니다. 세금계산서 발행 시 매우 유용합니다.
           </p>
         </section>
 
@@ -126,6 +126,33 @@ export default function VatPage() {
                 <p className="text-gray-400 mb-1">간이과세자(소매업 15%) / 1,000,000원 매출</p>
                 <p className="font-bold text-gray-700 dark:text-gray-200">내야 할 부가세 요금: 15,000원</p>
               </div>
+            </div>
+          </section>
+        </div>
+
+        {/* 3. 추가 카드 세션 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+            <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+              <span className="text-indigo-500">🧮</span> 공급가액과 공급대가의 차이
+            </h2>
+            <div className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+              <p><strong>공급가액</strong>: 세금이 포함되지 않은 순수한 물건의 가격입니다.</p>
+              <p className="bg-indigo-50 dark:bg-indigo-900/10 p-3 rounded-xl text-indigo-700 dark:text-indigo-300">
+                <strong>공급대가 (합계금액)</strong>: 공급가액에 부가세(VAT) 10%가 포함되어, 소비자가 최종적으로 지불하는 금액입니다.
+              </p>
+            </div>
+          </section>
+
+          <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+            <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+              <span className="text-rose-500">🧾</span> 세금계산서 발행 시 주의사항
+            </h2>
+            <div className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+              <p>세금계산서는 반드시 '공급가액'과 '세액'이 정확히 <strong>분리되어 기재</strong>되어야 합니다.</p>
+              <p className="bg-rose-50 dark:bg-rose-900/10 p-3 rounded-xl text-rose-700 dark:text-rose-300">
+                합계금액만 알고 있다면 역산 기능을 활용하여 단 1원의 오차도 없이 정확한 금액을 기입하세요.
+              </p>
             </div>
           </section>
         </div>

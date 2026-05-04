@@ -93,7 +93,7 @@ export default function DepositsPage() {
                 {/* 메뉴 설명 */}
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                        <span className="text-2xl">🏦</span> 예금 이자 계산기
+                        <span className="text-2xl">🏦</span> 예금 이자 계산기 가이드
                     </h1>
                     <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                         목돈을 한 번에 맡기는 정기예금의 만기 수령액을 계산합니다. 단리·월복리 선택은 물론, 일반과세·세금우대·비과세 등 과세 유형별 세후 실수령액을 확인할 수 있습니다.
@@ -127,6 +127,29 @@ export default function DepositsPage() {
                             <p>• 이자 과세(15.4%) : 77,000원</p>
                             <p className="mt-2 font-bold text-blue-600 dark:text-blue-400">만기 수령액 : 10,423,000원</p>
                         </div>
+                    </section>
+                </div>
+
+                {/* 1.8 추가 카드 세션 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-purple-500">📌</span> 예금자 보호 한도
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc ml-5">
+                            <li>금융기관이 파산하더라도 예금보험공사에서 원금과 소정의 이자를 합해 1인당 최고 5천만 원까지 보호합니다.</li>
+                            <li>안전한 자산 관리를 위해 큰 금액은 여러 은행에 5천만 원 이하로 분산 예치하는 것을 추천합니다.</li>
+                        </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-orange-500">🎯</span> 우대 금리 확인
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc ml-5">
+                            <li>기본 금리 외에 급여 이체, 카드 사용 실적, 첫 거래 등의 조건으로 우대 금리를 제공하는지 확인하세요.</li>
+                            <li>최고 금리만 보고 가입하기보다, 내가 충족할 수 있는 현실적인 우대 조건인지 따져보는 것이 중요합니다.</li>
+                        </ul>
                     </section>
                 </div>
 

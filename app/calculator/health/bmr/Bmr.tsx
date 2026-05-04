@@ -5,7 +5,7 @@ import CalculatorActions from "@/app/calculator/components/CalculatorActions";
 import CalculatorButtons from "@/app/calculator/components/CalculatorButtons";
 import { useCalculatorScroll } from "@/app/calculator/hooks/useCalculatorScroll";
 
-export default function Bmr() {
+export default function Bmr({ children }: { children?: React.ReactNode }) {
     const [gender, setGender] = useState<"M" | "F">("M");
     const [age, setAge] = useState<string>("");
     const [height, setHeight] = useState<string>("");
@@ -205,10 +205,15 @@ export default function Bmr() {
                 </div>
             </div>
 
+            {/* page.tsx에서 넘겨받은 1.6 가이드 및 1.7 사용방법 영역 렌더링 */}
+            {children && (
+                <div className="mt-4">
+                    {children}
+                </div>
+            )}
 
-
-            {/* BMR 비교 및 정보 섹션 */}
-            <div className="mt-8 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+            {/* BMR 비교 및 정보 섹션 (동적 마커 포함 이전 버전 완벽 복구) */}
+            <div className="mt-4 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700">
                 <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-6 flex items-center gap-2">
                     <span className="w-1.5 h-6 bg-red-500 rounded-full"></span>
                     연령대별 평균 기초대사량 비교
@@ -286,22 +291,22 @@ export default function Bmr() {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100 dark:divide-gray-700 text-gray-700 dark:text-gray-300">
-                            <tr className={age && parseInt(age) < 30 ? "bg-red-50/50 dark:bg-red-900/10" : ""}>
+                            <tr className={age && parseInt(age) < 30 ? "bg-red-50/50 dark:bg-red-900/10 font-bold" : ""}>
                                 <td className="px-4 py-3">18 ~ 29세</td>
                                 <td className="px-4 py-3 text-right">1,728 kcal</td>
                                 <td className="px-4 py-3 text-right">1,311 kcal</td>
                             </tr>
-                            <tr className={age && parseInt(age) >= 30 && parseInt(age) < 50 ? "bg-red-50/50 dark:bg-red-900/10" : ""}>
+                            <tr className={age && parseInt(age) >= 30 && parseInt(age) < 50 ? "bg-red-50/50 dark:bg-red-900/10 font-bold" : ""}>
                                 <td className="px-4 py-3">30 ~ 49세</td>
                                 <td className="px-4 py-3 text-right">1,669 kcal</td>
                                 <td className="px-4 py-3 text-right">1,316 kcal</td>
                             </tr>
-                            <tr className={age && parseInt(age) >= 50 && parseInt(age) < 65 ? "bg-red-50/50 dark:bg-red-900/10" : ""}>
+                            <tr className={age && parseInt(age) >= 50 && parseInt(age) < 65 ? "bg-red-50/50 dark:bg-red-900/10 font-bold" : ""}>
                                 <td className="px-4 py-3">50 ~ 64세</td>
                                 <td className="px-4 py-3 text-right">1,550 kcal</td>
                                 <td className="px-4 py-3 text-right">1,250 kcal</td>
                             </tr>
-                            <tr className={age && parseInt(age) >= 65 ? "bg-red-50/50 dark:bg-red-900/10" : ""}>
+                            <tr className={age && parseInt(age) >= 65 ? "bg-red-50/50 dark:bg-red-900/10 font-bold" : ""}>
                                 <td className="px-4 py-3">65세 이상</td>
                                 <td className="px-4 py-3 text-right">1,403 kcal</td>
                                 <td className="px-4 py-3 text-right">1,186 kcal</td>

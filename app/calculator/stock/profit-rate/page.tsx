@@ -70,10 +70,10 @@ const faqJsonLd = {
     },
     {
       "@type": "Question",
-      name: "주식 수익률 계산기에 어떤 값을 입력해야 하나요?",
+      name: "목표 수익금에 도달하기 위한 매도 단가는 어떻게 아나요?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "매수가, 현재가, 보유 수량을 입력하면 자동으로 수익금과 수익률이 계산됩니다.",
+        text: "원하는 목표 수익금액을 보유 수량으로 나눈 값을 기존 매수가에 더해주시면 됩니다. (예: 100만 원 수익을 위해 100주 보유 시, 매수가 + 10,000원에 매도)",
       },
     },
   ],
@@ -104,6 +104,10 @@ export default function Page() {
     {
       question: "여기서 계산한 수익금은 실제 계좌와 똑같나요?",
       answer: "본 계산기는 수수료 및 제세금(거래세)을 제외한 단순 가격 차이 기반의 수익금입니다. 실제 증권사 결제 대금과는 수수료율에 따라 차이가 있을 수 있습니다."
+    },
+    {
+      question: "목표 수익금에 도달하기 위한 매도 단가는 어떻게 아나요?",
+      answer: "원하는 목표 수익금액을 보유 수량으로 나눈 값을 기존 매수가에 더해주시면 됩니다. (예: 100만 원 수익을 위해 100주 보유 시, 매수가 + 10,000원에 매도)"
     }
   ];
 
@@ -139,11 +143,10 @@ export default function Page() {
         {/* H1 및 소개문 (검색엔진 최적화 및 사용자 안내) */}
         <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 mt-2">
           <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-            <span className="text-2xl">💰</span> 주식 수익률 계산기
+            <span className="text-2xl">💰</span> 주식 수익률 계산기 가이드
           </h1>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
-            매수가, 현재가, 보유 수량을 입력하면 주식 투자 수익금과 수익률을
-            자동으로 상세하게 계산할 수 있는 계산기입니다. 손쉬운 모의계산으로 투자 성과를 빠르고 직관적으로 확인해보세요.
+            JIKO 주식 수익률 계산기는 매수가, 현재가, 보유 수량을 기반으로 주식 투자의 총 수익금과 정확한 수익률을 한눈에 보여주는 도구입니다. 복잡한 계산 없이 나의 투자 성과를 직관적으로 파악하고, 목표 수익률에 도달하기 위한 매도 단가를 설정하는 등 체계적인 투자 포트폴리오 관리에 활용해 보세요.
           </p>
           <p className="text-xs mt-3 text-red-500/80 dark:text-red-400/80 font-medium bg-red-50/50 dark:bg-red-900/10 p-2.5 rounded-lg border border-red-100/50 dark:border-red-900/20 inline-block text-left">
             ※ 본 계산기는 참고용이며 투자 판단의 책임은 사용자에게 있습니다.
@@ -177,6 +180,39 @@ export default function Page() {
             </div>
           </section>
         </div>
+
+        {/* 3. 추가 카드 세션 (전체 폭 사용) */}
+        <section className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">
+                🎯 성공적인 주식 투자를 위한 수익률 관리의 핵심
+            </h2>
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6 font-medium">
+                초보 투자자들이 흔히 겪는 실수 중 하나는 '수익금'의 절대 액수만 보고 '수익률'의 중요성을 간과하는 것입니다. 지속적인 복리 수익을 올리기 위해서는 객관적인 퍼센티지(%) 지표 관리가 필수적입니다.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                <div className="space-y-3">
+                    <h3 className="font-bold text-blue-600 flex items-center gap-1">
+                        <span className="w-1 h-3 bg-blue-600 rounded-full" /> 손익비 (Risk/Reward) 설정
+                    </h3>
+                    <ul className="list-disc list-inside text-gray-500 space-y-1">
+                        <li>진입 전 <strong>목표 수익률과 허용 손실률</strong>을 미리 정하세요.</li>
+                        <li>예: 손절은 -5%에서 짧게, 익절은 +10% 이상에서 길게.</li>
+                        <li>단순히 오르길 기도하기보다 철저한 기준 매매가 중요합니다.</li>
+                    </ul>
+                </div>
+                <div className="space-y-3">
+                    <h3 className="font-bold text-red-600 flex items-center gap-1">
+                        <span className="w-1 h-3 bg-red-600 rounded-full" /> 손실 복구의 수학적 진실
+                    </h3>
+                    <ul className="list-disc list-inside text-gray-500 space-y-1">
+                        <li>-50% 손실이 발생하면, 본전을 위해선 +100% 수익이 필요합니다.</li>
+                        <li>손실률이 커질수록 <strong>복구를 위한 요구 수익률은 기하급수적</strong>으로 늘어납니다.</li>
+                        <li>수익률 관리는 곧 철저한 리스크 방어에서 시작됩니다.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
         {/* FAQ */}
         <FAQ faqList={faqList} />

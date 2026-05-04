@@ -372,26 +372,6 @@ export default function Calorie() {
                             />
                         </div>
                     )}
-                    <section className="p-8 bg-gray-50 dark:bg-gray-800/50 rounded-[32px] border border-gray-100 dark:border-gray-700">
-                        <h4 className="font-black text-gray-800 dark:text-white mb-6 flex items-center gap-3">
-                            <span className="text-2xl">🥗</span> WHO 권장 올바른 식생활 지침
-                        </h4>
-                        <ul className="space-y-4">
-                            {[
-                                ["나트륨 섭취 줄이기", "하루 5g(소금 1큰술) 미만 섭취 권장"],
-                                ["채소와 과일", "하루 400g 이상 다양한 색상의 채소 섭취"],
-                                ["적정 당분", "총 에너지 섭취량의 10% 미만으로 당분 제한"],
-                                ["규칙적인 식사", "폭식을 피하고 일정한 시간에 정량 식사"]
-                            ].map(([title, desc], i) => (
-                                <li key={i} className="flex items-start gap-4">
-                                    <div className="w-6 h-6 rounded-full bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 flex items-center justify-center text-[10px] font-black shrink-0">✓</div>
-                                    <div className="text-sm">
-                                        <strong className="text-gray-800 dark:text-gray-100">{title} :</strong> <span className="text-gray-500 dark:text-gray-400">{desc}</span>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    </section>
                 </div>
             </div>
         </div>

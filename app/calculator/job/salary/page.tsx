@@ -83,7 +83,7 @@ export default function Page() {
             <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                        <span className="text-2xl">💸</span> 연봉/월급 계산기 및 차이점 안내
+                        <span className="text-2xl">💸</span> 연봉/월급 계산기 가이드
                     </h1>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
                         2025년도의 최신 4대보험 요율과 간이세액표를 적용하여 연봉(또는 월급)에 따른 정확한 세금, 공제액, 그리고 최종적으로 내가 받게 될 <strong>매월 실수령액</strong>을 계산해드립니다.
@@ -117,6 +117,31 @@ export default function Page() {
                                 <p className="font-bold text-gray-700 dark:text-gray-200">월 실수령액: 약 4,142,000원</p>
                             </div>
                         </div>
+                    </section>
+                </div>
+
+                {/* 1.8 추가 카드 세션 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 font-medium">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-purple-500">📌</span> 비과세 수당의 중요성
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc ml-5">
+                            <li>식대(월 20만원 한도), 자가운전보조금(월 20만원 한도) 등은 세금과 4대보험료가 면제됩니다.</li>
+                            <li>연봉이 같더라도 비과세 수당의 비중이 높을수록 실수령액이 증가합니다.</li>
+                            <li>계약서 작성 시 비과세 항목이 어떻게 구성되어 있는지 꼭 확인하세요.</li>
+                        </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 font-medium">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-orange-500">🎯</span> 연봉협상 꿀팁
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc ml-5">
+                            <li>퇴직금 포함 여부를 반드시 확인하세요. 연봉 1/13을 퇴직금으로 빼는 곳도 있습니다.</li>
+                            <li>포괄임금제인지 확인하여 야간/휴일/연장 근로 수당이 연봉에 포함되어 있는지 체크하세요.</li>
+                            <li>성과급(인센티브)이 고정인지 변동인지 조건부인지 명확히 물어보세요.</li>
+                        </ul>
                     </section>
                 </div>
 

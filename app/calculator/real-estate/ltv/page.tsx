@@ -93,17 +93,48 @@ export default function LtvPage() {
                 {/* [공통 카드세션] 1.6 메뉴 설명 */}
                 <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 mt-4 animate-fade-slide-up">
                     <h2 className="text-xl font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2 tracking-tight">
-                        <span className="w-2 h-6 bg-blue-600 rounded-full"></span>
-                        LTV 규제 및 한도 가이드
+                        🏠LTV 계산기 가이드
                     </h2>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
                         <b>LTV(Loan to Value Ratio)</b>는 담보인정비율로, 주택의 가치 대비 대출 가능한 최대 금액의 비율을 의미합니다. 
                         JIKO LTV 계산기는 최신 규제 지역 정보, 생애최초 혜택, 방공제(소액임차보증금) 차감액까지 완벽하게 반영하여 실제 수령 가능한 대출 한도를 정밀하게 산출해 드립니다.
                     </p>
+                    <p className="text-xs mt-3 text-red-500/80 dark:text-red-400/80 font-medium bg-red-50/50 dark:bg-red-900/10 p-2.5 rounded-lg border border-red-100/50 dark:border-red-900/20 inline-block text-left">
+                        ※ 본 계산기는 참고용이며 투자 판단의 책임은 사용자에게 있습니다.
+                    </p>
                 </section>
 
                 {/* [공통 카드세션] 1.7 사용 방법 & 계산 예시 (2단 그리드) */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 animate-fade-slide-up">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+                            <span className="text-blue-500">💡</span> 사용 방법
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc list-inside">
+                            <li>구입하고자 하는 주택의 <strong>담보 가치(주로 KB시세나 매매가)</strong>를 입력합니다.</li>
+                            <li>해당 주택이 위치한 <strong>지역(비규제/규제)</strong>을 선택합니다.</li>
+                            <li>본인이 <strong>생애최초 주택구입자</strong>에 해당하는지 선택합니다.</li>
+                            <li><strong>방공제(소액임차보증금)</strong> 지역을 선택하면 실제 수령 한도가 차감되어 산출됩니다.</li>
+                        </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 animate-fade-slide-up">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+                            <span className="text-green-500">📊</span> 계산 예시
+                        </h2>
+                        <div className="text-sm text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-700/50 p-4 rounded-xl space-y-1 pointer-events-none">
+                            <p>주택 가치 : <strong>5억 원 (비규제 지역)</strong></p>
+                            <p>기본 LTV 적용 (70%) : <strong>3.5억 원</strong></p>
+                            <p>방공제 차감 (수도권) : <strong>- 4,800만 원</strong></p>
+                            <p className="border-t border-gray-200 dark:border-gray-600 pt-1 mt-1 text-red-500 font-bold">
+                                최종 대출 한도 : 3억 200만 원
+                            </p>
+                        </div>
+                    </section>
+                </div>
+
+                {/* [공통 카드세션] 1.8 추가 카드 세션 (2단 그리드) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <section className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 animate-fade-slide-up">
                         <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
                             <span className="text-amber-500">💡</span> 지역별 LTV 기준

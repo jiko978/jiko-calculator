@@ -93,7 +93,7 @@ export default function SavingsPage() {
                 {/* 메뉴 설명 */}
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                        <span className="text-2xl">💰</span> 적금 이자 계산기
+                        <span className="text-2xl">💰</span> 적금 이자 계산기 가이드
                     </h1>
                     <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                         매월 일정액을 납입하는 정기적금의 만기 수령액을 계산합니다. 적금은 납입 시점마다 남은 기간에 따라 이자가 다르게 적용되므로, 본 계산기로 정확한 세후 금액을 미리 파악하세요.
@@ -128,6 +128,29 @@ export default function SavingsPage() {
                             <p>• 이자 과세(15.4%) : 50,050원</p>
                             <p className="mt-2 font-bold text-green-600 dark:text-green-400">만기 수령액 : 12,274,950원</p>
                         </div>
+                    </section>
+                </div>
+
+                {/* 1.8 추가 카드 세션 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-purple-500">📌</span> 자유적금 vs 정기적금
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc ml-5">
+                            <li><strong>정기적금</strong>은 매달 정해진 날짜에 정해진 금액을 필수로 납입해야 하며, 금리가 상대적으로 높습니다.</li>
+                            <li><strong>자유적금</strong>은 여유 자금이 생길 때마다 자유롭게 납입할 수 있지만, 기본 금리가 정기적금보다 낮을 수 있습니다. 본인의 현금 흐름에 맞게 선택하세요.</li>
+                        </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-orange-500">🎯</span> 풍차돌리기 재테크
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc ml-5">
+                            <li>매월 1년 만기 적금을 새로 가입하여, 1년 뒤부터 매월 만기가 돌아오게 만드는 저축 방법입니다.</li>
+                            <li>급전이 필요할 때 적금 전체를 해지하지 않고 일부 만기액만 사용할 수 있어 유동성 확보와 저축 습관 형성에 유리합니다.</li>
+                        </ul>
                     </section>
                 </div>
 

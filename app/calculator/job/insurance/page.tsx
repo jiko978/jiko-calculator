@@ -92,17 +92,48 @@ export default function InsurancePage() {
             <NavBar title="4대보험 계산기" description="내 연봉/월급에서 빠져나가는 4대보험! 근로자와 회사가 각각 얼마씩 내는지 정확한 비율과 금액을 차트로 직관적으로 확인하세요." position="top" />
             <Insurance />
 
-            <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">
+            <main className="max-w-3xl mx-auto px-4 pb-16 space-y-4 pt-2">
+                {/* 1.6 4대보험 기본 안내 */}
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                        <span className="text-2xl">🛡️</span> 4대보험 계산기 및 분담 비율 안내
+                        <span className="text-2xl">🛡️</span> 4대보험 계산기 가이드
                     </h1>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
-                        2026년도 최신 기준을 적용하여, 내 급여에서 빠져나가는 4대보험 공제액과 회사가 나를 위해 <strong>추가 납부해 주는 비용</strong>이 각각 얼마인지 비율과 함께 투명하게 분석해 드립니다.
+                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                        2025/2026년 최신 기준을 적용하여, 내 급여에서 빠져나가는 4대보험 공제액과 회사가 나를 위해 <strong>추가 납부해 주는 비용</strong>이 각각 얼마인지 비율과 함께 투명하게 분석해 드립니다.
                     </p>
                 </section>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* 1.7 사용 방법 / 계산 예시 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-blue-500">📖</span> 사용 방법
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc list-inside">
+                            <li>본인의 <strong>세전 월급 또는 연봉</strong>을 입력합니다.</li>
+                            <li>식대, 보육수당 등 <strong>비과세액</strong>이 있다면 입력합니다.</li>
+                            <li>회사의 <strong>근로자 수</strong>를 선택합니다. (고용보험료 영향)</li>
+                            <li><strong>[계산하기]</strong>를 누르면 근로자/사업주 부담금을 확인합니다.</li>
+                        </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-amber-500">📝</span> 계산 예시
+                        </h2>
+                        <div className="text-sm text-gray-600 dark:text-gray-300 bg-amber-50 dark:bg-amber-900/20 p-4 rounded-xl space-y-2">
+                            <p className="font-bold text-amber-700 dark:text-amber-300">"월급 300만 원, 비과세 식대 20만 원"</p>
+                            <ul className="list-disc list-inside space-y-1">
+                                <li><strong>과세 대상 금액 :</strong> 280만 원</li>
+                                <li><strong>근로자 부담금 :</strong> 약 263,480원 (월급에서 공제)</li>
+                                <li className="font-bold text-blue-600 dark:text-blue-400">내 예상 실수령액 : 2,736,520원</li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+
+                {/* 1.8 추가 특징 및 정보 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 font-medium">
                         <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
                             <span className="text-blue-500">💡</span> 4대보험, 누가 부담하나요?

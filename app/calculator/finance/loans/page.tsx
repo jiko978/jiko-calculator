@@ -93,7 +93,7 @@ export default function LoansPage() {
                 {/* 메뉴 설명 */}
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                        <span className="text-2xl">📊</span> 대출 이자 계산기
+                        <span className="text-2xl">📊</span> 대출 이자 계산기 가이드
                     </h1>
                     <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                         주택담보대출·신용대출 등 다양한 대출 상품의 월 상환액과 총 이자를 계산합니다. 원리금균등·원금균등·만기일시 상환 방식과 거치 기간 설정을 지원하여 최적의 상환 플랜을 설계할 수 있습니다.

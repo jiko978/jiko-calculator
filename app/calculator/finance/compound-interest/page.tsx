@@ -96,12 +96,15 @@ export default function CompoundInterestPage() {
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
                         복리는 원금에만 이자가 붙는 단리와 달리 '원금+발생한 이자'에 또다시 이자가 붙는 마법 같은 방식입니다. JIKO 복리 계산기는 <b>미래가치, 필요기간, 필요수익률, 월 적립액</b>을 모두 역산할 수 있는 4-in-1 통합 환경을 제공합니다.
                     </p>
+                    <p className="text-xs mt-3 text-red-500/80 dark:text-red-400/80 font-medium bg-red-50/50 dark:bg-red-900/10 p-2.5 rounded-lg border border-red-100/50 dark:border-red-900/20 inline-block">
+                        ※ 본 계산기는 참고용이며 투자 판단의 책임은 사용자에게 있습니다.
+                    </p>
                 </section>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                         <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                            <span className="text-blue-500">💡</span> 모드별 똑똑한 사용 방법
+                            <span className="text-blue-500">💡</span> 사용 방법 (모드별)
                         </h2>
                         <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc list-inside">
                             <li><strong>미래 가치 계산 :</strong> 내 투자 습관을 유지했을 때 노후 자산이 얼마나 될지 시뮬레이션 하세요.</li>
@@ -109,6 +112,21 @@ export default function CompoundInterestPage() {
                             <li><strong>목표 수익률 계산 :</strong> 내 목표가 현실적인지 점검하고, 필요한 투자 상품(주식, ETF 등) 기준을 세워보세요.</li>
                             <li><strong>필요 월적립액 계산 :</strong> 5년 뒤 1억 모으기 등 확실한 재무 목표를 위한 강제 저축액을 산출하세요.</li>
                         </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-emerald-500">📊</span> 계산 예시
+                        </h2>
+                        <div className="text-sm text-gray-600 dark:text-gray-300 bg-emerald-50 dark:bg-emerald-900/10 p-4 rounded-xl space-y-2">
+                            <p className="font-bold text-emerald-800 dark:text-emerald-400">"초기 1천만원, 월 50만원, 20년 투자 (연 10%)"</p>
+                            <ul className="list-disc list-inside space-y-1">
+                                <li><strong>총 투자 원금 :</strong> 1억 3,000만 원</li>
+                                <li><strong>20년 후 최종 자산 :</strong> 약 4억 4,700만 원</li>
+                                <li className="font-bold text-blue-600 dark:text-blue-400">결과 : 원금의 3배가 넘는 자산 형성!</li>
+                            </ul>
+                            <p className="text-xs text-gray-500 mt-2">* 발생한 수익(약 3.1억)이 순수 투자원금보다 훨씬 큽니다.</p>
+                        </div>
                     </section>
 
                     <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
@@ -127,26 +145,12 @@ export default function CompoundInterestPage() {
                             <span className="text-amber-500">⚖️</span> 복리 vs 단리, 차이점 비교
                         </h2>
                         <div className="text-sm text-gray-600 dark:text-gray-300 space-y-3">
-                            <p><strong>단리 (Simple Interest)</strong><br/>원금에 대해서만 이자가 붙는 방식입니다. 자산이 정비례 직선(Linear) 형태로 천천히 상승합니다.</p>
+                            <p><li><strong>단리 (Simple Interest)</strong></li><br/>원금에 대해서만 이자가 붙는 방식입니다. 자산이 정비례 직선(Linear) 형태로 천천히 상승합니다.</p>
                             <div className="w-full h-px bg-gray-100 dark:bg-gray-700 my-2"></div>
-                            <p><strong>복리 (Compound Interest)</strong><br/>원금과 이자가 합쳐진 금액에 다시 이자가 붙습니다. 시간이 지날수록 자산이 눈덩이처럼 기하급수적(Exponential)으로 불어납니다. 장기 투자일수록 효과가 극대화됩니다.</p>
+                            <p><li><strong>복리 (Compound Interest)</strong></li><br/>원금과 이자가 합쳐진 금액에 다시 이자가 붙습니다. 시간이 지날수록 자산이 눈덩이처럼 기하급수적(Exponential)으로 불어납니다. 장기 투자일수록 효과가 극대화됩니다.</p>
                         </div>
                     </section>
 
-                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                            <span className="text-emerald-500">📊</span> 복리 계산 예시 시나리오
-                        </h2>
-                        <div className="text-sm text-gray-600 dark:text-gray-300 bg-emerald-50 dark:bg-emerald-900/10 p-4 rounded-xl space-y-2">
-                            <p className="font-bold text-emerald-800 dark:text-emerald-400">"초기 1천만원, 월 50만원, 20년 투자 (연 10%)"</p>
-                            <ul className="list-disc list-inside space-y-1">
-                                <li><strong>총 투자 원금 :</strong> 1억 3,000만 원</li>
-                                <li><strong>20년 후 최종 자산 :</strong> 약 4억 4,700만 원</li>
-                                <li className="font-bold text-blue-600 dark:text-blue-400">결과 : 원금의 3배가 넘는 자산 형성!</li>
-                            </ul>
-                            <p className="text-xs text-gray-500 mt-2">* 발생한 수익(약 3.1억)이 순수 투자원금보다 훨씬 큽니다.</p>
-                        </div>
-                    </section>
                 </div>
 
                 <FAQ faqList={faqList} />

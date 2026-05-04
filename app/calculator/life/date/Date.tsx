@@ -138,7 +138,7 @@ const DateCalculator = () => {
     };
 
     return (
-        <div className="bg-gray-50 dark:bg-gray-900 min-h-screen border-t border-gray-100 dark:border-gray-800">
+        <div className="bg-gray-50 dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
             <div className={`max-w-3xl mx-auto px-4 py-8 pb-safe ${ANIMATION.pageEnter ? "animate-fade-in" : ""}`}>
                 
                 <div className="flex flex-col items-center gap-3 mb-8">
@@ -254,31 +254,7 @@ const DateCalculator = () => {
                     </div>
                 )}
 
-                {/* 하단 상세 가이드 카드 (상시 노출) */}
-                <div className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700 mt-4">
-                    <h3 className="text-lg font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                        <span className="w-2 h-6 bg-blue-600 rounded-full"></span>
-                        날짜 계산 상식 가이드
-                    </h3>
-                    <div className="space-y-6">
-                        <div className="p-5 bg-gray-50 dark:bg-gray-900/50 rounded-2xl border border-gray-100 dark:border-gray-700/50">
-                            <p className="text-sm font-black text-blue-600 dark:text-blue-400 mb-2">⚖️ 초일불산입 원칙이란?</p>
-                            <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed font-medium">
-                                민법 제157조에 따르면 기간을 일, 주, 월 또는 연으로 정한 때에는 기간의 초일은 산입하지 않는 것이 원칙입니다. 하지만 나이 계산이나 특별한 약정이 있는 경우에는 첫날을 포함하기도 합니다.
-                            </p>
-                        </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
-                            <div className="p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm">
-                                <p className="text-[11px] font-black text-gray-400 mb-1">D-Day 계산</p>
-                                <p className="text-xs font-bold text-gray-700 dark:text-gray-200 leading-relaxed">목표일 자체를 0으로 보고, 하루가 지날 때마다 숫자가 올라가는 방식입니다. (예: 수능 D-Day)</p>
-                            </div>
-                            <div className="p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm">
-                                <p className="text-[11px] font-black text-gray-400 mb-1">일수/주수 계산</p>
-                                <p className="text-xs font-bold text-gray-700 dark:text-gray-200 leading-relaxed">만난 날을 1일로 치는 커플 기념일이나 아기의 생후 개월수는 '시작일 포함' 방식이 표준입니다.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
 
             </div>
         </div>

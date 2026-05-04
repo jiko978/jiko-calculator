@@ -130,6 +130,29 @@ export default function PrepaymentPage() {
                     </section>
                 </div>
 
+                {/* 1.8 추가 카드 세션 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-purple-500">📌</span> 면제 비율 확인하기
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc ml-5">
+                            <li>대출 상품에 따라 매년 대출 원금의 10% 이내 상환 시 수수료를 면제해 주는 옵션이 있을 수 있습니다.</li>
+                            <li>소액의 여유 자금이 생겼다면, 이 면제 한도 내에서 상환하여 수수료 없이 원금을 줄이는 것이 가장 좋습니다.</li>
+                        </ul>
+                    </section>
+
+                    <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+                            <span className="text-orange-500">🎯</span> 대환대출(갈아타기) 주의사항
+                        </h2>
+                        <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 list-disc ml-5">
+                            <li>금리가 더 낮은 대출로 갈아타기 위해 기존 대출을 상환할 때도 중도상환수수료가 발생합니다.</li>
+                            <li>금리 인하로 인한 이자 절감액이 대환에 드는 중도상환수수료, 인지세 등 부대비용보다 큰지 반드시 계산해 보세요.</li>
+                        </ul>
+                    </section>
+                </div>
+
                 <FAQ faqList={faqList} />
                 <FinanceMoreCalculators />
                 <InstallBanner />

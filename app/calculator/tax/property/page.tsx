@@ -85,7 +85,7 @@ export default function PropertyTaxPage() {
       <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6 mt-8">
         <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
           <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-            <span className="text-2xl">📋</span> 재산세 산출 방식 안내
+            <span className="text-2xl">📋</span> 재산세 계산기 가이드
           </h1>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm mb-4">
             <strong>기본 체계</strong> : 재산세는 매년 당해 부동산의 공시가격(시가표준액)에 <strong>공정시장가액비율(명목상 주택 60%, 토지/상가 70%)</strong>을 곱하여 나온 '과세표준' 금액을 바탕으로 구간별 0.1% ~ 0.4% 의 누진 세율체계로 부과됩니다.
@@ -122,6 +122,33 @@ export default function PropertyTaxPage() {
                 <p className="text-gray-400 mb-1">공시가격 5억 아파트 (2주택자 단독명의)</p>
                 <p className="font-bold text-gray-700 dark:text-gray-200">결과 : 표준비율(60%) 과표 3.0억 반영 → 재산세(약 57만) + 과표증가에 따른 부가세 합계 급증 = 약 110만원 부과</p>
               </div>
+            </div>
+          </section>
+        </div>
+
+        {/* 3. 추가 카드 세션 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+            <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+              <span className="text-rose-500">📆</span> 과세기준일 (6월 1일)
+            </h2>
+            <div className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+              <p>재산세는 매년 <strong>6월 1일 현재</strong> 부동산을 실소유하고 있는 사람에게 1년 치가 모두 부과됩니다.</p>
+              <p className="bg-rose-50 dark:bg-rose-900/10 p-3 rounded-xl text-rose-700 dark:text-rose-300">
+                부동산 매매 시 잔금 지급일이 6월 1일 이전인지 이후인지에 따라 납세 의무자가 완전히 달라집니다.
+              </p>
+            </div>
+          </section>
+
+          <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+            <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+              <span className="text-indigo-500">💳</span> 재산세 분할 납부
+            </h2>
+            <div className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+              <p>재산세 납부 세액이 250만 원을 초과한다면 분할 납부 제도를 이용할 수 있습니다.</p>
+              <p className="bg-indigo-50 dark:bg-indigo-900/10 p-3 rounded-xl text-indigo-700 dark:text-indigo-300">
+                납부 기한이 지난 날부터 <strong>2개월 이내에 세액의 일부를 분납</strong>하여 목돈 부담을 줄여보세요.
+              </p>
             </div>
           </section>
         </div>

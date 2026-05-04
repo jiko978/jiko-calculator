@@ -141,7 +141,7 @@ const DDayCalculator = () => {
     };
 
     return (
-        <div className="bg-gray-50 dark:bg-gray-900 min-h-screen border-t border-gray-100 dark:border-gray-800">
+        <div className="bg-gray-50 dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
             <div className={`max-w-3xl mx-auto px-4 py-8 pb-safe ${ANIMATION.pageEnter ? "animate-fade-in" : ""}`}>
 
                 <div className="flex flex-col items-center gap-3 mb-8">
@@ -261,23 +261,7 @@ const DDayCalculator = () => {
                     </div>
                 )}
 
-                {/* 하단 가이드 (상시 노출) */}
-                <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 mt-4">
-                    <h3 className="text-lg font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                        <span className="w-2 h-6 bg-pink-500 rounded-full"></span>
-                        디데이 계산 팁
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="p-5 bg-gray-50 dark:bg-gray-900/50 rounded-2xl border border-gray-100 dark:border-gray-700/50">
-                            <p className="text-sm font-black text-pink-600 dark:text-pink-400 mb-2">💘 커플 기념일</p>
-                            <p className="text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-medium">연인과의 만남은 보통 '그날부터 1일'을 선호하지만, 순수한 디데이 형식은 기준일 다음 날을 1일로 계산합니다.</p>
-                        </div>
-                        <div className="p-5 bg-gray-50 dark:bg-gray-900/50 rounded-2xl border border-gray-100 dark:border-gray-700/50">
-                            <p className="text-sm font-black text-blue-600 dark:text-blue-400 mb-2">🎓 시험 D-Day</p>
-                            <p className="text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-medium">수업, 시험 등 중요한 날은 목표일 자체를 0으로 봅니다. 목표일이 지나면 D+1 형식으로 자동 전환됩니다.</p>
-                        </div>
-                    </div>
-                </div>
+
 
             </div>
         </div>

@@ -66,6 +66,14 @@ const faqJsonLd = {
                 text: "국내 주식의 경우 일반적인 배당소득세율은 15.4%(소득세 14% + 지방소득세 1.4%)입니다.",
             },
         },
+        {
+            "@type": "Question",
+            name: "배당락일이 무엇인가요?",
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: "배당받을 권리가 없어지는 날입니다. 배당을 받기 위해서는 반드시 배당락일 전날(배당기준일 2거래일 전)까지 주식을 매수하여 보유하고 있어야 합니다.",
+            },
+        },
     ],
 };
 
@@ -94,6 +102,10 @@ export default function Page() {
         {
             question: "배당소득세는 얼마인가요?",
             answer: "국내 주식의 경우 일반적인 배당소득세율은 15.4%(소득세 14% + 지방소득세 1.4%)입니다."
+        },
+        {
+            question: "배당락일이 무엇인가요?",
+            answer: "배당받을 권리가 없어지는 날입니다. 배당을 받기 위해서는 반드시 배당락일 전날(배당기준일 2거래일 전)까지 주식을 매수하여 보유하고 있어야 합니다."
         }
     ];
 
@@ -125,7 +137,7 @@ export default function Page() {
                 {/* [공통 카드세션] 1. 메뉴 설명 */}
                 <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
                     <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-                        <span className="text-2xl">💰</span> 주식 배당금 계산기
+                        <span className="text-2xl">💰</span> 주식 배당금 계산기 가이드
                     </h2>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
                         내가 보유한 주식의 배당금과 배당 수익률을 정확하게 시뮬레이션 해볼 수 있는 계산기입니다. 
@@ -165,9 +177,6 @@ export default function Page() {
                         </div>
                     </section>
                 </div>
-
-                {/* [공통 카드세션] 4. FAQ */}
-                <FAQ faqList={faqList} />
 
                 {/* [개별 카드세션] 1. 투자 가이드 섹션 */}
                 <section className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
@@ -241,6 +250,9 @@ export default function Page() {
                     </p>
                 </section>
 
+                {/* [공통 카드세션] 4. FAQ */}
+                <FAQ faqList={faqList} />
+                
                 {/* 주식 계산기 더 보기 */}
                 <StockMoreCalculators />
                 <InstallBanner />

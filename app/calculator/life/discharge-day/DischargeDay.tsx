@@ -120,7 +120,7 @@ const DischargeDayCalculator = () => {
     };
 
     return (
-        <div className="bg-gray-50 dark:bg-gray-900 min-h-screen border-t border-gray-100 dark:border-gray-800">
+        <div className="bg-gray-50 dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
             <div className={`max-w-3xl mx-auto px-4 py-8 pb-safe ${ANIMATION.pageEnter ? "animate-fade-in" : ""}`}>
 
                 <div className="flex flex-col items-center gap-3 mb-8">
@@ -226,23 +226,7 @@ const DischargeDayCalculator = () => {
                     </div>
                 )}
 
-                {/* 하단 가이드 (상시 노출) */}
-                <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 mt-4">
-                    <h3 className="text-lg font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                        <span className="w-2 h-6 bg-blue-600 rounded-full"></span>
-                        군 복무 및 전역 상식
-                    </h3>
-                    <div className="space-y-4">
-                        <div className="p-5 bg-gray-50 dark:bg-gray-900/50 rounded-2xl border border-gray-100 dark:border-gray-700/50">
-                            <p className="text-sm font-black text-gray-800 dark:text-gray-200 mb-1.5 leading-relaxed">💡 전역일 계산 기준</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-medium">군별 복무 기간에 따라 '입대일 시점 + N개월 - 1일'을 전역일로 봅니다.</p>
-                        </div>
-                        <div className="p-5 bg-gray-50 dark:bg-gray-900/50 rounded-2xl border border-gray-100 dark:border-gray-700/50">
-                            <p className="text-sm font-black text-gray-800 dark:text-gray-200 mb-1.5 leading-relaxed">🗓️ 진급일 예측</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-medium">부대 상황에 따라 다를 수 있으며 시점 파악을 위한 참고용 데이터입니다.</p>
-                        </div>
-                    </div>
-                </div>
+
 
             </div>
         </div>

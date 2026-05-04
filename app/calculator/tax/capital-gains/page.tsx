@@ -83,7 +83,7 @@ export default function CapitalGainsPage() {
       <main className="max-w-3xl mx-auto px-4 pb-16 space-y-6">
         <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
           <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
-            <span className="text-2xl">🏠</span> 양도소득세 특례 및 계산 안내
+            <span className="text-2xl">🏠</span> 양도소득세 계산기 가이드
           </h1>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm mb-4">
             <strong>1세대 1주택 비과세</strong> : 실거래가 12억 원 이하의 1주택(2년 보유, 조정대상지역의 경우 2년 거주 요건 충족)을 양도할 경우 양도세를 납부하지 않습니다. 12억 초과분은 비율에 따라 과세됩니다.
@@ -126,6 +126,33 @@ export default function CapitalGainsPage() {
                 <p className="text-gray-400 mb-1">기본공제(연 250만원)</p>
                 <p className="font-bold text-gray-700 dark:text-gray-200">1년에 한 번, 먼저 신고하는 자산에 한해 양도소득금액에서 250만원이 자동 공제됩니다.</p>
               </div>
+            </div>
+          </section>
+        </div>
+
+        {/* 3. 추가 카드 세션 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+            <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+              <span className="text-blue-500">🏠</span> 1세대 1주택 비과세 요건
+            </h2>
+            <div className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+              <p>1세대가 국내에 1주택을 보유하고 <strong>2년 이상 보유</strong>한 경우 비과세 혜택을 받습니다.</p>
+              <p className="bg-blue-50 dark:bg-blue-900/10 p-3 rounded-xl text-blue-700 dark:text-blue-300">
+                조정대상지역 내 주택이라면 2년 거주 요건이 추가되며, 실거래가 12억 원 초과분은 과세됩니다.
+              </p>
+            </div>
+          </section>
+
+          <section className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+            <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
+              <span className="text-green-500">📉</span> 장기보유 특별공제
+            </h2>
+            <div className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+              <p>보유 기간이 3년 이상인 부동산에 대해 물가 상승을 반영하여 양도차익의 일부를 공제합니다.</p>
+              <p className="bg-green-50 dark:bg-green-900/10 p-3 rounded-xl text-green-700 dark:text-green-300">
+                1세대 1주택자의 경우 <strong>보유 및 거주 기간에 따라 최대 80%</strong>까지 세액을 획기적으로 줄일 수 있습니다.
+              </p>
             </div>
           </section>
         </div>
