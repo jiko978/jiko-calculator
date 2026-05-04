@@ -5,9 +5,9 @@ import InstallBanner from "@/app/calculator/components/InstallBanner";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 
 export const metadata: Metadata = {
-    title: "금융 계산기 | 대출 이자, 예금 이자, 적금 이자, 복리, 중도상환수수료 계산기 - JIKO 계산기",
-    description: "대출 이자, 예금 이자, 적금 이자, 중도상환수수료를 쉽게 계산할 수 있는 금융 계산기입니다. 이자와 상환 금액을 빠르게 확인하고 금융 계획을 세워보세요.",
-    keywords: ["금융 계산기", "대출 이자 계산기", "예금 이자 계산기", "적금 이자 계산기", "복리 계산기", "중도상환수수료 계산기"],
+    title: "금융 계산기 | 퍼센트, 대출 이자, 예금 이자, 적금 이자, 복리, 중도상환수수료 계산기 - JIKO 계산기",
+    description: "퍼센트, 대출 이자, 예금 이자, 적금 이자, 복리, 중도상환수수료를 쉽게 계산할 수 있는 금융 계산기입니다. 이자와 상환 금액을 빠르게 확인하고 금융 계획을 세워보세요.",
+    keywords: ["금융 계산기", "퍼센트 계산기", "대출 이자 계산기", "예금 이자 계산기", "적금 이자 계산기", "복리 계산기", "중도상환수수료 계산기"],
 };
 
 const BASE_URL = "https://jiko.kr";
@@ -58,6 +58,11 @@ const schema = {
 
 const financeCalculators = [
     {
+        title: "💯 퍼센트 계산기",
+        description: "비율, 할인율, 수익률 등을 다양한 모드로 실시간 연산합니다.",
+        href: "/calculator/finance/percentage",
+    },
+    {
         title: "📊 대출 이자 계산기",
         description: "원리금균등, 원금균등 등 상환 방식에 따른 월 납입액과 총 이자를 계산합니다.",
         href: "/calculator/finance/loans",
@@ -98,11 +103,11 @@ export default function FinanceHubPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="금융 계산기" description="대출 이자, 예금 이자, 적금 이자, 복리 계산기, 중도상환수수료 - JIKO 계산기" />
+            <NavBar title="금융 계산기" description="퍼센트, 대출 이자, 예금 이자, 적금 이자, 복리 계산기, 중도상환수수료 - JIKO 계산기" />
 
             <div className="flex-grow px-4 py-6">
                 <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">💵 금융 계산기 모음</h1>
-                <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">대출/예금/적금 이자, 복리, 중도상환수수료 계산기를 통해 간편하게 금융 계획을 세워보세요.</p>
+                <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">퍼센트, 대출/예금/적금 이자, 복리, 중도상환수수료 계산기를 통해 간편하게 금융 계획을 세워보세요.</p>
 
                 <div className="grid grid-cols-2 gap-4 w-full max-w-3xl mx-auto">
                     {financeCalculators.map((calc) => (
@@ -157,6 +162,20 @@ export default function FinanceHubPage() {
                                     <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">입력하신 모든 금융 정보는 서버에 저장되지 않고 브라우저 내에서만 처리됩니다.</p>
                                 </div>
                             </li>
+                            <li className="flex gap-3">
+                                <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center shrink-0 text-xl">💯</div>
+                                <div>
+                                    <p className="font-bold text-gray-800 dark:text-gray-200 mb-1 text-sm">다중 모드 실시간 연산</p>
+                                    <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">퍼센트 계산 등 여러 조건값을 한 화면에서 즉시 비교하고 결과를 확인할 수 있습니다.</p>
+                                </div>
+                            </li>
+                            <li className="flex gap-3">
+                                <div className="w-10 h-10 rounded-xl bg-rose-50 dark:bg-rose-900/30 flex items-center justify-center shrink-0 text-xl">⚡</div>
+                                <div>
+                                    <p className="font-bold text-gray-800 dark:text-gray-200 mb-1 text-sm">가장 빠른 피드백</p>
+                                    <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">복잡한 단계 없이 숫자만 입력하면 즉각적으로 결과를 도출하여 시간을 절약합니다.</p>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </section>
@@ -167,9 +186,10 @@ export default function FinanceHubPage() {
                         금융 계산기 소개
                     </h2>
                     <div className="space-y-4 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                        <p>• 금융 계산기는 대출, 예금, 적금처럼 일상에서 자주 접하는 금융 상품의 이자와 상환 금액을 쉽고 빠르게 계산할 수 있는 페이지입니다. 복잡한 금융 계산식을 직접 입력하지 않아도, 원하는 조건에 맞춰 예상 금액을 손쉽게 확인할 수 있습니다.</p>
-                        <p>• 대출 이자 계산기는 원금과 금리, 상환 기간에 따라 매달 부담해야 하는 금액과 총 이자를 확인하는 데 유용합니다. 예금과 적금 이자 계산기는 목돈 마련이나 자산 관리 계획을 세울 때 필요한 예상 수익을 비교하는 데 도움이 됩니다.</p>
-                        <p>• 금융 계산기는 단순한 숫자 계산을 넘어, 내 상황에 맞는 금융 계획을 세우는 데 필요한 정보를 제공합니다. 대출을 알아보는 사람부터 저축 목표를 설정하는 사람까지 누구나 편리하게 활용할 수 있습니다.</p>
+                        <p>• 금융 계산기는 대출, 예금, 적금 이자부터 일상생활에 필수적인 퍼센트 계산까지 누구나 쉽고 빠르게 계산할 수 있도록 돕는 통합 허브 페이지입니다. 복잡한 수식을 외우거나 엑셀을 켤 필요 없이 조건만 입력하면 정확한 금액과 비율을 즉시 확인합니다.</p>
+                        <p>• 퍼센트 계산기를 활용해 쇼핑 할인율, 투자 수익률, 세금 비중 등을 4가지 모드로 간편하게 산출할 수 있습니다.</p>
+                        <p>• 대출 이자 계산기는 원금과 금리, 상환 방식에 따른 월 납입액을 정밀 분석하며, 예적금 및 복리 계산기는 목돈 마련을 위한 미래 자산 가치를 시뮬레이션 해줍니다.</p>
+                        <p>• 단순한 숫자 계산을 넘어 시각화된 차트와 편리한 결과 공유 기능을 통해, 내 상황에 딱 맞는 금융 계획을 스마트하게 세워보세요.</p>
                     </div>
                 </section>
 
@@ -195,6 +215,14 @@ export default function FinanceHubPage() {
                             <span className="text-blue-600 dark:text-blue-400 shrink-0">✓</span>
                             <span>예금이나 적금의 실제 수익을 미리 계산하고 싶을 때</span>
                         </li>
+                        <li className="flex gap-3">
+                            <span className="text-blue-600 dark:text-blue-400 shrink-0">✓</span>
+                            <span>쇼핑 시 할인율이 적용된 최종 가격이나 부가세를 빠르게 알고 싶을 때</span>
+                        </li>
+                        <li className="flex gap-3">
+                            <span className="text-blue-600 dark:text-blue-400 shrink-0">✓</span>
+                            <span>주식, 코인 등 투자 자산의 목표 수익률이나 하락 시 손실 비율을 알아볼 때</span>
+                        </li>
                     </ul>
                 </section>
 
@@ -216,6 +244,10 @@ export default function FinanceHubPage() {
                             <p className="font-semibold text-gray-900 dark:text-white mb-2">Q. 입력한 금융 정보가 서버에 저장되나요?</p>
                             <p className="text-gray-600 dark:text-gray-300">A. 아니요, 개인정보 보호를 위해 입력하신 모든 데이터는 서버에 저장되지 않고 브라우저 내에서만 처리됩니다.</p>
                         </div>
+                        <div>
+                            <p className="font-semibold text-gray-900 dark:text-white mb-2">Q. 퍼센트 계산기에서 수수료나 세금도 같이 계산할 수 있나요?</p>
+                            <p className="text-gray-600 dark:text-gray-300">A. 네, 퍼센트 계산기의 '비율값' 모드를 활용하면 프리랜서 3.3% 세금, 주식 거래 수수료, 부동산 중개보수율 등 원하는 비율을 자유롭게 대입하여 손쉽게 정산 결과를 확인할 수 있습니다.</p>
+                        </div>
                     </div>
                 </section>
 
@@ -230,6 +262,9 @@ export default function FinanceHubPage() {
                 <section className="mt-8 max-w-3xl mx-auto text-center">
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">지금 바로 JIKO 금융 계산기를 이용해보세요!</h2>
                     <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                        <Link href="/calculator/finance/percentage" className="inline-flex items-center justify-center rounded-lg bg-emerald-500 px-4 py-3 text-xs sm:text-sm font-bold text-white hover:bg-emerald-600 transition">
+                            💯 퍼센트 계산하기 →
+                        </Link>
                         <Link href="/calculator/finance/loans" className="inline-flex items-center justify-center rounded-lg bg-emerald-500 px-4 py-3 text-xs sm:text-sm font-bold text-white hover:bg-emerald-600 transition">
                             📊 대출 이자 계산하기 →
                         </Link>

@@ -56,9 +56,9 @@ const schema = {
 const mainCalculators = [
   {
     title: "💵 금융 계산기",
-    description: "대출 이자, 예금 이자, 적금 이자, 복리, 중도상환수수료 계산기",
+    description: "퍼센트, 대출 이자, 예금 이자, 적금 이자, 복리, 중도상환수수료 계산기",
     href: "/calculator/finance",
-    intro: "대출 이자부터 예·적금 수익, 복리, 중도상환수수료까지, 복잡한 금융 계산을 쉽고 빠르게 확인하세요. 금리 변동에 따른 월 상환액과 만기 수령액을 실시간으로 비교해 현명한 금융 결정을 도와드립니다.",
+    intro: "퍼센트 계산부터 대출 이자, 예·적금 수익, 복리, 중도상환수수료까지, 복잡한 금융 계산을 쉽고 빠르게 확인하세요. 금리 변동에 따른 월 상환액과 만기 수령액을 실시간으로 비교해 현명한 금융 결정을 도와드립니다.",
     badge: "내 돈의 흐름을 한눈에",
   },
   {
@@ -137,7 +137,7 @@ const benefits = [
   {
     icon: "🆓",
     title: "완전 무료 · 가입 불필요",
-    desc: "회원가입 없이 누구나 36개의 계산기를 무료로 이용할 수 있습니다.",
+    desc: "회원가입 없이 누구나 37개의 계산기를 무료로 이용할 수 있습니다.",
     bgColor: "bg-red-50 dark:bg-red-900/20",
     borderColor: "border-red-100 dark:border-red-800",
   },
@@ -159,235 +159,235 @@ export default function Home() {
   ]);
 
   return (
-      <main className="bg-gray-50 dark:bg-gray-900 flex flex-col items-center justify-items-start min-h-screen">
-        <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
-        />
-        <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-        />
-        <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
+    <main className="bg-gray-50 dark:bg-gray-900 flex flex-col items-center justify-items-start min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
 
-        <div className="flex-grow px-4 py-6 w-full max-w-3xl mx-auto relative">
-          {/* 상단 타이틀 섹션 */}
-          <div className="relative mb-2">
-            <h1 className="text-3xl font-bold text-center text-gray-800 dark:text-gray-100">
-              <Link href="/calculator" className="hover:text-red-500 flex items-center justify-center gap-1">
-                <Image
-                    src="/icons/icon-512x512.png"
-                    alt="JIKO 계산기 로고"
-                    width={30}
-                    height={30}
-                    className="mr-3 items-center"
-                />
-                JIKO 계산기
-              </Link>
-            </h1>
-            {/* 공유 버튼 */}
-            <button
-                onClick={() => setShowShare(true)}
-                aria-label="공유"
-                className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md active:scale-95 transition-all text-gray-500 hover:text-blue-600"
+      <div className="flex-grow px-4 py-6 w-full max-w-3xl mx-auto relative">
+        {/* 상단 타이틀 섹션 */}
+        <div className="relative mb-2">
+          <h1 className="text-3xl font-bold text-center text-gray-800 dark:text-gray-100">
+            <Link href="/calculator" className="hover:text-red-500 flex items-center justify-center gap-1">
+              <Image
+                src="/icons/icon-512x512.png"
+                alt="JIKO 계산기 로고"
+                width={30}
+                height={30}
+                className="mr-3 items-center"
+              />
+              JIKO 계산기
+            </Link>
+          </h1>
+          {/* 공유 버튼 */}
+          <button
+            onClick={() => setShowShare(true)}
+            aria-label="공유"
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md active:scale-95 transition-all text-gray-500 hover:text-blue-600"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-5 h-5"
+              fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" strokeWidth={2}
             >
-              <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5"
-                  fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor" strokeWidth={2}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-              </svg>
-            </button>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+            </svg>
+          </button>
+        </div>
+        <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">
+          일상 속 복잡한 숫자를 가장 빠르고 정확하게! 마주하는 모든 계산을 한곳에서 만나보세요.
+        </p>
+        {/* ── CTA 배너 ── */}
+        <div className="mb-5 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-4 flex items-center justify-between shadow-md">
+          <div>
+            <p className="text-white font-black text-sm md:text-base leading-tight">어떤 계산이 필요하신가요?</p>
+            <p className="text-blue-100 text-xs mt-0.5">7가지 카테고리 · 37개 계산기가 무료로 제공됩니다. 지금 바로 계산해보세요. 복잡한 계산, JIKO가 대신합니다.</p>
           </div>
-          <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">
-            일상 속 복잡한 숫자를 가장 빠르고 정확하게! 마주하는 모든 계산을 한곳에서 만나보세요.
-          </p>
-          {/* ── CTA 배너 ── */}
+          <span className="text-white text-2xl select-none">👇</span>
+        </div>
+
+        {/* 메뉴 그리드 */}
+        <div className="grid grid-cols-2 gap-3 w-full md:gap-4">
+          {mainCalculators.map((calc) => {
+            const subMenus = calc.description.replace(" 계산기", "").split(", ");
+            const displayMenus = subMenus.slice(0, 3);
+            const moreCount = subMenus.length - 3;
+
+            return (
+              <Link
+                key={calc.href}
+                href={calc.href}
+                className="group block p-3 md:p-5 bg-white dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              >
+                <div className="flex items-center justify-start md:justify-center gap-2 md:gap-4 h-full pl-0.5 md:pl-0">
+                  {/* 좌측: 이모지 + 카테고리명 */}
+                  <div className="flex flex-col items-center shrink-0 min-w-[50px] md:min-w-[150px]">
+                    <span className="text-3xl md:text-4xl mb-1 drop-shadow-sm">{calc.title.split(" ")[0]}</span>
+                    <h3 className="text-[10px] md:text-[13px] font-black text-gray-900 dark:text-white transition-colors group-hover:text-blue-600 truncate">
+                      {calc.title.split(" ")[1]}
+                    </h3>
+                  </div>
+
+                  {/* 구분선 */}
+                  <div className="w-px h-10 md:h-12 bg-gray-100 dark:bg-gray-700 shrink-0" />
+
+                  {/* 우측: 주력 메뉴 3개 */}
+                  <div className="flex-grow min-w-0">
+                    <ul className="text-[9px] md:text-[11px] text-gray-500 dark:text-gray-400 font-medium leading-tight space-y-0.5 md:space-y-1">
+                      {displayMenus.map((menu) => (
+                        <li key={menu} className="truncate whitespace-nowrap">· {menu}</li>
+                      ))}
+                      {moreCount > 0 && (
+                        <li className="text-blue-600 dark:text-blue-400 font-bold opacity-90 mt-0.5">
+                          외 {moreCount}개
+                        </li>
+                      )}
+                    </ul>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* ── 카테고리 소개 카드 섹션 ── */}
+        <section className="mt-8">
           <div className="mb-5 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-4 flex items-center justify-between shadow-md">
             <div>
-              <p className="text-white font-black text-sm md:text-base leading-tight">어떤 계산이 필요하신가요?</p>
-              <p className="text-blue-100 text-xs mt-0.5">7가지 카테고리 · 36개 계산기가 무료로 제공됩니다. 지금 바로 계산해보세요. 복잡한 계산, JIKO가 대신합니다.</p>
+              <h2 className="text-white font-black text-sm md:text-base leading-tight">카테고리 소개</h2>
+              <p className="text-blue-100 text-xs mt-0.5">어떤 계산이 필요하신가요? 아래 카테고리에서 원하는 계산기를 선택해 보세요. 계산은 빠르게! 결정은 현명하게!</p>
             </div>
             <span className="text-white text-2xl select-none">👇</span>
           </div>
-
-          {/* 메뉴 그리드 */}
-          <div className="grid grid-cols-2 gap-3 w-full md:gap-4">
-            {mainCalculators.map((calc) => {
-              const subMenus = calc.description.replace(" 계산기", "").split(", ");
-              const displayMenus = subMenus.slice(0, 3);
-              const moreCount = subMenus.length - 3;
-
-              return (
-                  <Link
-                      key={calc.href}
-                      href={calc.href}
-                      className="group block p-3 md:p-5 bg-white dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-                  >
-                    <div className="flex items-center justify-start md:justify-center gap-2 md:gap-4 h-full pl-0.5 md:pl-0">
-                      {/* 좌측: 이모지 + 카테고리명 */}
-                      <div className="flex flex-col items-center shrink-0 min-w-[50px] md:min-w-[150px]">
-                        <span className="text-3xl md:text-4xl mb-1 drop-shadow-sm">{calc.title.split(" ")[0]}</span>
-                        <h3 className="text-[10px] md:text-[13px] font-black text-gray-900 dark:text-white transition-colors group-hover:text-blue-600 truncate">
-                          {calc.title.split(" ")[1]}
-                        </h3>
-                      </div>
-
-                      {/* 구분선 */}
-                      <div className="w-px h-10 md:h-12 bg-gray-100 dark:bg-gray-700 shrink-0" />
-
-                      {/* 우측: 주력 메뉴 3개 */}
-                      <div className="flex-grow min-w-0">
-                        <ul className="text-[9px] md:text-[11px] text-gray-500 dark:text-gray-400 font-medium leading-tight space-y-0.5 md:space-y-1">
-                          {displayMenus.map((menu) => (
-                              <li key={menu} className="truncate whitespace-nowrap">· {menu}</li>
-                          ))}
-                          {moreCount > 0 && (
-                              <li className="text-blue-600 dark:text-blue-400 font-bold opacity-90 mt-0.5">
-                                외 {moreCount}개
-                              </li>
-                          )}
-                        </ul>
-                      </div>
-                    </div>
-                  </Link>
-              );
-            })}
-          </div>
-
-          {/* ── 카테고리 소개 카드 섹션 ── */}
-          <section className="mt-8">
-            <div className="mb-5 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-4 flex items-center justify-between shadow-md">
-              <div>
-                <h2 className="text-white font-black text-sm md:text-base leading-tight">카테고리 소개</h2>
-                <p className="text-blue-100 text-xs mt-0.5">어떤 계산이 필요하신가요? 아래 카테고리에서 원하는 계산기를 선택해 보세요. 계산은 빠르게! 결정은 현명하게!</p>
-              </div>
-              <span className="text-white text-2xl select-none">👇</span>
-            </div>
-            <div className="flex flex-col gap-3">
-              {mainCalculators.map((calc) => (
-                  <Link
-                      key={calc.href + "-intro"}
-                      href={calc.href}
-                      className="group flex items-start gap-4 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm px-5 py-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
-                  >
-                    {/* 이모지 */}
-                    <span className="text-3xl shrink-0 mt-0.5">{calc.title.split(" ")[0]}</span>
-                    {/* 텍스트 */}
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-2 mb-1 flex-wrap">
-                        <h3 className="text-sm font-black text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors">
-                          {calc.title.split(" ").slice(1).join(" ")}
-                        </h3>
-                        <span className="text-[10px] font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-2 py-0.5 rounded-full whitespace-nowrap">
+          <div className="flex flex-col gap-3">
+            {mainCalculators.map((calc) => (
+              <Link
+                key={calc.href + "-intro"}
+                href={calc.href}
+                className="group flex items-start gap-4 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm px-5 py-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+              >
+                {/* 이모지 */}
+                <span className="text-3xl shrink-0 mt-0.5">{calc.title.split(" ")[0]}</span>
+                {/* 텍스트 */}
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                    <h3 className="text-sm font-black text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors">
+                      {calc.title.split(" ").slice(1).join(" ")}
+                    </h3>
+                    <span className="text-[10px] font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-2 py-0.5 rounded-full whitespace-nowrap">
                       {calc.badge}
                     </span>
-                      </div>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{calc.intro}</p>
-                    </div>
-                    {/* 화살표 */}
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-4 h-4 shrink-0 mt-1 text-gray-300 dark:text-gray-600 group-hover:text-blue-500 transition-colors"
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
-              ))}
-            </div>
-
-            {/* 소개 섹션 하단 CTA */}
-            <div className="mt-5 text-center">
-              <Link
-                  href="/calculator"
-                  className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 active:scale-95 transition-all text-white font-bold text-sm px-6 py-3 rounded-full shadow-md"
-              >
-                지금 바로 계산해보세요
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </div>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{calc.intro}</p>
+                </div>
+                {/* 화살표 */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4 shrink-0 mt-1 text-gray-300 dark:text-gray-600 group-hover:text-blue-500 transition-colors"
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
-            </div>
-          </section>
+            ))}
+          </div>
 
-          {/* ── JIKO 장점 섹션 (상하 재구성) ── */}
-          <section className="mt-8 bg-white dark:bg-gray-800 p-6 md:p-8 rounded-[32px] shadow-lg border border-gray-100 dark:border-gray-700 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/5 rounded-full -mr-24 -mt-24 blur-2xl" />
-            <div className="relative space-y-8">
-              <div className="rounded-3xl border border-blue-100 bg-blue-50/50 p-6 dark:border-blue-900/30 dark:bg-blue-950/40">
-                <span className="inline-flex items-center rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em]">
-                  JIKO 계산기의 장점
-                </span>
-                <h2 className="mt-4 text-3xl font-black text-gray-900 dark:text-white leading-tight">왜 JIKO 계산기인가요?</h2>
-                <p className="mt-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                  금융·직장·생활·건강·세금·주식·부동산에서 필요한 모든 계산기 36개를 한 곳에 모았습니다. 복잡한 수치를 보기 쉽게 정리해 빠르게 비교하고 더 현명한 결정을 내릴 수 있습니다.
-                </p>
-                <div className="mt-6 space-y-4">
-                  <div className="rounded-2xl bg-blue-50/50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-900/30 p-4 transition hover:shadow-md">
-                    <p className="text-sm font-bold text-blue-900 dark:text-blue-100 flex items-center gap-2">
-                      <span className="text-lg">⚡</span> 빠르고 직관적인 계산 화면
-                    </p>
-                    <p className="mt-1 text-xs text-blue-700/70 dark:text-blue-300/70 leading-relaxed pl-7">입력 즉시 결과가 바뀌는 인터페이스로 시간 낭비 없이 바로 확인할 수 있습니다.</p>
-                  </div>
-                  <div className="rounded-2xl bg-green-50/50 dark:bg-green-900/10 border border-green-100 dark:border-green-900/30 p-4 transition hover:shadow-md">
-                    <p className="text-sm font-bold text-green-900 dark:text-green-100 flex items-center gap-2">
-                      <span className="text-lg">🎯</span> 정확한 기준과 최신 규정 반영
-                    </p>
-                    <p className="mt-1 text-xs text-green-700/70 dark:text-green-300/70 leading-relaxed pl-7">세법, 대출 규제, 건강 공식 등 최신 기준을 반영하여 신뢰할 수 있는 계산 결과를 제공합니다.</p>
-                  </div>
-                  <div className="rounded-2xl bg-purple-50/50 dark:bg-purple-900/10 border border-purple-100 dark:border-purple-900/30 p-4 transition hover:shadow-md">
-                    <p className="text-sm font-bold text-purple-900 dark:text-purple-100 flex items-center gap-2">
-                      <span className="text-lg">📱</span> 모바일 최적화 및 PWA 지원
-                    </p>
-                    <p className="mt-1 text-xs text-purple-700/70 dark:text-purple-300/70 leading-relaxed pl-7">언제 어디서나 앱처럼 간편하게 설치하고, 모든 기기에서 최적화된 화면으로 이용할 수 있습니다.</p>
-                  </div>
+          {/* 소개 섹션 하단 CTA */}
+          <div className="mt-5 text-center">
+            <Link
+              href="/calculator"
+              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 active:scale-95 transition-all text-white font-bold text-sm px-6 py-3 rounded-full shadow-md"
+            >
+              지금 바로 계산해보세요
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+          </div>
+        </section>
+
+        {/* ── JIKO 장점 섹션 (상하 재구성) ── */}
+        <section className="mt-8 bg-white dark:bg-gray-800 p-6 md:p-8 rounded-[32px] shadow-lg border border-gray-100 dark:border-gray-700 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/5 rounded-full -mr-24 -mt-24 blur-2xl" />
+          <div className="relative space-y-8">
+            <div className="rounded-3xl border border-blue-100 bg-blue-50/50 p-6 dark:border-blue-900/30 dark:bg-blue-950/40">
+              <span className="inline-flex items-center rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em]">
+                JIKO 계산기의 장점
+              </span>
+              <h2 className="mt-4 text-3xl font-black text-gray-900 dark:text-white leading-tight">왜 JIKO 계산기인가요?</h2>
+              <p className="mt-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                금융·직장·생활·건강·세금·주식·부동산에서 필요한 모든 계산기 37개를 한 곳에 모았습니다. 복잡한 수치를 보기 쉽게 정리해 빠르게 비교하고 더 현명한 결정을 내릴 수 있습니다.
+              </p>
+              <div className="mt-6 space-y-4">
+                <div className="rounded-2xl bg-blue-50/50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-900/30 p-4 transition hover:shadow-md">
+                  <p className="text-sm font-bold text-blue-900 dark:text-blue-100 flex items-center gap-2">
+                    <span className="text-lg">⚡</span> 빠르고 직관적인 계산 화면
+                  </p>
+                  <p className="mt-1 text-xs text-blue-700/70 dark:text-blue-300/70 leading-relaxed pl-7">입력 즉시 결과가 바뀌는 인터페이스로 시간 낭비 없이 바로 확인할 수 있습니다.</p>
+                </div>
+                <div className="rounded-2xl bg-green-50/50 dark:bg-green-900/10 border border-green-100 dark:border-green-900/30 p-4 transition hover:shadow-md">
+                  <p className="text-sm font-bold text-green-900 dark:text-green-100 flex items-center gap-2">
+                    <span className="text-lg">🎯</span> 정확한 기준과 최신 규정 반영
+                  </p>
+                  <p className="mt-1 text-xs text-green-700/70 dark:text-green-300/70 leading-relaxed pl-7">세법, 대출 규제, 건강 공식 등 최신 기준을 반영하여 신뢰할 수 있는 계산 결과를 제공합니다.</p>
+                </div>
+                <div className="rounded-2xl bg-purple-50/50 dark:bg-purple-900/10 border border-purple-100 dark:border-purple-900/30 p-4 transition hover:shadow-md">
+                  <p className="text-sm font-bold text-purple-900 dark:text-purple-100 flex items-center gap-2">
+                    <span className="text-lg">📱</span> 모바일 최적화 및 PWA 지원
+                  </p>
+                  <p className="mt-1 text-xs text-purple-700/70 dark:text-purple-300/70 leading-relaxed pl-7">언제 어디서나 앱처럼 간편하게 설치하고, 모든 기기에서 최적화된 화면으로 이용할 수 있습니다.</p>
                 </div>
               </div>
-
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {benefits.map((b) => (
-                  <div key={b.title} className={`rounded-3xl border ${b.borderColor} ${b.bgColor} p-5 shadow-sm transition hover:shadow-md`}>
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="text-2xl">{b.icon}</span>
-                      <p className="text-sm font-bold text-gray-900 dark:text-white">{b.title}</p>
-                    </div>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{b.desc}</p>
-                  </div>
-                ))}
-              </div>
             </div>
-          </section>
 
-          {/* 하단 섹션 */}
-          <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-800 text-left">
-            <p className="text-[11px] max-w-xl text-gray-400 dark:text-gray-600 max-w-md mx-auto leading-relaxed mb-6">
-              JIKO 계산기의 모든 결과값은 표준 공식에 기반한 참고용 데이터이며, 실제 금융 거래나 의료적 판단을 대체할 수 없습니다.
-              투자 및 건강에 관한 최종 결정은 전문가와 상의하시기 바랍니다.
-            </p>
-            <div className="flex justify-center opacity-80 hover:opacity-100 transition-opacity">
-              <SiteQR />
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {benefits.map((b) => (
+                <div key={b.title} className={`rounded-3xl border ${b.borderColor} ${b.bgColor} p-5 shadow-sm transition hover:shadow-md`}>
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-2xl">{b.icon}</span>
+                    <p className="text-sm font-bold text-gray-900 dark:text-white">{b.title}</p>
+                  </div>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{b.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
+        </section>
 
-        {showShare && (
-            <ShareSheet
-                url={typeof window !== "undefined" ? window.location.href : ""}
-                title="JIKO 계산기"
-                description="금융, 직장, 생활, 건강, 세금, 주식, 부동산 등 일상에 필요한 모든 계산기를 한곳에서 확인하세요!"
-                onClose={() => setShowShare(false)}
-            />
-        )}
-      </main>
+        {/* 하단 섹션 */}
+        <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-800 text-left">
+          <p className="text-[11px] max-w-xl text-gray-400 dark:text-gray-600 max-w-md mx-auto leading-relaxed mb-6">
+            JIKO 계산기의 모든 결과값은 표준 공식에 기반한 참고용 데이터이며, 실제 금융 거래나 의료적 판단을 대체할 수 없습니다.
+            투자 및 건강에 관한 최종 결정은 전문가와 상의하시기 바랍니다.
+          </p>
+          <div className="flex justify-center opacity-80 hover:opacity-100 transition-opacity">
+            <SiteQR />
+          </div>
+        </div>
+      </div>
+
+      {showShare && (
+        <ShareSheet
+          url={typeof window !== "undefined" ? window.location.href : ""}
+          title="JIKO 계산기"
+          description="금융, 직장, 생활, 건강, 세금, 주식, 부동산 등 일상에 필요한 모든 계산기를 한곳에서 확인하세요!"
+          onClose={() => setShowShare(false)}
+        />
+      )}
+    </main>
   );
 }

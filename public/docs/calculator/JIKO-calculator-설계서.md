@@ -100,7 +100,7 @@ Tool Site.
   - 상환 기간 단축 버튼 제공 (6, 12, 24, 36개월)
 
 ㄴ [2차]환율(exchange-rate) : 환율, 환율, 환율별 환율 계산(네이버 참고)
-ㄴ [2차]퍼센트(percentage)
+ㄴ [2차]퍼센트(percentage) 
 ㄴ [2차]복리(compound-interest) 
 ㄴ [2차]중도상환수수료(prepayment) : 네이버 참고       
 

@@ -25,6 +25,7 @@ export const COMMON_BREADCRUMBS = {
     CALC_HOME: { name: "계산기 홈", item: "/calculator" },
 
     FINANCE_HOME: { name: "금융 계산기", item: "/calculator/finance" },
+    PERCENTAGE: { name: "퍼센트 계산기", item: "/calculator/finance/percentage" },
     LOANS: { name: "대출 이자 계산기", item: "/calculator/finance/loans" },
     DEPOSITS: { name: "예금 이자 계산기", item: "/calculator/finance/deposits" },
     SAVINGS: { name: "적금 이자 계산기", item: "/calculator/finance/savings" },

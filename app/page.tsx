@@ -30,10 +30,11 @@ const services: Service[] = [
     {
         title: "💵 금융",
         href: "/calculator/finance",
-        description: "대출 이자부터 예금/적금 수익까지, 금융 계획을 정확히 세울 수 있는 계산기 모음입니다.",
+        description: "퍼센트 계산부터 대출 이자, 예금/적금 수익까지, 금융 계획을 정확히 세울 수 있는 계산기 모음입니다.",
         bgColor: "bg-green-50 dark:bg-green-900/20",
         borderColor: "border-green-100 dark:border-green-800",
         links: [
+            { label: "💯 퍼센트 계산기 →", href: "/calculator/finance/percentage" },
             { label: "📊 대출 이자 계산기 →", href: "/calculator/finance/loans" },
             { label: "🏦 예금 이자 계산기 →", href: "/calculator/finance/deposits" },
             { label: "💰 적금 이자 계산기 →", href: "/calculator/finance/savings" },
@@ -148,11 +149,11 @@ export default function Home() {
                         {/* 은은한 광택 효과 (선택 사항) */}
                         <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
                         <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-96 h-96 bg-indigo-400/10 rounded-full blur-3xl pointer-events-none"></div>
-                        
+
                         <div className="relative z-10 max-w-4xl mx-auto">
                             <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-white/90 text-xs font-bold mb-8 backdrop-blur-md">
                                 <span className="w-2 h-2 rounded-full bg-blue-300 animate-pulse"></span>
-                                7개 카테고리 · 36+ 무료 계산기
+                                7개 카테고리 · 37+ 무료 계산기
                             </div>
 
                             <h1 className="text-4xl sm:text-6xl font-black text-white leading-[1.1] tracking-tight mb-8">
@@ -258,7 +259,7 @@ export default function Home() {
                                 </h2>
                                 <ul className="mt-5 grid gap-3 md:grid-cols-2 text-sm text-gray-600 dark:text-gray-300">
                                     <li>✅ 방문자가 핵심 카테고리와 기능을 빠르게 이해</li>
-                                    <li>✅ 7개 카테고리 및 36개 계산기를 명시적으로 소개</li>
+                                    <li>✅ 7개 카테고리 및 37개 계산기를 명시적으로 소개</li>
                                     <li>✅ CTA 버튼과 계산기 진입 경로를 명확히 배치</li>
                                     <li>✅ 모바일 반응형 디자인으로 모든 기기 지원</li>
                                     <li>✅ 최신 기준과 법정 이율을 반영한 정확한 계산</li>
