@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import CalculatorActions from '../../components/CalculatorActions';
 import CalculatorButtons from '../../components/CalculatorButtons';
+import CalculatorTabs from '../../components/CalculatorTabs';
 import { useCalculatorScroll } from '../../hooks/useCalculatorScroll';
 
 export default function Salary() {
@@ -18,6 +19,11 @@ export default function Salary() {
 
     const [result, setResult] = useState<any>(null);
     const resultRef = useCalculatorScroll(result);
+
+    const jobTabs = [
+        { label: "연봉/월급 계산기", href: "/calculator/job/salary" },
+        { label: "실수령액 계산기", href: "/calculator/job/net-pay" },
+    ];
 
     // UI Validation states
     const [errors, setErrors] = useState<Set<string>>(new Set());
@@ -192,155 +198,150 @@ export default function Salary() {
                     </span>
                 </div>
             </div>
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
-                <div className="p-6 md:p-8 space-y-8">
-                    {/* Header Tabs - Switch Between Different Calc Types */}
-                    <div className="flex bg-gray-100 dark:bg-gray-700 p-1 rounded-xl">
-                        <button
-                            className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors ${pathname === '/calculator/job/salary' ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-gray-500 dark:text-gray-400'}`}
-                            onClick={() => {}} // Already on this page
-                        >
-                            연봉/월급 계산기
-                        </button>
-                        <Link
-                            href="/calculator/job/net-pay"
-                            className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors text-center ${pathname === '/calculator/job/net-pay' ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-gray-500 dark:text-gray-400'}`}
-                        >
-                            실수령액 계산기
-                        </Link>
-                    </div>
+            <CalculatorTabs tabs={jobTabs} />
 
-                    {/* Header Tabs - Gross Type (Monthly/Yearly) */}
-                    <div className="flex bg-gray-100 dark:bg-gray-700 p-1 rounded-xl">
-                        <button
-                            className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors ${calcType === 'YEARLY' ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-gray-500 dark:text-gray-400'}`}
-                            onClick={() => setCalcType('YEARLY')}
-                        >
-                            연봉 기준
-                        </button>
-                        <button
-                            className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors ${calcType === 'MONTHLY' ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-gray-500 dark:text-gray-400'}`}
-                            onClick={() => setCalcType('MONTHLY')}
-                        >
-                            월급 기준
-                        </button>
-                    </div>
+            <div className="bg-white dark:bg-gray-800 rounded-[32px] p-6 sm:p-8 shadow-xl border border-gray-100 dark:border-gray-700/50 space-y-8">
 
-                    {/* Inputs */}
-                    <div className="space-y-6">
-                        <div>
-                            <label htmlFor="salary-amount" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                                세전 {calcType === 'YEARLY' ? '연봉' : '월급'}
-                            </label>
-                            <div className="relative">
-                                <input
-                                    id="salary-amount"
-                                    type="text"
-                                    value={amount ? formatNumber(parseInt(amount)) : ''}
-                                    onChange={handleAmountChange}
-                                    placeholder={`${calcType === 'YEARLY' ? '예: 50,000,000' : '예: 3,000,000'}`}
-                                    className={`w-full p-4 text-right bg-gray-50 dark:bg-gray-900 border ${errors.has('amount') ? 'border-red-600 ring-2 ring-red-500/20' : 'border-gray-300 dark:border-gray-600'} rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all font-semibold text-gray-800 dark:text-gray-100 ${shakeField === 'amount' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
-                                />
-                                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium" aria-hidden="true">₩</span>
-                            </div>
+                {/* Header Tabs - Gross Type (Monthly/Yearly) */}
+                <div className="bg-gray-50 dark:bg-gray-900/50 p-1.5 rounded-2xl flex gap-1 mb-8">
+                    <button
+                        className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all ${calcType === 'YEARLY' ? 'bg-white dark:bg-gray-800 text-blue-600 shadow-sm ring-1 ring-black/5' : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'}`}
+                        onClick={() => { setCalcType('YEARLY'); setResult(null); }}
+                    >
+                        연봉 기준
+                    </button>
+                    <button
+                        className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all ${calcType === 'MONTHLY' ? 'bg-white dark:bg-gray-800 text-blue-600 shadow-sm ring-1 ring-black/5' : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'}`}
+                        onClick={() => { setCalcType('MONTHLY'); setResult(null); }}
+                    >
+                        월급 기준
+                    </button>
+                </div>
 
-                            <div className="flex flex-wrap gap-2 mt-3">
-                                <button onClick={resetAmount} className="px-3 py-1.5 text-xs font-black bg-rose-50 dark:bg-rose-900/20 text-rose-500 border border-rose-100 dark:border-rose-800 rounded-xl hover:bg-rose-100 transition-all active:scale-95">C</button>
-                                {[1000000, 3000000, 5000000, 10000000, 30000000, 50000000, 100000000].map((val) => (
-                                    <button
-                                        key={val}
-                                        onClick={() => addAmount(val)}
-                                        className="px-3 py-1.5 text-xs font-semibold bg-gray-100 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 rounded-xl transition-all active:scale-95"
-                                    >
-                                        +{val >= 100000000 ? `${val / 100000000}억` : val >= 10000000 ? `${val / 10000000}천` : val >= 1000000 ? `${val / 1000000}백` : `${val / 10000}`}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
-                        {calcType === 'YEARLY' && (
-                            <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-xl">
-                                <label className="text-sm font-semibold text-gray-700 dark:text-gray-300">퇴직금</label>
-                                <div className="flex bg-gray-200 dark:bg-gray-700 p-1 rounded-lg">
-                                    <button onClick={() => setIncludesSeverance(false)} className={`px-4 py-1.5 text-sm font-semibold rounded-md transition-colors ${!includesSeverance ? 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 shadow-sm' : 'text-gray-500 dark:text-gray-400'}`}>별도</button>
-                                    <button onClick={() => setIncludesSeverance(true)} className={`px-4 py-1.5 text-sm font-semibold rounded-md transition-colors ${includesSeverance ? 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 shadow-sm' : 'text-gray-500 dark:text-gray-400'}`}>포함(1/13)</button>
-                                </div>
-                            </div>
-                        )}
-
-                        <div>
-                            <label htmlFor="tax-free-amount" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">비과세액</label>
+                {/* Inputs */}
+                <div className="space-y-6">
+                    <div>
+                        <label htmlFor="salary-amount" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            세전 {calcType === 'YEARLY' ? '연봉' : '월급'}
+                        </label>
+                        <div className="relative">
                             <input
-                                id="tax-free-amount"
+                                id="salary-amount"
                                 type="text"
-                                value={taxFreeAmount ? formatNumber(parseInt(taxFreeAmount)) : ''}
-                                onChange={handleTaxFreeChange}
-                                className={`w-full p-4 text-right bg-gray-50 dark:bg-gray-900 border font-semibold ${errors.has('taxFreeAmount') ? 'border-red-600 ring-2 ring-red-500/20' : 'border-gray-300 dark:border-gray-600'} rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all text-gray-800 dark:text-gray-100 ${shakeField === 'taxFreeAmount' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
+                                value={amount ? formatNumber(parseInt(amount)) : ''}
+                                onChange={handleAmountChange}
+                                placeholder={`${calcType === 'YEARLY' ? '예: 50,000,000' : '예: 3,000,000'}`}
+                                className={`w-full p-4 text-right bg-gray-50 dark:bg-gray-900 border ${errors.has('amount') ? 'border-red-600 ring-2 ring-red-500/20' : 'border-gray-300 dark:border-gray-600'} rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all font-semibold text-gray-800 dark:text-gray-100 ${shakeField === 'amount' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
                             />
-                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">✨ 2024년부터 식대 비과세 한도가 20만원으로 상향되었습니다.</p>
+                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium" aria-hidden="true">₩</span>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">부양가족수 (본인포함)</label>
-                                <div className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl">
-                                    <button onClick={() => setDependents(Math.max(1, dependents - 1))} className="w-8 h-8 flex items-center justify-center bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-gray-700 font-bold">-</button>
-                                    <span className="font-semibold text-gray-800 dark:text-gray-100">{dependents} 명</span>
-                                    <button onClick={() => setDependents(dependents + 1)} className="w-8 h-8 flex items-center justify-center bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-gray-700 font-bold">+</button>
-                                </div>
-                            </div>
-                            <div>
-                                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">20세 이하 자녀수</label>
-                                <div className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl">
-                                    <button onClick={() => setChildren(Math.max(0, children - 1))} className="w-8 h-8 flex items-center justify-center bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-gray-700 font-bold">-</button>
-                                    <span className="font-semibold text-gray-800 dark:text-gray-100">{children} 명</span>
-                                    <button onClick={() => setChildren(children + 1)} className="w-8 h-8 flex items-center justify-center bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-gray-700 font-bold">+</button>
-                                </div>
-                            </div>
+                        <div className="flex flex-wrap gap-2 mt-3">
+                            <button onClick={resetAmount} className="px-3 py-1.5 text-xs font-black bg-rose-50 dark:bg-rose-900/20 text-rose-500 border border-rose-100 dark:border-rose-800 rounded-xl hover:bg-rose-100 transition-all active:scale-95">C</button>
+                            {[1000000, 3000000, 5000000, 10000000, 30000000, 50000000, 100000000].map((val) => (
+                                <button
+                                    key={val}
+                                    onClick={() => addAmount(val)}
+                                    className="px-3 py-1.5 text-xs font-semibold bg-gray-100 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 rounded-xl transition-all active:scale-95"
+                                >
+                                    +{val >= 100000000 ? `${val / 100000000}억` : val >= 10000000 ? `${val / 10000000}천` : val >= 1000000 ? `${val / 1000000}백` : `${val / 10000}`}
+                                </button>
+                            ))}
                         </div>
                     </div>
 
-                    <div className="pt-4 border-t border-gray-100 dark:border-gray-700">
-                        <CalculatorButtons 
-                            onReset={handleReset} 
-                            onCalculate={handleCalculate} 
-                        />
-                    </div>
-
-                    {/* Error Message */}
-                    {errorMessage && (
-                        <div className="bg-red-50 dark:bg-red-900/20 text-red-500 text-sm font-bold p-4 rounded-xl text-center border border-red-100 dark:border-red-800 animate-pulse">
-                            🚨 {errorMessage}
+                    {calcType === 'YEARLY' && (
+                        <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-xl">
+                            <label className="text-sm font-semibold text-gray-700 dark:text-gray-300">퇴직금</label>
+                            <div className="flex bg-gray-200 dark:bg-gray-700 p-1 rounded-lg">
+                                <button onClick={() => setIncludesSeverance(false)} className={`px-4 py-1.5 text-sm font-semibold rounded-md transition-colors ${!includesSeverance ? 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 shadow-sm' : 'text-gray-500 dark:text-gray-400'}`}>별도</button>
+                                <button onClick={() => setIncludesSeverance(true)} className={`px-4 py-1.5 text-sm font-semibold rounded-md transition-colors ${includesSeverance ? 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 shadow-sm' : 'text-gray-500 dark:text-gray-400'}`}>포함(1/13)</button>
+                            </div>
                         </div>
                     )}
+
+                    <div>
+                        <label htmlFor="tax-free-amount" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">비과세액</label>
+                        <input
+                            id="tax-free-amount"
+                            type="text"
+                            value={taxFreeAmount ? formatNumber(parseInt(taxFreeAmount)) : ''}
+                            onChange={handleTaxFreeChange}
+                            className={`w-full p-4 text-right bg-gray-50 dark:bg-gray-900 border font-semibold ${errors.has('taxFreeAmount') ? 'border-red-600 ring-2 ring-red-500/20' : 'border-gray-300 dark:border-gray-600'} rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition-all text-gray-800 dark:text-gray-100 ${shakeField === 'taxFreeAmount' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}
+                        />
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">✨ 2024년부터 식대 비과세 한도가 20만원으로 상향되었습니다.</p>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">부양가족수 (본인포함)</label>
+                            <div className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl">
+                                <button onClick={() => setDependents(Math.max(1, dependents - 1))} className="w-8 h-8 flex items-center justify-center bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-gray-700 font-bold">-</button>
+                                <span className="font-semibold text-gray-800 dark:text-gray-100">{dependents} 명</span>
+                                <button onClick={() => setDependents(dependents + 1)} className="w-8 h-8 flex items-center justify-center bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-gray-700 font-bold">+</button>
+                            </div>
+                        </div>
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">20세 이하 자녀수</label>
+                            <div className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl">
+                                <button onClick={() => setChildren(Math.max(0, children - 1))} className="w-8 h-8 flex items-center justify-center bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-gray-700 font-bold">-</button>
+                                <span className="font-semibold text-gray-800 dark:text-gray-100">{children} 명</span>
+                                <button onClick={() => setChildren(children + 1)} className="w-8 h-8 flex items-center justify-center bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-gray-700 font-bold">+</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <div className="pt-4 border-t border-gray-100 dark:border-gray-700">
+                    <CalculatorButtons 
+                        onReset={handleReset} 
+                        onCalculate={handleCalculate} 
+                    />
+                </div>
+
+                {/* Error Message */}
+                {errorMessage && (
+                    <div className="bg-red-50 dark:bg-red-900/20 text-red-500 text-sm font-bold p-4 rounded-xl text-center border border-red-100 dark:border-red-800 animate-pulse">
+                        🚨 {errorMessage}
+                    </div>
+                )}
             </div>
 
             {/* Results */}
             {result && (
-                <div id="result-section" ref={resultRef} className="mt-8 space-y-6 animate-fade-in-up">
-                    <div className="bg-gradient-to-br from-blue-600 relative to-blue-800 rounded-3xl p-8 shadow-xl text-white overflow-hidden">
+                <div id="result-section" ref={resultRef} className="mt-8 bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700/50 relative overflow-hidden animate-fade-slide-up space-y-8">
+                    {/* 카드 상단 테두리 그라데이션 */}
+                    <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 to-blue-600"></div>
+
+                    <div className="text-center">
+                        <h2 className="text-xl font-black text-gray-900 dark:text-white mb-2 flex items-center justify-center gap-2">
+                            <span className="text-blue-500">✨</span> 계산 결과
+                        </h2>
+                        <p className="text-sm font-bold text-gray-500 dark:text-gray-400">월 예상 실수령액 분석</p>
+                    </div>
+
+                    <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-[24px] p-8 shadow-lg text-white relative overflow-hidden">
                         <div className="absolute -right-10 -top-10 text-9xl opacity-10">💸</div>
-                        <h3 className="text-blue-100 font-medium mb-2 opacity-90">예상 실수령액 (월)</h3>
-                        <div className="text-4xl md:text-5xl font-extrabold tracking-tight">
-                            {formatNumber(result.netPay)} <span className="text-blue-200 text-2xl font-semibold">원</span>
+                        <h3 className="text-blue-100 font-bold mb-2 opacity-90 text-center">예상 실수령액 (월)</h3>
+                        <div className="text-4xl md:text-5xl font-black tracking-tight text-center">
+                            {formatNumber(result.netPay)} <span className="text-blue-200 text-2xl font-bold">원</span>
                         </div>
 
-                        <div className="mt-8 pt-6 border-t border-blue-500/30 flex justify-between items-end">
+                        <div className="mt-8 pt-6 border-t border-blue-500/30 flex justify-between items-end gap-4">
                             <div>
-                                <p className="text-blue-200 text-sm mb-1">월 예상 소득액 (공제 전)</p>
-                                <p className="text-xl font-bold">{formatNumber(result.monthlyGross)} 원</p>
+                                <p className="text-blue-200 text-xs font-bold mb-1">월 예상 소득액 (공제 전)</p>
+                                <p className="text-lg font-black">{formatNumber(result.monthlyGross)} 원</p>
                             </div>
                             <div className="text-right">
-                                <p className="text-blue-200 text-sm mb-1">공제액 합계</p>
-                                <p className="text-xl font-bold text-red-200">-{formatNumber(result.deductions.total)} 원</p>
+                                <p className="text-blue-200 text-xs font-bold mb-1">공제액 합계</p>
+                                <p className="text-lg font-black text-red-200">-{formatNumber(result.deductions.total)} 원</p>
                             </div>
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                            <h4 className="text-gray-800 dark:text-gray-100 font-bold mb-4 flex items-center justify-between border-b border-gray-100 dark:border-gray-700 pb-3">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="bg-gray-50 dark:bg-gray-900/50 p-6 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm">
+                            <h4 className="text-gray-800 dark:text-gray-100 font-black mb-4 flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-3 text-sm">
                                 <span>나의 공제액 (근로자 부담분)</span>
                             </h4>
                             <div className="space-y-3 text-sm">
@@ -372,8 +373,8 @@ export default function Salary() {
                             </div>
                         </div>
 
-                        <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                            <h4 className="text-gray-800 dark:text-gray-100 font-bold mb-4 flex items-center justify-between border-b border-gray-100 dark:border-gray-700 pb-3">
+                        <div className="bg-gray-50 dark:bg-gray-900/50 p-6 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm">
+                            <h4 className="text-gray-800 dark:text-gray-100 font-black mb-4 flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-3 text-sm">
                                 <span>회사 부담액 (사업주 공제)</span>
                             </h4>
                             <div className="space-y-3 text-sm">
@@ -412,4 +413,3 @@ export default function Salary() {
         </div>
     );
 }
-

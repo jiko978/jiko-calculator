@@ -223,28 +223,39 @@ const DateCalculator = () => {
                 </div>
 
                 {calculated && resultData && (
-                    <div ref={resultRef} className={`mt-4 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
-                        <div className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-2xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden">
-                            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600"></div>
-                            <p className="text-sm font-bold text-blue-500 bg-blue-50 dark:bg-blue-900/30 px-4 py-1.5 rounded-full inline-block mb-4 tracking-tighter">
+                    <div ref={resultRef} className="mt-8 bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700/50 relative overflow-hidden animate-fade-slide-up space-y-8">
+                        {/* 카드 상단 테두리 그라데이션 */}
+                        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 to-indigo-600"></div>
+
+                        <div className="text-center">
+                            <h2 className="text-xl font-black text-gray-900 dark:text-white mb-2 flex items-center justify-center gap-2">
+                                <span className="text-blue-500">✨</span> 계산 결과
+                            </h2>
+                            <p className="text-sm font-bold text-gray-500 dark:text-gray-400">
                                 {resultData.startStr} ~ {resultData.endStr}
                             </p>
-                            <h2 className="text-5xl md:text-6xl font-black text-gray-900 dark:text-white mb-4 tracking-tighter">
-                                {resultData.mainResult}
-                            </h2>
-                            
-                            <div className="mt-8 pt-8 border-t border-gray-50 dark:border-gray-700/50">
-                                <h3 className="text-sm font-black text-gray-400 uppercase tracking-widest mb-6">🗓️ 기념일 타임라인 (오늘기준)</h3>
-                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                                    {resultData.timeline.map((item: any, idx: number) => (
-                                        <div key={idx} className={`p-4 rounded-2xl border transition-all ${item.isPassed ? "bg-gray-50/50 dark:bg-gray-900/30 border-gray-100 dark:border-gray-800 opacity-60" : "bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700 shadow-sm hover:scale-105"}`}>
-                                            <p className={`text-[10px] font-black mb-1 ${item.isPassed ? "text-gray-400" : "text-blue-500"}`}>{item.label}</p>
-                                            <p className="text-xs font-bold text-gray-700 dark:text-gray-200">{item.date}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
+                        </div>
 
+                        <div className="flex flex-col items-center justify-center p-8 bg-blue-50 dark:bg-blue-900/20 rounded-3xl border border-blue-100 dark:border-blue-800/50 shadow-sm">
+                            <div className="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 text-center">최종 계산 결과</div>
+                            <div className="text-5xl md:text-6xl font-black text-gray-900 dark:text-white break-all text-center tracking-tighter">
+                                {resultData.mainResult}
+                            </div>
+                        </div>
+
+                        <div className="pt-4 border-t border-gray-100 dark:border-gray-700/50">
+                            <h3 className="text-sm font-black text-gray-400 uppercase tracking-widest mb-6 text-center">🗓️ 기념일 타임라인 (당일 포함 기준)</h3>
+                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                {resultData.timeline.map((item: any, idx: number) => (
+                                    <div key={idx} className="p-4 bg-gray-50 dark:bg-gray-900/50 border border-gray-100 dark:border-gray-700 rounded-2xl shadow-sm hover:scale-105 transition-transform text-center">
+                                        <p className="text-[10px] font-black text-blue-500 mb-1">{item.label}</p>
+                                        <p className="text-xs font-bold text-gray-700 dark:text-gray-200">{item.date}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="pt-4 border-t border-gray-100 dark:border-gray-700/50">
                             <CalculatorActions
                                 onCopy={handleCopy}
                                 shareTitle=""

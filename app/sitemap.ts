@@ -9,8 +9,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: "/", priority: 1.0, changeFrequency: "weekly" as const },
         { url: "/calculator", priority: 1.0, changeFrequency: "weekly" as const },
 
-        // ── 금융(7) ──
+        // ── 금융(8) ──
         { url: "/calculator/finance",  priority: 0.8, changeFrequency: "monthly" as const },
+        { url: "/calculator/finance/exchange-rate",  priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/finance/percentage",  priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/finance/deposits",  priority: 0.8, changeFrequency: "monthly" as const },
         { url: "/calculator/finance/savings", priority: 0.8, changeFrequency: "monthly" as const },

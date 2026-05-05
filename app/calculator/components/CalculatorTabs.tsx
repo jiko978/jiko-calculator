@@ -20,7 +20,7 @@ const CalculatorTabs = ({ tabs }: CalculatorTabsProps) => {
   const pathname = usePathname();
 
   return (
-    <div className="flex bg-gray-100 dark:bg-gray-700/50 p-1 rounded-2xl mb-6">
+    <div className="bg-white dark:bg-gray-800 p-2 sm:p-3 rounded-2xl sm:rounded-3xl shadow-md border border-gray-100 dark:border-gray-700/50 mb-6 flex overflow-x-auto hide-scrollbar gap-1">
       {tabs.map((tab) => {
         const isActive = pathname === tab.href;
         
@@ -28,10 +28,10 @@ const CalculatorTabs = ({ tabs }: CalculatorTabsProps) => {
           <Link
             key={tab.href}
             href={tab.href}
-            className={`flex-1 py-3 text-center text-sm font-bold rounded-xl transition-all duration-200 ${
+            className={`flex-1 min-w-[100px] py-3 px-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap text-center ${
               isActive
-                ? "bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm ring-1 ring-black/5"
-                : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+                ? "bg-blue-600 text-white shadow-md"
+                : "text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700"
             }`}
           >
             {tab.label}

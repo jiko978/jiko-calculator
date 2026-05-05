@@ -129,16 +129,16 @@ const DischargeDayCalculator = () => {
 
                 <CalculatorTabs tabs={lifeTabs} />
 
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700/50 space-y-8">
+                <div className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700/50 space-y-8">
                     <div className="space-y-6">
                         <div className="space-y-4">
                             <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 ml-1">복무 구분 선택</label>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <div className="bg-gray-50 dark:bg-gray-900/50 p-1.5 rounded-2xl grid grid-cols-2 gap-1 mb-4">
                                 {branches.map((b) => (
                                     <button
                                         key={b.id}
                                         onClick={() => { setBranch(b.id as ServiceBranch); setCalculated(false); }}
-                                        className={`px-4 py-3 rounded-xl text-xs font-bold transition-all border-2 ${branch === b.id ? "bg-blue-50 dark:bg-blue-900/4 border-blue-500 text-blue-600 dark:text-blue-400" : "bg-gray-50 dark:bg-gray-900 border-gray-100 dark:border-gray-800 text-gray-400 hover:border-gray-200"}`}
+                                        className={`py-3 text-[11px] sm:text-xs font-bold rounded-xl transition-all ${branch === b.id ? "bg-white dark:bg-gray-800 text-blue-600 shadow-sm ring-1 ring-black/5" : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"}`}
                                     >
                                         {b.label}
                                     </button>
@@ -179,44 +179,60 @@ const DischargeDayCalculator = () => {
                 </div>
 
                 {calculated && resultData && (
-                    <div ref={resultRef} className={`mt-4 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
-                        <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden">
-                            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 to-indigo-600"></div>
-                            <p className="text-[12px] font-black text-gray-400 mb-2 uppercase tracking-widest leading-none">전역일까지 D-{resultData.remainingDays}</p>
-                            <h2 className="text-5xl md:text-6xl font-black text-gray-900 dark:text-white mb-8 tracking-tighter">{resultData.dischargeDate}</h2>
+                    <div ref={resultRef} className="mt-8 bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700/50 relative overflow-hidden animate-fade-slide-up space-y-8">
+                        {/* 카드 상단 테두리 그라데이션 */}
+                        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 to-indigo-600"></div>
 
-                            <div className="space-y-3 mb-10">
-                                <div className="flex justify-between items-end px-1">
-                                    <span className="text-xs font-bold text-gray-400 tracking-widest">{resultData.branchLabel} 복무율</span>
-                                    <span className="text-2xl font-black text-blue-600 dark:text-blue-400 tracking-tighter">{resultData.progress}%</span>
-                                </div>
-                                <div className="w-full h-4 bg-gray-100 dark:bg-gray-900 rounded-full overflow-hidden border border-gray-100 dark:border-gray-800">
-                                    <div
-                                        className="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full transition-all duration-1000 ease-out"
-                                        style={{ width: `${resultData.progress}%` }}
-                                    ></div>
-                                </div>
-                                <div className="flex justify-between text-[10px] font-bold text-gray-400 px-1">
-                                    <span>입대 {resultData.servedDays}일차</span>
-                                    <span>남은 기간 {resultData.remainingDays}일</span>
-                                </div>
+                        <div className="text-center">
+                            <h2 className="text-xl font-black text-gray-900 dark:text-white mb-2 flex items-center justify-center gap-2">
+                                <span className="text-blue-500">🪖</span> 전역일 계산 결과
+                            </h2>
+                            <p className="text-sm font-bold text-gray-500 dark:text-gray-400">
+                                전역일까지 D-{resultData.remainingDays}
+                            </p>
+                        </div>
+
+                        <div className="flex flex-col items-center justify-center p-8 bg-blue-50 dark:bg-blue-900/20 rounded-3xl border border-blue-100 dark:border-blue-800/50 shadow-sm">
+                            <div className="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 text-center">예상 전역일</div>
+                            <div className="text-5xl md:text-6xl font-black text-gray-900 dark:text-white break-all text-center tracking-tighter">
+                                {resultData.dischargeDate}
                             </div>
+                        </div>
 
-                            <div className="mt-8 pt-8 border-t border-gray-50 dark:border-gray-700/50">
-                                <h3 className="text-sm font-black text-gray-400 uppercase tracking-widest mb-6">🎖️ 진급 마일스톤</h3>
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    {resultData.timeline.map((item: any, idx: number) => (
-                                        <div key={idx} className={`p-4 rounded-2xl border transition-all ${item.isPassed ? "bg-gray-50/50 dark:bg-gray-900/30 border-gray-100 dark:border-gray-800 opacity-60" : "bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700 shadow-sm"}`}>
-                                            <p className={`text-[10px] font-black mb-1 ${item.isPassed ? "text-gray-400" : "text-blue-500"}`}>{item.rank} 진급</p>
-                                            <p className="text-xs font-bold text-gray-700 dark:text-gray-200">{item.date}</p>
-                                        </div>
-                                    ))}
-                                    <div className="p-4 rounded-2xl border bg-blue-50 dark:bg-blue-900/20 border-blue-100 dark:border-blue-800 shadow-sm">
-                                        <p className="text-[10px] font-black mb-1 text-blue-600 dark:text-blue-400">전역</p>
-                                        <p className="text-xs font-bold text-gray-700 dark:text-gray-200">{resultData.dischargeDate}</p>
+                        <div className="space-y-4">
+                            <div className="flex justify-between items-end px-1">
+                                <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{resultData.branchLabel} 복무율</span>
+                                <span className="text-2xl font-black text-blue-600 dark:text-blue-400 tracking-tighter">{resultData.progress}%</span>
+                            </div>
+                            <div className="w-full h-4 bg-gray-100 dark:bg-gray-900 rounded-full overflow-hidden border border-gray-100 dark:border-gray-800">
+                                <div
+                                    className="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full transition-all duration-1000 ease-out"
+                                    style={{ width: `${resultData.progress}%` }}
+                                ></div>
+                            </div>
+                            <div className="flex justify-between text-[10px] font-bold text-gray-400 px-1">
+                                <span>입대 {resultData.servedDays}일차</span>
+                                <span>남은 기간 {resultData.remainingDays}일</span>
+                            </div>
+                        </div>
+
+                        <div className="pt-4 border-t border-gray-100 dark:border-gray-700/50">
+                            <h3 className="text-sm font-black text-gray-400 uppercase tracking-widest mb-6 text-center">🎖️ 진급 마일스톤</h3>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                {resultData.timeline.map((item: any, idx: number) => (
+                                    <div key={idx} className={`p-4 rounded-2xl border transition-all text-center ${item.isPassed ? "bg-gray-50/50 dark:bg-gray-900/30 border-gray-100 dark:border-gray-800 opacity-60" : "bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700 shadow-sm"}`}>
+                                        <p className={`text-[10px] font-black mb-1 ${item.isPassed ? "text-gray-400" : "text-blue-500"}`}>{item.rank} 진급</p>
+                                        <p className="text-xs font-bold text-gray-700 dark:text-gray-200">{item.date}</p>
                                     </div>
+                                ))}
+                                <div className="p-4 rounded-2xl border bg-blue-50 dark:bg-blue-900/20 border-blue-100 dark:border-blue-800 shadow-sm text-center">
+                                    <p className="text-[10px] font-black mb-1 text-blue-600 dark:text-blue-400">전역</p>
+                                    <p className="text-xs font-bold text-gray-700 dark:text-gray-200">{resultData.dischargeDate}</p>
                                 </div>
                             </div>
+                        </div>
+
+                        <div className="pt-4 border-t border-gray-100 dark:border-gray-700/50">
                             <CalculatorActions
                                 onCopy={handleCopy}
                                 shareTitle=""

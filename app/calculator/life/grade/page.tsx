@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import LifeMoreCalculators from "@/app/calculator/components/LifeMoreCalculators";
 import InstallBanner from "@/app/calculator/components/InstallBanner";
-import GradeCalculator from "./GradeCalculator";
+import GradeCalculator from "./Grade";
 import NavBar from "@/app/calculator/components/NavBar";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 import FAQ from "@/app/calculator/components/FAQ";

@@ -7,6 +7,7 @@ const FinanceMoreCalculators = () => {
     const pathname = usePathname();
 
     const calculators = [
+        { name: "환율 계산기", href: "/calculator/finance/exchange-rate", emoji: "🌏", description: "원화-외화 실시간 환전 및 환율 시뮬레이션" },
         { name: "퍼센트 계산기", href: "/calculator/finance/percentage", emoji: "💯", description: "비율, 할인율, 수익률 자동 연산" },
         { name: "대출 이자 계산기", href: "/calculator/finance/loans", emoji: "📊", description: "이자 및 원리금 상환 계산" },
         { name: "예금 이자 계산기", href: "/calculator/finance/deposits", emoji: "🏦", description: "만기 수령액 및 이자 계산" },

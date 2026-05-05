@@ -142,14 +142,20 @@ const LtvCalculator = () => {
 
                 <CalculatorTabs tabs={realEstateTabs} />
 
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700/50 space-y-6">
+                <div className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700/50 space-y-8">
                     
                     {/* 대출 목적 선택 */}
                     <div className="space-y-3">
                         <label className="text-sm font-bold text-gray-700 dark:text-gray-200 ml-1">대출 목적</label>
-                        <div className="flex bg-gray-100 dark:bg-gray-900/50 p-1.5 rounded-2xl gap-1">
+                        <div className="bg-gray-50 dark:bg-gray-900/50 p-1.5 rounded-2xl flex gap-1 mb-8">
                             {[{ id: "PURCHASE", label: "주택 구입 자금" }, { id: "STABILIZATION", label: "생활 안정 자금" }].map(p => (
-                                <button key={p.id} onClick={() => {setPurpose(p.id as any); setCalculated(false);}} className={`flex-1 py-3 rounded-xl text-xs font-bold transition-all ${purpose === p.id ? "bg-white dark:bg-gray-800 text-amber-500 shadow-sm" : "text-gray-400"}`}>{p.label}</button>
+                                <button
+                                    key={p.id}
+                                    onClick={() => {setPurpose(p.id as any); setCalculated(false);}}
+                                    className={`flex-1 py-3 rounded-xl text-xs font-bold transition-all ${purpose === p.id ? "bg-white dark:bg-gray-800 text-amber-500 shadow-sm ring-1 ring-black/5" : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"}`}
+                                >
+                                    {p.label}
+                                </button>
                             ))}
                         </div>
                     </div>
@@ -233,17 +239,26 @@ const LtvCalculator = () => {
 
                 {calculated && resultData && (
                     <div ref={resultRef} id="result-section" className={`mt-8 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
-                        <div className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-2xl border border-gray-100 dark:border-gray-700 relative overflow-hidden">
-                            <div className="absolute top-0 left-0 w-full h-2 bg-amber-500"></div>
+                        <div className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700/50 relative overflow-hidden animate-fade-slide-up space-y-8">
+                            {/* 카드 상단 테두리 그라데이션 */}
+                            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-amber-400 to-amber-600"></div>
 
-                            <div className="text-center mb-10">
-                                <p className="text-[12px] font-black text-gray-400 mb-2 uppercase tracking-widest">부동산 담보 가치 분석 결과</p>
-                                <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-gray-900 dark:text-white">
-                                    {formatNumber(resultData.calcLimit)}<span className="text-2xl ml-1 text-gray-400 uppercase">원</span>
+                            <div className="text-center">
+                                <h2 className="text-xl font-black text-gray-900 dark:text-white mb-2 flex items-center justify-center gap-2">
+                                    <span className="text-amber-500">✨</span> 계산 결과
                                 </h2>
-                                <p className="text-sm font-bold text-amber-500 mt-4 px-4 py-2 bg-amber-50 dark:bg-amber-900/20 inline-block rounded-xl">
-                                    {ownership === "FIRST_HOME" ? "🏠 생애최초 혜택 적용" : "⚖️ 규제 지역 한도 준수"} (LTV {resultData.ltvRatio * 100}%)
-                                </p>
+                                <p className="text-sm font-bold text-gray-500 dark:text-gray-400">부동산 담보 가치 분석 결과</p>
+                            </div>
+
+                            <div className="bg-gray-50 dark:bg-gray-900/50 rounded-[24px] p-8 border border-gray-100 dark:border-gray-700 shadow-sm relative overflow-hidden">
+                                <div className="flex flex-col items-center justify-center">
+                                    <h3 className="text-5xl md:text-6xl font-black tracking-tighter text-gray-900 dark:text-white mb-4">
+                                        {formatNumber(resultData.calcLimit)}<span className="text-2xl ml-1 text-gray-400 uppercase">원</span>
+                                    </h3>
+                                    <p className="text-sm font-bold text-amber-500 px-4 py-2 bg-white dark:bg-gray-800 shadow-sm border border-amber-100 dark:border-amber-900/30 inline-block rounded-xl">
+                                        {ownership === "FIRST_HOME" ? "🏠 생애최초 혜택 적용" : "⚖️ 규제 지역 한도 준수"} (LTV {resultData.ltvRatio * 100}%)
+                                    </p>
+                                </div>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">

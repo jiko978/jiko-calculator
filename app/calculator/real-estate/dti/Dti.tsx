@@ -169,7 +169,7 @@ const DtiCalculator = () => {
 
                 <CalculatorTabs tabs={realEstateTabs} />
 
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700/50 space-y-6">
+                <div className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700/50 space-y-8">
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-6 border-b border-gray-50 dark:border-gray-700">
                         <div className={`space-y-3 ${shakeField === 'salary' ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}>
@@ -263,9 +263,15 @@ const DtiCalculator = () => {
                                         onChange={(e) => { setTerm(e.target.value.replace(/[^0-9]/g, "")); setCalculated(false); }}
                                         className={`w-full h-14 px-4 text-xl font-bold bg-gray-50 dark:bg-gray-900/50 border-2 rounded-2xl transition-all text-right ${errors.has('term') ? 'border-red-500' : 'border-gray-300 dark:border-gray-600 focus:border-blue-500'}`}
                                     />
-                                    <div className="flex bg-gray-100 dark:bg-gray-700 p-1 rounded-2xl shrink-0">
+                                    <div className="bg-gray-50 dark:bg-gray-900/50 p-1.5 rounded-2xl flex gap-1 mb-8">
                                         {[ {id: "month", label: "월"}, {id: "year", label: "년"} ].map((u) => (
-                                            <button key={u.id} onClick={() => setTermUnit(u.id as any)} className={`px-3 py-1 rounded-xl text-xs font-bold transition-all ${termUnit === u.id ? "bg-white dark:bg-gray-800 text-blue-600 shadow-sm" : "text-gray-400"}`}>{u.label}</button>
+                                            <button
+                                                key={u.id}
+                                                onClick={() => { setTermUnit(u.id as any); setResultData(null); }}
+                                                className={`flex-1 py-1.5 px-3 rounded-xl text-xs font-bold transition-all ${termUnit === u.id ? "bg-white dark:bg-gray-800 text-blue-600 shadow-sm ring-1 ring-black/5" : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"}`}
+                                            >
+                                                {u.label}
+                                            </button>
                                         ))}
                                     </div>
                                 </div>
@@ -277,9 +283,15 @@ const DtiCalculator = () => {
                             </div>
                             <div className="space-y-3">
                                 <label className="text-sm font-bold text-gray-700 dark:text-gray-200 ml-1">상환 방식</label>
-                                <div className="flex bg-gray-100 dark:bg-gray-700 p-1.5 rounded-2xl gap-1">
+                                <div className="bg-gray-50 dark:bg-gray-900/50 p-1.5 rounded-2xl flex gap-1 mb-8">
                                     {[ { id: "EQU_AMOUNT", label: "원리금균등" }, { id: "EQU_PRINCIPAL", label: "원금균등" }, { id: "MATURITY", label: "만기일시" } ].map(t => (
-                                        <button key={t.id} onClick={() => setMethod(t.id as any)} className={`flex-1 py-3.5 rounded-xl text-[11px] font-bold transition-all ${method === t.id ? "bg-white dark:bg-gray-800 text-blue-600 shadow-sm" : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"}`}>{t.label}</button>
+                                        <button
+                                            key={t.id}
+                                            onClick={() => { setMethod(t.id as any); setResultData(null); }}
+                                            className={`flex-1 py-3.5 rounded-xl text-[11px] font-bold transition-all ${method === t.id ? "bg-white dark:bg-gray-800 text-blue-600 shadow-sm ring-1 ring-black/5" : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"}`}
+                                        >
+                                            {t.label}
+                                        </button>
                                     ))}
                                 </div>
                             </div>
@@ -298,22 +310,31 @@ const DtiCalculator = () => {
 
                 {calculated && resultData && (
                     <div ref={resultRef} id="result-section" className={`mt-8 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
-                        <div className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-2xl border border-gray-100 dark:border-gray-700 relative overflow-hidden">
+                        <div className="bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700/50 relative overflow-hidden animate-fade-slide-up space-y-8">
+                            {/* 카드 상단 테두리 그라데이션 */}
                             <div className={`absolute top-0 left-0 w-full h-2 transition-colors duration-1000 ${getGaugeColor(Number(resultData.dtiScore))}`}></div>
-                            
-                            <div className="text-center mb-10">
-                                <p className="text-[12px] font-black text-gray-400 mb-2 uppercase tracking-widest leading-none">나의 DTI 분석 리포트</p>
-                                <div className="flex items-center justify-center gap-3">
-                                    <h2 className={`text-6xl md:text-7xl font-black tracking-tighter transition-colors duration-1000 ${Number(resultData.dtiScore) > 60 ? "text-red-500" : "text-gray-900 dark:text-white"}`}>
-                                        {resultData.dtiScore}<span className="text-3xl ml-1 text-gray-400">%</span>
-                                    </h2>
-                                    <div className={`px-4 py-2 rounded-2xl text-[11px] font-black shadow-sm ${getGaugeColor(Number(resultData.dtiScore))} text-white animate-pulse`}>
-                                        {getStatusText(Number(resultData.dtiScore)).label} {getStatusText(Number(resultData.dtiScore)).emoji}
+
+                            <div className="text-center">
+                                <h2 className="text-xl font-black text-gray-900 dark:text-white mb-2 flex items-center justify-center gap-2">
+                                    <span className="text-blue-500">✨</span> 계산 결과
+                                </h2>
+                                <p className="text-sm font-bold text-gray-500 dark:text-gray-400">나의 DTI 분석 리포트</p>
+                            </div>
+
+                            <div className="bg-gray-50 dark:bg-gray-900/50 rounded-[24px] p-8 border border-gray-100 dark:border-gray-700 shadow-sm relative overflow-hidden">
+                                <div className="flex flex-col items-center justify-center">
+                                    <div className="flex items-center justify-center gap-3 mb-4">
+                                        <h3 className={`text-6xl md:text-7xl font-black tracking-tighter transition-colors duration-1000 ${Number(resultData.dtiScore) > 60 ? "text-red-500" : "text-gray-900 dark:text-white"}`}>
+                                            {resultData.dtiScore}<span className="text-3xl ml-1 text-gray-400">%</span>
+                                        </h3>
+                                        <div className={`px-4 py-2 rounded-2xl text-[11px] font-black shadow-sm ${getGaugeColor(Number(resultData.dtiScore))} text-white animate-pulse`}>
+                                            {getStatusText(Number(resultData.dtiScore)).label} {getStatusText(Number(resultData.dtiScore)).emoji}
+                                        </div>
                                     </div>
+                                    <p className="text-sm font-bold text-gray-500 dark:text-gray-400 text-center leading-relaxed tracking-tight break-keep max-w-md">
+                                        {getStatusText(Number(resultData.dtiScore)).desc}
+                                    </p>
                                 </div>
-                                <p className="text-sm font-bold text-gray-400 mt-5 leading-relaxed tracking-tight break-keep">
-                                    {getStatusText(Number(resultData.dtiScore)).desc}
-                                </p>
                             </div>
 
                             <div className="space-y-3 mb-10 max-w-xl mx-auto">

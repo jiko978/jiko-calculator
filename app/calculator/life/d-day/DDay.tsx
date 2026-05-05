@@ -150,10 +150,20 @@ const DDayCalculator = () => {
 
                 <CalculatorTabs tabs={lifeTabs} />
 
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700/50 space-y-8">
-                    <div className="flex bg-gray-50 dark:bg-gray-900 p-1 rounded-2xl">
-                        <button onClick={() => { setCalcMode("TARGET_DATE"); setCalculated(false); }} className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all ${calcMode === "TARGET_DATE" ? "bg-white dark:bg-gray-800 text-blue-600 shadow-sm" : "text-gray-400"}`}>D-day 날짜 선택</button>
-                        <button onClick={() => { setCalcMode("DAYS_OFFSET"); setCalculated(false); }} className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all ${calcMode === "DAYS_OFFSET" ? "bg-white dark:bg-gray-800 text-blue-600 shadow-sm" : "text-gray-400"}`}>전/후 날짜 계산</button>
+                <div className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700/50 space-y-8">
+                    <div className="bg-gray-50 dark:bg-gray-900/50 p-1.5 rounded-2xl flex gap-1 mb-8">
+                        <button
+                            onClick={() => { setCalcMode("TARGET_DATE"); setCalculated(false); }}
+                            className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all ${calcMode === "TARGET_DATE" ? "bg-white dark:bg-gray-800 text-blue-600 shadow-sm ring-1 ring-black/5" : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"}`}
+                        >
+                            D-day 날짜 선택
+                        </button>
+                        <button
+                            onClick={() => { setCalcMode("DAYS_OFFSET"); setCalculated(false); }}
+                            className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all ${calcMode === "DAYS_OFFSET" ? "bg-white dark:bg-gray-800 text-blue-600 shadow-sm ring-1 ring-black/5" : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"}`}
+                        >
+                            전/후 날짜 계산
+                        </button>
                     </div>
 
                     <div className="space-y-6">
@@ -234,24 +244,39 @@ const DDayCalculator = () => {
                 </div>
 
                 {calculated && resultData && (
-                    <div ref={resultRef} className={`mt-4 ${ANIMATION.resultBox ? "animate-fade-slide-up" : ""}`}>
-                        <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
-                            <p className="text-sm font-black text-gray-400 mb-2 uppercase tracking-widest leading-none">{resultData.mainResultSubText}</p>
-                            <h2 className={`text-6xl md:text-7xl font-black mb-6 tracking-tighter ${resultData.mainResultText.startsWith("D-") ? "text-blue-600" : "text-pink-600"}`}>
-                                {resultData.mainResultText}
+                    <div ref={resultRef} className="mt-8 bg-white dark:bg-gray-800 p-8 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-700/50 relative overflow-hidden animate-fade-slide-up space-y-8">
+                        {/* 카드 상단 테두리 그라데이션 */}
+                        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-pink-400 to-rose-600"></div>
+
+                        <div className="text-center">
+                            <h2 className="text-xl font-black text-gray-900 dark:text-white mb-2 flex items-center justify-center gap-2">
+                                <span className="text-pink-500">🕯️</span> 계산 결과
                             </h2>
-                            <div className="mt-8 pt-8 border-t border-gray-50 dark:border-gray-700/50">
-                                <h3 className="text-sm font-black text-gray-400 uppercase tracking-widest mb-6">🕯️ 기념일 한눈에 보기</h3>
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    {resultData.timeline.map((item: any, idx: number) => (
-                                        <div key={idx} className="p-4 bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl">
-                                            <p className="text-[10px] font-black text-blue-500 mb-1">{item.label}</p>
-                                            <p className="text-xs font-bold text-gray-700 dark:text-gray-200">{item.date}</p>
-                                        </div>
-                                    ))}
-                                </div>
+                            <p className="text-sm font-bold text-gray-500 dark:text-gray-400">
+                                {resultData.mainResultSubText}
+                            </p>
+                        </div>
+
+                        <div className="flex flex-col items-center justify-center p-8 bg-pink-50 dark:bg-pink-900/20 rounded-3xl border border-pink-100 dark:border-pink-800/50 shadow-sm">
+                            <div className="text-sm font-bold text-gray-500 dark:text-gray-400 mb-3 text-center">디데이 결과</div>
+                            <div className={`text-6xl md:text-7xl font-black break-all text-center tracking-tighter ${resultData.mainResultText.startsWith("D-") ? "text-blue-600" : "text-pink-600"}`}>
+                                {resultData.mainResultText}
                             </div>
+                        </div>
+
+                        <div className="pt-4 border-t border-gray-100 dark:border-gray-700/50">
+                            <h3 className="text-sm font-black text-gray-400 uppercase tracking-widest mb-6 text-center">🗓️ 기념일 타임라인 (기준일 포함)</h3>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                {resultData.timeline.map((item: any, idx: number) => (
+                                    <div key={idx} className="p-4 bg-gray-50 dark:bg-gray-900/50 border border-gray-100 dark:border-gray-700 rounded-2xl shadow-sm hover:scale-105 transition-transform text-center">
+                                        <p className="text-[10px] font-black text-blue-500 mb-1">{item.label}</p>
+                                        <p className="text-xs font-bold text-gray-700 dark:text-gray-200">{item.date}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="pt-4 border-t border-gray-100 dark:border-gray-700/50">
                             <CalculatorActions
                                 onCopy={handleCopy}
                                 shareTitle=""

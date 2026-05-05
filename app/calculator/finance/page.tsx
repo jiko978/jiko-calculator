@@ -5,9 +5,9 @@ import InstallBanner from "@/app/calculator/components/InstallBanner";
 import { generateBreadcrumbJsonLd, COMMON_BREADCRUMBS } from "@/app/utils/seo";
 
 export const metadata: Metadata = {
-    title: "금융 계산기 | 퍼센트, 대출 이자, 예금 이자, 적금 이자, 복리, 중도상환수수료 계산기 - JIKO 계산기",
-    description: "퍼센트, 대출 이자, 예금 이자, 적금 이자, 복리, 중도상환수수료를 쉽게 계산할 수 있는 금융 계산기입니다. 이자와 상환 금액을 빠르게 확인하고 금융 계획을 세워보세요.",
-    keywords: ["금융 계산기", "퍼센트 계산기", "대출 이자 계산기", "예금 이자 계산기", "적금 이자 계산기", "복리 계산기", "중도상환수수료 계산기"],
+    title: "금융 계산기 | 환율, 퍼센트, 대출 이자, 예금 이자, 적금 이자, 복리, 중도상환수수료 계산기 - JIKO 계산기",
+    description: "환율, 퍼센트, 대출 이자, 예금 이자, 적금 이자, 복리, 중도상환수수료를 쉽게 계산할 수 있는 금융 계산기입니다. 이자와 상환 금액을 빠르게 확인하고 금융 계획을 세워보세요.",
+    keywords: ["금융 계산기", "환율 계산기", "퍼센트 계산기", "대출 이자 계산기", "예금 이자 계산기", "적금 이자 계산기", "복리 계산기", "중도상환수수료 계산기"],
 };
 
 const BASE_URL = "https://jiko.kr";
@@ -58,6 +58,11 @@ const schema = {
 
 const financeCalculators = [
     {
+        title: "🌏 환율 계산기",
+        description: "원화 및 다국적 외화의 실시간 환율 변환 및 수수료 우대율 적용 연산을 제공합니다.",
+        href: "/calculator/finance/exchange-rate",
+    },
+    {
         title: "💯 퍼센트 계산기",
         description: "비율, 할인율, 수익률 등을 다양한 모드로 실시간 연산합니다.",
         href: "/calculator/finance/percentage",
@@ -103,11 +108,11 @@ export default function FinanceHubPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <NavBar title="금융 계산기" description="퍼센트, 대출 이자, 예금 이자, 적금 이자, 복리 계산기, 중도상환수수료 - JIKO 계산기" />
+            <NavBar title="금융 계산기" description="환율, 퍼센트, 대출 이자, 예금 이자, 적금 이자, 복리 계산기, 중도상환수수료 - JIKO 계산기" />
 
             <div className="flex-grow px-4 py-6">
                 <h1 className="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">💵 금융 계산기 모음</h1>
-                <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">퍼센트, 대출/예금/적금 이자, 복리, 중도상환수수료 계산기를 통해 간편하게 금융 계획을 세워보세요.</p>
+                <p className="text-sm font-semibold mb-4 text-center text-gray-500 dark:text-gray-400">환율, 퍼센트, 대출/예금/적금 이자, 복리, 중도상환수수료 계산기를 통해 간편하게 금융 계획을 세워보세요.</p>
 
                 <div className="grid grid-cols-2 gap-4 w-full max-w-3xl mx-auto">
                     {financeCalculators.map((calc) => (
@@ -262,6 +267,9 @@ export default function FinanceHubPage() {
                 <section className="mt-8 max-w-3xl mx-auto text-center">
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">지금 바로 JIKO 금융 계산기를 이용해보세요!</h2>
                     <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                        <Link href="/calculator/finance/exchange-rate" className="inline-flex items-center justify-center rounded-lg bg-emerald-500 px-4 py-3 text-xs sm:text-sm font-bold text-white hover:bg-emerald-600 transition">
+                            🌏 환율 계산하기 →
+                        </Link>
                         <Link href="/calculator/finance/percentage" className="inline-flex items-center justify-center rounded-lg bg-emerald-500 px-4 py-3 text-xs sm:text-sm font-bold text-white hover:bg-emerald-600 transition">
                             💯 퍼센트 계산하기 →
                         </Link>
